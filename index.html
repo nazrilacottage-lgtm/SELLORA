@@ -675,12 +675,29 @@ if (sessionData.session.user.id !== user.id) {
     const ext = file.name.split(".").pop().toLowerCase();
     const path = `${user.id}/${Date.now()}.${ext}`;
 
-    const upload = await db.storage
-      .from("product-images")
-      .upload(path, file, { upsert: true });
+    // SEMAK LOGIN PENGGUNA
+const { data: sessionData, error: sessionError } =
+  await db.auth.getSession();
 
-    if (upload.error)
-      return say("productMsg", "Upload gagal: " + upload.error.message);
+if (sessionError)
+  return say("productMsg", sessionError.message);
+
+const session = sessionData.session;
+
+if (!session || !session.user)
+  return say("productMsg", "Sila log masuk semula.");
+
+// PASTIKAN FAIL DIMILIKI OLEH PENGGUNA
+if (!path.startsWith(session.user.id + "/"))
+  return say("productMsg", "Laluan gambar tidak sah.");
+
+// UPLOAD GAMBAR
+const upload = await db.storage
+  .from("product-images")
+  .upload(path, file, { upsert: true });
+
+if (upload.error)
+  return say("productMsg", "Upload gagal: " + upload.error.message);
 
     const { data } = db.storage
       .from("product-images")
