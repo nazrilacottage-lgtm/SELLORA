@@ -339,6 +339,69 @@ color:var(--muted)
 </div>
 <div id="myProducts" class="products"></div>
 </div>
+  
+<!-- SELLORA V6 SALES MANAGEMENT -->
+<div class="panel" id="salesPanel">
+  <h2>Rekod Jualan Affiliate</h2>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Jumlah Rekod</h3>
+      <p id="salesCount">0</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>Jumlah Jualan</h3>
+      <p id="salesTotal">RM0.00</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>Jumlah Komisen</h3>
+      <p id="commissionTotal">RM0.00</p>
+    </div>
+  </div>
+
+  <h3>Tambah Rekod Jualan</h3>
+
+  <label>Produk</label>
+  <select id="saleProduct">
+    <option value="">Tiada produk dipilih</option>
+  </select>
+
+  <label>Platform</label>
+  <select id="salePlatform">
+    <option value="Shopee">Shopee</option>
+    <option value="TikTok Shop">TikTok Shop</option>
+  </select>
+
+  <label>Tarikh Jualan</label>
+  <input type="date" id="saleDate">
+
+  <label>Jumlah Jualan (RM)</label>
+  <input type="number" id="saleAmount" step="0.01" min="0" placeholder="Contoh: 100">
+
+  <label>Komisen (RM)</label>
+  <input type="number" id="saleCommission" step="0.01" min="0" placeholder="Contoh: 10">
+
+  <label>Status</label>
+  <select id="saleStatus">
+    <option value="Pending">Pending</option>
+    <option value="Approved">Approved</option>
+    <option value="Rejected">Rejected</option>
+  </select>
+
+  <label>Catatan</label>
+  <input type="text" id="saleNotes" placeholder="Catatan jika ada">
+
+  <button onclick="saveSale()">Simpan Rekod Jualan</button>
+
+  <p id="saleMsg" class="message"></p>
+
+  <h3>Sejarah Jualan</h3>
+  <div id="salesHistory"></div>
+</div>
+<!-- END SELLORA V6 SALES MANAGEMENT -->
+
 </section>
 
 <section id="publicStore" class="hidden">
