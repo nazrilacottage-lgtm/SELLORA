@@ -633,7 +633,84 @@ showLink();
 
 // PRODUCT MANAGEMENT
 
-async function saveProduct(){
+
+async function saveProduct() {
+  if (!store) return say("productMsg", "Simpan kedai dahulu.");
+
+  const name = $("productName").value.trim();
+  const link = $("affiliateUrl").value.trim();
+  let img = $("imageUrl").value.trim();
+
+  const file = $("productImageFile")?.files?.[0];
+
+  if (!name || urlOK(link) === "#")
+    return say("productMsg", "Masukkan nama dan pautan affiliate yang sah.");
+
+  if (img && urlOK(img) === "#")
+    return say("productMsg", "URL gambar mesti http/https.");
+
+  // UPLOAD GAMBAR KE SUPABASE STORAGE
+  if (file) {
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type))
+      return say("productMsg", "Format gambar tidak disokong.");
+
+    if (file.size > 5 * 1024 * 1024)
+      return say("productMsg", "Saiz gambar maksimum 5MB.");
+
+    say("productMsg", "Sedang memuat naik gambar...");
+
+    const ext = file.name.split(".").pop().toLowerCase();
+    const path = `${user.id}/${Date.now()}.${ext}`;
+
+    const upload = await db.storage
+      .from("product-images")
+      .upload(path, file, { upsert: true });
+
+    if (upload.error)
+      return say("productMsg", "Upload gagal: " + upload.error.message);
+
+    const { data } = db.storage
+      .from("product-images")
+      .getPublicUrl(path);
+
+    img = data.publicUrl;
+  }
+
+  const raw = $("price").value;
+
+  const v = {
+    owner_id: user.id,
+    store_id: store.id,
+    name,
+    platform: $("platform").value,
+    affiliate_url: link,
+    image_url: img || null,
+    price: raw ? Number(raw) : null,
+    description: $("description").value
+  };
+
+  let result;
+
+  if (editingId) {
+    result = await db.from("products")
+      .update(v)
+      .eq("id", editingId)
+      .eq("owner_id", user.id);
+  } else {
+    result = await db.from("products").insert(v);
+  }
+
+  if (result.error)
+    return say("productMsg", result.error.message);
+
+  say("productMsg", editingId
+    ? "Produk berjaya dikemaskini!"
+    : "Produk berjaya ditambah!");
+
+  cancelEdit();
+  await loadProducts();
+}
+
 if(!store)return say("productMsg","Simpan kedai dahulu.");
 
 let name=$("productName").value.trim();
