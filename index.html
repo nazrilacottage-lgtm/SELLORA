@@ -650,7 +650,20 @@ async function saveProduct() {
     return say("productMsg", "URL gambar mesti http/https.");
 
   // UPLOAD GAMBAR KE SUPABASE STORAGE
-  if (file) {
+  if (file) {const { data: sessionData, error: sessionError } =
+  await db.auth.getSession();
+
+if (sessionError) {
+  return say("productMsg", "Ralat sesi: " + sessionError.message);
+}
+
+if (!sessionData.session) {
+  return say("productMsg", "Tiada sesi Supabase. Sila log keluar dan login semula.");
+}
+
+if (sessionData.session.user.id !== user.id) {
+  return say("productMsg", "ID pengguna tidak sepadan. Sila login semula.");
+}
     if (!["image/jpeg", "image/png", "image/webp"].includes(file.type))
       return say("productMsg", "Format gambar tidak disokong.");
 
