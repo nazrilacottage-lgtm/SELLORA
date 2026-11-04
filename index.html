@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SELLORA — Affiliate Storefront</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101820;color:#f5f7f5;font-family:Arial,sans-serif}
+header{padding:22px;background:#17232d;border-bottom:1px solid #34434b}
+.logo{font-size:27px;font-weight:900;color:#b7f36b}
+main{max-width:850px;margin:auto;padding:22px}
+.card{background:#1b2933;padding:20px;border-radius:16px;margin:16px 0}
+h2{margin-top:0}
+input,textarea,select{width:100%;padding:13px;margin:7px 0 12px;border:1px solid #52616b;border-radius:9px;background:#101820;color:white}
+button{padding:13px 18px;border:0;border-radius:9px;background:#b7f36b;color:#142018;font-weight:bold;margin:5px 3px;cursor:pointer}
+.secondary{background:#34434b;color:white}
+.small{color:#b9c4c9;font-size:13px}
+.product{border:1px solid #43515a;border-radius:12px;padding:14px;margin:12px 0}
+.product img{width:100%;max-height:220px;object-fit:contain;border-radius:8px}
+a{color:#b7f36b}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">SELLORA.</div>
+ <div class="small">ONE LINK. ENDLESS POSSIBILITIES.</div>
+</header>
+<main>
+<section id="welcome" class="card">
+ <h2>Mulakan kedai affiliate anda</h2>
+ <p class="small">Bina storefront sendiri untuk produk Shopee dan TikTok Shop.</p>
+ <label>Email</label>
+ <input id="email" type="email" placeholder="Email anda">
+ <label>Password</label>
+ <input id="password" type="password" placeholder="Minimum 6 aksara">
+ <button onclick="signup()">Daftar akaun</button>
+ <button class="secondary" onclick="login()">Log masuk</button>
+ <p id="authMsg" class="small"></p>
+</section>
+
+<section id="dashboard" class="hidden">
+ <div class="card">
+  <h2>Dashboard SELLORA</h2>
+  <p id="userInfo" class="small"></p>
+  <button class="secondary" onclick="logout()">Log keluar</button>
+ </div>
+ <div class="card">
+  <h2>Kedai saya</h2>
+  <input id="storeName" placeholder="Nama kedai">
+  <input id="storeSlug" placeholder="Nama pautan contoh: kedai-saya">
+  <textarea id="storeBio" placeholder="Penerangan ringkas kedai"></textarea>
+  <button onclick="saveStore()">Simpan kedai</button>
+  <p id="storeMsg" class="small"></p>
+  <p id="storeLink"></p>
+ </div>
+ <div class="card">
+  <h2>Tambah produk affiliate</h2>
+  <input id="productName" placeholder="Nama produk">
+  <select id="platform">
+   <option value="Shopee">Shopee</option>
+   <option value="TikTok Shop">TikTok Shop</option>
+  </select>
+  <input id="affiliateUrl" placeholder="Pautan affiliate produk">
+  <input id="imageUrl" placeholder="URL gambar produk (pilihan)">
+  <input id="price" type="number" step="0.01" placeholder="Harga RM">
+  <textarea id="description" placeholder="Penerangan produk"></textarea>
+  <button onclick="addProduct()">Tambah produk</button>
+  <p id="productMsg" class="small"></p>
+ </div>
+ <div class="card">
+  <h2>Produk saya</h2>
+  <div id="myProducts"></div>
+ </div>
+</section>
+
+<section id="publicStore" class="hidden">
+ <div class="card">
+  <h2 id="publicName">Kedai SELLORA</h2>
+  <p id="publicBio"></p>
+  <div id="publicProducts"></div>
+ </div>
+</section>
+</main>
+<script>
+// MASUKKAN PROJECT URL DAN PUBLISHABLE KEY SUPABASE ANDA
+const SUPABASE_URL = "MASUKKAN_PROJECT_URL";
+const SUPABASE_KEY = "MASUKKAN_PUBLISHABLE_KEY";
+
+const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let currentUser = null;
+let currentStore = null;
+
+const el = id => document.getElementById(id);
+const msg = (id,text) => el(id).textContent = text;
+
+async function signup(){
+ const email=el("email").value.trim();
+ const password=el("password").value;
+ if(!email||password.length<6){msg("authMsg","Masukkan email dan password minimum 6 aksara.");return;}
+ const {error}=await db.auth.signUp({email,password});
+ msg("authMsg",error?error.message:"Pendaftaran berjaya. Semak email jika pengesahan diperlukan.");
+}
+
+async function login(){
+ const {data,error}=await db.auth.signInWithPassword({
+  email:el("email").value.trim(),
+  password:el("password").value
+ });
+ if(error){msg("authMsg",error.message);return;}
+ currentUser=data.user;
+ await startDashboard();
+}
+
+async function logout(){
+ await db.auth.signOut();
+ location.href=location.pathname;
+}
+
+async function startDashboard(){
+ el("welcome").classList.add("hidden");
+ el("publicStore").classList.add("hidden");
+ el("dashboard").classList.remove("hidden");
+ msg("userInfo",currentUser.email);
+ await loadStore();
+}
+
+async function loadStore(){
+ const {data,error}=await db.from("stores")
+  .select("*").eq("owner_id",currentUser.id).maybeSingle();
+ if(error){msg("storeMsg",error.message);return;}
+ currentStore=data;
+ if(data){
+  el("storeName").value=data.name;
+  el("storeSlug").value=data.slug;
+  el("storeBio").value=data.bio||"";
+  showStoreLink(data.slug);
+  await loadProducts();
+ }
+}
+
+function showStoreLink(slug){
+ const url=location.origin+location.pathname+"?store="+encodeURIComponent(slug);
+ el("storeLink").innerHTML='Pautan kedai: <a target="_blank" href="'+url+'">'+url+'</a>';
+}
+
+async function saveStore(){
+ const name=el("storeName").value.trim();
+ const slug=el("storeSlug").value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
+ if(name.length<2||slug.length<3){msg("storeMsg","Nama kedai atau pautan tidak sah.");return;}
+ const values={owner_id:currentUser.id,name,slug,bio:el("storeBio").value};
+ let result;
+ if(currentStore){
+  result=await db.from("stores").update(values).eq("id",currentStore.id).select().single();
+ }else{
+  result=await db.from("stores").insert(values).select().single();
+ }
+ if(result.error){msg("storeMsg",result.error.message);return;}
+ currentStore=result.data;
+ msg("storeMsg","Kedai berjaya disimpan!");
+ showStoreLink(slug);
+}
+
+async function addProduct(){
+ if(!currentStore){msg("productMsg","Simpan kedai dahulu.");return;}
+ const name=el("productName").value.trim();
+ const affiliate_url=el("affiliateUrl").value.trim();
+ if(!name||!/^https?:\/\//i.test(affiliate_url)){
+  msg("productMsg","Masukkan nama dan pautan affiliate yang sah.");return;
+ }
+ const rawPrice=el("price").value;
+ const values={
+  owner_id:currentUser.id,
+  store_id:currentStore.id,
+  name,
+  platform:el("platform").value,
+  affiliate_url,
+  image_url:el("imageUrl").value.trim()||null,
+  price:rawPrice?Number(rawPrice):null,
+  description:el("description").value
+ };
+ const {error}=await db.from("products").insert(values);
+ if(error){msg("productMsg",error.message);return;}
+ msg("productMsg","Produk berjaya ditambah!");
+ ["productName","affiliateUrl","imageUrl","price","description"].forEach(id=>el(id).value="");
+ await loadProducts();
+}
+
+function productHTML(p){
+ const image=p.image_url?'<img src="'+escapeHTML(p.image_url)+'" alt="">':"";
+ const price=p.price===null?"":'<p>RM '+Number(p.price).toFixed(2)+'</p>';
+ return '<div class="product">'+image+
+ '<h3>'+escapeHTML(p.name)+'</h3><p class="small">'+escapeHTML(p.platform)+'</p>'+
+ price+'<p>'+escapeHTML(p.description||"")+'</p>'+
+ '<a href="'+escapeHTML(p.affiliate_url)+'" target="_blank" rel="noopener">Lihat produk</a></div>';
+}
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+async function loadProducts(){
+ const {data,error}=await db.from("products").select("*")
+  .eq("store_id",currentStore.id).order("created_at",{ascending:false});
+ if(error){el("myProducts").textContent=error.message;return;}
+ el("myProducts").innerHTML=data.map(productHTML).join("")||"Belum ada produk.";
+}
+
+async function openPublicStore(slug){
+ el("welcome").classList.add("hidden");
+ el("dashboard").classList.add("hidden");
+ el("publicStore").classList.remove("hidden");
+ const {data:store,error}=await db.from("stores").select("*").eq("slug",slug).maybeSingle();
+ if(error||!store){el("publicName").textContent="Kedai tidak dijumpai";return;}
+ el("publicName").textContent=store.name;
+ el("publicBio").textContent=store.bio||"";
+ const {data:products}=await db.from("products").select("*")
+  .eq("store_id",store.id).eq("is_active",true).order("created_at",{ascending:false});
+ el("publicProducts").innerHTML=(products||[]).map(productHTML).join("")||"Produk belum tersedia.";
+}
+
+async function init(){
+ const params=new URLSearchParams(location.search);
+ const slug=params.get("store");
+ if(slug){await openPublicStore(slug);return;}
+ const {data}=await db.auth.getSession();
+ if(data.session){currentUser=data.session.user;await startDashboard();}
+}
+init();
+</script>
+</body>
+</html>
