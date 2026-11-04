@@ -66,6 +66,44 @@ footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 .stat strong{font-size:19px}
 }
 @media(max-width:350px){.products{grid-template-columns:1fr}}
+.analytics-list{
+display:flex;
+flex-direction:column;
+gap:14px
+}
+.analytics-item{
+background:#101b22;
+padding:13px;
+border:1px solid var(--line);
+border-radius:12px
+}
+.analytics-head{
+display:flex;
+justify-content:space-between;
+gap:10px;
+margin-bottom:8px
+}
+.analytics-head strong{font-size:14px}
+.analytics-head span{
+color:var(--lime);
+font-weight:bold
+}
+.bar-bg{
+height:9px;
+background:#30424e;
+border-radius:20px;
+overflow:hidden
+}
+.bar-fill{
+height:100%;
+background:var(--lime);
+border-radius:20px
+}
+.analytics-empty{
+padding:20px;
+text-align:center;
+color:var(--muted)
+}
 </style>
 </head>
 <body>
@@ -134,6 +172,20 @@ footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 </div>
 <p class="small">Statistik ini mengira klik pada pautan affiliate melalui storefront SELLORA. Ia bukan jumlah jualan atau komisen daripada Shopee atau TikTok Shop.</p>
 <p id="statsMsg" class="message"></p>
+  <div class="panel">
+<h2>Prestasi Produk</h2>
+<p class="small">Kedudukan produk berdasarkan jumlah klik affiliate.</p>
+<div id="topProducts" class="analytics-list">
+<div class="analytics-empty">Memuatkan statistik...</div>
+</div>
+</div>
+
+<div class="panel">
+<h2>Analisis Semua Produk</h2>
+<div id="productAnalytics" class="analytics-list">
+<div class="analytics-empty">Memuatkan data...</div>
+</div>
+</div>
 </div>
 
 <div class="panel">
@@ -514,27 +566,87 @@ await loadClickStats();
 renderManage();
 }
 
+
 async function loadClickStats(){
-clickCounts={};
+  clickCounts = {};
 
-let {data,error}=await db.from("product_clicks")
-.select("product_id");
+  const ids = myItems.map(p => p.id);
 
-if(error){
-say("statsMsg","Statistik klik belum dapat dimuatkan: "+error.message);
-}else{
-(data||[]).forEach(row=>{
-clickCounts[row.product_id]=(clickCounts[row.product_id]||0)+1;
-});
-say("statsMsg","Statistik klik dikemas kini.");
+  if(ids.length){
+    const {data,error} = await db
+      .from("product_clicks")
+      .select("product_id")
+      .in("product_id",ids);
+
+    if(error){
+      say("statsMsg","Statistik gagal dimuatkan: "+error.message);
+      renderAnalytics();
+      return;
+    }
+
+    (data || []).forEach(row=>{
+      const id = String(row.product_id);
+      clickCounts[id] = (clickCounts[id] || 0) + 1;
+    });
+  }
+
+  const total = Object.values(clickCounts)
+    .reduce((a,b)=>a+b,0);
+
+  say("totalClicks",total);
+  say("totalProducts",myItems.length);
+
+  say(
+    "activeProducts",
+    myItems.filter(p=>p.is_active === true).length
+  );
+
+  say("statsMsg","Analitik berjaya dikemas kini.");
+  renderAnalytics();
 }
 
-let total=Object.values(clickCounts).reduce((a,b)=>a+b,0);
+function renderAnalytics(){
 
-say("totalClicks",total);
-say("totalProducts",myItems.length);
-say("activeProducts",myItems.length);
+  const sorted = [...myItems].sort((a,b)=>{
+    return (clickCounts[b.id]||0) -
+           (clickCounts[a.id]||0);
+  });
+
+  const top = sorted.slice(0,5);
+
+  const maxClicks = Math.max(
+    1,
+    ...sorted.map(p=>clickCounts[p.id]||0)
+  );
+
+  const makeItem = p=>{
+    const clicks = clickCounts[p.id]||0;
+    const width = (clicks/maxClicks)*100;
+
+    return `
+      <div class="analytics-item">
+        <div class="analytics-head">
+          <strong>${esc(p.name)}</strong>
+          <span>${clicks} klik</span>
+        </div>
+        <div class="bar-bg">
+          <div class="bar-fill" style="width:${width}%"></div>
+        </div>
+        <div class="small">${esc(p.platform)}</div>
+      </div>
+    `;
+  };
+
+  $("topProducts").innerHTML = top.length
+    ? top.map(makeItem).join("")
+    : '<div class="analytics-empty">Belum ada produk.</div>';
+
+  $("productAnalytics").innerHTML = sorted.length
+    ? sorted.map(makeItem).join("")
+    : '<div class="analytics-empty">Tiada data produk.</div>';
 }
+
+
 
 function renderManage(){
 let q=$("manageSearch").value.toLowerCase();
