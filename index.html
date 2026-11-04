@@ -456,6 +456,23 @@ const SUPABASE_URL = "https://pbjuicvtfoxvpmrayarj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
 
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+  // SELLORA PRODUCT IMAGE PREVIEW
+const imageInput = document.getElementById("productImageFile");
+const imagePreview = document.getElementById("productImagePreview");
+
+if (imageInput && imagePreview) {
+  imageInput.addEventListener("change", function () {
+    const file = this.files[0];
+
+    if (!file) {
+      imagePreview.style.display = "none";
+      return;
+    }
+
+    imagePreview.src = URL.createObjectURL(file);
+    imagePreview.style.display = "block";
+  });
+}
 let user=null,store=null,myItems=[],publicItems=[],clickCounts={};
 let editingId=null;
 
