@@ -31,6 +31,7 @@ input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px soli
 textarea{min-height:80px}
 button{padding:12px 16px;border:0;border-radius:10px;background:var(--lime);color:#13200e;font-weight:bold;cursor:pointer}
 .secondary{background:#2b3b46;color:white;border:1px solid var(--line)}
+.danger{background:#743b42;color:white}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .message{color:var(--lime);font-size:13px;overflow-wrap:anywhere}
 .toolbar{display:grid;grid-template-columns:1fr 180px;gap:10px;margin:16px 0}
@@ -41,12 +42,16 @@ button{padding:12px 16px;border:0;border-radius:10px;background:var(--lime);colo
 .body{padding:13px;display:flex;flex-direction:column;flex:1}
 .pill{font-size:11px;color:var(--lime);border:1px solid #536b43;border-radius:20px;padding:3px 8px;align-self:start}
 .price{font-size:20px;font-weight:900;margin:7px 0}
-.desc{font-size:13px;color:var(--muted);min-height:35px}
+.desc{font-size:13px;color:var(--muted);min-height:35px;overflow-wrap:anywhere}
 .buy{display:block;text-align:center;text-decoration:none;background:var(--lime);color:#13200e;font-weight:bold;padding:10px;border-radius:9px;margin-top:auto}
-a{color:var(--lime)}
+.manage-actions{display:flex;gap:6px;margin-top:10px}
+.manage-actions button{flex:1;padding:9px 5px;font-size:12px}
 .empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #50616a;border-radius:12px}
-.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.stat{background:#101b22;border:1px solid var(--line);padding:7px 11px;border-radius:9px;color:var(--muted);font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.stat{background:#101b22;border:1px solid var(--line);padding:13px;border-radius:12px}
+.stat strong{display:block;font-size:24px;color:var(--lime)}
+.stat span{font-size:12px;color:var(--muted)}
+.click-count{font-size:12px;color:var(--lime);margin-top:7px}
 footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 @media(max-width:620px){
 .grid{grid-template-columns:1fr}
@@ -56,6 +61,9 @@ footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 .photo{height:140px}
 .body{padding:10px}
 .price{font-size:17px}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.stat{padding:9px}
+.stat strong{font-size:19px}
 }
 @media(max-width:350px){.products{grid-template-columns:1fr}}
 </style>
@@ -103,9 +111,29 @@ footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 
 <section id="dashboard" class="hidden">
 <div class="hero">
-<div class="eyebrow">Seller dashboard</div>
+<div class="eyebrow">Seller dashboard · Version 3</div>
 <h1>Urus kedai anda.</h1>
 <p id="userInfo" class="muted"></p>
+</div>
+
+<div class="panel">
+<h2>Statistik affiliate</h2>
+<div class="stats">
+<div class="stat">
+<strong id="totalClicks">0</strong>
+<span>Jumlah klik</span>
+</div>
+<div class="stat">
+<strong id="totalProducts">0</strong>
+<span>Jumlah produk</span>
+</div>
+<div class="stat">
+<strong id="activeProducts">0</strong>
+<span>Produk aktif</span>
+</div>
+</div>
+<p class="small">Statistik ini mengira klik pada pautan affiliate melalui storefront SELLORA. Ia bukan jumlah jualan atau komisen daripada Shopee atau TikTok Shop.</p>
+<p id="statsMsg" class="message"></p>
 </div>
 
 <div class="panel">
@@ -130,8 +158,8 @@ footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 <p id="storeLink" class="small"></p>
 </div>
 
-<div class="panel">
-<h2>Tambah produk affiliate</h2>
+<div class="panel" id="productForm">
+<h2 id="formTitle">Tambah produk affiliate</h2>
 <div class="grid">
 <div>
 <label>Nama produk</label>
@@ -158,13 +186,14 @@ footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 <label>Penerangan produk</label>
 <textarea id="description"></textarea>
 <div class="actions">
-<button onclick="addProduct()">Tambah produk</button>
+<button id="saveProductBtn" onclick="saveProduct()">Tambah produk</button>
+<button id="cancelEditBtn" class="secondary hidden" onclick="cancelEdit()">Batal edit</button>
 </div>
 <p id="productMsg" class="message"></p>
 </div>
 
 <div class="panel">
-<h2>Produk saya</h2>
+<h2>Pengurusan produk</h2>
 <div class="toolbar">
 <input id="manageSearch" placeholder="Cari produk..." oninput="renderManage()">
 <select id="manageFilter" onchange="renderManage()">
@@ -183,8 +212,14 @@ footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
 <h1 id="publicName">Kedai SELLORA</h1>
 <p id="publicBio" class="muted"></p>
 <div class="stats">
-<span class="stat" id="productCount">0 produk</span>
-<span class="stat">Shopee + TikTok Shop</span>
+<div class="stat">
+<strong id="productCount">0</strong>
+<span>Produk</span>
+</div>
+<div class="stat">
+<strong>2</strong>
+<span>Platform</span>
+</div>
 </div>
 <div class="actions">
 <button onclick="shareStore()">Kongsi kedai</button>
@@ -212,7 +247,8 @@ const SUPABASE_URL = "https://pbjuicvtfoxvpmrayarj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
 
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-let user=null,store=null,myItems=[],publicItems=[];
+let user=null,store=null,myItems=[],publicItems=[],clickCounts={};
+let editingId=null;
 
 const $=id=>document.getElementById(id);
 const say=(id,t)=>$(id).textContent=t;
@@ -230,12 +266,20 @@ return ["https:","http:"].includes(u.protocol)?u.href:"#";
 }catch{return "#"}
 }
 
-function card(p){
+function card(p,manage=false){
 let im=p.image_url&&urlOK(p.image_url)!=="#"
 ?`<div class="photo"><img loading="lazy" src="${esc(urlOK(p.image_url))}" alt="${esc(p.name)}"></div>`
 :'<div class="photo">SELLORA PRODUCT</div>';
 
 let pr=p.price==null?"":`<div class="price">RM ${Number(p.price).toFixed(2)}</div>`;
+
+let actions=manage
+?`<div class="click-count">Jumlah klik: ${clickCounts[p.id]||0}</div>
+<div class="manage-actions">
+<button class="secondary" onclick="editProduct('${esc(p.id)}')">Edit</button>
+<button class="danger" onclick="deleteProduct('${esc(p.id)}')">Padam</button>
+</div>`
+:"";
 
 return `<article class="card">
 ${im}
@@ -244,10 +288,13 @@ ${im}
 <h3>${esc(p.name)}</h3>
 ${pr}
 <p class="desc">${esc(p.description||"")}</p>
-<a class="buy" href="${esc(urlOK(p.affiliate_url))}" target="_blank" rel="noopener noreferrer">Lihat produk ↗</a>
+<a class="buy" href="${esc(urlOK(p.affiliate_url))}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(p.id)}')">Lihat produk ↗</a>
+${actions}
 </div>
 </article>`;
 }
+
+// AUTH
 
 async function signup(){
 let e=$("email").value.trim();
@@ -278,6 +325,8 @@ await db.auth.signOut();
 location.href=location.pathname;
 }
 
+// DASHBOARD
+
 async function dashboard(){
 $("welcome").classList.add("hidden");
 $("publicStore").classList.add("hidden");
@@ -304,6 +353,8 @@ $("storeSlug").value=data.slug;
 $("storeBio").value=data.bio||"";
 showLink();
 await loadProducts();
+}else{
+say("storeMsg","Sila cipta maklumat kedai anda dahulu.");
 }
 }
 
@@ -352,7 +403,9 @@ say("storeMsg","Kedai berjaya disimpan!");
 showLink();
 }
 
-async function addProduct(){
+// PRODUCT MANAGEMENT
+
+async function saveProduct(){
 if(!store)return say("productMsg","Simpan kedai dahulu.");
 
 let name=$("productName").value.trim();
@@ -378,16 +431,75 @@ price:raw?Number(raw):null,
 description:$("description").value
 };
 
-let {error}=await db.from("products").insert(v);
+let result;
 
-if(error)return say("productMsg",error.message);
+if(editingId){
+result=await db.from("products")
+.update(v)
+.eq("id",editingId)
+.eq("owner_id",user.id);
+}else{
+result=await db.from("products").insert(v);
+}
 
-say("productMsg","Produk berjaya ditambah!");
+if(result.error)return say("productMsg",result.error.message);
 
-["productName","affiliateUrl","imageUrl","price","description"].forEach(x=>$(x).value="");
+say("productMsg",editingId?"Produk berjaya dikemaskini!":"Produk berjaya ditambah!");
 
+cancelEdit();
 await loadProducts();
 }
+
+function editProduct(id){
+let p=myItems.find(x=>String(x.id)===String(id));
+if(!p)return;
+
+editingId=p.id;
+
+$("productName").value=p.name||"";
+$("platform").value=p.platform||"Shopee";
+$("price").value=p.price??"";
+$("imageUrl").value=p.image_url||"";
+$("affiliateUrl").value=p.affiliate_url||"";
+$("description").value=p.description||"";
+
+say("formTitle","Edit produk affiliate");
+$("saveProductBtn").textContent="Simpan perubahan";
+$("cancelEditBtn").classList.remove("hidden");
+$("productMsg").textContent="Mod edit aktif. Semak maklumat sebelum menyimpan.";
+
+$("productForm").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function cancelEdit(){
+editingId=null;
+["productName","price","imageUrl","affiliateUrl","description"].forEach(x=>$(x).value="");
+$("platform").value="Shopee";
+say("formTitle","Tambah produk affiliate");
+$("saveProductBtn").textContent="Tambah produk";
+$("cancelEditBtn").classList.add("hidden");
+}
+
+async function deleteProduct(id){
+let p=myItems.find(x=>String(x.id)===String(id));
+if(!p)return;
+
+if(!confirm("Padam produk '"+p.name+"'? Tindakan ini tidak boleh dibatalkan."))return;
+
+let {error}=await db.from("products")
+.delete()
+.eq("id",id)
+.eq("owner_id",user.id);
+
+if(error)return alert("Produk tidak dapat dipadam: "+error.message);
+
+if(editingId===id)cancelEdit();
+
+await loadProducts();
+alert("Produk berjaya dipadam.");
+}
+
+// LOAD PRODUCTS + CLICK STATISTICS
 
 async function loadProducts(){
 let {data,error}=await db.from("products")
@@ -395,10 +507,33 @@ let {data,error}=await db.from("products")
 .eq("store_id",store.id)
 .order("created_at",{ascending:false});
 
-if(error)return $("myProducts").textContent=error.message;
+if(error)return say("productMsg",error.message);
 
 myItems=data||[];
+await loadClickStats();
 renderManage();
+}
+
+async function loadClickStats(){
+clickCounts={};
+
+let {data,error}=await db.from("product_clicks")
+.select("product_id");
+
+if(error){
+say("statsMsg","Statistik klik belum dapat dimuatkan: "+error.message);
+}else{
+(data||[]).forEach(row=>{
+clickCounts[row.product_id]=(clickCounts[row.product_id]||0)+1;
+});
+say("statsMsg","Statistik klik dikemas kini.");
+}
+
+let total=Object.values(clickCounts).reduce((a,b)=>a+b,0);
+
+say("totalClicks",total);
+say("totalProducts",myItems.length);
+say("activeProducts",myItems.length);
 }
 
 function renderManage(){
@@ -406,12 +541,16 @@ let q=$("manageSearch").value.toLowerCase();
 let f=$("manageFilter").value;
 
 let arr=myItems.filter(p=>
-(f==="all"||p.platform===f)&&p.name.toLowerCase().includes(q)
+(f==="all"||p.platform===f)&&
+String(p.name||"").toLowerCase().includes(q)
 );
 
 $("myProducts").innerHTML=
-arr.map(card).join("")||'<div class="empty">Tiada produk sepadan.</div>';
+arr.map(p=>card(p,true)).join("")||
+'<div class="empty">Tiada produk sepadan.</div>';
 }
+
+// PUBLIC STOREFRONT
 
 async function openStore(slug){
 $("welcome").classList.add("hidden");
@@ -424,7 +563,10 @@ let {data:s,error}=await db.from("stores")
 .eq("slug",slug)
 .maybeSingle();
 
-if(error||!s)return say("publicName","Kedai tidak dijumpai");
+if(error||!s){
+say("publicName","Kedai tidak dijumpai");
+return;
+}
 
 say("publicName",s.name);
 say("publicBio",s.bio||"");
@@ -435,11 +577,13 @@ let r=await db.from("products")
 .eq("is_active",true)
 .order("created_at",{ascending:false});
 
-if(r.error)
-return $("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan.</div>';
+if(r.error){
+$("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan.</div>';
+return;
+}
 
 publicItems=r.data||[];
-say("productCount",publicItems.length+" produk");
+say("productCount",publicItems.length);
 renderPublic();
 }
 
@@ -448,11 +592,27 @@ let q=$("publicSearch").value.toLowerCase();
 let f=$("publicFilter").value;
 
 let arr=publicItems.filter(p=>
-(f==="all"||p.platform===f)&&p.name.toLowerCase().includes(q)
+(f==="all"||p.platform===f)&&
+String(p.name||"").toLowerCase().includes(q)
 );
 
 $("publicProducts").innerHTML=
-arr.map(card).join("")||'<div class="empty">Tiada produk ditemui.</div>';
+arr.map(p=>card(p,false)).join("")||
+'<div class="empty">Tiada produk ditemui.</div>';
+}
+
+// CLICK TRACKING
+
+function trackClick(event,id){
+/*
+Pautan affiliate dibuka seperti biasa.
+Rekod klik dihantar ke Supabase secara berasingan.
+*/
+db.from("product_clicks")
+.insert({product_id:id})
+.then(({error})=>{
+if(error)console.error("SELLORA click tracking:",error.message);
+});
 }
 
 async function shareStore(){
@@ -473,10 +633,15 @@ alert("Salin URL dari pelayar untuk berkongsi.");
 }
 }
 
+// START APP
+
 async function init(){
 let slug=new URLSearchParams(location.search).get("store");
 
-if(slug)return openStore(slug);
+if(slug){
+await openStore(slug);
+return;
+}
 
 let {data}=await db.auth.getSession();
 
