@@ -188,6 +188,89 @@ color:var(--muted)
 </div>
 </div>
 
+<!-- SELLORA V6 SALES MANAGEMENT -->
+
+<div class="panel" id="salesPanel">
+  <h2>Rekod Jualan & Komisen</h2>
+  <p class="small">
+    Masukkan rekod jualan affiliate secara manual.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="salesCount">0</strong>
+      <span>Jumlah rekod</span>
+    </div>
+    <div class="stat">
+      <strong id="salesTotal">RM 0.00</strong>
+      <span>Jumlah jualan</span>
+    </div>
+    <div class="stat">
+      <strong id="commissionTotal">RM 0.00</strong>
+      <span>Komisen diluluskan</span>
+    </div>
+  </div>
+
+  <h3>Tambah rekod jualan</h3>
+
+  <label>Produk</label>
+  <select id="saleProduct">
+    <option value="">Pilih produk</option>
+  </select>
+
+  <div class="grid">
+    <div>
+      <label>Platform</label>
+      <select id="salePlatform">
+        <option>Shopee</option>
+        <option>TikTok Shop</option>
+      </select>
+    </div>
+
+    <div>
+      <label>Tarikh jualan</label>
+      <input id="saleDate" type="date">
+    </div>
+
+    <div>
+      <label>Jumlah jualan (RM)</label>
+      <input id="saleAmount" type="number"
+        min="0" step="0.01" placeholder="0.00">
+    </div>
+
+    <div>
+      <label>Komisen (RM)</label>
+      <input id="saleCommission" type="number"
+        min="0" step="0.01" placeholder="0.00">
+    </div>
+  </div>
+
+  <label>Status komisen</label>
+  <select id="saleStatus">
+    <option>Pending</option>
+    <option>Approved</option>
+    <option>Rejected</option>
+  </select>
+
+  <label>Catatan (pilihan)</label>
+  <textarea id="saleNotes"
+    placeholder="Contoh: Pesanan affiliate minggu ini"></textarea>
+
+  <div class="actions">
+    <button onclick="saveSale()">Simpan rekod jualan</button>
+  </div>
+
+  <p id="saleMsg" class="message"></p>
+</div>
+
+<div class="panel">
+  <h2>Sejarah Jualan</h2>
+
+  <div id="salesHistory">
+    <div class="empty">Memuatkan rekod jualan...</div>
+  </div>
+</div>
+
 <div class="panel">
 <h2>Maklumat kedai</h2>
 <div class="grid">
@@ -301,6 +384,8 @@ const SUPABASE_KEY = "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 let user=null,store=null,myItems=[],publicItems=[],clickCounts={};
 let editingId=null;
+
+let salesItems = [];
 
 const $=id=>document.getElementById(id);
 const say=(id,t)=>$(id).textContent=t;
@@ -564,6 +649,7 @@ if(error)return say("productMsg",error.message);
 myItems=data||[];
 await loadClickStats();
 renderManage();
+  await loadSales();
 }
 
 
@@ -662,6 +748,168 @@ arr.map(p=>card(p,true)).join("")||
 '<div class="empty">Tiada produk sepadan.</div>';
 }
 
+// =====================================
+// SELLORA V6 - SALES & COMMISSION
+// =====================================
+
+async function loadSales(){
+
+  if(!store || !user) return;
+
+  const {data,error} = await db
+    .from("affiliate_sales")
+    .select("*")
+    .eq("store_id",store.id)
+    .order("sale_date",{ascending:false});
+
+  if(error){
+    say("saleMsg","Gagal memuatkan jualan: "+error.message);
+    return;
+  }
+
+  salesItems = data || [];
+
+  const productSelect = $("saleProduct");
+
+  productSelect.innerHTML =
+    '<option value="">Tiada produk dipilih</option>' +
+    myItems.map(p=>
+      `<option value="${esc(p.id)}">${esc(p.name)}</option>`
+    ).join("");
+
+  const money = n => "RM " +
+    Number(n||0).toFixed(2);
+
+  const totalSales = salesItems.reduce(
+    (sum,s)=>sum+Number(s.sale_amount||0),0
+  );
+
+  const approvedCommission = salesItems
+    .filter(s=>s.status==="Approved")
+    .reduce(
+      (sum,s)=>sum+Number(s.commission_amount||0),0
+    );
+
+  say("salesCount",salesItems.length);
+  say("salesTotal",money(totalSales));
+  say("commissionTotal",money(approvedCommission));
+
+  renderSales();
+}
+
+async function saveSale(){
+
+  if(!store || !user)
+    return say("saleMsg","Sila log masuk dahulu.");
+
+  const productId = $("saleProduct").value;
+  const amount = Number($("saleAmount").value);
+  const commission = Number($("saleCommission").value);
+  const date = $("saleDate").value;
+
+  if(!date || $("saleAmount").value==="" ||
+     $("saleCommission").value===""){
+    return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
+  }
+
+  if(!Number.isFinite(amount) ||
+     !Number.isFinite(commission) ||
+     amount<0 || commission<0){
+    return say("saleMsg","Jumlah wang tidak sah.");
+  }
+
+  const selectedProduct = myItems.find(
+    p=>String(p.id)===String(productId)
+  );
+
+  const platform = selectedProduct
+    ? selectedProduct.platform
+    : $("salePlatform").value;
+
+  const record = {
+    owner_id:user.id,
+    store_id:store.id,
+    product_id:productId || null,
+    platform:platform,
+    sale_amount:amount,
+    commission_amount:commission,
+    status:$("saleStatus").value,
+    sale_date:date,
+    notes:$("saleNotes").value.trim()
+  };
+
+  say("saleMsg","Sedang menyimpan rekod...");
+
+  const {error} = await db
+    .from("affiliate_sales")
+    .insert(record);
+
+  if(error){
+    say("saleMsg","Gagal: "+error.message);
+    return;
+  }
+
+  say("saleMsg","Rekod jualan berjaya disimpan!");
+
+  $("saleAmount").value="";
+  $("saleCommission").value="";
+  $("saleNotes").value="";
+  $("saleProduct").value="";
+
+  await loadSales();
+}
+
+function renderSales(){
+
+  const money = n => "RM " +
+    Number(n||0).toFixed(2);
+
+  if(!salesItems.length){
+    $("salesHistory").innerHTML =
+      '<div class="empty">Belum ada rekod jualan.</div>';
+    return;
+  }
+
+  $("salesHistory").innerHTML = salesItems.map(s=>{
+
+    const product = myItems.find(
+      p=>String(p.id)===String(s.product_id)
+    );
+
+    const name = product
+      ? product.name
+      : "Produk tidak dipilih / tidak tersedia";
+
+    const statusColor = s.status==="Approved"
+      ? "var(--lime)"
+      : s.status==="Rejected"
+      ? "#ff8585"
+      : "#ffd477";
+
+    return `
+      <div class="analytics-item">
+        <div class="analytics-head">
+          <strong>${esc(name)}</strong>
+          <span style="color:${statusColor}">
+            ${esc(s.status)}
+          </span>
+        </div>
+
+        <div class="small">
+          ${esc(s.platform)} · ${esc(s.sale_date)}
+        </div>
+
+        <p>Jualan: <strong>${money(s.sale_amount)}</strong></p>
+        <p>Komisen: <strong>${money(s.commission_amount)}</strong></p>
+
+        ${s.notes
+          ? `<div class="small">${esc(s.notes)}</div>`
+          : ""}
+      </div>
+    `;
+  }).join("");
+}
+
 // PUBLIC STOREFRONT
 
 async function openStore(slug){
@@ -746,7 +994,8 @@ alert("Salin URL dari pelayar untuk berkongsi.");
 }
 
 // START APP
-
+$("saleDate").value =
+new Date().toLocaleDateString("en-CA");
 async function init(){
 let slug=new URLSearchParams(location.search).get("store");
 
