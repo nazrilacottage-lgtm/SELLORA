@@ -711,49 +711,6 @@ async function saveProduct() {
   await loadProducts();
 }
 
-if(!store)return say("productMsg","Simpan kedai dahulu.");
-
-let name=$("productName").value.trim();
-let link=$("affiliateUrl").value.trim();
-let img=$("imageUrl").value.trim();
-
-if(!name||urlOK(link)==="#")
-return say("productMsg","Masukkan nama dan pautan affiliate http/https yang sah.");
-
-if(img&&urlOK(img)==="#")
-return say("productMsg","URL gambar mesti http/https.");
-
-let raw=$("price").value;
-
-let v={
-owner_id:user.id,
-store_id:store.id,
-name,
-platform:$("platform").value,
-affiliate_url:link,
-image_url:img||null,
-price:raw?Number(raw):null,
-description:$("description").value
-};
-
-let result;
-
-if(editingId){
-result=await db.from("products")
-.update(v)
-.eq("id",editingId)
-.eq("owner_id",user.id);
-}else{
-result=await db.from("products").insert(v);
-}
-
-if(result.error)return say("productMsg",result.error.message);
-
-say("productMsg",editingId?"Produk berjaya dikemaskini!":"Produk berjaya ditambah!");
-
-cancelEdit();
-await loadProducts();
-}
 
 function editProduct(id){
 let p=myItems.find(x=>String(x.id)===String(id));
