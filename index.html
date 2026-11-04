@@ -1,234 +1,491 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101820">
 <title>SELLORA — Affiliate Storefront</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
+:root{--bg:#0d151c;--panel:#17232d;--line:#30424e;--text:#f4f7f5;--muted:#a9b8bf;--lime:#b7f36b}
 *{box-sizing:border-box}
-body{margin:0;background:#101820;color:#f5f7f5;font-family:Arial,sans-serif}
-header{padding:22px;background:#17232d;border-bottom:1px solid #34434b}
-.logo{font-size:27px;font-weight:900;color:#b7f36b}
-main{max-width:850px;margin:auto;padding:22px}
-.card{background:#1b2933;padding:20px;border-radius:16px;margin:16px 0}
-h2{margin-top:0}
-input,textarea,select{width:100%;padding:13px;margin:7px 0 12px;border:1px solid #52616b;border-radius:9px;background:#101820;color:white}
-button{padding:13px 18px;border:0;border-radius:9px;background:#b7f36b;color:#142018;font-weight:bold;margin:5px 3px;cursor:pointer}
-.secondary{background:#34434b;color:white}
-.small{color:#b9c4c9;font-size:13px}
-.product{border:1px solid #43515a;border-radius:12px;padding:14px;margin:12px 0}
-.product img{width:100%;max-height:220px;object-fit:contain;border-radius:8px}
-a{color:#b7f36b}
-.hidden{display:none}
+body{margin:0;background:var(--bg);color:var(--text);font:15px Arial,sans-serif;line-height:1.5}
+header{position:sticky;top:0;background:#111c24ed;border-bottom:1px solid var(--line);z-index:2}
+.nav{max-width:1050px;margin:auto;padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;color:var(--lime);letter-spacing:1px}
+.tag{font-size:10px;letter-spacing:2px;color:var(--muted)}
+main{max-width:1050px;margin:auto;padding:22px 16px 55px}
+.hidden{display:none!important}
+.hero{padding:26px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(130deg,#263c2a,#17232d 65%);margin-bottom:18px}
+.eyebrow{color:var(--lime);font-size:12px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1;margin:10px 0}
+h2{font-size:21px;margin:0 0 14px}
+h3{font-size:16px;margin:9px 0}
+.muted,.small{color:var(--muted)}
+.small{font-size:13px}
+.panel{background:var(--panel);border:1px solid var(--line);padding:19px;border-radius:16px;margin:15px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{display:block;color:var(--muted);font-size:13px;margin:8px 0 4px}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #40535f;background:#0f1920;color:white;font:inherit}
+textarea{min-height:80px}
+button{padding:12px 16px;border:0;border-radius:10px;background:var(--lime);color:#13200e;font-weight:bold;cursor:pointer}
+.secondary{background:#2b3b46;color:white;border:1px solid var(--line)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.message{color:var(--lime);font-size:13px;overflow-wrap:anywhere}
+.toolbar{display:grid;grid-template-columns:1fr 180px;gap:10px;margin:16px 0}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column}
+.photo{height:175px;background:#263640;display:flex;align-items:center;justify-content:center;color:#9aabb4}
+.photo img{width:100%;height:100%;object-fit:cover}
+.body{padding:13px;display:flex;flex-direction:column;flex:1}
+.pill{font-size:11px;color:var(--lime);border:1px solid #536b43;border-radius:20px;padding:3px 8px;align-self:start}
+.price{font-size:20px;font-weight:900;margin:7px 0}
+.desc{font-size:13px;color:var(--muted);min-height:35px}
+.buy{display:block;text-align:center;text-decoration:none;background:var(--lime);color:#13200e;font-weight:bold;padding:10px;border-radius:9px;margin-top:auto}
+a{color:var(--lime)}
+.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #50616a;border-radius:12px}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.stat{background:#101b22;border:1px solid var(--line);padding:7px 11px;border-radius:9px;color:var(--muted);font-size:12px}
+footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
+@media(max-width:620px){
+.grid{grid-template-columns:1fr}
+.toolbar{grid-template-columns:1fr}
+.hero{padding:21px}
+.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.photo{height:140px}
+.body{padding:10px}
+.price{font-size:17px}
+}
+@media(max-width:350px){.products{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+
 <header>
- <div class="logo">SELLORA.</div>
- <div class="small">ONE LINK. ENDLESS POSSIBILITIES.</div>
+<div class="nav">
+<div>
+<div class="logo">SELLORA.</div>
+<div class="tag">ONE LINK. ENDLESS POSSIBILITIES.</div>
+</div>
+<button id="logoutBtn" class="secondary hidden" onclick="logout()">Log keluar</button>
+</div>
 </header>
+
 <main>
-<section id="welcome" class="card">
- <h2>Mulakan kedai affiliate anda</h2>
- <p class="small">Bina storefront sendiri untuk produk Shopee dan TikTok Shop.</p>
- <label>Email</label>
- <input id="email" type="email" placeholder="Email anda">
- <label>Password</label>
- <input id="password" type="password" placeholder="Minimum 6 aksara">
- <button onclick="signup()">Daftar akaun</button>
- <button class="secondary" onclick="login()">Log masuk</button>
- <p id="authMsg" class="small"></p>
+
+<section id="welcome">
+<div class="hero">
+<div class="eyebrow">Your affiliate space</div>
+<h1>Satu kedai.<br><span style="color:var(--lime)">Dua platform.</span></h1>
+<p class="muted">Kumpulkan pilihan Shopee dan TikTok Shop dalam satu storefront yang mudah dikongsi.</p>
+</div>
+
+<div class="panel">
+<h2>Masuk ke SELLORA</h2>
+<div class="grid">
+<div>
+<label>E-mel</label>
+<input id="email" type="email" autocomplete="email">
+</div>
+<div>
+<label>Kata laluan</label>
+<input id="password" type="password" autocomplete="current-password">
+</div>
+</div>
+<div class="actions">
+<button onclick="signup()">Daftar akaun</button>
+<button class="secondary" onclick="login()">Log masuk</button>
+</div>
+<p id="authMsg" class="message"></p>
+</div>
 </section>
 
 <section id="dashboard" class="hidden">
- <div class="card">
-  <h2>Dashboard SELLORA</h2>
-  <p id="userInfo" class="small"></p>
-  <button class="secondary" onclick="logout()">Log keluar</button>
- </div>
- <div class="card">
-  <h2>Kedai saya</h2>
-  <input id="storeName" placeholder="Nama kedai">
-  <input id="storeSlug" placeholder="Nama pautan contoh: kedai-saya">
-  <textarea id="storeBio" placeholder="Penerangan ringkas kedai"></textarea>
-  <button onclick="saveStore()">Simpan kedai</button>
-  <p id="storeMsg" class="small"></p>
-  <p id="storeLink"></p>
- </div>
- <div class="card">
-  <h2>Tambah produk affiliate</h2>
-  <input id="productName" placeholder="Nama produk">
-  <select id="platform">
-   <option value="Shopee">Shopee</option>
-   <option value="TikTok Shop">TikTok Shop</option>
-  </select>
-  <input id="affiliateUrl" placeholder="Pautan affiliate produk">
-  <input id="imageUrl" placeholder="URL gambar produk (pilihan)">
-  <input id="price" type="number" step="0.01" placeholder="Harga RM">
-  <textarea id="description" placeholder="Penerangan produk"></textarea>
-  <button onclick="addProduct()">Tambah produk</button>
-  <p id="productMsg" class="small"></p>
- </div>
- <div class="card">
-  <h2>Produk saya</h2>
-  <div id="myProducts"></div>
- </div>
+<div class="hero">
+<div class="eyebrow">Seller dashboard</div>
+<h1>Urus kedai anda.</h1>
+<p id="userInfo" class="muted"></p>
+</div>
+
+<div class="panel">
+<h2>Maklumat kedai</h2>
+<div class="grid">
+<div>
+<label>Nama kedai</label>
+<input id="storeName">
+</div>
+<div>
+<label>Slug pautan</label>
+<input id="storeSlug" placeholder="beauty-picks">
+</div>
+</div>
+<label>Penerangan</label>
+<textarea id="storeBio"></textarea>
+<div class="actions">
+<button onclick="saveStore()">Simpan kedai</button>
+<button class="secondary" onclick="copyLink()">Salin pautan kedai</button>
+</div>
+<p id="storeMsg" class="message"></p>
+<p id="storeLink" class="small"></p>
+</div>
+
+<div class="panel">
+<h2>Tambah produk affiliate</h2>
+<div class="grid">
+<div>
+<label>Nama produk</label>
+<input id="productName">
+</div>
+<div>
+<label>Platform</label>
+<select id="platform">
+<option>Shopee</option>
+<option>TikTok Shop</option>
+</select>
+</div>
+<div>
+<label>Harga (RM)</label>
+<input id="price" type="number" min="0" step=".01">
+</div>
+<div>
+<label>URL gambar (pilihan)</label>
+<input id="imageUrl" type="url">
+</div>
+</div>
+<label>Pautan affiliate</label>
+<input id="affiliateUrl" type="url">
+<label>Penerangan produk</label>
+<textarea id="description"></textarea>
+<div class="actions">
+<button onclick="addProduct()">Tambah produk</button>
+</div>
+<p id="productMsg" class="message"></p>
+</div>
+
+<div class="panel">
+<h2>Produk saya</h2>
+<div class="toolbar">
+<input id="manageSearch" placeholder="Cari produk..." oninput="renderManage()">
+<select id="manageFilter" onchange="renderManage()">
+<option value="all">Semua platform</option>
+<option>Shopee</option>
+<option>TikTok Shop</option>
+</select>
+</div>
+<div id="myProducts" class="products"></div>
+</div>
 </section>
 
 <section id="publicStore" class="hidden">
- <div class="card">
-  <h2 id="publicName">Kedai SELLORA</h2>
-  <p id="publicBio"></p>
-  <div id="publicProducts"></div>
- </div>
+<div class="hero">
+<div class="eyebrow">SELLORA storefront</div>
+<h1 id="publicName">Kedai SELLORA</h1>
+<p id="publicBio" class="muted"></p>
+<div class="stats">
+<span class="stat" id="productCount">0 produk</span>
+<span class="stat">Shopee + TikTok Shop</span>
+</div>
+<div class="actions">
+<button onclick="shareStore()">Kongsi kedai</button>
+</div>
+</div>
+
+<div class="toolbar">
+<input id="publicSearch" placeholder="Cari produk..." oninput="renderPublic()">
+<select id="publicFilter" onchange="renderPublic()">
+<option value="all">Semua platform</option>
+<option>Shopee</option>
+<option>TikTok Shop</option>
+</select>
+</div>
+<div id="publicProducts" class="products"></div>
 </section>
+
 </main>
+
+<footer>SELLORA · One Link. Endless Possibilities.</footer>
+
 <script>
-// MASUKKAN PROJECT URL DAN PUBLISHABLE KEY SUPABASE ANDA
+// GANTIKAN DENGAN MAKLUMAT SUPABASE ANDA
 const SUPABASE_URL = "https://pbjuicvtfoxvpmrayarj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
 
-const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-let currentUser = null;
-let currentStore = null;
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let user=null,store=null,myItems=[],publicItems=[];
 
-const el = id => document.getElementById(id);
-const msg = (id,text) => el(id).textContent = text;
+const $=id=>document.getElementById(id);
+const say=(id,t)=>$(id).textContent=t;
+
+function esc(v){
+return String(v??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[c]));
+}
+
+function urlOK(v){
+try{
+let u=new URL(v);
+return ["https:","http:"].includes(u.protocol)?u.href:"#";
+}catch{return "#"}
+}
+
+function card(p){
+let im=p.image_url&&urlOK(p.image_url)!=="#"
+?`<div class="photo"><img loading="lazy" src="${esc(urlOK(p.image_url))}" alt="${esc(p.name)}"></div>`
+:'<div class="photo">SELLORA PRODUCT</div>';
+
+let pr=p.price==null?"":`<div class="price">RM ${Number(p.price).toFixed(2)}</div>`;
+
+return `<article class="card">
+${im}
+<div class="body">
+<span class="pill">${esc(p.platform)}</span>
+<h3>${esc(p.name)}</h3>
+${pr}
+<p class="desc">${esc(p.description||"")}</p>
+<a class="buy" href="${esc(urlOK(p.affiliate_url))}" target="_blank" rel="noopener noreferrer">Lihat produk ↗</a>
+</div>
+</article>`;
+}
 
 async function signup(){
- const email=el("email").value.trim();
- const password=el("password").value;
- if(!email||password.length<6){msg("authMsg","Masukkan email dan password minimum 6 aksara.");return;}
- const {error}=await db.auth.signUp({email,password});
- msg("authMsg",error?error.message:"Pendaftaran berjaya. Semak email jika pengesahan diperlukan.");
+let e=$("email").value.trim();
+let p=$("password").value;
+
+if(!e||p.length<6)
+return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
+
+let {error}=await db.auth.signUp({email:e,password:p});
+
+say("authMsg",error?error.message:"Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");
 }
 
 async function login(){
- const {data,error}=await db.auth.signInWithPassword({
-  email:el("email").value.trim(),
-  password:el("password").value
- });
- if(error){msg("authMsg",error.message);return;}
- currentUser=data.user;
- await startDashboard();
+let {data,error}=await db.auth.signInWithPassword({
+email:$("email").value.trim(),
+password:$("password").value
+});
+
+if(error)return say("authMsg",error.message);
+
+user=data.user;
+await dashboard();
 }
 
 async function logout(){
- await db.auth.signOut();
- location.href=location.pathname;
+await db.auth.signOut();
+location.href=location.pathname;
 }
 
-async function startDashboard(){
- el("welcome").classList.add("hidden");
- el("publicStore").classList.add("hidden");
- el("dashboard").classList.remove("hidden");
- msg("userInfo",currentUser.email);
- await loadStore();
+async function dashboard(){
+$("welcome").classList.add("hidden");
+$("publicStore").classList.add("hidden");
+$("dashboard").classList.remove("hidden");
+$("logoutBtn").classList.remove("hidden");
+
+say("userInfo",user.email||"Akaun SELLORA");
+await loadStore();
 }
 
 async function loadStore(){
- const {data,error}=await db.from("stores")
-  .select("*").eq("owner_id",currentUser.id).maybeSingle();
- if(error){msg("storeMsg",error.message);return;}
- currentStore=data;
- if(data){
-  el("storeName").value=data.name;
-  el("storeSlug").value=data.slug;
-  el("storeBio").value=data.bio||"";
-  showStoreLink(data.slug);
-  await loadProducts();
- }
+let {data,error}=await db.from("stores")
+.select("*")
+.eq("owner_id",user.id)
+.maybeSingle();
+
+if(error)return say("storeMsg",error.message);
+
+store=data;
+
+if(data){
+$("storeName").value=data.name;
+$("storeSlug").value=data.slug;
+$("storeBio").value=data.bio||"";
+showLink();
+await loadProducts();
+}
 }
 
-function showStoreLink(slug){
- const url=location.origin+location.pathname+"?store="+encodeURIComponent(slug);
- el("storeLink").innerHTML='Pautan kedai: <a target="_blank" href="'+url+'">'+url+'</a>';
+function storeURL(){
+return location.origin+location.pathname+"?store="+encodeURIComponent(store.slug);
+}
+
+function showLink(){
+let u=storeURL();
+$("storeLink").innerHTML=`Pautan kedai: <a href="${esc(u)}" target="_blank">${esc(u)}</a>`;
+}
+
+async function copyLink(){
+if(!store)return say("storeMsg","Simpan kedai dahulu.");
+
+try{
+await navigator.clipboard.writeText(storeURL());
+say("storeMsg","Pautan kedai disalin.");
+}catch{
+say("storeMsg",storeURL());
+}
 }
 
 async function saveStore(){
- const name=el("storeName").value.trim();
- const slug=el("storeSlug").value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
- if(name.length<2||slug.length<3){msg("storeMsg","Nama kedai atau pautan tidak sah.");return;}
- const values={owner_id:currentUser.id,name,slug,bio:el("storeBio").value};
- let result;
- if(currentStore){
-  result=await db.from("stores").update(values).eq("id",currentStore.id).select().single();
- }else{
-  result=await db.from("stores").insert(values).select().single();
- }
- if(result.error){msg("storeMsg",result.error.message);return;}
- currentStore=result.data;
- msg("storeMsg","Kedai berjaya disimpan!");
- showStoreLink(slug);
+let name=$("storeName").value.trim();
+let slug=$("storeSlug").value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-");
+
+if(name.length<2||slug.length<3)
+return say("storeMsg","Nama kedai atau slug tidak sah.");
+
+let v={
+owner_id:user.id,
+name,
+slug,
+bio:$("storeBio").value
+};
+
+let r=store
+?await db.from("stores").update(v).eq("id",store.id).select().single()
+:await db.from("stores").insert(v).select().single();
+
+if(r.error)return say("storeMsg",r.error.message);
+
+store=r.data;
+say("storeMsg","Kedai berjaya disimpan!");
+showLink();
 }
 
 async function addProduct(){
- if(!currentStore){msg("productMsg","Simpan kedai dahulu.");return;}
- const name=el("productName").value.trim();
- const affiliate_url=el("affiliateUrl").value.trim();
- if(!name||!/^https?:\/\//i.test(affiliate_url)){
-  msg("productMsg","Masukkan nama dan pautan affiliate yang sah.");return;
- }
- const rawPrice=el("price").value;
- const values={
-  owner_id:currentUser.id,
-  store_id:currentStore.id,
-  name,
-  platform:el("platform").value,
-  affiliate_url,
-  image_url:el("imageUrl").value.trim()||null,
-  price:rawPrice?Number(rawPrice):null,
-  description:el("description").value
- };
- const {error}=await db.from("products").insert(values);
- if(error){msg("productMsg",error.message);return;}
- msg("productMsg","Produk berjaya ditambah!");
- ["productName","affiliateUrl","imageUrl","price","description"].forEach(id=>el(id).value="");
- await loadProducts();
-}
+if(!store)return say("productMsg","Simpan kedai dahulu.");
 
-function productHTML(p){
- const image=p.image_url?'<img src="'+escapeHTML(p.image_url)+'" alt="">':"";
- const price=p.price===null?"":'<p>RM '+Number(p.price).toFixed(2)+'</p>';
- return '<div class="product">'+image+
- '<h3>'+escapeHTML(p.name)+'</h3><p class="small">'+escapeHTML(p.platform)+'</p>'+
- price+'<p>'+escapeHTML(p.description||"")+'</p>'+
- '<a href="'+escapeHTML(p.affiliate_url)+'" target="_blank" rel="noopener">Lihat produk</a></div>';
-}
+let name=$("productName").value.trim();
+let link=$("affiliateUrl").value.trim();
+let img=$("imageUrl").value.trim();
 
-function escapeHTML(value){
- return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+if(!name||urlOK(link)==="#")
+return say("productMsg","Masukkan nama dan pautan affiliate http/https yang sah.");
+
+if(img&&urlOK(img)==="#")
+return say("productMsg","URL gambar mesti http/https.");
+
+let raw=$("price").value;
+
+let v={
+owner_id:user.id,
+store_id:store.id,
+name,
+platform:$("platform").value,
+affiliate_url:link,
+image_url:img||null,
+price:raw?Number(raw):null,
+description:$("description").value
+};
+
+let {error}=await db.from("products").insert(v);
+
+if(error)return say("productMsg",error.message);
+
+say("productMsg","Produk berjaya ditambah!");
+
+["productName","affiliateUrl","imageUrl","price","description"].forEach(x=>$(x).value="");
+
+await loadProducts();
 }
 
 async function loadProducts(){
- const {data,error}=await db.from("products").select("*")
-  .eq("store_id",currentStore.id).order("created_at",{ascending:false});
- if(error){el("myProducts").textContent=error.message;return;}
- el("myProducts").innerHTML=data.map(productHTML).join("")||"Belum ada produk.";
+let {data,error}=await db.from("products")
+.select("*")
+.eq("store_id",store.id)
+.order("created_at",{ascending:false});
+
+if(error)return $("myProducts").textContent=error.message;
+
+myItems=data||[];
+renderManage();
 }
 
-async function openPublicStore(slug){
- el("welcome").classList.add("hidden");
- el("dashboard").classList.add("hidden");
- el("publicStore").classList.remove("hidden");
- const {data:store,error}=await db.from("stores").select("*").eq("slug",slug).maybeSingle();
- if(error||!store){el("publicName").textContent="Kedai tidak dijumpai";return;}
- el("publicName").textContent=store.name;
- el("publicBio").textContent=store.bio||"";
- const {data:products}=await db.from("products").select("*")
-  .eq("store_id",store.id).eq("is_active",true).order("created_at",{ascending:false});
- el("publicProducts").innerHTML=(products||[]).map(productHTML).join("")||"Produk belum tersedia.";
+function renderManage(){
+let q=$("manageSearch").value.toLowerCase();
+let f=$("manageFilter").value;
+
+let arr=myItems.filter(p=>
+(f==="all"||p.platform===f)&&p.name.toLowerCase().includes(q)
+);
+
+$("myProducts").innerHTML=
+arr.map(card).join("")||'<div class="empty">Tiada produk sepadan.</div>';
+}
+
+async function openStore(slug){
+$("welcome").classList.add("hidden");
+$("dashboard").classList.add("hidden");
+$("publicStore").classList.remove("hidden");
+$("logoutBtn").classList.add("hidden");
+
+let {data:s,error}=await db.from("stores")
+.select("*")
+.eq("slug",slug)
+.maybeSingle();
+
+if(error||!s)return say("publicName","Kedai tidak dijumpai");
+
+say("publicName",s.name);
+say("publicBio",s.bio||"");
+
+let r=await db.from("products")
+.select("*")
+.eq("store_id",s.id)
+.eq("is_active",true)
+.order("created_at",{ascending:false});
+
+if(r.error)
+return $("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan.</div>';
+
+publicItems=r.data||[];
+say("productCount",publicItems.length+" produk");
+renderPublic();
+}
+
+function renderPublic(){
+let q=$("publicSearch").value.toLowerCase();
+let f=$("publicFilter").value;
+
+let arr=publicItems.filter(p=>
+(f==="all"||p.platform===f)&&p.name.toLowerCase().includes(q)
+);
+
+$("publicProducts").innerHTML=
+arr.map(card).join("")||'<div class="empty">Tiada produk ditemui.</div>';
+}
+
+async function shareStore(){
+try{
+if(navigator.share){
+await navigator.share({
+title:$("publicName").textContent,
+text:"Lihat pilihan produk di SELLORA",
+url:location.href
+});
+}else{
+await navigator.clipboard.writeText(location.href);
+alert("Pautan kedai disalin.");
+}
+}catch(e){
+if(e.name!=="AbortError")
+alert("Salin URL dari pelayar untuk berkongsi.");
+}
 }
 
 async function init(){
- const params=new URLSearchParams(location.search);
- const slug=params.get("store");
- if(slug){await openPublicStore(slug);return;}
- const {data}=await db.auth.getSession();
- if(data.session){currentUser=data.session.user;await startDashboard();}
+let slug=new URLSearchParams(location.search).get("store");
+
+if(slug)return openStore(slug);
+
+let {data}=await db.auth.getSession();
+
+if(data.session){
+user=data.session.user;
+await dashboard();
 }
+}
+
 init();
 </script>
 </body>
