@@ -5,391 +5,180 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#172A35">
-<title>SELLORA — Affiliate Storefront</title>
+<title>SELLORA — Affiliate Marketplace</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <style>
 :root{
-  --bg:#F7F5F0;
-  --panel:#FFFFFF;
+  --navy:#172A35;
+  --navy2:#263E4B;
+  --gold:#C6A46A;
+  --gold2:#D8BC8A;
+  --ivory:#F7F5F0;
+  --white:#FFFFFF;
   --line:#E6E0D5;
   --text:#172A35;
   --muted:#78838A;
-  --lime:#C6A46A;
-  --navy:#172A35;
-  --gold:#C6A46A;
-  --ivory:#F7F5F0;
   --soft:#F0EDE6;
+  --red:#A84F50;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font:15px Arial,sans-serif;
-  line-height:1.6;
+  margin:0;background:var(--ivory);color:var(--text);
+  font:15px Arial,sans-serif;line-height:1.6;
 }
 header{
-  position:sticky;
-  top:0;
-  background:rgba(23,42,53,.97);
-  border-bottom:1px solid rgba(198,164,106,.35);
-  z-index:20;
+  position:sticky;top:0;z-index:20;
+  background:rgba(23,42,53,.98);
+  border-bottom:1px solid rgba(198,164,106,.4);
   backdrop-filter:blur(12px);
 }
 .nav{
-  max-width:1050px;
-  margin:auto;
-  padding:14px 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+  max-width:1150px;margin:auto;padding:13px 18px;
+  display:flex;justify-content:space-between;align-items:center;
 }
-.logo{
-  font-size:26px;
-  font-weight:900;
-  color:#D8BC8A;
-  letter-spacing:2px;
-}
-.tag{
-  font-size:10px;
-  letter-spacing:2px;
-  color:#D5DCE0;
-}
-main{
-  max-width:1050px;
-  margin:auto;
-  padding:22px 16px 55px;
-}
+.logo{font-size:26px;font-weight:900;color:var(--gold2);letter-spacing:2px}
+.tag{font-size:10px;letter-spacing:2px;color:#D5DCE0}
+main{max-width:1150px;margin:auto;padding:22px 16px 55px}
 .hidden{display:none!important}
 .hero{
-  padding:30px;
-  border:1px solid #DCCBAA;
-  border-radius:20px;
-  background:linear-gradient(130deg,#172A35,#263E4B 70%,#344B55);
-  color:#FFFFFF;
-  margin-bottom:18px;
+  padding:30px;border:1px solid #DCCBAA;border-radius:20px;
+  background:linear-gradient(130deg,var(--navy),#263E4B 70%,#344B55);
+  color:white;margin-bottom:18px;
   box-shadow:0 12px 30px rgba(23,42,53,.09);
 }
+.hero h1{color:white}
 .hero .muted{color:#D5DDE0}
-.hero h1{color:#FFFFFF}
 .eyebrow{
-  color:#D8BC8A;
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:1.8px;
-  text-transform:uppercase;
+  color:var(--gold2);font-size:12px;font-weight:bold;
+  letter-spacing:1.8px;text-transform:uppercase;
 }
-h1{
-  font-size:clamp(30px,6vw,46px);
-  line-height:1.15;
-  margin:10px 0;
-  letter-spacing:-.7px;
-}
-h2{
-  font-size:21px;
-  margin:0 0 14px;
-  color:var(--navy);
-}
-h3{
-  font-size:16px;
-  margin:9px 0;
-  color:var(--navy);
-}
+h1{font-size:clamp(30px,6vw,45px);line-height:1.15;margin:10px 0}
+h2{font-size:21px;margin:0 0 14px;color:var(--navy)}
+h3{font-size:15px;margin:9px 0;color:var(--navy)}
+p{margin-top:8px}
 .muted,.small{color:var(--muted)}
 .small{font-size:13px}
 .panel{
-  background:var(--panel);
-  border:1px solid var(--line);
-  padding:20px;
-  border-radius:17px;
-  margin:15px 0;
+  background:white;border:1px solid var(--line);padding:20px;
+  border-radius:17px;margin:15px 0;
   box-shadow:0 5px 18px rgba(23,42,53,.035);
 }
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-}
-label{
-  display:block;
-  color:#65737A;
-  font-size:13px;
-  font-weight:600;
-  margin:8px 0 5px;
-}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{display:block;color:#65737A;font-size:13px;font-weight:600;margin:8px 0 5px}
 input,textarea,select{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #DADFD9;
-  background:#FCFBF8;
-  color:#172A35;
-  font:inherit;
-  outline:none;
-  transition:border .2s,box-shadow .2s;
+  width:100%;padding:12px;border-radius:10px;
+  border:1px solid #DADFD9;background:#FCFBF8;
+  color:var(--navy);font:inherit;outline:none;
 }
 input:focus,textarea:focus,select:focus{
-  border-color:var(--gold);
-  box-shadow:0 0 0 3px rgba(198,164,106,.15);
+  border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,164,106,.15)
 }
-input::placeholder,textarea::placeholder{color:#A0A7A7}
-input[type="file"]{padding:9px}
+input[type=file]{padding:9px}
+input[type=checkbox]{width:auto;accent-color:var(--gold);transform:scale(1.15)}
 textarea{min-height:80px;resize:vertical}
 button{
-  padding:12px 17px;
-  border:1px solid var(--gold);
-  border-radius:10px;
-  background:var(--gold);
-  color:#172A35;
-  font-weight:bold;
-  cursor:pointer;
-  transition:all .2s;
+  padding:12px 17px;border:1px solid var(--gold);
+  border-radius:10px;background:var(--gold);color:var(--navy);
+  font-weight:bold;cursor:pointer;transition:.2s;
 }
-button:hover{
-  background:#D8BC8A;
-  border-color:#D8BC8A;
-  transform:translateY(-1px);
-}
-button:disabled{
-  opacity:.6;
-  cursor:not-allowed;
-  transform:none;
-}
-.secondary{
-  background:#FFFFFF;
-  color:#172A35;
-  border:1px solid #CFC8BB;
-}
-.secondary:hover{
-  background:#F0EDE6;
-  border-color:var(--gold);
-}
-.danger{
-  background:#A84F50;
-  color:#FFFFFF;
-  border-color:#A84F50;
-}
-.danger:hover{
-  background:#873C40;
-  border-color:#873C40;
-}
-.actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
-.message{
-  color:#96733D;
-  font-size:13px;
-  overflow-wrap:anywhere;
-}
+button:hover{background:var(--gold2);border-color:var(--gold2);transform:translateY(-1px)}
+button:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.secondary{background:white;color:var(--navy);border:1px solid #CFC8BB}
+.secondary:hover{background:var(--soft);border-color:var(--gold)}
+.danger{background:var(--red);color:white;border-color:var(--red)}
+.danger:hover{background:#873C40;border-color:#873C40}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.message{color:#96733D;font-size:13px;overflow-wrap:anywhere}
 .toolbar{
-  display:grid;
-  grid-template-columns:1fr 180px;
-  gap:10px;
-  margin:16px 0;
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:10px;margin:16px 0;
 }
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-  gap:14px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;
 }
 .card{
-  background:#FFFFFF;
-  border:1px solid var(--line);
-  border-radius:15px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  box-shadow:0 5px 18px rgba(23,42,53,.045);
-  transition:transform .2s,box-shadow .2s;
+  background:white;border:1px solid var(--line);border-radius:15px;
+  overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 5px 18px rgba(23,42,53,.045);transition:.2s;
 }
-.card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 24px rgba(23,42,53,.10);
-}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(23,42,53,.1)}
 .photo{
-  height:175px;
-  background:#F0EDE6;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#8B9290;
-  font-size:12px;
-  letter-spacing:1px;
+  height:175px;background:var(--soft);display:flex;
+  align-items:center;justify-content:center;color:#8B9290;
+  font-size:12px;letter-spacing:1px;position:relative;
 }
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.photo img{width:100%;height:100%;object-fit:cover}
+.featured-label{
+  position:absolute;top:9px;left:9px;background:var(--gold);
+  color:var(--navy);padding:4px 9px;border-radius:20px;
+  font-size:10px;font-weight:bold;z-index:2;
 }
-.body{
-  padding:13px;
-  display:flex;
-  flex-direction:column;
-  flex:1;
-}
+.body{padding:13px;display:flex;flex-direction:column;flex:1}
 .pill{
-  font-size:11px;
-  color:#856638;
-  background:#F7F1E5;
-  border:1px solid #E4D4B4;
-  border-radius:20px;
-  padding:3px 9px;
-  align-self:start;
+  font-size:11px;color:#856638;background:#F7F1E5;
+  border:1px solid #E4D4B4;border-radius:20px;
+  padding:3px 9px;align-self:start;
 }
-.price{
-  font-size:20px;
-  font-weight:900;
-  color:#A17C42;
-  margin:7px 0;
+.category-pill{
+  font-size:11px;color:#53636A;background:#EFF2F2;
+  padding:3px 9px;border-radius:20px;align-self:start;margin-top:5px;
 }
-.desc{
-  font-size:13px;
-  color:#78838A;
-  min-height:35px;
-  overflow-wrap:anywhere;
-}
+.price{font-size:20px;font-weight:900;color:#A17C42;margin:7px 0}
+.desc{font-size:13px;color:var(--muted);min-height:35px;overflow-wrap:anywhere}
 .buy{
-  display:block;
-  text-align:center;
-  text-decoration:none;
-  background:#172A35;
-  color:#E7D0A7;
-  font-weight:bold;
-  padding:11px;
-  border-radius:9px;
-  margin-top:auto;
-  transition:background .2s;
+  display:block;text-align:center;text-decoration:none;
+  background:var(--navy);color:#E7D0A7;font-weight:bold;
+  padding:11px;border-radius:9px;margin-top:auto;
 }
-.buy:hover{
-  background:#294452;
-}
-.manage-actions{
-  display:flex;
-  gap:6px;
-  margin-top:10px;
-}
-.manage-actions button{
-  flex:1;
-  padding:9px 5px;
-  font-size:12px;
-}
+.buy:hover{background:var(--navy2)}
+.manage-actions{display:flex;gap:6px;margin-top:10px}
+.manage-actions button{flex:1;padding:9px 5px;font-size:12px}
 .empty{
-  padding:25px;
-  text-align:center;
-  color:#78838A;
-  background:#FFFFFF;
-  border:1px dashed #CFC8BB;
-  border-radius:12px;
+  padding:25px;text-align:center;color:var(--muted);
+  background:white;border:1px dashed #CFC8BB;border-radius:12px;
 }
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:10px;
-  margin:14px 0;
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.stat{background:#F9F7F2;border:1px solid #E7E0D3;padding:13px;border-radius:12px;min-width:0}
+.stat strong{display:block;font-size:24px;color:#A17C42;overflow-wrap:anywhere}
+.stat span{font-size:12px;color:var(--muted)}
+.click-count{font-size:12px;color:#96733D;margin-top:7px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-top:1px solid var(--line)}
+.analytics-list{display:flex;flex-direction:column;gap:14px}
+.analytics-item{background:#FAF9F6;padding:13px;border:1px solid var(--line);border-radius:12px}
+.analytics-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+.analytics-head strong{font-size:14px;overflow-wrap:anywhere}
+.analytics-head span{color:#A17C42;font-weight:bold;white-space:nowrap}
+.bar-bg{height:9px;background:#E8E4DC;border-radius:20px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,#B28C52,#D9BF91);border-radius:20px}
+.analytics-empty{padding:20px;text-align:center;color:var(--muted)}
+.category-strip{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.category-chip{
+  background:white;border:1px solid var(--line);border-radius:25px;
+  padding:8px 14px;font-size:12px;color:var(--navy);cursor:pointer;
 }
-.stat{
-  background:#F9F7F2;
-  border:1px solid #E7E0D3;
-  padding:13px;
-  border-radius:12px;
-  min-width:0;
-}
-.stat strong{
-  display:block;
-  font-size:24px;
-  color:#A17C42;
-  overflow-wrap:anywhere;
-}
-.stat span{
-  font-size:12px;
-  color:#78838A;
-}
-.click-count{
-  font-size:12px;
-  color:#96733D;
-  margin-top:7px;
-}
-footer{
-  text-align:center;
-  color:#78838A;
-  font-size:12px;
-  padding:25px;
-  border-top:1px solid var(--line);
-}
-.analytics-list{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-.analytics-item{
-  background:#FAF9F6;
-  padding:13px;
-  border:1px solid #E6E0D5;
-  border-radius:12px;
-}
-.analytics-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:8px;
-}
-.analytics-head strong{
-  font-size:14px;
-  color:#172A35;
-  overflow-wrap:anywhere;
-}
-.analytics-head span{
-  color:#A17C42;
-  font-weight:bold;
-  white-space:nowrap;
-}
-.bar-bg{
-  height:9px;
-  background:#E8E4DC;
-  border-radius:20px;
-  overflow:hidden;
-}
-.bar-fill{
-  height:100%;
-  background:linear-gradient(90deg,#B28C52,#D9BF91);
-  border-radius:20px;
-}
-.analytics-empty{
-  padding:20px;
-  text-align:center;
-  color:#78838A;
-}
+.category-chip.active,.category-chip:hover{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
+.section-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:22px 0 12px}
+.section-heading h2{margin:0}
 #productImagePreview{
-  display:none;
-  width:120px;
-  max-height:120px;
-  object-fit:cover;
-  margin-top:10px;
-  border-radius:10px;
-  border:1px solid var(--line);
+  display:none;width:120px;max-height:120px;object-fit:cover;
+  margin-top:10px;border-radius:10px;border:1px solid var(--line);
 }
-#logoutBtn{
-  background:transparent;
-  color:#E7D0A7;
-  border:1px solid #C6A46A;
-}
-#logoutBtn:hover{
-  background:#263E4B;
+#logoutBtn{background:transparent;color:#E7D0A7;border:1px solid var(--gold)}
+#logoutBtn:hover{background:var(--navy2)}
+.check-row{display:flex;align-items:center;gap:9px;margin:12px 0}
+.check-row label{margin:0}
+.featured-section{background:#F4EFE4;border:1px solid #E3D4B8;border-radius:16px;padding:15px;margin:16px 0}
+@media(max-width:700px){
+  .toolbar{grid-template-columns:1fr 1fr}
+  .toolbar input{grid-column:1/-1}
 }
 @media(max-width:620px){
   .grid{grid-template-columns:1fr}
   .toolbar{grid-template-columns:1fr}
   .hero{padding:22px}
-  .products{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:9px;
-  }
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
   .photo{height:140px}
   .body{padding:10px}
   .price{font-size:17px}
@@ -397,13 +186,13 @@ footer{
   .stat{padding:9px}
   .stat strong{font-size:19px}
   .panel{padding:15px}
+  .section-heading{align-items:flex-start;flex-direction:column}
 }
 @media(max-width:350px){
   .products{grid-template-columns:1fr}
   .logo{font-size:23px}
 }
 </style>
-
 </head>
 
 <body>
@@ -413,16 +202,16 @@ footer{
       <div class="logo">SELLORA.</div>
       <div class="tag">ONE LINK. ENDLESS POSSIBILITIES.</div>
     </div>
-    <button id="logoutBtn" class="secondary hidden" onclick="logout()">Log keluar</button>
+    <button id="logoutBtn" class="hidden" onclick="logout()">Log keluar</button>
   </div>
 </header>
 
 <main>
 <section id="welcome">
   <div class="hero">
-    <div class="eyebrow">Your affiliate space</div>
-    <h1>Satu kedai.<br><span style="color:var(--lime)">Dua platform.</span></h1>
-    <p class="muted">Kumpulkan pilihan Shopee dan TikTok Shop dalam satu storefront yang mudah dikongsi.</p>
+    <div class="eyebrow">Your affiliate marketplace</div>
+    <h1>Satu kedai.<br><span style="color:var(--gold2)">Dua platform.</span></h1>
+    <p class="muted">Temui pilihan produk Shopee dan TikTok Shop dalam satu storefront SELLORA.</p>
   </div>
   <div class="panel">
     <h2>Masuk ke SELLORA</h2>
@@ -440,8 +229,8 @@ footer{
 
 <section id="dashboard" class="hidden">
   <div class="hero">
-    <div class="eyebrow">Seller dashboard · Version 7</div>
-    <h1>Urus kedai anda.</h1>
+    <div class="eyebrow">Seller dashboard · Version 8</div>
+    <h1>Urus marketplace anda.</h1>
     <p id="userInfo" class="muted"></p>
   </div>
 
@@ -452,11 +241,10 @@ footer{
       <div class="stat"><strong id="totalProducts">0</strong><span>Jumlah produk</span></div>
       <div class="stat"><strong id="activeProducts">0</strong><span>Produk aktif</span></div>
     </div>
-    <p class="small">Statistik ini mengira klik pada pautan affiliate melalui storefront SELLORA. Ia bukan jumlah jualan atau komisen daripada Shopee atau TikTok Shop.</p>
+    <p class="small">Statistik ini mengira klik melalui storefront SELLORA, bukan jumlah jualan atau komisen daripada platform affiliate.</p>
     <p id="statsMsg" class="message"></p>
     <div class="panel">
       <h2>Prestasi Produk</h2>
-      <p class="small">Kedudukan produk berdasarkan jumlah klik affiliate.</p>
       <div id="topProducts" class="analytics-list"><div class="analytics-empty">Memuatkan statistik...</div></div>
     </div>
     <div class="panel">
@@ -477,22 +265,21 @@ footer{
     <label>Produk</label>
     <select id="saleProduct"><option value="">Pilih produk</option></select>
     <div class="grid">
-      <div><label>Platform</label><select id="salePlatform"><option value="Shopee">Shopee</option><option value="TikTok Shop">TikTok Shop</option></select></div>
+      <div><label>Platform</label><select id="salePlatform"><option>Shopee</option><option>TikTok Shop</option></select></div>
       <div><label>Tarikh jualan</label><input id="saleDate" type="date"></div>
-      <div><label>Jumlah jualan (RM)</label><input id="saleAmount" type="number" min="0" step="0.01" placeholder="0.00"></div>
-      <div><label>Komisen (RM)</label><input id="saleCommission" type="number" min="0" step="0.01" placeholder="0.00"></div>
+      <div><label>Jumlah jualan (RM)</label><input id="saleAmount" type="number" min="0" step="0.01"></div>
+      <div><label>Komisen (RM)</label><input id="saleCommission" type="number" min="0" step="0.01"></div>
     </div>
     <label>Status komisen</label>
-    <select id="saleStatus"><option value="Pending">Pending</option><option value="Approved">Approved</option><option value="Rejected">Rejected</option></select>
-    <label>Catatan (pilihan)</label>
-    <textarea id="saleNotes" placeholder="Contoh: Pesanan affiliate minggu ini"></textarea>
+    <select id="saleStatus"><option>Pending</option><option>Approved</option><option>Rejected</option></select>
+    <label>Catatan</label><textarea id="saleNotes"></textarea>
     <div class="actions"><button id="saveSaleBtn" onclick="saveSale()">Simpan rekod jualan</button></div>
     <p id="saleMsg" class="message"></p>
   </div>
 
   <div class="panel">
     <h2>Sejarah Jualan</h2>
-    <div id="salesHistory"><div class="empty">Memuatkan rekod jualan...</div></div>
+    <div id="salesHistory"><div class="empty">Memuatkan rekod...</div></div>
   </div>
 
   <div class="panel">
@@ -516,16 +303,39 @@ footer{
       <div><label>Nama produk</label><input id="productName"></div>
       <div><label>Platform</label><select id="platform"><option>Shopee</option><option>TikTok Shop</option></select></div>
       <div><label>Harga (RM)</label><input id="price" type="number" min="0" step="0.01"></div>
+      <div><label>Kategori produk</label>
+        <select id="category">
+          <option>Skincare</option>
+          <option>Kecantikan</option>
+          <option>Kesihatan</option>
+          <option>Fesyen</option>
+          <option>Elektronik</option>
+          <option>Rumah & Dapur</option>
+          <option>Ibu & Anak</option>
+          <option>Makanan & Minuman</option>
+          <option>Gajet</option>
+          <option>Lain-lain</option>
+        </select>
+      </div>
       <div>
         <label>URL gambar (pilihan)</label><input id="imageUrl" type="url">
-        <label>Atau Upload Gambar Produk</label>
+        <label>Atau upload gambar produk</label>
         <input type="file" id="productImageFile" accept="image/png,image/jpeg,image/webp">
         <img id="productImagePreview" alt="Pratonton gambar produk">
-        <p class="small">Format JPG, PNG atau WebP. Saiz asal maksimum 5MB. Gambar akan dikecilkan secara automatik sebelum upload.</p>
+        <p class="small">JPG, PNG atau WebP. Maksimum 5MB. Gambar dikecilkan secara automatik.</p>
+      </div>
+      <div>
+        <label>Susunan produk</label>
+        <input id="sortOrder" type="number" min="0" step="1" value="0">
+        <p class="small">Nombor lebih kecil dipaparkan dahulu.</p>
       </div>
     </div>
     <label>Pautan affiliate</label><input id="affiliateUrl" type="url">
     <label>Penerangan produk</label><textarea id="description"></textarea>
+    <div class="check-row">
+      <input id="isFeatured" type="checkbox">
+      <label for="isFeatured">Jadikan produk pilihan / featured</label>
+    </div>
     <div class="actions">
       <button id="saveProductBtn" onclick="saveProduct()">Tambah produk</button>
       <button id="cancelEditBtn" class="secondary hidden" onclick="cancelEdit()">Batal edit</button>
@@ -536,9 +346,12 @@ footer{
   <div class="panel">
     <h2>Pengurusan produk</h2>
     <div class="toolbar">
-      <input id="manageSearch" placeholder="Cari produk..." oninput="renderManage()">
+      <input id="manageSearch" placeholder="Cari nama produk..." oninput="renderManage()">
       <select id="manageFilter" onchange="renderManage()">
         <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
+      </select>
+      <select id="manageCategoryFilter" onchange="renderManage()">
+        <option value="all">Semua kategori</option>
       </select>
     </div>
     <div id="myProducts" class="products"></div>
@@ -547,21 +360,41 @@ footer{
 
 <section id="publicStore" class="hidden">
   <div class="hero">
-    <div class="eyebrow">SELLORA storefront</div>
+    <div class="eyebrow">SELLORA marketplace</div>
     <h1 id="publicName">Kedai SELLORA</h1>
     <p id="publicBio" class="muted"></p>
     <div class="stats">
       <div class="stat"><strong id="productCount">0</strong><span>Produk</span></div>
       <div class="stat"><strong>2</strong><span>Platform</span></div>
+      <div class="stat"><strong>SELLORA</strong><span>Affiliate Store</span></div>
     </div>
     <div class="actions"><button onclick="shareStore()">Kongsi kedai</button></div>
   </div>
-  <div class="toolbar">
-    <input id="publicSearch" placeholder="Cari produk..." oninput="renderPublic()">
-    <select id="publicFilter" onchange="renderPublic()">
-      <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
-    </select>
+
+  <div class="panel">
+    <h2>Terokai kategori</h2>
+    <div id="publicCategories" class="category-strip"></div>
+    <div class="toolbar">
+      <input id="publicSearch" placeholder="Cari produk..." oninput="renderPublic()">
+      <select id="publicFilter" onchange="renderPublic()">
+        <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
+      </select>
+      <select id="publicSort" onchange="renderPublic()">
+        <option value="recommended">Pilihan SELLORA</option>
+        <option value="newest">Terbaru</option>
+        <option value="price-low">Harga terendah</option>
+        <option value="price-high">Harga tertinggi</option>
+        <option value="name">Nama A-Z</option>
+      </select>
+    </div>
   </div>
+
+  <div id="featuredWrap" class="featured-section hidden">
+    <div class="section-heading"><h2>✦ Pilihan SELLORA</h2></div>
+    <div id="featuredProducts" class="products"></div>
+  </div>
+
+  <div class="section-heading"><h2>Semua produk</h2></div>
   <div id="publicProducts" class="products"></div>
 </section>
 </main>
@@ -574,7 +407,7 @@ footer{
 // =====================================
 const SUPABASE_URL = "https://pbjuicvtfoxvpmrayarj.supabase.co";
 const SUPABASE_KEY = "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
-const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 // =====================================
 // GLOBAL VARIABLES
@@ -586,130 +419,119 @@ let publicItems = [];
 let clickCounts = {};
 let editingId = null;
 let salesItems = [];
+let selectedCategory = "all";
+let previewObjectUrl = null;
 
 const $ = id => document.getElementById(id);
 
-function say(id, message) {
+function say(id,message){
   const element = $(id);
-  if (element) element.textContent = message;
+  if(element) element.textContent = message;
 }
 
-function esc(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
+function esc(value){
+  return String(value ?? "").replace(/[&<>"']/g,char=>({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   }[char]));
 }
 
-function safeUrl(value) {
-  try {
+function safeUrl(value){
+  try{
     const url = new URL(String(value || ""));
     return ["https:","http:"].includes(url.protocol) ? url.href : "";
-  } catch {
-    return "";
-  }
+  }catch{return ""}
 }
 
-function money(value) {
+function money(value){
   return "RM " + Number(value || 0).toFixed(2);
 }
 
-function setTodayDate() {
+function setTodayDate(){
   const now = new Date();
   const date = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
-  if ($("saleDate")) $("saleDate").value = date;
+  if($("saleDate")) $("saleDate").value = date;
 }
 
-function setButtonBusy(id, busy, busyText, normalText) {
+function setButtonBusy(id,busy,busyText,normalText){
   const button = $(id);
-  if (!button) return;
+  if(!button) return;
   button.disabled = busy;
   button.textContent = busy ? busyText : normalText;
+}
+
+function productDateSort(a,b){
+  const order = Number(a.sort_order || 0)-Number(b.sort_order || 0);
+  if(order !== 0) return order;
+  return new Date(b.created_at || 0)-new Date(a.created_at || 0);
 }
 
 // =====================================
 // IMAGE COMPRESSION
 // =====================================
-async function compressProductImage(file) {
-  if (!file) return null;
-
+async function compressProductImage(file){
+  if(!file) return null;
   const allowed = ["image/jpeg","image/png","image/webp"];
-  if (!allowed.includes(file.type)) {
-    throw new Error("Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
-  }
+  if(!allowed.includes(file.type)) throw new Error("Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
+  if(file.size > 5*1024*1024) throw new Error("Saiz gambar asal melebihi 5MB.");
 
-  if (file.size > 5 * 1024 * 1024) {
-    throw new Error("Saiz gambar asal melebihi 5MB.");
-  }
-
-  const imageBitmap = await createImageBitmap(file);
+  const bitmap = await createImageBitmap(file);
   const maxDimension = 1200;
-  const scale = Math.min(1, maxDimension / Math.max(imageBitmap.width,imageBitmap.height));
-
-  const width = Math.max(1,Math.round(imageBitmap.width * scale));
-  const height = Math.max(1,Math.round(imageBitmap.height * scale));
+  const scale = Math.min(1,maxDimension/Math.max(bitmap.width,bitmap.height));
+  const width = Math.max(1,Math.round(bitmap.width*scale));
+  const height = Math.max(1,Math.round(bitmap.height*scale));
 
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
-
   const context = canvas.getContext("2d");
-  if (!context) {
-    imageBitmap.close();
-    throw new Error("Pelayar tidak dapat memproses gambar.");
-  }
+  if(!context){bitmap.close();throw new Error("Pelayar tidak dapat memproses gambar.");}
 
-  // Latar putih mengelakkan kawasan lutsinar menjadi hitam dalam JPEG.
-  context.fillStyle = "#ffffff";
+  context.fillStyle="#ffffff";
   context.fillRect(0,0,width,height);
-  context.drawImage(imageBitmap,0,0,width,height);
-  imageBitmap.close();
+  context.drawImage(bitmap,0,0,width,height);
+  bitmap.close();
 
-  const blob = await new Promise((resolve,reject) => {
-    canvas.toBlob(result => {
-      if (result) resolve(result);
-      else reject(new Error("Gagal memampatkan gambar."));
-    },"image/jpeg",0.82);
+  const blob = await new Promise((resolve,reject)=>{
+    canvas.toBlob(result=>result?resolve(result):reject(new Error("Gagal memampatkan gambar.")),"image/jpeg",0.82);
   });
 
   return {
-    file: new File([blob],`sellora-${Date.now()}.jpg`,{type:"image/jpeg"}),
+    file:new File([blob],`sellora-${Date.now()}.jpg`,{type:"image/jpeg"}),
     originalSize:file.size,
-    compressedSize:blob.size,
-    width,
-    height
+    compressedSize:blob.size
   };
 }
 
 // =====================================
 // PRODUCT CARD
 // =====================================
-function card(product, manage = false) {
+function card(product,manage=false){
   const imageUrl = safeUrl(product.image_url);
   const image = imageUrl
-    ? `<div class="photo"><img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}"></div>`
-    : '<div class="photo">SELLORA PRODUCT</div>';
+    ? `<div class="photo">${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}<img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}"></div>`
+    : `<div class="photo">${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}SELLORA PRODUCT</div>`;
 
-  const price = product.price == null
-    ? ""
-    : `<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
+  const price = product.price == null ? "" : `<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
+  const affiliateUrl = safeUrl(product.affiliate_url);
+
+  const buyLink = affiliateUrl
+    ? `<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat produk ↗</a>`
+    : '<span class="small">Pautan produk tidak tersedia.</span>';
 
   const actions = manage ? `
     <div class="click-count">Jumlah klik: ${clickCounts[product.id] || 0}</div>
+    <div class="small">Susunan: ${Number(product.sort_order || 0)} · ${product.is_featured ? "Produk pilihan" : "Produk biasa"}</div>
     <div class="manage-actions">
       <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
       <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
     </div>` : "";
-
-  const affiliateUrl = safeUrl(product.affiliate_url);
-  const buyLink = affiliateUrl
-    ? `<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat produk ↗</a>`
-    : '<span class="small">Pautan produk tidak tersedia.</span>';
 
   return `
     <article class="card">
       ${image}
       <div class="body">
         <span class="pill">${esc(product.platform)}</span>
+        <span class="category-pill">${esc(product.category || "Lain-lain")}</span>
         <h3>${esc(product.name)}</h3>
         ${price}
         <p class="desc">${esc(product.description || "")}</p>
@@ -722,66 +544,46 @@ function card(product, manage = false) {
 // =====================================
 // AUTHENTICATION
 // =====================================
-async function signup() {
+async function signup(){
   const email = $("email").value.trim();
   const password = $("password").value;
-
-  if (!email || password.length < 6) {
-    return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
-  }
-
+  if(!email || password.length<6) return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
   say("authMsg","Sedang mendaftar...");
-
-  try {
+  try{
     const {data,error} = await db.auth.signUp({email,password});
-    if (error) return say("authMsg",error.message);
-
-    say("authMsg",data.session
-      ? "Pendaftaran berjaya. Anda boleh mula menggunakan SELLORA."
-      : "Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");
-  } catch (error) {
-    say("authMsg","Ralat pendaftaran: " + error.message);
-  }
+    if(error) return say("authMsg",error.message);
+    say("authMsg",data.session ? "Pendaftaran berjaya." : "Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");
+  }catch(error){say("authMsg","Ralat pendaftaran: "+error.message);}
 }
 
-async function login() {
+async function login(){
   const email = $("email").value.trim();
   const password = $("password").value;
-
-  if (!email || !password) return say("authMsg","Masukkan e-mel dan kata laluan.");
-
+  if(!email || !password) return say("authMsg","Masukkan e-mel dan kata laluan.");
   say("authMsg","Sedang log masuk...");
-
-  try {
+  try{
     const {data,error} = await db.auth.signInWithPassword({email,password});
-    if (error) return say("authMsg",error.message);
-
+    if(error) return say("authMsg",error.message);
     user = data.user;
     say("authMsg","Log masuk berjaya.");
     await dashboard();
-  } catch (error) {
-    say("authMsg","Ralat log masuk: " + error.message);
-  }
+  }catch(error){say("authMsg","Ralat log masuk: "+error.message);}
 }
 
-async function logout() {
+async function logout(){
   const {error} = await db.auth.signOut();
-  if (error) {
-    alert("Gagal log keluar: " + error.message);
-    return;
-  }
+  if(error){alert("Gagal log keluar: "+error.message);return;}
   location.href = location.pathname;
 }
 
 // =====================================
 // DASHBOARD
 // =====================================
-async function dashboard() {
+async function dashboard(){
   $("welcome").classList.add("hidden");
   $("publicStore").classList.add("hidden");
   $("dashboard").classList.remove("hidden");
   $("logoutBtn").classList.remove("hidden");
-
   say("userInfo",user?.email || "Akaun SELLORA");
   await loadStore();
 }
@@ -789,190 +591,145 @@ async function dashboard() {
 // =====================================
 // STORE MANAGEMENT
 // =====================================
-async function loadStore() {
+async function loadStore(){
   const {data,error} = await db.from("stores")
-    .select("*")
-    .eq("owner_id",user.id)
-    .maybeSingle();
+    .select("*").eq("owner_id",user.id).maybeSingle();
 
-  if (error) {
-    say("storeMsg",error.message);
-    return;
-  }
-
+  if(error){say("storeMsg",error.message);return;}
   store = data;
 
-  if (store) {
+  if(store){
     $("storeName").value = store.name || "";
     $("storeSlug").value = store.slug || "";
     $("storeBio").value = store.bio || "";
     showLink();
     await loadProducts();
-  } else {
+  }else{
     say("storeMsg","Sila cipta maklumat kedai anda dahulu.");
-    myItems = [];
+    myItems=[];
     renderManage();
     await loadSales();
   }
 }
 
-function storeURL() {
-  if (!store) return "";
-  return location.origin + location.pathname + "?store=" + encodeURIComponent(store.slug);
+function storeURL(){
+  if(!store) return "";
+  return location.origin+location.pathname+"?store="+encodeURIComponent(store.slug);
 }
 
-function showLink() {
-  if (!store) return;
+function showLink(){
+  if(!store) return;
   const url = storeURL();
   $("storeLink").innerHTML = `Pautan kedai: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a>`;
 }
 
-async function copyLink() {
-  if (!store) return say("storeMsg","Simpan kedai dahulu.");
-  try {
+async function copyLink(){
+  if(!store) return say("storeMsg","Simpan kedai dahulu.");
+  try{
     await navigator.clipboard.writeText(storeURL());
     say("storeMsg","Pautan kedai disalin.");
-  } catch {
-    say("storeMsg",storeURL());
-  }
+  }catch{say("storeMsg",storeURL());}
 }
 
-async function saveStore() {
-  if (!user) return say("storeMsg","Sila log masuk dahulu.");
-
+async function saveStore(){
+  if(!user) return say("storeMsg","Sila log masuk dahulu.");
   const name = $("storeName").value.trim();
   const slug = $("storeSlug").value.trim().toLowerCase()
     .replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");
 
-  if (name.length < 2 || slug.length < 3) {
-    return say("storeMsg","Nama kedai atau slug tidak sah. Slug minimum 3 aksara.");
-  }
+  if(name.length<2 || slug.length<3) return say("storeMsg","Nama kedai atau slug tidak sah. Slug minimum 3 aksara.");
 
-  const values = {
-    owner_id:user.id,
-    name,
-    slug,
-    bio:$("storeBio").value.trim()
-  };
-
+  const values = {owner_id:user.id,name,slug,bio:$("storeBio").value.trim()};
   setButtonBusy("saveStoreBtn",true,"Menyimpan...","Simpan kedai");
 
-  try {
+  try{
     const result = store
       ? await db.from("stores").update(values).eq("id",store.id).select().single()
       : await db.from("stores").insert(values).select().single();
 
-    if (result.error) {
-      say("storeMsg",result.error.message);
-      return;
-    }
-
+    if(result.error){say("storeMsg",result.error.message);return;}
     store = result.data;
     say("storeMsg","Kedai berjaya disimpan!");
     showLink();
     await loadProducts();
-  } catch (error) {
-    say("storeMsg","Ralat menyimpan kedai: " + error.message);
-  } finally {
-    setButtonBusy("saveStoreBtn",false,"Menyimpan...","Simpan kedai");
-  }
+  }catch(error){say("storeMsg","Ralat menyimpan kedai: "+error.message);}
+  finally{setButtonBusy("saveStoreBtn",false,"Menyimpan...","Simpan kedai");}
 }
 
 // =====================================
 // IMAGE PREVIEW
 // =====================================
-let previewObjectUrl = null;
-
-$("productImageFile").addEventListener("change",function() {
+$("productImageFile").addEventListener("change",function(){
   const file = this.files?.[0];
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null;}
 
-  if (previewObjectUrl) {
-    URL.revokeObjectURL(previewObjectUrl);
-    previewObjectUrl = null;
-  }
-
-  if (!file) {
-    $("productImagePreview").style.display = "none";
+  if(!file){
+    $("productImagePreview").style.display="none";
     $("productImagePreview").removeAttribute("src");
     return;
   }
 
-  if (!["image/jpeg","image/png","image/webp"].includes(file.type)) {
-    say("productMsg","Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
-    this.value = "";
-    $("productImagePreview").style.display = "none";
+  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
+    say("productMsg","Format gambar tidak disokong.");
+    this.value="";
+    $("productImagePreview").style.display="none";
     return;
   }
 
-  if (file.size > 5 * 1024 * 1024) {
+  if(file.size>5*1024*1024){
     say("productMsg","Saiz gambar maksimum 5MB.");
-    this.value = "";
-    $("productImagePreview").style.display = "none";
+    this.value="";
+    $("productImagePreview").style.display="none";
     return;
   }
 
-  previewObjectUrl = URL.createObjectURL(file);
-  $("productImagePreview").src = previewObjectUrl;
-  $("productImagePreview").style.display = "block";
+  previewObjectUrl=URL.createObjectURL(file);
+  $("productImagePreview").src=previewObjectUrl;
+  $("productImagePreview").style.display="block";
   say("productMsg","Gambar dipilih. Ia akan dimampatkan semasa disimpan.");
 });
 
 // =====================================
 // SAVE PRODUCT
 // =====================================
-async function saveProduct() {
-  if (!user) return say("productMsg","Sila log masuk dahulu.");
-  if (!store) return say("productMsg","Simpan kedai dahulu.");
+async function saveProduct(){
+  if(!user) return say("productMsg","Sila log masuk dahulu.");
+  if(!store) return say("productMsg","Simpan kedai dahulu.");
 
+  const wasEditing = Boolean(editingId);
   const name = $("productName").value.trim();
   const link = safeUrl($("affiliateUrl").value.trim());
   let image = $("imageUrl").value.trim();
   const file = $("productImageFile").files?.[0] || null;
   const rawPrice = $("price").value;
+  const sortOrder = Number($("sortOrder").value || 0);
 
-  if (!name) return say("productMsg","Masukkan nama produk.");
-  if (!link) return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
+  if(!name) return say("productMsg","Masukkan nama produk.");
+  if(!link) return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
+  if(image && !safeUrl(image)) return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
+  if(rawPrice!=="" && (!Number.isFinite(Number(rawPrice)) || Number(rawPrice)<0)) return say("productMsg","Harga produk tidak sah.");
+  if(!Number.isInteger(sortOrder) || sortOrder<0) return say("productMsg","Susunan produk mesti nombor bulat 0 atau lebih.");
 
-  if (image && !safeUrl(image)) {
-    return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
-  }
+  setButtonBusy("saveProductBtn",true,"Sedang menyimpan...",wasEditing?"Simpan perubahan":"Tambah produk");
 
-  if (rawPrice !== "" && (!Number.isFinite(Number(rawPrice)) || Number(rawPrice) < 0)) {
-    return say("productMsg","Harga produk tidak sah.");
-  }
-
-  setButtonBusy("saveProductBtn",true,"Sedang menyimpan... ",editingId ? "Simpan perubahan" : "Tambah produk");
-
-  try {
-    if (file) {
+  try{
+    if(file){
       say("productMsg","Sedang memampatkan gambar...");
-
       const compressed = await compressProductImage(file);
 
       const {data:sessionData,error:sessionError} = await db.auth.getSession();
-      if (sessionError) throw new Error("Ralat sesi: " + sessionError.message);
+      if(sessionError) throw new Error("Ralat sesi: "+sessionError.message);
+      if(!sessionData.session?.user || sessionData.session.user.id!==user.id) throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
 
-      const session = sessionData.session;
-      if (!session?.user || session.user.id !== user.id) {
-        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
-      }
-
-      say("productMsg",`Gambar dimampatkan. Saiz asal ${ (compressed.originalSize/1024).toFixed(0) }KB → ${(compressed.compressedSize/1024).toFixed(0)}KB. Sedang upload...`);
+      say("productMsg",`Gambar dimampatkan. ${(compressed.originalSize/1024).toFixed(0)}KB → ${(compressed.compressedSize/1024).toFixed(0)}KB. Sedang upload...`);
 
       const path = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
-
-      const upload = await db.storage.from("product-images").upload(
-        path,
-        compressed.file,
-        {contentType:"image/jpeg",upsert:false}
-      );
-
-      if (upload.error) throw new Error("Upload gagal: " + upload.error.message);
+      const upload = await db.storage.from("product-images").upload(path,compressed.file,{contentType:"image/jpeg",upsert:false});
+      if(upload.error) throw new Error("Upload gagal: "+upload.error.message);
 
       const {data:publicData} = db.storage.from("product-images").getPublicUrl(path);
       image = publicData?.publicUrl || "";
-
-      if (!image) throw new Error("URL gambar awam tidak dapat diperoleh.");
+      if(!image) throw new Error("URL gambar awam tidak dapat diperoleh.");
     }
 
     const values = {
@@ -982,248 +739,213 @@ async function saveProduct() {
       platform:$("platform").value,
       affiliate_url:link,
       image_url:image || null,
-      price:rawPrice === "" ? null : Number(rawPrice),
-      description:$("description").value.trim()
+      price:rawPrice===""?null:Number(rawPrice),
+      description:$("description").value.trim(),
+      category:$("category").value,
+      is_featured:$("isFeatured").checked,
+      sort_order:sortOrder
     };
 
-    let result;
+    const result = wasEditing
+      ? await db.from("products").update(values).eq("id",editingId).eq("owner_id",user.id)
+      : await db.from("products").insert(values);
 
-    if (editingId) {
-      result = await db.from("products")
-        .update(values)
-        .eq("id",editingId)
-        .eq("owner_id",user.id);
-    } else {
-      result = await db.from("products").insert(values);
-    }
+    if(result.error) throw new Error(result.error.message);
 
-    if (result.error) throw new Error(result.error.message);
-
-    say("productMsg",editingId ? "Produk berjaya dikemaskini!" : "Produk berjaya ditambah!");
-
+    say("productMsg",wasEditing?"Produk berjaya dikemaskini!":"Produk berjaya ditambah!");
     cancelEdit();
     await loadProducts();
 
-  } catch (error) {
-    say("productMsg","Ralat menyimpan produk: " + error.message);
-  } finally {
-    $("saveProductBtn").disabled = false;
-    $("saveProductBtn").textContent = editingId ? "Simpan perubahan" : "Tambah produk";
+  }catch(error){
+    say("productMsg","Ralat menyimpan produk: "+error.message);
+  }finally{
+    $("saveProductBtn").disabled=false;
+    $("saveProductBtn").textContent=editingId?"Simpan perubahan":"Tambah produk";
   }
 }
 
 // =====================================
 // EDIT PRODUCT
 // =====================================
-function editProduct(id) {
-  const product = myItems.find(item => String(item.id) === String(id));
-  if (!product) return;
+function editProduct(id){
+  const product = myItems.find(item=>String(item.id)===String(id));
+  if(!product) return;
 
-  editingId = product.id;
-  $("productName").value = product.name || "";
-  $("platform").value = product.platform || "Shopee";
-  $("price").value = product.price ?? "";
-  $("imageUrl").value = product.image_url || "";
-  $("affiliateUrl").value = product.affiliate_url || "";
-  $("description").value = product.description || "";
-  $("productImageFile").value = "";
+  editingId=product.id;
+  $("productName").value=product.name || "";
+  $("platform").value=product.platform || "Shopee";
+  $("price").value=product.price ?? "";
+  $("imageUrl").value=product.image_url || "";
+  $("affiliateUrl").value=product.affiliate_url || "";
+  $("description").value=product.description || "";
+  $("category").value=product.category || "Lain-lain";
+  $("isFeatured").checked=product.is_featured===true;
+  $("sortOrder").value=Number(product.sort_order || 0);
+  $("productImageFile").value="";
 
-  if (previewObjectUrl) {
-    URL.revokeObjectURL(previewObjectUrl);
-    previewObjectUrl = null;
-  }
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null;}
 
-  if (product.image_url && safeUrl(product.image_url)) {
-    $("productImagePreview").src = product.image_url;
-    $("productImagePreview").style.display = "block";
-  } else {
-    $("productImagePreview").style.display = "none";
+  if(product.image_url && safeUrl(product.image_url)){
+    $("productImagePreview").src=product.image_url;
+    $("productImagePreview").style.display="block";
+  }else{
+    $("productImagePreview").style.display="none";
   }
 
   say("formTitle","Edit produk affiliate");
-  $("saveProductBtn").textContent = "Simpan perubahan";
+  $("saveProductBtn").textContent="Simpan perubahan";
   $("cancelEditBtn").classList.remove("hidden");
   say("productMsg","Mod edit aktif. Semak maklumat sebelum menyimpan.");
   $("productForm").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-function cancelEdit() {
-  editingId = null;
+function cancelEdit(){
+  editingId=null;
+  ["productName","price","imageUrl","affiliateUrl","description"].forEach(id=>$(id).value="");
+  $("platform").value="Shopee";
+  $("category").value="Skincare";
+  $("isFeatured").checked=false;
+  $("sortOrder").value="0";
+  $("productImageFile").value="";
 
-  ["productName","price","imageUrl","affiliateUrl","description"].forEach(id => {
-    $(id).value = "";
-  });
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null;}
 
-  $("platform").value = "Shopee";
-  $("productImageFile").value = "";
-
-  if (previewObjectUrl) {
-    URL.revokeObjectURL(previewObjectUrl);
-    previewObjectUrl = null;
-  }
-
-  $("productImagePreview").style.display = "none";
+  $("productImagePreview").style.display="none";
   $("productImagePreview").removeAttribute("src");
   say("formTitle","Tambah produk affiliate");
-  $("saveProductBtn").textContent = "Tambah produk";
+  $("saveProductBtn").textContent="Tambah produk";
   $("cancelEditBtn").classList.add("hidden");
 }
 
 // =====================================
 // DELETE PRODUCT
 // =====================================
-async function deleteProduct(id) {
-  const product = myItems.find(item => String(item.id) === String(id));
-  if (!product) return;
+async function deleteProduct(id){
+  const product=myItems.find(item=>String(item.id)===String(id));
+  if(!product) return;
+  if(!confirm("Padam produk '"+product.name+"'? Tindakan ini tidak boleh dibatalkan.")) return;
 
-  if (!confirm("Padam produk '" + product.name + "'? Tindakan ini tidak boleh dibatalkan.")) return;
-
-  try {
-    const {error} = await db.from("products")
-      .delete()
-      .eq("id",id)
-      .eq("owner_id",user.id);
-
-    if (error) throw error;
-
-    if (String(editingId) === String(id)) cancelEdit();
-
+  try{
+    const {error}=await db.from("products").delete().eq("id",id).eq("owner_id",user.id);
+    if(error) throw error;
+    if(String(editingId)===String(id)) cancelEdit();
     await loadProducts();
     alert("Produk berjaya dipadam.");
-  } catch (error) {
-    alert("Produk tidak dapat dipadam: " + error.message);
-  }
+  }catch(error){alert("Produk tidak dapat dipadam: "+error.message);}
 }
 
 // =====================================
 // LOAD PRODUCTS
 // =====================================
-async function loadProducts() {
-  if (!store || !user) return;
+async function loadProducts(){
+  if(!store || !user) return;
 
-  const {data,error} = await db.from("products")
+  const {data,error}=await db.from("products")
     .select("*")
     .eq("store_id",store.id)
+    .order("sort_order",{ascending:true})
     .order("created_at",{ascending:false});
 
-  if (error) {
-    say("productMsg",error.message);
-    return;
-  }
+  if(error){say("productMsg",error.message);return;}
 
-  myItems = data || [];
+  myItems=data || [];
   await loadClickStats();
   renderManage();
   await loadSales();
+  refreshManageCategories();
 }
 
 // =====================================
 // CLICK STATISTICS
 // =====================================
-async function loadClickStats() {
-  clickCounts = {};
-  const ids = myItems.map(product => product.id);
+async function loadClickStats(){
+  clickCounts={};
+  const ids=myItems.map(product=>product.id);
 
-  if (ids.length) {
-    const {data,error} = await db.from("product_clicks")
-      .select("product_id")
-      .in("product_id",ids);
-
-    if (error) {
-      say("statsMsg","Statistik gagal dimuatkan: " + error.message);
+  if(ids.length){
+    const {data,error}=await db.from("product_clicks").select("product_id").in("product_id",ids);
+    if(error){
+      say("statsMsg","Statistik gagal dimuatkan: "+error.message);
       renderAnalytics();
       return;
     }
-
-    (data || []).forEach(row => {
-      const id = String(row.product_id);
-      clickCounts[id] = (clickCounts[id] || 0) + 1;
+    (data || []).forEach(row=>{
+      const id=String(row.product_id);
+      clickCounts[id]=(clickCounts[id] || 0)+1;
     });
   }
 
-  const total = Object.values(clickCounts).reduce((sum,count) => sum + count,0);
+  const total=Object.values(clickCounts).reduce((sum,count)=>sum+count,0);
   say("totalClicks",total);
   say("totalProducts",myItems.length);
-  say("activeProducts",myItems.filter(product => product.is_active === true).length);
+  say("activeProducts",myItems.filter(product=>product.is_active===true).length);
   say("statsMsg","Analitik berjaya dikemas kini.");
   renderAnalytics();
 }
 
-// =====================================
-// PRODUCT ANALYTICS
-// =====================================
-function renderAnalytics() {
-  const sorted = [...myItems].sort((a,b) =>
-    (clickCounts[b.id] || 0) - (clickCounts[a.id] || 0)
-  );
+function renderAnalytics(){
+  const sorted=[...myItems].sort((a,b)=>(clickCounts[b.id]||0)-(clickCounts[a.id]||0));
+  const top=sorted.slice(0,5);
+  const maxClicks=Math.max(1,...sorted.map(product=>clickCounts[product.id]||0));
 
-  const top = sorted.slice(0,5);
-  const maxClicks = Math.max(1,...sorted.map(product => clickCounts[product.id] || 0));
-
-  const makeItem = product => {
-    const clicks = clickCounts[product.id] || 0;
-    const width = (clicks / maxClicks) * 100;
-    return `
-      <div class="analytics-item">
-        <div class="analytics-head"><strong>${esc(product.name)}</strong><span>${clicks} klik</span></div>
-        <div class="bar-bg"><div class="bar-fill" style="width:${width}%"></div></div>
-        <div class="small">${esc(product.platform)}</div>
-      </div>`;
+  const makeItem=product=>{
+    const clicks=clickCounts[product.id]||0;
+    const width=(clicks/maxClicks)*100;
+    return `<div class="analytics-item">
+      <div class="analytics-head"><strong>${esc(product.name)}</strong><span>${clicks} klik</span></div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${width}%"></div></div>
+      <div class="small">${esc(product.platform)} · ${esc(product.category || "Lain-lain")}</div>
+    </div>`;
   };
 
-  $("topProducts").innerHTML = top.length
-    ? top.map(makeItem).join("")
-    : '<div class="analytics-empty">Belum ada produk.</div>';
-
-  $("productAnalytics").innerHTML = sorted.length
-    ? sorted.map(makeItem).join("")
-    : '<div class="analytics-empty">Tiada data produk.</div>';
+  $("topProducts").innerHTML=top.length?top.map(makeItem).join(""):'<div class="analytics-empty">Belum ada produk.</div>';
+  $("productAnalytics").innerHTML=sorted.length?sorted.map(makeItem).join(""):'<div class="analytics-empty">Tiada data produk.</div>';
 }
 
 // =====================================
-// RENDER MANAGE PRODUCTS
+// MANAGEMENT CATEGORY FILTER
 // =====================================
-function renderManage() {
-  const query = $("manageSearch").value.toLowerCase();
-  const filter = $("manageFilter").value;
+function refreshManageCategories(){
+  const select=$("manageCategoryFilter");
+  const current=select.value;
+  const categories=[...new Set(myItems.map(p=>p.category || "Lain-lain"))].sort();
+  select.innerHTML='<option value="all">Semua kategori</option>'+
+    categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
+  if(categories.includes(current)) select.value=current;
+}
 
-  const products = myItems.filter(product =>
-    (filter === "all" || product.platform === filter) &&
+function renderManage(){
+  const query=$("manageSearch").value.toLowerCase();
+  const filter=$("manageFilter").value;
+  const category=$("manageCategoryFilter").value;
+
+  const products=myItems.filter(product=>
+    (filter==="all" || product.platform===filter) &&
+    (category==="all" || (product.category || "Lain-lain")===category) &&
     String(product.name || "").toLowerCase().includes(query)
   );
 
-  $("myProducts").innerHTML = products.map(product => card(product,true)).join("") ||
-    '<div class="empty">Tiada produk sepadan.</div>';
+  $("myProducts").innerHTML=products.map(product=>card(product,true)).join("") || '<div class="empty">Tiada produk sepadan.</div>';
 }
 
 // =====================================
 // SALES & COMMISSION
 // =====================================
-async function loadSales() {
-  if (!store || !user) return;
+async function loadSales(){
+  if(!store || !user) return;
 
-  const {data,error} = await db.from("affiliate_sales")
-    .select("*")
-    .eq("store_id",store.id)
-    .order("sale_date",{ascending:false});
+  const {data,error}=await db.from("affiliate_sales")
+    .select("*").eq("store_id",store.id).order("sale_date",{ascending:false});
 
-  if (error) {
-    say("saleMsg","Gagal memuatkan jualan: " + error.message);
-    return;
-  }
+  if(error){say("saleMsg","Gagal memuatkan jualan: "+error.message);return;}
+  salesItems=data || [];
 
-  salesItems = data || [];
+  $("saleProduct").innerHTML='<option value="">Tiada produk dipilih</option>'+
+    myItems.map(product=>`<option value="${esc(product.id)}">${esc(product.name)}</option>`).join("");
 
-  $("saleProduct").innerHTML =
-    '<option value="">Tiada produk dipilih</option>' +
-    myItems.map(product =>
-      `<option value="${esc(product.id)}">${esc(product.name)}</option>`
-    ).join("");
-
-  const totalSales = salesItems.reduce((sum,sale) => sum + Number(sale.sale_amount || 0),0);
-  const approvedCommission = salesItems
-    .filter(sale => sale.status === "Approved")
-    .reduce((sum,sale) => sum + Number(sale.commission_amount || 0),0);
+  const totalSales=salesItems.reduce((sum,sale)=>sum+Number(sale.sale_amount||0),0);
+  const approvedCommission=salesItems.filter(sale=>sale.status==="Approved")
+    .reduce((sum,sale)=>sum+Number(sale.commission_amount||0),0);
 
   say("salesCount",salesItems.length);
   say("salesTotal",money(totalSales));
@@ -1231,194 +953,195 @@ async function loadSales() {
   renderSales();
 }
 
-async function saveSale() {
-  if (!store || !user) return say("saleMsg","Sila log masuk dahulu.");
+async function saveSale(){
+  if(!store || !user) return say("saleMsg","Sila log masuk dahulu.");
 
-  const productId = $("saleProduct").value;
-  const amountInput = $("saleAmount").value;
-  const commissionInput = $("saleCommission").value;
-  const date = $("saleDate").value;
-  const amount = Number(amountInput);
-  const commission = Number(commissionInput);
+  const productId=$("saleProduct").value;
+  const amountInput=$("saleAmount").value;
+  const commissionInput=$("saleCommission").value;
+  const date=$("saleDate").value;
+  const amount=Number(amountInput);
+  const commission=Number(commissionInput);
 
-  if (!date || amountInput === "" || commissionInput === "") {
-    return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
-  }
+  if(!date || amountInput==="" || commissionInput==="") return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
+  if(!Number.isFinite(amount) || !Number.isFinite(commission) || amount<0 || commission<0) return say("saleMsg","Jumlah wang tidak sah.");
 
-  if (!Number.isFinite(amount) || !Number.isFinite(commission) || amount < 0 || commission < 0) {
-    return say("saleMsg","Jumlah wang tidak sah.");
-  }
+  const selectedProduct=myItems.find(product=>String(product.id)===String(productId));
+  const platform=selectedProduct?selectedProduct.platform:$("salePlatform").value;
 
-  const selectedProduct = myItems.find(product => String(product.id) === String(productId));
-  const platform = selectedProduct ? selectedProduct.platform : $("salePlatform").value;
-
-  const record = {
-    owner_id:user.id,
-    store_id:store.id,
-    product_id:productId || null,
-    platform,
-    sale_amount:amount,
-    commission_amount:commission,
-    status:$("saleStatus").value,
-    sale_date:date,
-    notes:$("saleNotes").value.trim()
+  const record={
+    owner_id:user.id,store_id:store.id,product_id:productId||null,platform,
+    sale_amount:amount,commission_amount:commission,status:$("saleStatus").value,
+    sale_date:date,notes:$("saleNotes").value.trim()
   };
 
   setButtonBusy("saveSaleBtn",true,"Sedang menyimpan...","Simpan rekod jualan");
-
-  try {
-    const {error} = await db.from("affiliate_sales").insert(record);
-    if (error) throw error;
-
+  try{
+    const {error}=await db.from("affiliate_sales").insert(record);
+    if(error) throw error;
     say("saleMsg","Rekod jualan berjaya disimpan!");
-    $("saleAmount").value = "";
-    $("saleCommission").value = "";
-    $("saleNotes").value = "";
-    $("saleProduct").value = "";
+    $("saleAmount").value="";
+    $("saleCommission").value="";
+    $("saleNotes").value="";
+    $("saleProduct").value="";
     await loadSales();
-  } catch (error) {
-    say("saleMsg","Gagal menyimpan rekod: " + error.message);
-  } finally {
-    setButtonBusy("saveSaleBtn",false,"Sedang menyimpan...","Simpan rekod jualan");
-  }
+  }catch(error){say("saleMsg","Gagal menyimpan rekod: "+error.message);}
+  finally{setButtonBusy("saveSaleBtn",false,"Sedang menyimpan...","Simpan rekod jualan");}
 }
 
-function renderSales() {
-  if (!salesItems.length) {
-    $("salesHistory").innerHTML = '<div class="empty">Belum ada rekod jualan.</div>';
+function renderSales(){
+  if(!salesItems.length){
+    $("salesHistory").innerHTML='<div class="empty">Belum ada rekod jualan.</div>';
     return;
   }
 
-  $("salesHistory").innerHTML = salesItems.map(sale => {
-    const product = myItems.find(item => String(item.id) === String(sale.product_id));
-    const name = product ? product.name : "Produk tidak dipilih / tidak tersedia";
-    const statusColor = sale.status === "Approved" ? "var(--lime)" :
-      sale.status === "Rejected" ? "#ff8585" : "#ffd477";
+  $("salesHistory").innerHTML=salesItems.map(sale=>{
+    const product=myItems.find(item=>String(item.id)===String(sale.product_id));
+    const name=product?product.name:"Produk tidak dipilih / tidak tersedia";
+    const statusColor=sale.status==="Approved"?"#A17C42":sale.status==="Rejected"?"#A84F50":"#96733D";
 
-    return `
-      <div class="analytics-item">
-        <div class="analytics-head">
-          <strong>${esc(name)}</strong>
-          <span style="color:${statusColor}">${esc(sale.status)}</span>
-        </div>
-        <div class="small">${esc(sale.platform)} · ${esc(sale.sale_date)}</div>
-        <p>Jualan: <strong>${money(sale.sale_amount)}</strong></p>
-        <p>Komisen: <strong>${money(sale.commission_amount)}</strong></p>
-        ${sale.notes ? `<div class="small">${esc(sale.notes)}</div>` : ""}
-      </div>`;
+    return `<div class="analytics-item">
+      <div class="analytics-head"><strong>${esc(name)}</strong><span style="color:${statusColor}">${esc(sale.status)}</span></div>
+      <div class="small">${esc(sale.platform)} · ${esc(sale.sale_date)}</div>
+      <p>Jualan: <strong>${money(sale.sale_amount)}</strong></p>
+      <p>Komisen: <strong>${money(sale.commission_amount)}</strong></p>
+      ${sale.notes?`<div class="small">${esc(sale.notes)}</div>`:""}
+    </div>`;
   }).join("");
 }
 
 // =====================================
 // PUBLIC STOREFRONT
 // =====================================
-async function openStore(slug) {
+async function openStore(slug){
   $("welcome").classList.add("hidden");
   $("dashboard").classList.add("hidden");
   $("publicStore").classList.remove("hidden");
   $("logoutBtn").classList.add("hidden");
 
-  const {data:storeData,error} = await db.from("stores")
-    .select("*")
-    .eq("slug",slug)
-    .maybeSingle();
+  const {data:storeData,error}=await db.from("stores")
+    .select("*").eq("slug",slug).maybeSingle();
 
-  if (error || !storeData) {
+  if(error || !storeData){
     say("publicName","Kedai tidak dijumpai");
-    $("publicProducts").innerHTML = '<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';
+    $("publicProducts").innerHTML='<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';
     return;
   }
 
   say("publicName",storeData.name);
   say("publicBio",storeData.bio || "");
 
-  const result = await db.from("products")
+  const result=await db.from("products")
     .select("*")
     .eq("store_id",storeData.id)
     .eq("is_active",true)
+    .order("sort_order",{ascending:true})
     .order("created_at",{ascending:false});
 
-  if (result.error) {
-    $("publicProducts").innerHTML = '<div class="empty">Produk tidak dapat dimuatkan: ' + esc(result.error.message) + '</div>';
+  if(result.error){
+    $("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan: '+esc(result.error.message)+'</div>';
     return;
   }
 
-  publicItems = result.data || [];
+  publicItems=result.data || [];
   say("productCount",publicItems.length);
+  selectedCategory="all";
+  renderPublicCategories();
   renderPublic();
 }
 
-function renderPublic() {
-  const query = $("publicSearch").value.toLowerCase();
-  const filter = $("publicFilter").value;
+function renderPublicCategories(){
+  const categories=[...new Set(publicItems.map(p=>p.category || "Lain-lain"))].sort();
+  const all=[{name:"Semua",value:"all"},...categories.map(c=>({name:c,value:c}))];
 
-  const products = publicItems.filter(product =>
-    (filter === "all" || product.platform === filter) &&
+  $("publicCategories").innerHTML=all.map(item=>
+    `<button class="category-chip ${selectedCategory===item.value?"active":""}" onclick="chooseCategory('${esc(item.value)}')">${esc(item.name)}</button>`
+  ).join("");
+}
+
+function chooseCategory(category){
+  selectedCategory=category;
+  renderPublicCategories();
+  renderPublic();
+}
+
+function renderPublic(){
+  const query=$("publicSearch").value.toLowerCase();
+  const filter=$("publicFilter").value;
+  const sort=$("publicSort").value;
+
+  let products=publicItems.filter(product=>
+    (filter==="all" || product.platform===filter) &&
+    (selectedCategory==="all" || (product.category || "Lain-lain")===selectedCategory) &&
     String(product.name || "").toLowerCase().includes(query)
   );
 
-  $("publicProducts").innerHTML = products.map(product => card(product,false)).join("") ||
-    '<div class="empty">Tiada produk ditemui.</div>';
+  if(sort==="price-low") products.sort((a,b)=>Number(a.price ?? Infinity)-Number(b.price ?? Infinity));
+  else if(sort==="price-high") products.sort((a,b)=>Number(b.price ?? -1)-Number(a.price ?? -1));
+  else if(sort==="name") products.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+  else if(sort==="newest") products.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+  else products.sort((a,b)=>{
+    if(Boolean(a.is_featured)!==Boolean(b.is_featured)) return a.is_featured?-1:1;
+    return productDateSort(a,b);
+  });
+
+  const featured=products.filter(product=>product.is_featured===true);
+  $("featuredWrap").classList.toggle("hidden",featured.length===0);
+  $("featuredProducts").innerHTML=featured.map(product=>card(product,false)).join("");
+
+  $("publicProducts").innerHTML=products.map(product=>card(product,false)).join("") ||
+    '<div class="empty">Tiada produk ditemui. Cuba ubah carian atau kategori.</div>';
 }
 
 // =====================================
 // CLICK TRACKING
 // =====================================
-function trackClick(event,id) {
-  // Pautan affiliate tetap dibuka. Rekod klik dihantar ke Supabase.
-  db.from("product_clicks")
-    .insert({product_id:id})
-    .then(({error}) => {
-      if (error) console.error("SELLORA click tracking:",error.message);
-    });
+function trackClick(event,id){
+  db.from("product_clicks").insert({product_id:id}).then(({error})=>{
+    if(error) console.error("SELLORA click tracking:",error.message);
+  });
 }
 
 // =====================================
 // SHARE STOREFRONT
 // =====================================
-async function shareStore() {
-  try {
-    if (navigator.share) {
+async function shareStore(){
+  try{
+    if(navigator.share){
       await navigator.share({
         title:$("publicName").textContent,
         text:"Lihat pilihan produk di SELLORA",
         url:location.href
       });
-    } else {
+    }else{
       await navigator.clipboard.writeText(location.href);
       alert("Pautan kedai disalin.");
     }
-  } catch (error) {
-    if (error.name !== "AbortError") alert("Salin URL dari pelayar untuk berkongsi.");
+  }catch(error){
+    if(error.name!=="AbortError") alert("Salin URL dari pelayar untuk berkongsi.");
   }
 }
 
 // =====================================
 // START APP
 // =====================================
-async function init() {
+async function init(){
   setTodayDate();
+  const slug=new URLSearchParams(location.search).get("store");
 
-  const slug = new URLSearchParams(location.search).get("store");
-  if (slug) {
+  if(slug){
     await openStore(slug);
     return;
   }
 
-  try {
-    const {data,error} = await db.auth.getSession();
-    if (error) {
-      say("authMsg",error.message);
-      return;
-    }
-
-    if (data.session) {
-      user = data.session.user;
+  try{
+    const {data,error}=await db.auth.getSession();
+    if(error){say("authMsg",error.message);return;}
+    if(data.session){
+      user=data.session.user;
       await dashboard();
     }
-  } catch (error) {
-    say("authMsg","Ralat memulakan SELLORA: " + error.message);
-  }
+  }catch(error){say("authMsg","Ralat memulakan SELLORA: "+error.message);}
 }
 
 init();
