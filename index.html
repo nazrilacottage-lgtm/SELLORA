@@ -512,41 +512,62 @@ async function compressProductImage(file){
 // =====================================
 // PRODUCT CARD
 // =====================================
+
 function card(product,manage=false){
   const imageUrl = safeUrl(product.image_url);
-  const image = imageUrl
-    ? `<div class="photo">${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}<img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}"></div>`
-    : `<div class="photo">${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}SELLORA PRODUCT</div>`;
 
-  const price = product.price == null ? "" : `<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
+  const image = imageUrl
+    ? `<div class="photo">
+        ${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}
+        <img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}">
+      </div>`
+    : `<div class="photo">
+        ${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}
+        <span>SELLORA</span>
+      </div>`;
+
+  const price = product.price == null
+    ? ""
+    : `<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
+
   const affiliateUrl = safeUrl(product.affiliate_url);
 
   const buyLink = affiliateUrl
-    ? `<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat produk ↗</a>`
+    ? `<a class="buy" href="${esc(affiliateUrl)}"
+        target="_blank" rel="noopener noreferrer"
+        onclick="trackClick(event,'${esc(product.id)}')">
+        Lihat Produk ↗
+      </a>`
     : '<span class="small">Pautan produk tidak tersedia.</span>';
 
   const actions = manage ? `
-    <div class="click-count">Jumlah klik: ${clickCounts[product.id] || 0}</div>
-    <div class="small">Susunan: ${Number(product.sort_order || 0)} · ${product.is_featured ? "Produk pilihan" : "Produk biasa"}</div>
+    <div class="click-count">
+      Jumlah klik: ${clickCounts[product.id] || 0}
+    </div>
+    <div class="small">
+      Susunan: ${Number(product.sort_order || 0)}
+      · ${product.is_featured ? "Produk pilihan" : "Produk biasa"}
+    </div>
     <div class="manage-actions">
       <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
       <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
     </div>` : "";
 
   return `
-    <article class="card">
+    <article class="card ${manage ? 'manage-card' : 'public-product-card'}">
       ${image}
       <div class="body">
         <span class="pill">${esc(product.platform)}</span>
-        <span class="category-pill">${esc(product.category || "Lain-lain")}</span>
+        ${manage ? `<span class="category-pill">${esc(product.category || "Lain-lain")}</span>` : ""}
         <h3>${esc(product.name)}</h3>
         ${price}
-        <p class="desc">${esc(product.description || "")}</p>
+        ${manage ? `<p class="desc">${esc(product.description || "")}</p>` : ""}
         ${buyLink}
         ${actions}
       </div>
     </article>`;
 }
+
 
 // =====================================
 // AUTHENTICATION
