@@ -10,652 +10,232 @@
 
 <style>
 :root{
-  --bg:#0d151c;
-  --panel:#17232d;
-  --line:#30424e;
-  --text:#f4f7f5;
-  --muted:#a9b8bf;
-  --lime:#b7f36b
+  --bg:#0d151c;--panel:#17232d;--line:#30424e;
+  --text:#f4f7f5;--muted:#a9b8bf;--lime:#b7f36b
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font:15px Arial,sans-serif;
-  line-height:1.5
-}
-header{
-  position:sticky;
-  top:0;
-  background:#111c24ed;
-  border-bottom:1px solid var(--line);
-  z-index:2
-}
-.nav{
-  max-width:1050px;
-  margin:auto;
-  padding:14px 18px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center
-}
-.logo{
-  font-size:26px;
-  font-weight:900;
-  color:var(--lime);
-  letter-spacing:1px
-}
-.tag{
-  font-size:10px;
-  letter-spacing:2px;
-  color:var(--muted)
-}
-main{
-  max-width:1050px;
-  margin:auto;
-  padding:22px 16px 55px
-}
+body{margin:0;background:var(--bg);color:var(--text);font:15px Arial,sans-serif;line-height:1.5}
+header{position:sticky;top:0;background:#111c24ed;border-bottom:1px solid var(--line);z-index:2}
+.nav{max-width:1050px;margin:auto;padding:14px 18px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:26px;font-weight:900;color:var(--lime);letter-spacing:1px}
+.tag{font-size:10px;letter-spacing:2px;color:var(--muted)}
+main{max-width:1050px;margin:auto;padding:22px 16px 55px}
 .hidden{display:none!important}
-.hero{
-  padding:26px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:linear-gradient(130deg,#263c2a,#17232d 65%);
-  margin-bottom:18px
-}
-.eyebrow{
-  color:var(--lime);
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:1.5px;
-  text-transform:uppercase
-}
-h1{
-  font-size:clamp(30px,6vw,46px);
-  line-height:1.1;
-  margin:10px 0
-}
+.hero{padding:26px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(130deg,#263c2a,#17232d 65%);margin-bottom:18px}
+.eyebrow{color:var(--lime);font-size:12px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1;margin:10px 0}
 h2{font-size:21px;margin:0 0 14px}
 h3{font-size:16px;margin:9px 0}
 .muted,.small{color:var(--muted)}
 .small{font-size:13px}
-.panel{
-  background:var(--panel);
-  border:1px solid var(--line);
-  padding:19px;
-  border-radius:16px;
-  margin:15px 0
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px
-}
-label{
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin:8px 0 4px
-}
-input,textarea,select{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #40535f;
-  background:#0f1920;
-  color:white;
-  font:inherit
-}
+.panel{background:var(--panel);border:1px solid var(--line);padding:19px;border-radius:16px;margin:15px 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{display:block;color:var(--muted);font-size:13px;margin:8px 0 4px}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #40535f;background:#0f1920;color:white;font:inherit}
 textarea{min-height:80px}
-button{
-  padding:12px 16px;
-  border:0;
-  border-radius:10px;
-  background:var(--lime);
-  color:#13200e;
-  font-weight:bold;
-  cursor:pointer
-}
-button:disabled{
-  opacity:.6;
-  cursor:not-allowed
-}
-.secondary{
-  background:#2b3b46;
-  color:white;
-  border:1px solid var(--line)
-}
+button{padding:12px 16px;border:0;border-radius:10px;background:var(--lime);color:#13200e;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6;cursor:not-allowed}
+.secondary{background:#2b3b46;color:white;border:1px solid var(--line)}
 .danger{background:#743b42;color:white}
-.actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:12px
-}
-.message{
-  color:var(--lime);
-  font-size:13px;
-  overflow-wrap:anywhere
-}
-.toolbar{
-  display:grid;
-  grid-template-columns:1fr 180px;
-  gap:10px;
-  margin:16px 0
-}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
-  gap:14px
-}
-.card{
-  background:var(--panel);
-  border:1px solid var(--line);
-  border-radius:15px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column
-}
-.photo{
-  height:175px;
-  background:#263640;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#9aabb4
-}
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover
-}
-.body{
-  padding:13px;
-  display:flex;
-  flex-direction:column;
-  flex:1
-}
-.pill{
-  font-size:11px;
-  color:var(--lime);
-  border:1px solid #536b43;
-  border-radius:20px;
-  padding:3px 8px;
-  align-self:start
-}
-.price{
-  font-size:20px;
-  font-weight:900;
-  margin:7px 0
-}
-.desc{
-  font-size:13px;
-  color:var(--muted);
-  min-height:35px;
-  overflow-wrap:anywhere
-}
-.buy{
-  display:block;
-  text-align:center;
-  text-decoration:none;
-  background:var(--lime);
-  color:#13200e;
-  font-weight:bold;
-  padding:10px;
-  border-radius:9px;
-  margin-top:auto
-}
-.manage-actions{
-  display:flex;
-  gap:6px;
-  margin-top:10px
-}
-.manage-actions button{
-  flex:1;
-  padding:9px 5px;
-  font-size:12px
-}
-.empty{
-  padding:25px;
-  text-align:center;
-  color:var(--muted);
-  border:1px dashed #50616a;
-  border-radius:12px
-}
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:10px;
-  margin:14px 0
-}
-.stat{
-  background:#101b22;
-  border:1px solid var(--line);
-  padding:13px;
-  border-radius:12px
-}
-.stat strong{
-  display:block;
-  font-size:24px;
-  color:var(--lime)
-}
-.stat span{
-  font-size:12px;
-  color:var(--muted)
-}
-.click-count{
-  font-size:12px;
-  color:var(--lime);
-  margin-top:7px
-}
-footer{
-  text-align:center;
-  color:#81919a;
-  font-size:12px;
-  padding:25px
-}
-.analytics-list{
-  display:flex;
-  flex-direction:column;
-  gap:14px
-}
-.analytics-item{
-  background:#101b22;
-  padding:13px;
-  border:1px solid var(--line);
-  border-radius:12px
-}
-.analytics-head{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:8px
-}
-.analytics-head strong{font-size:14px}
-.analytics-head span{
-  color:var(--lime);
-  font-weight:bold
-}
-.bar-bg{
-  height:9px;
-  background:#30424e;
-  border-radius:20px;
-  overflow:hidden
-}
-.bar-fill{
-  height:100%;
-  background:var(--lime);
-  border-radius:20px
-}
-.analytics-empty{
-  padding:20px;
-  text-align:center;
-  color:var(--muted)
-}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.message{color:var(--lime);font-size:13px;overflow-wrap:anywhere}
+.toolbar{display:grid;grid-template-columns:1fr 180px;gap:10px;margin:16px 0}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column}
+.photo{height:175px;background:#263640;display:flex;align-items:center;justify-content:center;color:#9aabb4}
+.photo img{width:100%;height:100%;object-fit:cover}
+.body{padding:13px;display:flex;flex-direction:column;flex:1}
+.pill{font-size:11px;color:var(--lime);border:1px solid #536b43;border-radius:20px;padding:3px 8px;align-self:start}
+.price{font-size:20px;font-weight:900;margin:7px 0}
+.desc{font-size:13px;color:var(--muted);min-height:35px;overflow-wrap:anywhere}
+.buy{display:block;text-align:center;text-decoration:none;background:var(--lime);color:#13200e;font-weight:bold;padding:10px;border-radius:9px;margin-top:auto}
+.manage-actions{display:flex;gap:6px;margin-top:10px}
+.manage-actions button{flex:1;padding:9px 5px;font-size:12px}
+.empty{padding:25px;text-align:center;color:var(--muted);border:1px dashed #50616a;border-radius:12px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.stat{background:#101b22;border:1px solid var(--line);padding:13px;border-radius:12px;min-width:0}
+.stat strong{display:block;font-size:24px;color:var(--lime);overflow-wrap:anywhere}
+.stat span{font-size:12px;color:var(--muted)}
+.click-count{font-size:12px;color:var(--lime);margin-top:7px}
+footer{text-align:center;color:#81919a;font-size:12px;padding:25px}
+.analytics-list{display:flex;flex-direction:column;gap:14px}
+.analytics-item{background:#101b22;padding:13px;border:1px solid var(--line);border-radius:12px}
+.analytics-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+.analytics-head strong{font-size:14px;overflow-wrap:anywhere}
+.analytics-head span{color:var(--lime);font-weight:bold;white-space:nowrap}
+.bar-bg{height:9px;background:#30424e;border-radius:20px;overflow:hidden}
+.bar-fill{height:100%;background:var(--lime);border-radius:20px}
+.analytics-empty{padding:20px;text-align:center;color:var(--muted)}
+#productImagePreview{display:none;width:120px;max-height:120px;object-fit:cover;margin-top:10px;border-radius:10px}
 @media(max-width:620px){
-  .grid{grid-template-columns:1fr}
-  .toolbar{grid-template-columns:1fr}
-  .hero{padding:21px}
-  .products{
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:9px
-  }
-  .photo{height:140px}
-  .body{padding:10px}
-  .price{font-size:17px}
-  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .stat{padding:9px}
-  .stat strong{font-size:19px}
+ .grid{grid-template-columns:1fr}.toolbar{grid-template-columns:1fr}
+ .hero{padding:21px}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .photo{height:140px}.body{padding:10px}.price{font-size:17px}
+ .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .stat{padding:9px}.stat strong{font-size:19px}
 }
-@media(max-width:350px){
-  .products{grid-template-columns:1fr}
-}
+@media(max-width:350px){.products{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-
 <header>
   <div class="nav">
     <div>
       <div class="logo">SELLORA.</div>
       <div class="tag">ONE LINK. ENDLESS POSSIBILITIES.</div>
     </div>
-    <button id="logoutBtn" class="secondary hidden" onclick="logout()">
-      Log keluar
-    </button>
+    <button id="logoutBtn" class="secondary hidden" onclick="logout()">Log keluar</button>
   </div>
 </header>
 
 <main>
-
-<!-- LOGIN / REGISTER -->
 <section id="welcome">
   <div class="hero">
     <div class="eyebrow">Your affiliate space</div>
-    <h1>Satu kedai.<br>
-      <span style="color:var(--lime)">Dua platform.</span>
-    </h1>
-    <p class="muted">
-      Kumpulkan pilihan Shopee dan TikTok Shop dalam satu storefront
-      yang mudah dikongsi.
-    </p>
+    <h1>Satu kedai.<br><span style="color:var(--lime)">Dua platform.</span></h1>
+    <p class="muted">Kumpulkan pilihan Shopee dan TikTok Shop dalam satu storefront yang mudah dikongsi.</p>
   </div>
-
   <div class="panel">
     <h2>Masuk ke SELLORA</h2>
-
     <div class="grid">
-      <div>
-        <label>E-mel</label>
-        <input id="email" type="email" autocomplete="email">
-      </div>
-
-      <div>
-        <label>Kata laluan</label>
-        <input id="password" type="password" autocomplete="current-password">
-      </div>
+      <div><label>E-mel</label><input id="email" type="email" autocomplete="email"></div>
+      <div><label>Kata laluan</label><input id="password" type="password" autocomplete="current-password"></div>
     </div>
-
     <div class="actions">
       <button onclick="signup()">Daftar akaun</button>
       <button class="secondary" onclick="login()">Log masuk</button>
     </div>
-
     <p id="authMsg" class="message"></p>
   </div>
 </section>
 
-<!-- DASHBOARD -->
 <section id="dashboard" class="hidden">
-
   <div class="hero">
-    <div class="eyebrow">Seller dashboard · Version 6</div>
+    <div class="eyebrow">Seller dashboard · Version 7</div>
     <h1>Urus kedai anda.</h1>
     <p id="userInfo" class="muted"></p>
   </div>
 
-  <!-- STATISTIK -->
   <div class="panel">
     <h2>Statistik affiliate</h2>
-
     <div class="stats">
-      <div class="stat">
-        <strong id="totalClicks">0</strong>
-        <span>Jumlah klik</span>
-      </div>
-
-      <div class="stat">
-        <strong id="totalProducts">0</strong>
-        <span>Jumlah produk</span>
-      </div>
-
-      <div class="stat">
-        <strong id="activeProducts">0</strong>
-        <span>Produk aktif</span>
-      </div>
+      <div class="stat"><strong id="totalClicks">0</strong><span>Jumlah klik</span></div>
+      <div class="stat"><strong id="totalProducts">0</strong><span>Jumlah produk</span></div>
+      <div class="stat"><strong id="activeProducts">0</strong><span>Produk aktif</span></div>
     </div>
-
-    <p class="small">
-      Statistik ini mengira klik pada pautan affiliate melalui storefront
-      SELLORA. Ia bukan jumlah jualan atau komisen daripada Shopee atau
-      TikTok Shop.
-    </p>
-
+    <p class="small">Statistik ini mengira klik pada pautan affiliate melalui storefront SELLORA. Ia bukan jumlah jualan atau komisen daripada Shopee atau TikTok Shop.</p>
     <p id="statsMsg" class="message"></p>
-
     <div class="panel">
       <h2>Prestasi Produk</h2>
-      <p class="small">
-        Kedudukan produk berdasarkan jumlah klik affiliate.
-      </p>
-      <div id="topProducts" class="analytics-list">
-        <div class="analytics-empty">Memuatkan statistik...</div>
-      </div>
+      <p class="small">Kedudukan produk berdasarkan jumlah klik affiliate.</p>
+      <div id="topProducts" class="analytics-list"><div class="analytics-empty">Memuatkan statistik...</div></div>
     </div>
-
     <div class="panel">
       <h2>Analisis Semua Produk</h2>
-      <div id="productAnalytics" class="analytics-list">
-        <div class="analytics-empty">Memuatkan data...</div>
-      </div>
+      <div id="productAnalytics" class="analytics-list"><div class="analytics-empty">Memuatkan data...</div></div>
     </div>
   </div>
 
-  <!-- REKOD JUALAN: SATU PANEL SAHAJA -->
   <div class="panel" id="salesPanel">
     <h2>Rekod Jualan & Komisen</h2>
-    <p class="small">
-      Masukkan rekod jualan affiliate secara manual.
-    </p>
-
+    <p class="small">Masukkan rekod jualan affiliate secara manual.</p>
     <div class="stats">
-      <div class="stat">
-        <strong id="salesCount">0</strong>
-        <span>Jumlah rekod</span>
-      </div>
-
-      <div class="stat">
-        <strong id="salesTotal">RM 0.00</strong>
-        <span>Jumlah jualan</span>
-      </div>
-
-      <div class="stat">
-        <strong id="commissionTotal">RM 0.00</strong>
-        <span>Komisen diluluskan</span>
-      </div>
+      <div class="stat"><strong id="salesCount">0</strong><span>Jumlah rekod</span></div>
+      <div class="stat"><strong id="salesTotal">RM 0.00</strong><span>Jumlah jualan</span></div>
+      <div class="stat"><strong id="commissionTotal">RM 0.00</strong><span>Komisen diluluskan</span></div>
     </div>
-
     <h3>Tambah rekod jualan</h3>
-
     <label>Produk</label>
-    <select id="saleProduct">
-      <option value="">Pilih produk</option>
-    </select>
-
+    <select id="saleProduct"><option value="">Pilih produk</option></select>
     <div class="grid">
-      <div>
-        <label>Platform</label>
-        <select id="salePlatform">
-          <option value="Shopee">Shopee</option>
-          <option value="TikTok Shop">TikTok Shop</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Tarikh jualan</label>
-        <input id="saleDate" type="date">
-      </div>
-
-      <div>
-        <label>Jumlah jualan (RM)</label>
-        <input id="saleAmount" type="number"
-          min="0" step="0.01" placeholder="0.00">
-      </div>
-
-      <div>
-        <label>Komisen (RM)</label>
-        <input id="saleCommission" type="number"
-          min="0" step="0.01" placeholder="0.00">
-      </div>
+      <div><label>Platform</label><select id="salePlatform"><option value="Shopee">Shopee</option><option value="TikTok Shop">TikTok Shop</option></select></div>
+      <div><label>Tarikh jualan</label><input id="saleDate" type="date"></div>
+      <div><label>Jumlah jualan (RM)</label><input id="saleAmount" type="number" min="0" step="0.01" placeholder="0.00"></div>
+      <div><label>Komisen (RM)</label><input id="saleCommission" type="number" min="0" step="0.01" placeholder="0.00"></div>
     </div>
-
     <label>Status komisen</label>
-    <select id="saleStatus">
-      <option value="Pending">Pending</option>
-      <option value="Approved">Approved</option>
-      <option value="Rejected">Rejected</option>
-    </select>
-
+    <select id="saleStatus"><option value="Pending">Pending</option><option value="Approved">Approved</option><option value="Rejected">Rejected</option></select>
     <label>Catatan (pilihan)</label>
-    <textarea id="saleNotes"
-      placeholder="Contoh: Pesanan affiliate minggu ini"></textarea>
-
-    <div class="actions">
-      <button onclick="saveSale()">Simpan rekod jualan</button>
-    </div>
-
+    <textarea id="saleNotes" placeholder="Contoh: Pesanan affiliate minggu ini"></textarea>
+    <div class="actions"><button id="saveSaleBtn" onclick="saveSale()">Simpan rekod jualan</button></div>
     <p id="saleMsg" class="message"></p>
   </div>
 
   <div class="panel">
     <h2>Sejarah Jualan</h2>
-    <div id="salesHistory">
-      <div class="empty">Memuatkan rekod jualan...</div>
-    </div>
+    <div id="salesHistory"><div class="empty">Memuatkan rekod jualan...</div></div>
   </div>
 
-  <!-- MAKLUMAT KEDAI -->
   <div class="panel">
     <h2>Maklumat kedai</h2>
-
     <div class="grid">
-      <div>
-        <label>Nama kedai</label>
-        <input id="storeName">
-      </div>
-
-      <div>
-        <label>Slug pautan</label>
-        <input id="storeSlug" placeholder="beauty-picks">
-      </div>
+      <div><label>Nama kedai</label><input id="storeName"></div>
+      <div><label>Slug pautan</label><input id="storeSlug" placeholder="beauty-picks"></div>
     </div>
-
-    <label>Penerangan</label>
-    <textarea id="storeBio"></textarea>
-
+    <label>Penerangan</label><textarea id="storeBio"></textarea>
     <div class="actions">
-      <button onclick="saveStore()">Simpan kedai</button>
-      <button class="secondary" onclick="copyLink()">
-        Salin pautan kedai
-      </button>
+      <button id="saveStoreBtn" onclick="saveStore()">Simpan kedai</button>
+      <button class="secondary" onclick="copyLink()">Salin pautan kedai</button>
     </div>
-
     <p id="storeMsg" class="message"></p>
     <p id="storeLink" class="small"></p>
   </div>
 
-  <!-- BORANG PRODUK -->
   <div class="panel" id="productForm">
     <h2 id="formTitle">Tambah produk affiliate</h2>
-
     <div class="grid">
+      <div><label>Nama produk</label><input id="productName"></div>
+      <div><label>Platform</label><select id="platform"><option>Shopee</option><option>TikTok Shop</option></select></div>
+      <div><label>Harga (RM)</label><input id="price" type="number" min="0" step="0.01"></div>
       <div>
-        <label>Nama produk</label>
-        <input id="productName">
-      </div>
-
-      <div>
-        <label>Platform</label>
-        <select id="platform">
-          <option>Shopee</option>
-          <option>TikTok Shop</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Harga (RM)</label>
-        <input id="price" type="number" min="0" step=".01">
-      </div>
-
-      <div>
-        <label>URL gambar (pilihan)</label>
-        <input id="imageUrl" type="url">
-
+        <label>URL gambar (pilihan)</label><input id="imageUrl" type="url">
         <label>Atau Upload Gambar Produk</label>
-        <input
-          type="file"
-          id="productImageFile"
-          accept="image/png,image/jpeg,image/webp"
-        >
-
-        <img
-          id="productImagePreview"
-          alt="Pratonton gambar produk"
-          style="display:none;width:120px;margin-top:10px;border-radius:10px;"
-        >
+        <input type="file" id="productImageFile" accept="image/png,image/jpeg,image/webp">
+        <img id="productImagePreview" alt="Pratonton gambar produk">
+        <p class="small">Format JPG, PNG atau WebP. Saiz asal maksimum 5MB. Gambar akan dikecilkan secara automatik sebelum upload.</p>
       </div>
     </div>
-
-    <label>Pautan affiliate</label>
-    <input id="affiliateUrl" type="url">
-
-    <label>Penerangan produk</label>
-    <textarea id="description"></textarea>
-
+    <label>Pautan affiliate</label><input id="affiliateUrl" type="url">
+    <label>Penerangan produk</label><textarea id="description"></textarea>
     <div class="actions">
-      <button id="saveProductBtn" onclick="saveProduct()">
-        Tambah produk
-      </button>
-      <button id="cancelEditBtn" class="secondary hidden"
-        onclick="cancelEdit()">
-        Batal edit
-      </button>
+      <button id="saveProductBtn" onclick="saveProduct()">Tambah produk</button>
+      <button id="cancelEditBtn" class="secondary hidden" onclick="cancelEdit()">Batal edit</button>
     </div>
-
     <p id="productMsg" class="message"></p>
   </div>
 
-  <!-- PENGURUSAN PRODUK -->
   <div class="panel">
     <h2>Pengurusan produk</h2>
-
     <div class="toolbar">
-      <input id="manageSearch" placeholder="Cari produk..."
-        oninput="renderManage()">
-
+      <input id="manageSearch" placeholder="Cari produk..." oninput="renderManage()">
       <select id="manageFilter" onchange="renderManage()">
-        <option value="all">Semua platform</option>
-        <option>Shopee</option>
-        <option>TikTok Shop</option>
+        <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
       </select>
     </div>
-
     <div id="myProducts" class="products"></div>
   </div>
-
 </section>
 
-<!-- PUBLIC STOREFRONT -->
 <section id="publicStore" class="hidden">
-
   <div class="hero">
     <div class="eyebrow">SELLORA storefront</div>
     <h1 id="publicName">Kedai SELLORA</h1>
     <p id="publicBio" class="muted"></p>
-
     <div class="stats">
-      <div class="stat">
-        <strong id="productCount">0</strong>
-        <span>Produk</span>
-      </div>
-
-      <div class="stat">
-        <strong>2</strong>
-        <span>Platform</span>
-      </div>
+      <div class="stat"><strong id="productCount">0</strong><span>Produk</span></div>
+      <div class="stat"><strong>2</strong><span>Platform</span></div>
     </div>
-
-    <div class="actions">
-      <button onclick="shareStore()">Kongsi kedai</button>
-    </div>
+    <div class="actions"><button onclick="shareStore()">Kongsi kedai</button></div>
   </div>
-
   <div class="toolbar">
-    <input id="publicSearch" placeholder="Cari produk..."
-      oninput="renderPublic()">
-
+    <input id="publicSearch" placeholder="Cari produk..." oninput="renderPublic()">
     <select id="publicFilter" onchange="renderPublic()">
-      <option value="all">Semua platform</option>
-      <option>Shopee</option>
-      <option>TikTok Shop</option>
+      <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
     </select>
   </div>
-
   <div id="publicProducts" class="products"></div>
 </section>
-
 </main>
 
 <footer>SELLORA · One Link. Endless Possibilities.</footer>
@@ -664,22 +244,13 @@ footer{
 // =====================================
 // SUPABASE CONFIGURATION
 // =====================================
-
-const SUPABASE_URL =
-  "https://pbjuicvtfoxvpmrayarj.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
-
-const db = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
+const SUPABASE_URL = "https://pbjuicvtfoxvpmrayarj.supabase.co";
+const SUPABASE_KEY = "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
+const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // =====================================
 // GLOBAL VARIABLES
 // =====================================
-
 let user = null;
 let store = null;
 let myItems = [];
@@ -690,33 +261,23 @@ let salesItems = [];
 
 const $ = id => document.getElementById(id);
 
-const say = (id, message) => {
+function say(id, message) {
   const element = $(id);
   if (element) element.textContent = message;
-};
-
-// =====================================
-// HELPER FUNCTIONS
-// =====================================
+}
 
 function esc(value) {
   return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   }[char]));
 }
 
-function urlOK(value) {
+function safeUrl(value) {
   try {
-    const url = new URL(value);
-    return ["https:", "http:"].includes(url.protocol)
-      ? url.href
-      : "#";
+    const url = new URL(String(value || ""));
+    return ["https:","http:"].includes(url.protocol) ? url.href : "";
   } catch {
-    return "#";
+    return "";
   }
 }
 
@@ -726,118 +287,132 @@ function money(value) {
 
 function setTodayDate() {
   const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
+  const date = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+  if ($("saleDate")) $("saleDate").value = date;
+}
 
-  if ($("saleDate")) {
-    $("saleDate").value = `${year}-${month}-${day}`;
+function setButtonBusy(id, busy, busyText, normalText) {
+  const button = $(id);
+  if (!button) return;
+  button.disabled = busy;
+  button.textContent = busy ? busyText : normalText;
+}
+
+// =====================================
+// IMAGE COMPRESSION
+// =====================================
+async function compressProductImage(file) {
+  if (!file) return null;
+
+  const allowed = ["image/jpeg","image/png","image/webp"];
+  if (!allowed.includes(file.type)) {
+    throw new Error("Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
   }
+
+  if (file.size > 5 * 1024 * 1024) {
+    throw new Error("Saiz gambar asal melebihi 5MB.");
+  }
+
+  const imageBitmap = await createImageBitmap(file);
+  const maxDimension = 1200;
+  const scale = Math.min(1, maxDimension / Math.max(imageBitmap.width,imageBitmap.height));
+
+  const width = Math.max(1,Math.round(imageBitmap.width * scale));
+  const height = Math.max(1,Math.round(imageBitmap.height * scale));
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+
+  const context = canvas.getContext("2d");
+  if (!context) {
+    imageBitmap.close();
+    throw new Error("Pelayar tidak dapat memproses gambar.");
+  }
+
+  // Latar putih mengelakkan kawasan lutsinar menjadi hitam dalam JPEG.
+  context.fillStyle = "#ffffff";
+  context.fillRect(0,0,width,height);
+  context.drawImage(imageBitmap,0,0,width,height);
+  imageBitmap.close();
+
+  const blob = await new Promise((resolve,reject) => {
+    canvas.toBlob(result => {
+      if (result) resolve(result);
+      else reject(new Error("Gagal memampatkan gambar."));
+    },"image/jpeg",0.82);
+  });
+
+  return {
+    file: new File([blob],`sellora-${Date.now()}.jpg`,{type:"image/jpeg"}),
+    originalSize:file.size,
+    compressedSize:blob.size,
+    width,
+    height
+  };
 }
 
 // =====================================
 // PRODUCT CARD
 // =====================================
-
 function card(product, manage = false) {
-  const image = product.image_url &&
-    urlOK(product.image_url) !== "#"
-    ? `
-      <div class="photo">
-        <img loading="lazy"
-          src="${esc(urlOK(product.image_url))}"
-          alt="${esc(product.name)}">
-      </div>
-    `
+  const imageUrl = safeUrl(product.image_url);
+  const image = imageUrl
+    ? `<div class="photo"><img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}"></div>`
     : '<div class="photo">SELLORA PRODUCT</div>';
 
   const price = product.price == null
     ? ""
     : `<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
 
-  const actions = manage
-    ? `
-      <div class="click-count">
-        Jumlah klik: ${clickCounts[product.id] || 0}
-      </div>
+  const actions = manage ? `
+    <div class="click-count">Jumlah klik: ${clickCounts[product.id] || 0}</div>
+    <div class="manage-actions">
+      <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
+      <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
+    </div>` : "";
 
-      <div class="manage-actions">
-        <button class="secondary"
-          onclick="editProduct('${esc(product.id)}')">
-          Edit
-        </button>
-
-        <button class="danger"
-          onclick="deleteProduct('${esc(product.id)}')">
-          Padam
-        </button>
-      </div>
-    `
-    : "";
+  const affiliateUrl = safeUrl(product.affiliate_url);
+  const buyLink = affiliateUrl
+    ? `<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat produk ↗</a>`
+    : '<span class="small">Pautan produk tidak tersedia.</span>';
 
   return `
     <article class="card">
       ${image}
-
       <div class="body">
         <span class="pill">${esc(product.platform)}</span>
         <h3>${esc(product.name)}</h3>
         ${price}
-
-        <p class="desc">
-          ${esc(product.description || "")}
-        </p>
-
-        <a class="buy"
-          href="${esc(urlOK(product.affiliate_url))}"
-          target="_blank"
-          rel="noopener noreferrer"
-          onclick="trackClick(event,'${esc(product.id)}')">
-          Lihat produk ↗
-        </a>
-
+        <p class="desc">${esc(product.description || "")}</p>
+        ${buyLink}
         ${actions}
       </div>
-    </article>
-  `;
+    </article>`;
 }
 
 // =====================================
 // AUTHENTICATION
 // =====================================
-
 async function signup() {
   const email = $("email").value.trim();
   const password = $("password").value;
 
   if (!email || password.length < 6) {
-    return say(
-      "authMsg",
-      "Masukkan e-mel dan kata laluan minimum 6 aksara."
-    );
+    return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
   }
 
-  say("authMsg", "Sedang mendaftar...");
+  say("authMsg","Sedang mendaftar...");
 
   try {
-    const { data, error } = await db.auth.signUp({
-      email,
-      password
-    });
+    const {data,error} = await db.auth.signUp({email,password});
+    if (error) return say("authMsg",error.message);
 
-    if (error) {
-      return say("authMsg", error.message);
-    }
-
-    say(
-      "authMsg",
-      data.session
-        ? "Pendaftaran berjaya. Anda boleh mula log masuk."
-        : "Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan."
-    );
-
+    say("authMsg",data.session
+      ? "Pendaftaran berjaya. Anda boleh mula menggunakan SELLORA."
+      : "Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");
   } catch (error) {
-    say("authMsg", "Ralat pendaftaran: " + error.message);
+    say("authMsg","Ralat pendaftaran: " + error.message);
   }
 }
 
@@ -845,437 +420,323 @@ async function login() {
   const email = $("email").value.trim();
   const password = $("password").value;
 
-  if (!email || !password) {
-    return say("authMsg", "Masukkan e-mel dan kata laluan.");
-  }
+  if (!email || !password) return say("authMsg","Masukkan e-mel dan kata laluan.");
 
-  say("authMsg", "Sedang log masuk...");
+  say("authMsg","Sedang log masuk...");
 
   try {
-    const { data, error } = await db.auth.signInWithPassword({
-      email,
-      password
-    });
-
-    if (error) {
-      return say("authMsg", error.message);
-    }
+    const {data,error} = await db.auth.signInWithPassword({email,password});
+    if (error) return say("authMsg",error.message);
 
     user = data.user;
-
-    say("authMsg", "Log masuk berjaya.");
-
+    say("authMsg","Log masuk berjaya.");
     await dashboard();
-
   } catch (error) {
-    say("authMsg", "Ralat log masuk: " + error.message);
+    say("authMsg","Ralat log masuk: " + error.message);
   }
 }
 
 async function logout() {
-  const { error } = await db.auth.signOut();
-
+  const {error} = await db.auth.signOut();
   if (error) {
     alert("Gagal log keluar: " + error.message);
     return;
   }
-
   location.href = location.pathname;
 }
 
 // =====================================
 // DASHBOARD
 // =====================================
-
 async function dashboard() {
   $("welcome").classList.add("hidden");
   $("publicStore").classList.add("hidden");
   $("dashboard").classList.remove("hidden");
   $("logoutBtn").classList.remove("hidden");
 
-  say("userInfo", user.email || "Akaun SELLORA");
-
+  say("userInfo",user?.email || "Akaun SELLORA");
   await loadStore();
 }
 
 // =====================================
 // STORE MANAGEMENT
 // =====================================
-
 async function loadStore() {
-  const { data, error } = await db
-    .from("stores")
+  const {data,error} = await db.from("stores")
     .select("*")
-    .eq("owner_id", user.id)
+    .eq("owner_id",user.id)
     .maybeSingle();
 
   if (error) {
-    return say("storeMsg", error.message);
+    say("storeMsg",error.message);
+    return;
   }
 
   store = data;
 
-  if (data) {
-    $("storeName").value = data.name || "";
-    $("storeSlug").value = data.slug || "";
-    $("storeBio").value = data.bio || "";
-
+  if (store) {
+    $("storeName").value = store.name || "";
+    $("storeSlug").value = store.slug || "";
+    $("storeBio").value = store.bio || "";
     showLink();
     await loadProducts();
-
   } else {
-    say(
-      "storeMsg",
-      "Sila cipta maklumat kedai anda dahulu."
-    );
+    say("storeMsg","Sila cipta maklumat kedai anda dahulu.");
+    myItems = [];
+    renderManage();
+    await loadSales();
   }
 }
 
 function storeURL() {
   if (!store) return "";
-
-  return location.origin +
-    location.pathname +
-    "?store=" +
-    encodeURIComponent(store.slug);
+  return location.origin + location.pathname + "?store=" + encodeURIComponent(store.slug);
 }
 
 function showLink() {
   if (!store) return;
-
   const url = storeURL();
-
-  $("storeLink").innerHTML =
-    `Pautan kedai: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a>`;
+  $("storeLink").innerHTML = `Pautan kedai: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a>`;
 }
 
 async function copyLink() {
-  if (!store) {
-    return say("storeMsg", "Simpan kedai dahulu.");
-  }
-
+  if (!store) return say("storeMsg","Simpan kedai dahulu.");
   try {
     await navigator.clipboard.writeText(storeURL());
-    say("storeMsg", "Pautan kedai disalin.");
-
+    say("storeMsg","Pautan kedai disalin.");
   } catch {
-    say("storeMsg", storeURL());
+    say("storeMsg",storeURL());
   }
 }
 
 async function saveStore() {
-  if (!user) {
-    return say("storeMsg", "Sila log masuk dahulu.");
-  }
+  if (!user) return say("storeMsg","Sila log masuk dahulu.");
 
   const name = $("storeName").value.trim();
-
-  const slug = $("storeSlug").value
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9-]/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "");
+  const slug = $("storeSlug").value.trim().toLowerCase()
+    .replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");
 
   if (name.length < 2 || slug.length < 3) {
-    return say(
-      "storeMsg",
-      "Nama kedai atau slug tidak sah."
-    );
+    return say("storeMsg","Nama kedai atau slug tidak sah. Slug minimum 3 aksara.");
   }
 
   const values = {
-    owner_id: user.id,
+    owner_id:user.id,
     name,
     slug,
-    bio: $("storeBio").value.trim()
+    bio:$("storeBio").value.trim()
   };
 
-  say("storeMsg", "Sedang menyimpan kedai...");
+  setButtonBusy("saveStoreBtn",true,"Menyimpan...","Simpan kedai");
 
   try {
     const result = store
-      ? await db.from("stores")
-          .update(values)
-          .eq("id", store.id)
-          .select()
-          .single()
-      : await db.from("stores")
-          .insert(values)
-          .select()
-          .single();
+      ? await db.from("stores").update(values).eq("id",store.id).select().single()
+      : await db.from("stores").insert(values).select().single();
 
     if (result.error) {
-      return say("storeMsg", result.error.message);
+      say("storeMsg",result.error.message);
+      return;
     }
 
     store = result.data;
-
-    say("storeMsg", "Kedai berjaya disimpan!");
+    say("storeMsg","Kedai berjaya disimpan!");
     showLink();
-
-    // Muatkan produk dan rekod jualan selepas kedai disimpan
     await loadProducts();
-
   } catch (error) {
-    say("storeMsg", "Ralat menyimpan kedai: " + error.message);
+    say("storeMsg","Ralat menyimpan kedai: " + error.message);
+  } finally {
+    setButtonBusy("saveStoreBtn",false,"Menyimpan...","Simpan kedai");
   }
 }
 
 // =====================================
-// PRODUCT IMAGE PREVIEW
+// IMAGE PREVIEW
 // =====================================
+let previewObjectUrl = null;
 
-const imageInput = $("productImageFile");
-const imagePreview = $("productImagePreview");
+$("productImageFile").addEventListener("change",function() {
+  const file = this.files?.[0];
 
-if (imageInput && imagePreview) {
-  imageInput.addEventListener("change", function () {
-    const file = this.files[0];
+  if (previewObjectUrl) {
+    URL.revokeObjectURL(previewObjectUrl);
+    previewObjectUrl = null;
+  }
 
-    if (!file) {
-      imagePreview.style.display = "none";
-      imagePreview.removeAttribute("src");
-      return;
-    }
+  if (!file) {
+    $("productImagePreview").style.display = "none";
+    $("productImagePreview").removeAttribute("src");
+    return;
+  }
 
-    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-      say("productMsg", "Format gambar tidak disokong.");
-      this.value = "";
-      imagePreview.style.display = "none";
-      return;
-    }
+  if (!["image/jpeg","image/png","image/webp"].includes(file.type)) {
+    say("productMsg","Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
+    this.value = "";
+    $("productImagePreview").style.display = "none";
+    return;
+  }
 
-    if (file.size > 5 * 1024 * 1024) {
-      say("productMsg", "Saiz gambar maksimum 5MB.");
-      this.value = "";
-      imagePreview.style.display = "none";
-      return;
-    }
+  if (file.size > 5 * 1024 * 1024) {
+    say("productMsg","Saiz gambar maksimum 5MB.");
+    this.value = "";
+    $("productImagePreview").style.display = "none";
+    return;
+  }
 
-    imagePreview.src = URL.createObjectURL(file);
-    imagePreview.style.display = "block";
-  });
-}
+  previewObjectUrl = URL.createObjectURL(file);
+  $("productImagePreview").src = previewObjectUrl;
+  $("productImagePreview").style.display = "block";
+  say("productMsg","Gambar dipilih. Ia akan dimampatkan semasa disimpan.");
+});
 
 // =====================================
 // SAVE PRODUCT
 // =====================================
-
 async function saveProduct() {
-  if (!user) {
-    return say("productMsg", "Sila log masuk dahulu.");
-  }
-
-  if (!store) {
-    return say("productMsg", "Simpan kedai dahulu.");
-  }
+  if (!user) return say("productMsg","Sila log masuk dahulu.");
+  if (!store) return say("productMsg","Simpan kedai dahulu.");
 
   const name = $("productName").value.trim();
-  const link = $("affiliateUrl").value.trim();
+  const link = safeUrl($("affiliateUrl").value.trim());
   let image = $("imageUrl").value.trim();
+  const file = $("productImageFile").files?.[0] || null;
+  const rawPrice = $("price").value;
 
-  const file = $("productImageFile").files[0];
+  if (!name) return say("productMsg","Masukkan nama produk.");
+  if (!link) return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
 
-  if (!name || urlOK(link) === "#") {
-    return say(
-      "productMsg",
-      "Masukkan nama dan pautan affiliate yang sah."
-    );
+  if (image && !safeUrl(image)) {
+    return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
   }
 
-  if (image && urlOK(image) === "#") {
-    return say(
-      "productMsg",
-      "URL gambar mesti http/https."
-    );
+  if (rawPrice !== "" && (!Number.isFinite(Number(rawPrice)) || Number(rawPrice) < 0)) {
+    return say("productMsg","Harga produk tidak sah.");
   }
+
+  setButtonBusy("saveProductBtn",true,"Sedang menyimpan... ",editingId ? "Simpan perubahan" : "Tambah produk");
 
   try {
-    // UPLOAD GAMBAR KE SUPABASE STORAGE
     if (file) {
-      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-        return say("productMsg", "Format gambar tidak disokong.");
-      }
+      say("productMsg","Sedang memampatkan gambar...");
 
-      if (file.size > 5 * 1024 * 1024) {
-        return say("productMsg", "Saiz gambar maksimum 5MB.");
-      }
+      const compressed = await compressProductImage(file);
 
-      // Semak sesi login sekali sahaja
-      const {
-        data: sessionData,
-        error: sessionError
-      } = await db.auth.getSession();
-
-      if (sessionError) {
-        return say(
-          "productMsg",
-          "Ralat sesi: " + sessionError.message
-        );
-      }
+      const {data:sessionData,error:sessionError} = await db.auth.getSession();
+      if (sessionError) throw new Error("Ralat sesi: " + sessionError.message);
 
       const session = sessionData.session;
-
-      if (!session || !session.user) {
-        return say(
-          "productMsg",
-          "Sila log masuk semula."
-        );
+      if (!session?.user || session.user.id !== user.id) {
+        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
       }
 
-      if (session.user.id !== user.id) {
-        return say(
-          "productMsg",
-          "ID pengguna tidak sepadan. Sila log masuk semula."
-        );
-      }
+      say("productMsg",`Gambar dimampatkan. Saiz asal ${ (compressed.originalSize/1024).toFixed(0) }KB → ${(compressed.compressedSize/1024).toFixed(0)}KB. Sedang upload...`);
 
-      say("productMsg", "Sedang memuat naik gambar...");
+      const path = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
 
-      const ext = file.name.split(".").pop().toLowerCase();
-      const path = `${user.id}/${Date.now()}.${ext}`;
+      const upload = await db.storage.from("product-images").upload(
+        path,
+        compressed.file,
+        {contentType:"image/jpeg",upsert:false}
+      );
 
-      const upload = await db.storage
-        .from("product-images")
-        .upload(path, file, {
-          upsert: true
-        });
+      if (upload.error) throw new Error("Upload gagal: " + upload.error.message);
 
-      if (upload.error) {
-        return say(
-          "productMsg",
-          "Upload gagal: " + upload.error.message
-        );
-      }
+      const {data:publicData} = db.storage.from("product-images").getPublicUrl(path);
+      image = publicData?.publicUrl || "";
 
-      const { data: publicData } = db.storage
-        .from("product-images")
-        .getPublicUrl(path);
-
-      image = publicData.publicUrl;
+      if (!image) throw new Error("URL gambar awam tidak dapat diperoleh.");
     }
-
-    const rawPrice = $("price").value;
 
     const values = {
-      owner_id: user.id,
-      store_id: store.id,
+      owner_id:user.id,
+      store_id:store.id,
       name,
-      platform: $("platform").value,
-      affiliate_url: link,
-      image_url: image || null,
-      price: rawPrice === "" ? null : Number(rawPrice),
-      description: $("description").value.trim()
+      platform:$("platform").value,
+      affiliate_url:link,
+      image_url:image || null,
+      price:rawPrice === "" ? null : Number(rawPrice),
+      description:$("description").value.trim()
     };
-
-    if (rawPrice !== "" &&
-        (!Number.isFinite(Number(rawPrice)) || Number(rawPrice) < 0)) {
-      return say("productMsg", "Harga produk tidak sah.");
-    }
 
     let result;
 
     if (editingId) {
-      result = await db
-        .from("products")
+      result = await db.from("products")
         .update(values)
-        .eq("id", editingId)
-        .eq("owner_id", user.id);
+        .eq("id",editingId)
+        .eq("owner_id",user.id);
     } else {
-      result = await db
-        .from("products")
-        .insert(values);
+      result = await db.from("products").insert(values);
     }
 
-    if (result.error) {
-      return say("productMsg", result.error.message);
-    }
+    if (result.error) throw new Error(result.error.message);
 
-    say(
-      "productMsg",
-      editingId
-        ? "Produk berjaya dikemaskini!"
-        : "Produk berjaya ditambah!"
-    );
+    say("productMsg",editingId ? "Produk berjaya dikemaskini!" : "Produk berjaya ditambah!");
 
     cancelEdit();
     await loadProducts();
 
   } catch (error) {
-    say(
-      "productMsg",
-      "Ralat menyimpan produk: " + error.message
-    );
+    say("productMsg","Ralat menyimpan produk: " + error.message);
+  } finally {
+    $("saveProductBtn").disabled = false;
+    $("saveProductBtn").textContent = editingId ? "Simpan perubahan" : "Tambah produk";
   }
 }
 
 // =====================================
 // EDIT PRODUCT
 // =====================================
-
 function editProduct(id) {
-  const product = myItems.find(
-    item => String(item.id) === String(id)
-  );
-
+  const product = myItems.find(item => String(item.id) === String(id));
   if (!product) return;
 
   editingId = product.id;
-
   $("productName").value = product.name || "";
   $("platform").value = product.platform || "Shopee";
   $("price").value = product.price ?? "";
   $("imageUrl").value = product.image_url || "";
   $("affiliateUrl").value = product.affiliate_url || "";
   $("description").value = product.description || "";
-
   $("productImageFile").value = "";
 
-  if (product.image_url) {
-    imagePreview.src = product.image_url;
-    imagePreview.style.display = "block";
-  } else {
-    imagePreview.style.display = "none";
+  if (previewObjectUrl) {
+    URL.revokeObjectURL(previewObjectUrl);
+    previewObjectUrl = null;
   }
 
-  say("formTitle", "Edit produk affiliate");
+  if (product.image_url && safeUrl(product.image_url)) {
+    $("productImagePreview").src = product.image_url;
+    $("productImagePreview").style.display = "block";
+  } else {
+    $("productImagePreview").style.display = "none";
+  }
 
+  say("formTitle","Edit produk affiliate");
   $("saveProductBtn").textContent = "Simpan perubahan";
   $("cancelEditBtn").classList.remove("hidden");
-
-  say(
-    "productMsg",
-    "Mod edit aktif. Semak maklumat sebelum menyimpan."
-  );
-
-  $("productForm").scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+  say("productMsg","Mod edit aktif. Semak maklumat sebelum menyimpan.");
+  $("productForm").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 function cancelEdit() {
   editingId = null;
 
-  [
-    "productName",
-    "price",
-    "imageUrl",
-    "affiliateUrl",
-    "description"
-  ].forEach(id => {
+  ["productName","price","imageUrl","affiliateUrl","description"].forEach(id => {
     $(id).value = "";
   });
 
   $("platform").value = "Shopee";
   $("productImageFile").value = "";
 
-  imagePreview.style.display = "none";
-  imagePreview.removeAttribute("src");
+  if (previewObjectUrl) {
+    URL.revokeObjectURL(previewObjectUrl);
+    previewObjectUrl = null;
+  }
 
-  say("formTitle", "Tambah produk affiliate");
-
+  $("productImagePreview").style.display = "none";
+  $("productImagePreview").removeAttribute("src");
+  say("formTitle","Tambah produk affiliate");
   $("saveProductBtn").textContent = "Tambah produk";
   $("cancelEditBtn").classList.add("hidden");
 }
@@ -1283,151 +744,103 @@ function cancelEdit() {
 // =====================================
 // DELETE PRODUCT
 // =====================================
-
 async function deleteProduct(id) {
-  const product = myItems.find(
-    item => String(item.id) === String(id)
-  );
-
+  const product = myItems.find(item => String(item.id) === String(id));
   if (!product) return;
 
-  if (!confirm(
-    "Padam produk '" + product.name +
-    "'? Tindakan ini tidak boleh dibatalkan."
-  )) {
-    return;
-  }
+  if (!confirm("Padam produk '" + product.name + "'? Tindakan ini tidak boleh dibatalkan.")) return;
 
-  const { error } = await db
-    .from("products")
-    .delete()
-    .eq("id", id)
-    .eq("owner_id", user.id);
+  try {
+    const {error} = await db.from("products")
+      .delete()
+      .eq("id",id)
+      .eq("owner_id",user.id);
 
-  if (error) {
+    if (error) throw error;
+
+    if (String(editingId) === String(id)) cancelEdit();
+
+    await loadProducts();
+    alert("Produk berjaya dipadam.");
+  } catch (error) {
     alert("Produk tidak dapat dipadam: " + error.message);
-    return;
   }
-
-  if (String(editingId) === String(id)) {
-    cancelEdit();
-  }
-
-  await loadProducts();
-
-  alert("Produk berjaya dipadam.");
 }
 
 // =====================================
 // LOAD PRODUCTS
 // =====================================
-
 async function loadProducts() {
   if (!store || !user) return;
 
-  const { data, error } = await db
-    .from("products")
+  const {data,error} = await db.from("products")
     .select("*")
-    .eq("store_id", store.id)
-    .order("created_at", { ascending: false });
+    .eq("store_id",store.id)
+    .order("created_at",{ascending:false});
 
   if (error) {
-    return say("productMsg", error.message);
+    say("productMsg",error.message);
+    return;
   }
 
   myItems = data || [];
-
   await loadClickStats();
-
   renderManage();
-
   await loadSales();
 }
 
 // =====================================
 // CLICK STATISTICS
 // =====================================
-
 async function loadClickStats() {
   clickCounts = {};
-
   const ids = myItems.map(product => product.id);
 
   if (ids.length) {
-    const { data, error } = await db
-      .from("product_clicks")
+    const {data,error} = await db.from("product_clicks")
       .select("product_id")
-      .in("product_id", ids);
+      .in("product_id",ids);
 
     if (error) {
-      say(
-        "statsMsg",
-        "Statistik gagal dimuatkan: " + error.message
-      );
-
+      say("statsMsg","Statistik gagal dimuatkan: " + error.message);
       renderAnalytics();
       return;
     }
 
     (data || []).forEach(row => {
       const id = String(row.product_id);
-
-      clickCounts[id] =
-        (clickCounts[id] || 0) + 1;
+      clickCounts[id] = (clickCounts[id] || 0) + 1;
     });
   }
 
-  const total = Object.values(clickCounts)
-    .reduce((sum, count) => sum + count, 0);
-
-  say("totalClicks", total);
-  say("totalProducts", myItems.length);
-
-  say(
-    "activeProducts",
-    myItems.filter(product => product.is_active === true).length
-  );
-
-  say("statsMsg", "Analitik berjaya dikemas kini.");
-
+  const total = Object.values(clickCounts).reduce((sum,count) => sum + count,0);
+  say("totalClicks",total);
+  say("totalProducts",myItems.length);
+  say("activeProducts",myItems.filter(product => product.is_active === true).length);
+  say("statsMsg","Analitik berjaya dikemas kini.");
   renderAnalytics();
 }
 
 // =====================================
 // PRODUCT ANALYTICS
 // =====================================
-
 function renderAnalytics() {
-  const sorted = [...myItems].sort((a, b) => {
-    return (clickCounts[b.id] || 0) -
-      (clickCounts[a.id] || 0);
-  });
-
-  const top = sorted.slice(0, 5);
-
-  const maxClicks = Math.max(
-    1,
-    ...sorted.map(product => clickCounts[product.id] || 0)
+  const sorted = [...myItems].sort((a,b) =>
+    (clickCounts[b.id] || 0) - (clickCounts[a.id] || 0)
   );
+
+  const top = sorted.slice(0,5);
+  const maxClicks = Math.max(1,...sorted.map(product => clickCounts[product.id] || 0));
 
   const makeItem = product => {
     const clicks = clickCounts[product.id] || 0;
     const width = (clicks / maxClicks) * 100;
-
     return `
       <div class="analytics-item">
-        <div class="analytics-head">
-          <strong>${esc(product.name)}</strong>
-          <span>${clicks} klik</span>
-        </div>
-
-        <div class="bar-bg">
-          <div class="bar-fill" style="width:${width}%"></div>
-        </div>
-
+        <div class="analytics-head"><strong>${esc(product.name)}</strong><span>${clicks} klik</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width:${width}%"></div></div>
         <div class="small">${esc(product.platform)}</div>
-      </div>
-    `;
+      </div>`;
   };
 
   $("topProducts").innerHTML = top.length
@@ -1442,7 +855,6 @@ function renderAnalytics() {
 // =====================================
 // RENDER MANAGE PRODUCTS
 // =====================================
-
 function renderManage() {
   const query = $("manageSearch").value.toLowerCase();
   const filter = $("manageFilter").value;
@@ -1452,231 +864,159 @@ function renderManage() {
     String(product.name || "").toLowerCase().includes(query)
   );
 
-  $("myProducts").innerHTML =
-    products.map(product => card(product, true)).join("") ||
+  $("myProducts").innerHTML = products.map(product => card(product,true)).join("") ||
     '<div class="empty">Tiada produk sepadan.</div>';
 }
 
 // =====================================
 // SALES & COMMISSION
 // =====================================
-
 async function loadSales() {
   if (!store || !user) return;
 
-  const { data, error } = await db
-    .from("affiliate_sales")
+  const {data,error} = await db.from("affiliate_sales")
     .select("*")
-    .eq("store_id", store.id)
-    .order("sale_date", { ascending: false });
+    .eq("store_id",store.id)
+    .order("sale_date",{ascending:false});
 
   if (error) {
-    say(
-      "saleMsg",
-      "Gagal memuatkan jualan: " + error.message
-    );
+    say("saleMsg","Gagal memuatkan jualan: " + error.message);
     return;
   }
 
   salesItems = data || [];
 
-  const productSelect = $("saleProduct");
-
-  productSelect.innerHTML =
+  $("saleProduct").innerHTML =
     '<option value="">Tiada produk dipilih</option>' +
     myItems.map(product =>
       `<option value="${esc(product.id)}">${esc(product.name)}</option>`
     ).join("");
 
-  const totalSales = salesItems.reduce(
-    (sum, sale) => sum + Number(sale.sale_amount || 0),
-    0
-  );
-
+  const totalSales = salesItems.reduce((sum,sale) => sum + Number(sale.sale_amount || 0),0);
   const approvedCommission = salesItems
     .filter(sale => sale.status === "Approved")
-    .reduce(
-      (sum, sale) => sum + Number(sale.commission_amount || 0),
-      0
-    );
+    .reduce((sum,sale) => sum + Number(sale.commission_amount || 0),0);
 
-  say("salesCount", salesItems.length);
-  say("salesTotal", money(totalSales));
-  say("commissionTotal", money(approvedCommission));
-
+  say("salesCount",salesItems.length);
+  say("salesTotal",money(totalSales));
+  say("commissionTotal",money(approvedCommission));
   renderSales();
 }
 
 async function saveSale() {
-  if (!store || !user) {
-    return say("saleMsg", "Sila log masuk dahulu.");
-  }
+  if (!store || !user) return say("saleMsg","Sila log masuk dahulu.");
 
   const productId = $("saleProduct").value;
   const amountInput = $("saleAmount").value;
   const commissionInput = $("saleCommission").value;
   const date = $("saleDate").value;
-
   const amount = Number(amountInput);
   const commission = Number(commissionInput);
 
   if (!date || amountInput === "" || commissionInput === "") {
-    return say(
-      "saleMsg",
-      "Lengkapkan tarikh, jualan dan komisen."
-    );
+    return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
   }
 
-  if (
-    !Number.isFinite(amount) ||
-    !Number.isFinite(commission) ||
-    amount < 0 ||
-    commission < 0
-  ) {
-    return say("saleMsg", "Jumlah wang tidak sah.");
+  if (!Number.isFinite(amount) || !Number.isFinite(commission) || amount < 0 || commission < 0) {
+    return say("saleMsg","Jumlah wang tidak sah.");
   }
 
-  const selectedProduct = myItems.find(
-    product => String(product.id) === String(productId)
-  );
-
-  const platform = selectedProduct
-    ? selectedProduct.platform
-    : $("salePlatform").value;
+  const selectedProduct = myItems.find(product => String(product.id) === String(productId));
+  const platform = selectedProduct ? selectedProduct.platform : $("salePlatform").value;
 
   const record = {
-    owner_id: user.id,
-    store_id: store.id,
-    product_id: productId || null,
+    owner_id:user.id,
+    store_id:store.id,
+    product_id:productId || null,
     platform,
-    sale_amount: amount,
-    commission_amount: commission,
-    status: $("saleStatus").value,
-    sale_date: date,
-    notes: $("saleNotes").value.trim()
+    sale_amount:amount,
+    commission_amount:commission,
+    status:$("saleStatus").value,
+    sale_date:date,
+    notes:$("saleNotes").value.trim()
   };
 
-  say("saleMsg", "Sedang menyimpan rekod...");
+  setButtonBusy("saveSaleBtn",true,"Sedang menyimpan...","Simpan rekod jualan");
 
   try {
-    const { error } = await db
-      .from("affiliate_sales")
-      .insert(record);
+    const {error} = await db.from("affiliate_sales").insert(record);
+    if (error) throw error;
 
-    if (error) {
-      say("saleMsg", "Gagal: " + error.message);
-      return;
-    }
-
-    say("saleMsg", "Rekod jualan berjaya disimpan!");
-
+    say("saleMsg","Rekod jualan berjaya disimpan!");
     $("saleAmount").value = "";
     $("saleCommission").value = "";
     $("saleNotes").value = "";
     $("saleProduct").value = "";
-
     await loadSales();
-
   } catch (error) {
-    say("saleMsg", "Ralat: " + error.message);
+    say("saleMsg","Gagal menyimpan rekod: " + error.message);
+  } finally {
+    setButtonBusy("saveSaleBtn",false,"Sedang menyimpan...","Simpan rekod jualan");
   }
 }
 
 function renderSales() {
   if (!salesItems.length) {
-    $("salesHistory").innerHTML =
-      '<div class="empty">Belum ada rekod jualan.</div>';
+    $("salesHistory").innerHTML = '<div class="empty">Belum ada rekod jualan.</div>';
     return;
   }
 
   $("salesHistory").innerHTML = salesItems.map(sale => {
-    const product = myItems.find(
-      item => String(item.id) === String(sale.product_id)
-    );
-
-    const name = product
-      ? product.name
-      : "Produk tidak dipilih / tidak tersedia";
-
-    const statusColor = sale.status === "Approved"
-      ? "var(--lime)"
-      : sale.status === "Rejected"
-        ? "#ff8585"
-        : "#ffd477";
+    const product = myItems.find(item => String(item.id) === String(sale.product_id));
+    const name = product ? product.name : "Produk tidak dipilih / tidak tersedia";
+    const statusColor = sale.status === "Approved" ? "var(--lime)" :
+      sale.status === "Rejected" ? "#ff8585" : "#ffd477";
 
     return `
       <div class="analytics-item">
         <div class="analytics-head">
           <strong>${esc(name)}</strong>
-
-          <span style="color:${statusColor}">
-            ${esc(sale.status)}
-          </span>
+          <span style="color:${statusColor}">${esc(sale.status)}</span>
         </div>
-
-        <div class="small">
-          ${esc(sale.platform)} · ${esc(sale.sale_date)}
-        </div>
-
-        <p>Jualan:
-          <strong>${money(sale.sale_amount)}</strong>
-        </p>
-
-        <p>Komisen:
-          <strong>${money(sale.commission_amount)}</strong>
-        </p>
-
-        ${
-          sale.notes
-            ? `<div class="small">${esc(sale.notes)}</div>`
-            : ""
-        }
-      </div>
-    `;
+        <div class="small">${esc(sale.platform)} · ${esc(sale.sale_date)}</div>
+        <p>Jualan: <strong>${money(sale.sale_amount)}</strong></p>
+        <p>Komisen: <strong>${money(sale.commission_amount)}</strong></p>
+        ${sale.notes ? `<div class="small">${esc(sale.notes)}</div>` : ""}
+      </div>`;
   }).join("");
 }
 
 // =====================================
 // PUBLIC STOREFRONT
 // =====================================
-
 async function openStore(slug) {
   $("welcome").classList.add("hidden");
   $("dashboard").classList.add("hidden");
   $("publicStore").classList.remove("hidden");
   $("logoutBtn").classList.add("hidden");
 
-  const { data: storeData, error } = await db
-    .from("stores")
+  const {data:storeData,error} = await db.from("stores")
     .select("*")
-    .eq("slug", slug)
+    .eq("slug",slug)
     .maybeSingle();
 
   if (error || !storeData) {
-    say("publicName", "Kedai tidak dijumpai");
+    say("publicName","Kedai tidak dijumpai");
+    $("publicProducts").innerHTML = '<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';
     return;
   }
 
-  say("publicName", storeData.name);
-  say("publicBio", storeData.bio || "");
+  say("publicName",storeData.name);
+  say("publicBio",storeData.bio || "");
 
-  const result = await db
-    .from("products")
+  const result = await db.from("products")
     .select("*")
-    .eq("store_id", storeData.id)
-    .eq("is_active", true)
-    .order("created_at", { ascending: false });
+    .eq("store_id",storeData.id)
+    .eq("is_active",true)
+    .order("created_at",{ascending:false});
 
   if (result.error) {
-    $("publicProducts").innerHTML =
-      '<div class="empty">Produk tidak dapat dimuatkan.</div>';
+    $("publicProducts").innerHTML = '<div class="empty">Produk tidak dapat dimuatkan: ' + esc(result.error.message) + '</div>';
     return;
   }
 
   publicItems = result.data || [];
-
-  say("productCount", publicItems.length);
-
+  say("productCount",publicItems.length);
   renderPublic();
 }
 
@@ -1689,75 +1029,58 @@ function renderPublic() {
     String(product.name || "").toLowerCase().includes(query)
   );
 
-  $("publicProducts").innerHTML =
-    products.map(product => card(product, false)).join("") ||
+  $("publicProducts").innerHTML = products.map(product => card(product,false)).join("") ||
     '<div class="empty">Tiada produk ditemui.</div>';
 }
 
 // =====================================
 // CLICK TRACKING
 // =====================================
-
-function trackClick(event, id) {
-  // Pautan affiliate dibuka seperti biasa.
-  // Rekod klik dihantar ke Supabase secara berasingan.
-
+function trackClick(event,id) {
+  // Pautan affiliate tetap dibuka. Rekod klik dihantar ke Supabase.
   db.from("product_clicks")
-    .insert({ product_id: id })
-    .then(({ error }) => {
-      if (error) {
-        console.error(
-          "SELLORA click tracking:",
-          error.message
-        );
-      }
+    .insert({product_id:id})
+    .then(({error}) => {
+      if (error) console.error("SELLORA click tracking:",error.message);
     });
 }
 
 // =====================================
 // SHARE STOREFRONT
 // =====================================
-
 async function shareStore() {
   try {
     if (navigator.share) {
       await navigator.share({
-        title: $("publicName").textContent,
-        text: "Lihat pilihan produk di SELLORA",
-        url: location.href
+        title:$("publicName").textContent,
+        text:"Lihat pilihan produk di SELLORA",
+        url:location.href
       });
     } else {
       await navigator.clipboard.writeText(location.href);
       alert("Pautan kedai disalin.");
     }
-
   } catch (error) {
-    if (error.name !== "AbortError") {
-      alert("Salin URL dari pelayar untuk berkongsi.");
-    }
+    if (error.name !== "AbortError") alert("Salin URL dari pelayar untuk berkongsi.");
   }
 }
 
 // =====================================
 // START APP
 // =====================================
-
 async function init() {
   setTodayDate();
 
-  const slug = new URLSearchParams(location.search)
-    .get("store");
-
+  const slug = new URLSearchParams(location.search).get("store");
   if (slug) {
     await openStore(slug);
     return;
   }
 
   try {
-    const { data, error } = await db.auth.getSession();
-
+    const {data,error} = await db.auth.getSession();
     if (error) {
-      say("authMsg", error.message);
+      say("authMsg",error.message);
       return;
     }
 
@@ -1765,14 +1088,12 @@ async function init() {
       user = data.session.user;
       await dashboard();
     }
-
   } catch (error) {
-    say("authMsg", "Ralat memulakan SELLORA: " + error.message);
+    say("authMsg","Ralat memulakan SELLORA: " + error.message);
   }
 }
 
 init();
-
 </script>
 </body>
 </html>
