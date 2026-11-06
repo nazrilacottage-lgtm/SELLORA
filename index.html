@@ -487,6 +487,33 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   fill:#C65B65;
   stroke:#C65B65;
 }
+  #publicProducts .public-product-card,
+#featuredProducts .public-product-card{
+  position:relative !important;
+}
+
+#publicProducts .public-product-card .like-btn,
+#featuredProducts .public-product-card .like-btn{
+  display:flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:absolute !important;
+  top:10px !important;
+  right:10px !important;
+  z-index:99 !important;
+  width:38px !important;
+  height:38px !important;
+  background:#fff !important;
+  border:1px solid #C6A46A !important;
+  border-radius:50% !important;
+}
+
+#publicProducts .public-product-card .like-btn svg,
+#featuredProducts .public-product-card .like-btn svg{
+  display:block !important;
+  width:21px !important;
+  height:21px !important;
+}
 </style>
 </head>
 
