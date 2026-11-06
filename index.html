@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="ms">
 <head>
@@ -10,79 +9,39 @@
 
 <style>
 :root{
-  --navy:#172A35;
-  --navy2:#263E4B;
-  --gold:#C6A46A;
-  --gold2:#D8BC8A;
-  --ivory:#F7F5F0;
-  --white:#FFFFFF;
-  --line:#E6E0D5;
-  --text:#172A35;
-  --muted:#78838A;
-  --soft:#F0EDE6;
-  --red:#A84F50;
+  --navy:#172A35;--navy2:#263E4B;--gold:#C6A46A;
+  --gold2:#D8BC8A;--ivory:#F7F5F0;--white:#FFF;
+  --line:#E6E0D5;--text:#172A35;--muted:#78838A;
+  --soft:#F0EDE6;--red:#A84F50;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--ivory);color:var(--text);
-  font:15px Arial,sans-serif;line-height:1.6;
-}
-header{
-  position:sticky;top:0;z-index:20;
-  background:rgba(23,42,53,.98);
-  border-bottom:1px solid rgba(198,164,106,.4);
-  backdrop-filter:blur(12px);
-}
-.nav{
-  max-width:1150px;margin:auto;padding:13px 18px;
-  display:flex;justify-content:space-between;align-items:center;
-}
+body{margin:0;background:var(--ivory);color:var(--text);font:15px Arial,sans-serif;line-height:1.6}
+header{position:sticky;top:0;z-index:20;background:rgba(23,42,53,.98);border-bottom:1px solid rgba(198,164,106,.4);backdrop-filter:blur(12px)}
+.nav{max-width:1150px;margin:auto;padding:13px 18px;display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:26px;font-weight:900;color:var(--gold2);letter-spacing:2px}
 .tag{font-size:10px;letter-spacing:2px;color:#D5DCE0}
 main{max-width:1150px;margin:auto;padding:22px 16px 55px}
 .hidden{display:none!important}
-.hero{
-  padding:30px;border:1px solid #DCCBAA;border-radius:20px;
-  background:linear-gradient(130deg,var(--navy),#263E4B 70%,#344B55);
-  color:white;margin-bottom:18px;
-  box-shadow:0 12px 30px rgba(23,42,53,.09);
-}
+.hero{padding:30px;border:1px solid #DCCBAA;border-radius:20px;background:linear-gradient(130deg,var(--navy),#263E4B 70%,#344B55);color:white;margin-bottom:18px;box-shadow:0 12px 30px rgba(23,42,53,.09)}
 .hero h1{color:white}
 .hero .muted{color:#D5DDE0}
-.eyebrow{
-  color:var(--gold2);font-size:12px;font-weight:bold;
-  letter-spacing:1.8px;text-transform:uppercase;
-}
+.eyebrow{color:var(--gold2);font-size:12px;font-weight:bold;letter-spacing:1.8px;text-transform:uppercase}
 h1{font-size:clamp(30px,6vw,45px);line-height:1.15;margin:10px 0}
 h2{font-size:21px;margin:0 0 14px;color:var(--navy)}
 h3{font-size:15px;margin:9px 0;color:var(--navy)}
 p{margin-top:8px}
 .muted,.small{color:var(--muted)}
 .small{font-size:13px}
-.panel{
-  background:white;border:1px solid var(--line);padding:20px;
-  border-radius:17px;margin:15px 0;
-  box-shadow:0 5px 18px rgba(23,42,53,.035);
-}
+.panel{background:white;border:1px solid var(--line);padding:20px;border-radius:17px;margin:15px 0;box-shadow:0 5px 18px rgba(23,42,53,.035)}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 label{display:block;color:#65737A;font-size:13px;font-weight:600;margin:8px 0 5px}
-input,textarea,select{
-  width:100%;padding:12px;border-radius:10px;
-  border:1px solid #DADFD9;background:#FCFBF8;
-  color:var(--navy);font:inherit;outline:none;
-}
-input:focus,textarea:focus,select:focus{
-  border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,164,106,.15)
-}
+input,textarea,select{width:100%;padding:12px;border-radius:10px;border:1px solid #DADFD9;background:#FCFBF8;color:var(--navy);font:inherit;outline:none}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,164,106,.15)}
 input[type=file]{padding:9px}
 input[type=checkbox]{width:auto;accent-color:var(--gold);transform:scale(1.15)}
 textarea{min-height:80px;resize:vertical}
-button{
-  padding:12px 17px;border:1px solid var(--gold);
-  border-radius:10px;background:var(--gold);color:var(--navy);
-  font-weight:bold;cursor:pointer;transition:.2s;
-}
+button{padding:12px 17px;border:1px solid var(--gold);border-radius:10px;background:var(--gold);color:var(--navy);font-weight:bold;cursor:pointer;transition:.2s}
 button:hover{background:var(--gold2);border-color:var(--gold2);transform:translateY(-1px)}
 button:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .secondary{background:white;color:var(--navy);border:1px solid #CFC8BB}
@@ -91,134 +50,42 @@ button:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .danger:hover{background:#873C40;border-color:#873C40}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .message{color:#96733D;font-size:13px;overflow-wrap:anywhere}
-.toolbar{
-  display:grid;grid-template-columns:2fr 1fr 1fr;
-  gap:10px;margin:16px 0;
-}
-.products{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;
-}
-.card{
-  background:white;border:1px solid var(--line);border-radius:15px;
-  overflow:hidden;display:flex;flex-direction:column;
-  box-shadow:0 5px 18px rgba(23,42,53,.045);transition:.2s;
-}
+.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin:16px 0}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.card{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 5px 18px rgba(23,42,53,.045);transition:.2s}
 .card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(23,42,53,.1)}
-.photo{
-  height:175px;background:var(--soft);display:flex;
-  align-items:center;justify-content:center;color:#8B9290;
-  font-size:12px;letter-spacing:1px;position:relative;
-}
+.photo{height:175px;background:var(--soft);display:flex;align-items:center;justify-content:center;color:#8B9290;font-size:12px;letter-spacing:1px;position:relative}
 .photo img{width:100%;height:100%;object-fit:cover}
-.featured-label{
-  position:absolute;top:9px;left:9px;background:var(--gold);
-  color:var(--navy);padding:4px 9px;border-radius:20px;
-  font-size:10px;font-weight:bold;z-index:2;
-}
+.featured-label{position:absolute;top:9px;left:9px;background:var(--gold);color:var(--navy);padding:4px 9px;border-radius:20px;font-size:10px;font-weight:bold;z-index:2}
 .body{padding:13px;display:flex;flex-direction:column;flex:1}
-.pill{
-  font-size:11px;color:#856638;background:#F7F1E5;
-  border:1px solid #E4D4B4;border-radius:20px;
-  padding:3px 9px;align-self:start;
-}
-.category-pill{
-  font-size:11px;color:#53636A;background:#EFF2F2;
-  padding:3px 9px;border-radius:20px;align-self:start;margin-top:5px;
-}
+.pill{font-size:11px;color:#856638;background:#F7F1E5;border:1px solid #E4D4B4;border-radius:20px;padding:3px 9px;align-self:start}
+.category-pill{font-size:11px;color:#53636A;background:#EFF2F2;padding:3px 9px;border-radius:20px;align-self:start;margin-top:5px}
 .price{font-size:20px;font-weight:900;color:#A17C42;margin:7px 0}
 .desc{font-size:13px;color:var(--muted);min-height:35px;overflow-wrap:anywhere}
-.buy{
-  display:block;text-align:center;text-decoration:none;
-  background:var(--navy);color:#E7D0A7;font-weight:bold;
-  padding:11px;border-radius:9px;margin-top:auto;
-}
+.buy{display:block;text-align:center;text-decoration:none;background:var(--navy);color:#E7D0A7;font-weight:bold;padding:11px;border-radius:9px;margin-top:auto}
 .buy:hover{background:var(--navy2)}
 .manage-actions{display:flex;gap:6px;margin-top:10px}
 .manage-actions button{flex:1;padding:9px 5px;font-size:12px}
-.empty{
-  padding:25px;text-align:center;color:var(--muted);
-  background:white;border:1px dashed #CFC8BB;border-radius:12px;
-}
-  
-/* SELLORA V9 - PUBLIC STOREFRONT GRID */
+.empty{padding:25px;text-align:center;color:var(--muted);background:white;border:1px dashed #CFC8BB;border-radius:12px}
 
-#publicProducts,
-#featuredProducts{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
+/* STOREFRONT PRODUCT GRID */
+#publicProducts,#featuredProducts{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:12px!important;
   align-items:stretch;
-}
-
-.public-product-card{
-  min-width:0;
-  border-radius:13px;
-  overflow:hidden;
-  box-shadow:0 3px 12px rgba(23,42,53,.07);
-}
-
-.public-product-card .photo{
   width:100%;
-  height:auto;
-  aspect-ratio:1/1;
-  overflow:hidden;
-  background:#F3F0E9;
 }
-
-.public-product-card .photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.public-product-card .body{
-  padding:10px;
-  gap:5px;
-}
-
-.public-product-card .pill{
-  font-size:10px;
-  padding:3px 7px;
-}
-
-.public-product-card h3{
-  font-size:13px;
-  line-height:1.4;
-  font-weight:700;
-  margin:5px 0 2px;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
-  min-height:36px;
-}
-
-.public-product-card .price{
-  font-size:17px;
-  font-weight:900;
-  margin:3px 0 8px;
-}
-
-.public-product-card .buy{
-  font-size:12px;
-  padding:10px 5px;
-  border-radius:8px;
-  margin-top:auto;
-}
-
-.public-product-card .featured-label{
-  font-size:9px;
-  padding:4px 7px;
-}
-
-/* DESKTOP */
-@media(min-width:768px){
-  #publicProducts{
-    #featuredProducts{
-    grid-template-columns:repeat(4,minmax(0,1fr));
-    gap:18px!important;
-  }
-}
+#publicProducts>* ,#featuredProducts>*{min-width:0;max-width:100%;box-sizing:border-box}
+.public-product-card{min-width:0;width:100%;border-radius:13px;overflow:hidden;box-shadow:0 3px 12px rgba(23,42,53,.07)}
+.public-product-card .photo{width:100%;height:auto;aspect-ratio:1/1;overflow:hidden;background:#F3F0E9}
+.public-product-card .photo img{width:100%;height:100%;object-fit:cover}
+.public-product-card .body{padding:10px;gap:5px}
+.public-product-card .pill{font-size:10px;padding:3px 7px}
+.public-product-card h3{font-size:13px;line-height:1.4;font-weight:700;margin:5px 0 2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
+.public-product-card .price{font-size:17px;font-weight:900;margin:3px 0 8px}
+.public-product-card .buy{font-size:12px;padding:10px 5px;border-radius:8px;margin-top:auto}
+.public-product-card .featured-label{font-size:9px;padding:4px 7px}
 
 .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
 .stat{background:#F9F7F2;border:1px solid #E7E0D3;padding:13px;border-radius:12px;min-width:0}
@@ -235,26 +102,37 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 .bar-fill{height:100%;background:linear-gradient(90deg,#B28C52,#D9BF91);border-radius:20px}
 .analytics-empty{padding:20px;text-align:center;color:var(--muted)}
 .category-strip{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
-.category-chip{
-  background:white;border:1px solid var(--line);border-radius:25px;
-  padding:8px 14px;font-size:12px;color:var(--navy);cursor:pointer;
-}
+.category-chip{background:white;border:1px solid var(--line);border-radius:25px;padding:8px 14px;font-size:12px;color:var(--navy);cursor:pointer}
 .category-chip.active,.category-chip:hover{background:var(--navy);color:var(--gold2);border-color:var(--navy)}
 .section-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:22px 0 12px}
 .section-heading h2{margin:0}
-#productImagePreview{
-  display:none;width:120px;max-height:120px;object-fit:cover;
-  margin-top:10px;border-radius:10px;border:1px solid var(--line);
-}
 #logoutBtn{background:transparent;color:#E7D0A7;border:1px solid var(--gold)}
 #logoutBtn:hover{background:var(--navy2)}
 .check-row{display:flex;align-items:center;gap:9px;margin:12px 0}
 .check-row label{margin:0}
 .featured-section{background:#F4EFE4;border:1px solid #E3D4B8;border-radius:16px;padding:15px;margin:16px 0}
-@media(max-width:700px){
-  .toolbar{grid-template-columns:1fr 1fr}
-  .toolbar input{grid-column:1/-1}
+
+/* IMAGE PREVIEW - KECIL DAN KEMAS */
+.image-preview-container{width:100%;margin-top:10px;padding:10px;background:#F7F5F0;border:1px dashed #C6A46A;border-radius:12px;box-sizing:border-box}
+#productImagePreview{
+  display:none;
+  width:100px;
+  height:100px;
+  max-width:100%;
+  object-fit:contain;
+  margin:8px auto;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fff;
 }
+
+@media(min-width:768px){
+  #publicProducts,#featuredProducts{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:18px!important;
+  }
+}
+@media(max-width:700px){.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}
 @media(max-width:620px){
   .grid{grid-template-columns:1fr}
   .toolbar{grid-template-columns:1fr}
@@ -269,123 +147,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   .panel{padding:15px}
   .section-heading{align-items:flex-start;flex-direction:column}
 }
-@media(max-width:350px){
-  .products{grid-template-columns:1fr}
-  .logo{font-size:23px}
-}
-  
-/* SELLORA PREMIUM HERO */
-.sellora-hero{
-  position:relative;
-  overflow:hidden;
-  min-height:245px;
-  padding:32px 28px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  background:
-    radial-gradient(circle at 90% 15%,rgba(198,164,106,.25),transparent 35%),
-    linear-gradient(125deg,#172A35,#263E4B 70%,#344B55);
-}
+@media(max-width:350px){.products{grid-template-columns:1fr}.logo{font-size:23px}}
 
-.sellora-hero h1{
-  max-width:600px;
-  font-size:clamp(29px,6vw,43px);
-  margin:12px 0;
-}
-
-.sellora-hero p{
-  max-width:480px;
-  line-height:1.7;
-  font-size:14px;
-}
-
-.hero-button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  width:fit-content;
-  margin-top:16px;
-  padding:12px 20px;
-  border-radius:9px;
-  background:#C6A46A;
-  color:#172A35;
-  text-decoration:none;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.hero-button:hover{
-  background:#E3C995;
-}
-
-.hero-note{
-  margin-top:20px;
-  color:#D5C19A;
-  font-size:10px;
-  letter-spacing:1.3px;
-}
-
-@media(max-width:600px){
-  .sellora-hero{
-    min-height:230px;
-    padding:25px 20px;
-    border-radius:16px;
-  }
-}
-/* SELLORA - FORCE PRODUCT GRID */
-#publicProducts,
-#featuredProducts {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 12px !important;
-  width: 100%;
-}
-
-#publicProducts > *,
-#featuredProducts > * {
-  width: 100% !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
-  box-sizing: border-box;
-}
-
-#publicProducts .public-product-card,
-#featuredProducts .public-product-card {
-  width: 100% !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-}
-
-@media (min-width: 768px) {
-  #publicProducts,
-  #featuredProducts {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  }
-}
-  /* SELLORA - COMPACT IMAGE PREVIEW */
-.image-preview-container {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  background: #F7F5F0;
-  border: 1px dashed #C6A46A;
-  border-radius: 12px;
-  box-sizing: border-box;
-}
-
-#productImagePreview {
-  display: block;
-  width: 150px;
-  height: 150px;
-  max-width: 100%;
-  object-fit: contain;
-  margin: 8px auto;
-  border-radius: 10px;
-  background: #fff;
-}
+/* PREMIUM HERO */
+.sellora-hero{position:relative;overflow:hidden;min-height:245px;padding:32px 28px;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(circle at 90% 15%,rgba(198,164,106,.25),transparent 35%),linear-gradient(125deg,#172A35,#263E4B 70%,#344B55)}
+.sellora-hero h1{max-width:600px;font-size:clamp(29px,6vw,43px);margin:12px 0}
+.sellora-hero p{max-width:480px;line-height:1.7;font-size:14px}
+.hero-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:fit-content;margin-top:16px;padding:12px 20px;border-radius:9px;background:#C6A46A;color:#172A35;text-decoration:none;font-size:12px;font-weight:900;letter-spacing:1px}
+.hero-button:hover{background:#E3C995}
+.hero-note{margin-top:20px;color:#D5C19A;font-size:10px;letter-spacing:1.3px}
+@media(max-width:600px){.sellora-hero{min-height:230px;padding:25px 20px;border-radius:16px}}
 </style>
 </head>
 
@@ -401,8 +172,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 </header>
 
 <main>
-  
-
 <section id="welcome">
   <div class="hero">
     <div class="eyebrow">Your affiliate marketplace</div>
@@ -425,7 +194,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 
 <section id="dashboard" class="hidden">
   <div class="hero">
-    <div class="eyebrow">Seller dashboard · Version 8</div>
+    <div class="eyebrow">Seller dashboard · Version 9</div>
     <h1>Urus marketplace anda.</h1>
     <p id="userInfo" class="muted"></p>
   </div>
@@ -499,51 +268,31 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
       <div><label>Nama produk</label><input id="productName"></div>
       <div><label>Platform</label><select id="platform"><option>Shopee</option><option>TikTok Shop</option></select></div>
       <div><label>Harga (RM)</label><input id="price" type="number" min="0" step="0.01"></div>
-      <div><label>Kategori produk</label>
+      <div>
+        <label>Kategori produk</label>
         <select id="category">
-          <option>Skincare</option>
-          <option>Kecantikan</option>
-          <option>Kesihatan</option>
-          <option>Fesyen</option>
-          <option>Elektronik</option>
-          <option>Rumah & Dapur</option>
-          <option>Ibu & Anak</option>
-          <option>Makanan & Minuman</option>
-          <option>Gajet</option>
-          <option>Lain-lain</option>
+          <option>Skincare</option><option>Kecantikan</option><option>Kesihatan</option>
+          <option>Fesyen</option><option>Elektronik</option><option>Rumah & Dapur</option>
+          <option>Ibu & Anak</option><option>Makanan & Minuman</option><option>Gajet</option><option>Lain-lain</option>
         </select>
       </div>
-            <div>
+      <div>
         <label>Produk Pilihan</label>
         <label style="display:flex;align-items:center;gap:8px;">
           <input id="isFeatured" type="checkbox">
           Paparkan sebagai produk pilihan
         </label>
-            </div>
+      </div>
       <div>
         <label>URL gambar (pilihan)</label>
-<input id="imageUrl" type="url">
-
-<label>Atau upload gambar produk</label>
-<input
-  type="file"
-  id="productImageFile"
-  accept="image/png,image/jpeg,image/webp"
->
-
-<div class="image-preview-container">
-  <p class="small">Pratonton gambar produk</p>
-  <img
-    id="productImagePreview"
-    alt="Pratonton gambar produk"
-    style="display:none;"
-  >
-</div>
-
-<p class="small">
-  JPG, PNG atau WebP. Maksimum 5MB.
-  Gambar dikecilkan secara automatik.
-</p>
+        <input id="imageUrl" type="url">
+        <label>Atau upload gambar produk</label>
+        <input type="file" id="productImageFile" accept="image/png,image/jpeg,image/webp">
+        <div class="image-preview-container">
+          <p class="small">Pratonton gambar produk</p>
+          <img id="productImagePreview" alt="Pratonton gambar produk">
+        </div>
+        <p class="small">JPG, PNG atau WebP. Maksimum 5MB. Gambar dikecilkan secara automatik.</p>
       </div>
       <div>
         <label>Susunan produk</label>
@@ -553,10 +302,6 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
     </div>
     <label>Pautan affiliate</label><input id="affiliateUrl" type="url">
     <label>Penerangan produk</label><textarea id="description"></textarea>
-    <div class="check-row">
-      <input id="isFeatured" type="checkbox">
-      <label for="isFeatured">Jadikan produk pilihan / featured</label>
-    </div>
     <div class="actions">
       <button id="saveProductBtn" onclick="saveProduct()">Tambah produk</button>
       <button id="cancelEditBtn" class="secondary hidden" onclick="cancelEdit()">Batal edit</button>
@@ -579,10 +324,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   </div>
 </section>
 
-
 <section id="publicStore" class="hidden">
-
-  <!-- STORE HEADER -->
   <div class="store-hero">
     <div class="store-hero-top">
       <div>
@@ -592,858 +334,311 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
       </div>
       <button class="store-share" onclick="shareStore()">Kongsi ↗</button>
     </div>
-
     <div class="store-meta">
-      <span><strong id="productCount">0</strong> Produk</span>
-      <span>•</span>
-      <span>2 Platform</span>
-      <span>•</span>
-      <span>SELLORA</span>
+      <span><strong id="productCount">0</strong> Produk</span><span>•</span><span>2 Platform</span><span>•</span><span>SELLORA</span>
     </div>
   </div>
 
-  <!-- SEARCH & FILTER -->
   <div class="market-tools">
-    <input
-      id="publicSearch"
-      placeholder="🔍 Cari produk yang anda inginkan..."
-      oninput="renderPublic()"
-    >
-
+    <input id="publicSearch" placeholder="🔍 Cari produk yang anda inginkan..." oninput="renderPublic()">
     <div class="market-filters">
       <select id="publicFilter" onchange="renderPublic()">
-        <option value="all">Semua platform</option>
-        <option>Shopee</option>
-        <option>TikTok Shop</option>
+        <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
       </select>
-
       <select id="publicSort" onchange="renderPublic()">
-        <option value="recommended">Pilihan SELLORA</option>
-        <option value="newest">Terbaru</option>
-        <option value="price-low">Harga terendah</option>
-        <option value="price-high">Harga tertinggi</option>
-        <option value="name">Nama A-Z</option>
+        <option value="recommended">Pilihan SELLORA</option><option value="newest">Terbaru</option>
+        <option value="price-low">Harga terendah</option><option value="price-high">Harga tertinggi</option><option value="name">Nama A-Z</option>
       </select>
     </div>
   </div>
 
-  <!-- CATEGORIES -->
   <div class="market-category">
-    <div class="market-heading">
-      <h2>Kategori</h2>
-      <span>Terokai pilihan anda</span>
-    </div>
+    <div class="market-heading"><h2>Kategori</h2><span>Terokai pilihan anda</span></div>
     <div id="publicCategories" class="category-strip"></div>
   </div>
 
-  <!-- FEATURED PRODUCTS -->
   <div id="featuredWrap" class="featured-section hidden">
-    <div class="market-heading">
-      <h2>✦ Pilihan SELLORA</h2>
-    </div>
+    <div class="market-heading"><h2>✦ Pilihan SELLORA</h2></div>
     <div id="featuredProducts" class="products"></div>
   </div>
 
-  <!-- ALL PRODUCTS -->
-  <div class="market-heading all-products-heading">
-    <h2>Semua Produk</h2>
-  </div>
-
+  <div class="market-heading all-products-heading"><h2>Semua Produk</h2></div>
   <div id="publicProducts" class="products"></div>
-
 </section>
-
 </main>
 
 <footer>SELLORA · One Link. Endless Possibilities.</footer>
 
 <script>
-// =====================================
-// SUPABASE CONFIGURATION
-// =====================================
-const SUPABASE_URL = "https://pbjuicvtfoxvpmrayarj.supabase.co";
-const SUPABASE_KEY = "sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
-const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const SUPABASE_URL="https://pbjuicvtfoxvpmrayarj.supabase.co";
+const SUPABASE_KEY="sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-// =====================================
-// GLOBAL VARIABLES
-// =====================================
-let user = null;
-let store = null;
-let myItems = [];
-let publicItems = [];
-let clickCounts = {};
-let editingId = null;
-let salesItems = [];
-let selectedCategory = "all";
-let previewObjectUrl = null;
+let user=null,store=null,myItems=[],publicItems=[],clickCounts={},editingId=null,salesItems=[],selectedCategory="all",previewObjectUrl=null;
+const $=id=>document.getElementById(id);
 
-const $ = id => document.getElementById(id);
+function say(id,message){const el=$(id);if(el)el.textContent=message}
+function esc(value){return String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]))}
+function safeUrl(value){try{const url=new URL(String(value||""));return ["https:","http:"].includes(url.protocol)?url.href:""}catch{return ""}}
+function money(value){return "RM "+Number(value||0).toFixed(2)}
+function setTodayDate(){const now=new Date();$("saleDate").value=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`}
+function setButtonBusy(id,busy,busyText,normalText){const button=$(id);if(!button)return;button.disabled=busy;button.textContent=busy?busyText:normalText}
+function productDateSort(a,b){const order=Number(a.sort_order||0)-Number(b.sort_order||0);if(order!==0)return order;return new Date(b.created_at||0)-new Date(a.created_at||0)}
 
-function say(id,message){
-  const element = $(id);
-  if(element) element.textContent = message;
-}
-
-function esc(value){
-  return String(value ?? "").replace(/[&<>"']/g,char=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[char]));
-}
-
-function safeUrl(value){
-  try{
-    const url = new URL(String(value || ""));
-    return ["https:","http:"].includes(url.protocol) ? url.href : "";
-  }catch{return ""}
-}
-
-function money(value){
-  return "RM " + Number(value || 0).toFixed(2);
-}
-
-function setTodayDate(){
-  const now = new Date();
-  const date = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
-  if($("saleDate")) $("saleDate").value = date;
-}
-
-function setButtonBusy(id,busy,busyText,normalText){
-  const button = $(id);
-  if(!button) return;
-  button.disabled = busy;
-  button.textContent = busy ? busyText : normalText;
-}
-
-function productDateSort(a,b){
-  const order = Number(a.sort_order || 0)-Number(b.sort_order || 0);
-  if(order !== 0) return order;
-  return new Date(b.created_at || 0)-new Date(a.created_at || 0);
-}
-
-// =====================================
-// IMAGE COMPRESSION
-// =====================================
 async function compressProductImage(file){
-  if(!file) return null;
-  const allowed = ["image/jpeg","image/png","image/webp"];
-  if(!allowed.includes(file.type)) throw new Error("Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
-  if(file.size > 5*1024*1024) throw new Error("Saiz gambar asal melebihi 5MB.");
-
-  const bitmap = await createImageBitmap(file);
-  const maxDimension = 1200;
-  const scale = Math.min(1,maxDimension/Math.max(bitmap.width,bitmap.height));
-  const width = Math.max(1,Math.round(bitmap.width*scale));
-  const height = Math.max(1,Math.round(bitmap.height*scale));
-
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const context = canvas.getContext("2d");
-  if(!context){bitmap.close();throw new Error("Pelayar tidak dapat memproses gambar.");}
-
-  context.fillStyle="#ffffff";
-  context.fillRect(0,0,width,height);
-  context.drawImage(bitmap,0,0,width,height);
-  bitmap.close();
-
-  const blob = await new Promise((resolve,reject)=>{
-    canvas.toBlob(result=>result?resolve(result):reject(new Error("Gagal memampatkan gambar.")),"image/jpeg",0.82);
-  });
-
-  return {
-    file:new File([blob],`sellora-${Date.now()}.jpg`,{type:"image/jpeg"}),
-    originalSize:file.size,
-    compressedSize:blob.size
-  };
+  if(!file)return null;
+  const allowed=["image/jpeg","image/png","image/webp"];
+  if(!allowed.includes(file.type))throw new Error("Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
+  if(file.size>5*1024*1024)throw new Error("Saiz gambar asal melebihi 5MB.");
+  const bitmap=await createImageBitmap(file);
+  const maxDimension=1200,scale=Math.min(1,maxDimension/Math.max(bitmap.width,bitmap.height));
+  const width=Math.max(1,Math.round(bitmap.width*scale)),height=Math.max(1,Math.round(bitmap.height*scale));
+  const canvas=document.createElement("canvas");canvas.width=width;canvas.height=height;
+  const context=canvas.getContext("2d");
+  if(!context){bitmap.close();throw new Error("Pelayar tidak dapat memproses gambar.")}
+  context.fillStyle="#ffffff";context.fillRect(0,0,width,height);context.drawImage(bitmap,0,0,width,height);bitmap.close();
+  const blob=await new Promise((resolve,reject)=>canvas.toBlob(result=>result?resolve(result):reject(new Error("Gagal memampatkan gambar.")),"image/jpeg",0.82));
+  return {file:new File([blob],`sellora-${Date.now()}.jpg`,{type:"image/jpeg"}),originalSize:file.size,compressedSize:blob.size};
 }
-
-// =====================================
-// PRODUCT CARD
-// =====================================
 
 function card(product,manage=false){
-  const imageUrl = safeUrl(product.image_url);
-
-  const image = imageUrl
-    ? `<div class="photo">
-        ${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}
-        <img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}">
-      </div>`
-    : `<div class="photo">
-        ${product.is_featured ? '<span class="featured-label">PILIHAN SELLORA</span>' : ''}
-        <span>SELLORA</span>
-      </div>`;
-
-  const price = product.price == null
-    ? ""
-    : `<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
-
-  const affiliateUrl = safeUrl(product.affiliate_url);
-
-  const buyLink = affiliateUrl
-    ? `<a class="buy" href="${esc(affiliateUrl)}"
-        target="_blank" rel="noopener noreferrer"
-        onclick="trackClick(event,'${esc(product.id)}')">
-        Lihat Produk ↗
-      </a>`
-    : '<span class="small">Pautan produk tidak tersedia.</span>';
-
-  const actions = manage ? `
-    <div class="click-count">
-      Jumlah klik: ${clickCounts[product.id] || 0}
-    </div>
-    <div class="small">
-      Susunan: ${Number(product.sort_order || 0)}
-      · ${product.is_featured ? "Produk pilihan" : "Produk biasa"}
-    </div>
-    <div class="manage-actions">
-      <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
-      <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
-    </div>` : "";
-
-  return `
-    <article class="card ${manage ? 'manage-card' : 'public-product-card'}">
-      ${image}
-      <div class="body">
-        <span class="pill">${esc(product.platform)}</span>
-        ${manage ? `<span class="category-pill">${esc(product.category || "Lain-lain")}</span>` : ""}
-        <h3>${esc(product.name)}</h3>
-        ${price}
-        ${manage ? `<p class="desc">${esc(product.description || "")}</p>` : ""}
-        ${buyLink}
-        ${actions}
-      </div>
-    </article>`;
+  const imageUrl=safeUrl(product.image_url);
+  const image=imageUrl
+    ?`<div class="photo">${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}<img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}"></div>`
+    :`<div class="photo">${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}<span>SELLORA</span></div>`;
+  const price=product.price==null?"":`<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
+  const affiliateUrl=safeUrl(product.affiliate_url);
+  const buyLink=affiliateUrl?`<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat Produk ↗</a>`:'<span class="small">Pautan produk tidak tersedia.</span>';
+  const actions=manage?`<div class="click-count">Jumlah klik: ${clickCounts[product.id]||0}</div><div class="small">Susunan: ${Number(product.sort_order||0)} · ${product.is_featured?"Produk pilihan":"Produk biasa"}</div><div class="manage-actions"><button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button><button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button></div>`:"";
+  return `<article class="card ${manage?"manage-card":"public-product-card"}">${image}<div class="body"><span class="pill">${esc(product.platform)}</span>${manage?`<span class="category-pill">${esc(product.category||"Lain-lain")}</span>`:""}<h3>${esc(product.name)}</h3>${price}${manage?`<p class="desc">${esc(product.description||"")}</p>`:""}${buyLink}${actions}</div></article>`;
 }
 
-
-// =====================================
-// AUTHENTICATION
-// =====================================
 async function signup(){
-  const email = $("email").value.trim();
-  const password = $("password").value;
-  if(!email || password.length<6) return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
+  const email=$("email").value.trim(),password=$("password").value;
+  if(!email||password.length<6)return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
   say("authMsg","Sedang mendaftar...");
-  try{
-    const {data,error} = await db.auth.signUp({email,password});
-    if(error) return say("authMsg",error.message);
-    say("authMsg",data.session ? "Pendaftaran berjaya." : "Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");
-  }catch(error){say("authMsg","Ralat pendaftaran: "+error.message);}
+  try{const {data,error}=await db.auth.signUp({email,password});if(error)return say("authMsg",error.message);say("authMsg",data.session?"Pendaftaran berjaya.":"Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");}
+  catch(error){say("authMsg","Ralat pendaftaran: "+error.message)}
 }
-
 async function login(){
-  const email = $("email").value.trim();
-  const password = $("password").value;
-  if(!email || !password) return say("authMsg","Masukkan e-mel dan kata laluan.");
+  const email=$("email").value.trim(),password=$("password").value;
+  if(!email||!password)return say("authMsg","Masukkan e-mel dan kata laluan.");
   say("authMsg","Sedang log masuk...");
-  try{
-    const {data,error} = await db.auth.signInWithPassword({email,password});
-    if(error) return say("authMsg",error.message);
-    user = data.user;
-    say("authMsg","Log masuk berjaya.");
-    await dashboard();
-  }catch(error){say("authMsg","Ralat log masuk: "+error.message);}
+  try{const {data,error}=await db.auth.signInWithPassword({email,password});if(error)return say("authMsg",error.message);user=data.user;say("authMsg","Log masuk berjaya.");await dashboard();}
+  catch(error){say("authMsg","Ralat log masuk: "+error.message)}
 }
-
 async function logout(){
-  const {error} = await db.auth.signOut();
-  if(error){alert("Gagal log keluar: "+error.message);return;}
-  location.href = location.pathname;
+  const {error}=await db.auth.signOut();if(error){alert("Gagal log keluar: "+error.message);return}location.href=location.pathname;
 }
-
-// =====================================
-// DASHBOARD
-// =====================================
 async function dashboard(){
-  $("welcome").classList.add("hidden");
-  $("publicStore").classList.add("hidden");
-  $("dashboard").classList.remove("hidden");
-  $("logoutBtn").classList.remove("hidden");
-  say("userInfo",user?.email || "Akaun SELLORA");
-  await loadStore();
+  $("welcome").classList.add("hidden");$("publicStore").classList.add("hidden");$("dashboard").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");
+  say("userInfo",user?.email||"Akaun SELLORA");await loadStore();
 }
 
-// =====================================
-// STORE MANAGEMENT
-// =====================================
 async function loadStore(){
-  const {data,error} = await db.from("stores")
-    .select("*").eq("owner_id",user.id).maybeSingle();
-
-  if(error){say("storeMsg",error.message);return;}
-  store = data;
-
-  if(store){
-    $("storeName").value = store.name || "";
-    $("storeSlug").value = store.slug || "";
-    $("storeBio").value = store.bio || "";
-    showLink();
-    await loadProducts();
-  }else{
-    say("storeMsg","Sila cipta maklumat kedai anda dahulu.");
-    myItems=[];
-    renderManage();
-    await loadSales();
-  }
+  const {data,error}=await db.from("stores").select("*").eq("owner_id",user.id).maybeSingle();
+  if(error){say("storeMsg",error.message);return}
+  store=data;
+  if(store){$("storeName").value=store.name||"";$("storeSlug").value=store.slug||"";$("storeBio").value=store.bio||"";showLink();await loadProducts();}
+  else{say("storeMsg","Sila cipta maklumat kedai anda dahulu.");myItems=[];renderManage();await loadSales();}
 }
-
-function storeURL(){
-  if(!store) return "";
-  return location.origin+location.pathname+"?store="+encodeURIComponent(store.slug);
-}
-
-function showLink(){
-  if(!store) return;
-  const url = storeURL();
-  $("storeLink").innerHTML = `Pautan kedai: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a>`;
-}
-
-async function copyLink(){
-  if(!store) return say("storeMsg","Simpan kedai dahulu.");
-  try{
-    await navigator.clipboard.writeText(storeURL());
-    say("storeMsg","Pautan kedai disalin.");
-  }catch{say("storeMsg",storeURL());}
-}
-
+function storeURL(){return store?location.origin+location.pathname+"?store="+encodeURIComponent(store.slug):""}
+function showLink(){if(!store)return;const url=storeURL();$("storeLink").innerHTML=`Pautan kedai: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a>`}
+async function copyLink(){if(!store)return say("storeMsg","Simpan kedai dahulu.");try{await navigator.clipboard.writeText(storeURL());say("storeMsg","Pautan kedai disalin.")}catch{say("storeMsg",storeURL())}}
 async function saveStore(){
-  if(!user) return say("storeMsg","Sila log masuk dahulu.");
-  const name = $("storeName").value.trim();
-  const slug = $("storeSlug").value.trim().toLowerCase()
-    .replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");
-
-  if(name.length<2 || slug.length<3) return say("storeMsg","Nama kedai atau slug tidak sah. Slug minimum 3 aksara.");
-
-  const values = {owner_id:user.id,name,slug,bio:$("storeBio").value.trim()};
+  if(!user)return say("storeMsg","Sila log masuk dahulu.");
+  const name=$("storeName").value.trim(),slug=$("storeSlug").value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");
+  if(name.length<2||slug.length<3)return say("storeMsg","Nama kedai atau slug tidak sah. Slug minimum 3 aksara.");
+  const values={owner_id:user.id,name,slug,bio:$("storeBio").value.trim()};
   setButtonBusy("saveStoreBtn",true,"Menyimpan...","Simpan kedai");
-
   try{
-    const result = store
-      ? await db.from("stores").update(values).eq("id",store.id).select().single()
-      : await db.from("stores").insert(values).select().single();
-
-    if(result.error){say("storeMsg",result.error.message);return;}
-    store = result.data;
-    say("storeMsg","Kedai berjaya disimpan!");
-    showLink();
-    await loadProducts();
-  }catch(error){say("storeMsg","Ralat menyimpan kedai: "+error.message);}
-  finally{setButtonBusy("saveStoreBtn",false,"Menyimpan...","Simpan kedai");}
+    const result=store?await db.from("stores").update(values).eq("id",store.id).select().single():await db.from("stores").insert(values).select().single();
+    if(result.error){say("storeMsg",result.error.message);return}
+    store=result.data;say("storeMsg","Kedai berjaya disimpan!");showLink();await loadProducts();
+  }catch(error){say("storeMsg","Ralat menyimpan kedai: "+error.message)}
+  finally{setButtonBusy("saveStoreBtn",false,"Menyimpan...","Simpan kedai")}
 }
 
-// =====================================
-// IMAGE PREVIEW
-// =====================================
+/* IMAGE PREVIEW */
 $("productImageFile").addEventListener("change",function(){
-  const file = this.files?.[0];
-  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null;}
-
-  if(!file){
-    $("productImagePreview").style.display="none";
-    $("productImagePreview").removeAttribute("src");
-    return;
-  }
-
-  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){
-    say("productMsg","Format gambar tidak disokong.");
-    this.value="";
-    $("productImagePreview").style.display="none";
-    return;
-  }
-
-  if(file.size>5*1024*1024){
-    say("productMsg","Saiz gambar maksimum 5MB.");
-    this.value="";
-    $("productImagePreview").style.display="none";
-    return;
-  }
-
-  previewObjectUrl=URL.createObjectURL(file);
-  $("productImagePreview").src=previewObjectUrl;
-  $("productImagePreview").style.display="block";
+  const file=this.files?.[0];
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+  if(!file){$("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src");return}
+  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){say("productMsg","Format gambar tidak disokong.");this.value="";$("productImagePreview").style.display="none";return}
+  if(file.size>5*1024*1024){say("productMsg","Saiz gambar maksimum 5MB.");this.value="";$("productImagePreview").style.display="none";return}
+  previewObjectUrl=URL.createObjectURL(file);$("productImagePreview").src=previewObjectUrl;$("productImagePreview").style.display="block";
   say("productMsg","Gambar dipilih. Ia akan dimampatkan semasa disimpan.");
 });
 
-// =====================================
-// SAVE PRODUCT
-// =====================================
 async function saveProduct(){
-  if(!user) return say("productMsg","Sila log masuk dahulu.");
-  if(!store) return say("productMsg","Simpan kedai dahulu.");
-
-  const wasEditing = Boolean(editingId);
-  const name = $("productName").value.trim();
-  const link = safeUrl($("affiliateUrl").value.trim());
-  let image = $("imageUrl").value.trim();
-  const file = $("productImageFile").files?.[0] || null;
-  const rawPrice = $("price").value;
-  const sortOrder = Number($("sortOrder").value || 0);
-
-  if(!name) return say("productMsg","Masukkan nama produk.");
-  if(!link) return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
-  if(image && !safeUrl(image)) return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
-  if(rawPrice!=="" && (!Number.isFinite(Number(rawPrice)) || Number(rawPrice)<0)) return say("productMsg","Harga produk tidak sah.");
-  if(!Number.isInteger(sortOrder) || sortOrder<0) return say("productMsg","Susunan produk mesti nombor bulat 0 atau lebih.");
-
+  if(!user)return say("productMsg","Sila log masuk dahulu.");
+  if(!store)return say("productMsg","Simpan kedai dahulu.");
+  const wasEditing=Boolean(editingId),name=$("productName").value.trim(),link=safeUrl($("affiliateUrl").value.trim());
+  let image=$("imageUrl").value.trim();
+  const file=$("productImageFile").files?.[0]||null,rawPrice=$("price").value,sortOrder=Number($("sortOrder").value||0);
+  if(!name)return say("productMsg","Masukkan nama produk.");
+  if(!link)return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
+  if(image&&!safeUrl(image))return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
+  if(rawPrice!==""&&(!Number.isFinite(Number(rawPrice))||Number(rawPrice)<0))return say("productMsg","Harga produk tidak sah.");
+  if(!Number.isInteger(sortOrder)||sortOrder<0)return say("productMsg","Susunan produk mesti nombor bulat 0 atau lebih.");
   setButtonBusy("saveProductBtn",true,"Sedang menyimpan...",wasEditing?"Simpan perubahan":"Tambah produk");
-
   try{
     if(file){
       say("productMsg","Sedang memampatkan gambar...");
-      const compressed = await compressProductImage(file);
-
-      const {data:sessionData,error:sessionError} = await db.auth.getSession();
-      if(sessionError) throw new Error("Ralat sesi: "+sessionError.message);
-      if(!sessionData.session?.user || sessionData.session.user.id!==user.id) throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
-
+      const compressed=await compressProductImage(file);
+      const {data:sessionData,error:sessionError}=await db.auth.getSession();
+      if(sessionError)throw new Error("Ralat sesi: "+sessionError.message);
+      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
       say("productMsg",`Gambar dimampatkan. ${(compressed.originalSize/1024).toFixed(0)}KB → ${(compressed.compressedSize/1024).toFixed(0)}KB. Sedang upload...`);
-
-      const path = `${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
-      const upload = await db.storage.from("product-images").upload(path,compressed.file,{contentType:"image/jpeg",upsert:false});
-      if(upload.error) throw new Error("Upload gagal: "+upload.error.message);
-
-      const {data:publicData} = db.storage.from("product-images").getPublicUrl(path);
-      image = publicData?.publicUrl || "";
-      if(!image) throw new Error("URL gambar awam tidak dapat diperoleh.");
+      const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
+      const upload=await db.storage.from("product-images").upload(path,compressed.file,{contentType:"image/jpeg",upsert:false});
+      if(upload.error)throw new Error("Upload gagal: "+upload.error.message);
+      const {data:publicData}=db.storage.from("product-images").getPublicUrl(path);
+      image=publicData?.publicUrl||"";if(!image)throw new Error("URL gambar awam tidak dapat diperoleh.");
     }
-
-    const values = {
-      owner_id:user.id,
-      store_id:store.id,
-      name,
-      platform:$("platform").value,
-      affiliate_url:link,
-      image_url:image || null,
-      price:rawPrice===""?null:Number(rawPrice),
-      description:$("description").value.trim(),
-      category:$("category").value,
-      is_featured:$("isFeatured").checked,
-      sort_order:sortOrder
-    };
-
-    const result = wasEditing
-      ? await db.from("products").update(values).eq("id",editingId).eq("owner_id",user.id)
-      : await db.from("products").insert(values);
-
-    if(result.error) throw new Error(result.error.message);
-
+    const values={owner_id:user.id,store_id:store.id,name,platform:$("platform").value,affiliate_url:link,image_url:image||null,price:rawPrice===""?null:Number(rawPrice),description:$("description").value.trim(),category:$("category").value,is_featured:$("isFeatured").checked,sort_order:sortOrder};
+    const result=wasEditing?await db.from("products").update(values).eq("id",editingId).eq("owner_id",user.id):await db.from("products").insert(values);
+    if(result.error)throw new Error(result.error.message);
     say("productMsg",wasEditing?"Produk berjaya dikemaskini!":"Produk berjaya ditambah!");
-    cancelEdit();
-    await loadProducts();
-
-  }catch(error){
-    say("productMsg","Ralat menyimpan produk: "+error.message);
-  }finally{
-    $("saveProductBtn").disabled=false;
-    $("saveProductBtn").textContent=editingId?"Simpan perubahan":"Tambah produk";
-  }
+    cancelEdit();await loadProducts();
+  }catch(error){say("productMsg","Ralat menyimpan produk: "+error.message)}
+  finally{$("saveProductBtn").disabled=false;$("saveProductBtn").textContent=editingId?"Simpan perubahan":"Tambah produk"}
 }
 
-// =====================================
-// EDIT PRODUCT
-// =====================================
 function editProduct(id){
-  const product = myItems.find(item=>String(item.id)===String(id));
-  if(!product) return;
-
+  const product=myItems.find(item=>String(item.id)===String(id));if(!product)return;
   editingId=product.id;
-  $("productName").value=product.name || "";
-  $("platform").value=product.platform || "Shopee";
-  $("price").value=product.price ?? "";
-  $("imageUrl").value=product.image_url || "";
-  $("affiliateUrl").value=product.affiliate_url || "";
-  $("description").value=product.description || "";
-  $("category").value=product.category || "Lain-lain";
-  $("isFeatured").checked=product.is_featured===true;
-  $("sortOrder").value=Number(product.sort_order || 0);
+  $("productName").value=product.name||"";$("platform").value=product.platform||"Shopee";$("price").value=product.price??"";
+  $("imageUrl").value=product.image_url||"";$("affiliateUrl").value=product.affiliate_url||"";$("description").value=product.description||"";
+  $("category").value=product.category||"Lain-lain";$("isFeatured").checked=product.is_featured===true;$("sortOrder").value=Number(product.sort_order||0);
   $("productImageFile").value="";
-
-  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null;}
-
-  if(product.image_url && safeUrl(product.image_url)){
-    $("productImagePreview").src=product.image_url;
-    $("productImagePreview").style.display="block";
-  }else{
-    $("productImagePreview").style.display="none";
-  }
-
-  say("formTitle","Edit produk affiliate");
-  $("saveProductBtn").textContent="Simpan perubahan";
-  $("cancelEditBtn").classList.remove("hidden");
-  say("productMsg","Mod edit aktif. Semak maklumat sebelum menyimpan.");
-  $("productForm").scrollIntoView({behavior:"smooth",block:"start"});
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+  if(product.image_url&&safeUrl(product.image_url)){$("productImagePreview").src=product.image_url;$("productImagePreview").style.display="block"}
+  else{$("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src")}
+  say("formTitle","Edit produk affiliate");$("saveProductBtn").textContent="Simpan perubahan";$("cancelEditBtn").classList.remove("hidden");
+  say("productMsg","Mod edit aktif. Semak maklumat sebelum menyimpan.");$("productForm").scrollIntoView({behavior:"smooth",block:"start"});
 }
-
 function cancelEdit(){
-  editingId=null;
-  ["productName","price","imageUrl","affiliateUrl","description"].forEach(id=>$(id).value="");
-  $("platform").value="Shopee";
-  $("category").value="Skincare";
-  $("isFeatured").checked=false;
-  $("sortOrder").value="0";
-  $("productImageFile").value="";
-
-  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null;}
-
-  $("productImagePreview").style.display="none";
-  $("productImagePreview").removeAttribute("src");
-  say("formTitle","Tambah produk affiliate");
-  $("saveProductBtn").textContent="Tambah produk";
-  $("cancelEditBtn").classList.add("hidden");
+  editingId=null;["productName","price","imageUrl","affiliateUrl","description"].forEach(id=>$(id).value="");
+  $("platform").value="Shopee";$("category").value="Skincare";$("isFeatured").checked=false;$("sortOrder").value="0";$("productImageFile").value="";
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+  $("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src");
+  say("formTitle","Tambah produk affiliate");$("saveProductBtn").textContent="Tambah produk";$("cancelEditBtn").classList.add("hidden");
 }
-
-// =====================================
-// DELETE PRODUCT
-// =====================================
 async function deleteProduct(id){
-  const product=myItems.find(item=>String(item.id)===String(id));
-  if(!product) return;
-  if(!confirm("Padam produk '"+product.name+"'? Tindakan ini tidak boleh dibatalkan.")) return;
-
-  try{
-    const {error}=await db.from("products").delete().eq("id",id).eq("owner_id",user.id);
-    if(error) throw error;
-    if(String(editingId)===String(id)) cancelEdit();
-    await loadProducts();
-    alert("Produk berjaya dipadam.");
-  }catch(error){alert("Produk tidak dapat dipadam: "+error.message);}
+  const product=myItems.find(item=>String(item.id)===String(id));if(!product)return;
+  if(!confirm("Padam produk '"+product.name+"'? Tindakan ini tidak boleh dibatalkan."))return;
+  try{const {error}=await db.from("products").delete().eq("id",id).eq("owner_id",user.id);if(error)throw error;if(String(editingId)===String(id))cancelEdit();await loadProducts();alert("Produk berjaya dipadam.");}
+  catch(error){alert("Produk tidak dapat dipadam: "+error.message)}
 }
 
-// =====================================
-// LOAD PRODUCTS
-// =====================================
 async function loadProducts(){
-  if(!store || !user) return;
-
-  const {data,error}=await db.from("products")
-    .select("*")
-    .eq("store_id",store.id)
-    .order("sort_order",{ascending:true})
-    .order("created_at",{ascending:false});
-
-  if(error){say("productMsg",error.message);return;}
-
-  myItems=data || [];
-  await loadClickStats();
-  renderManage();
-  await loadSales();
-  refreshManageCategories();
+  if(!store||!user)return;
+  const {data,error}=await db.from("products").select("*").eq("store_id",store.id).order("sort_order",{ascending:true}).order("created_at",{ascending:false});
+  if(error){say("productMsg",error.message);return}
+  myItems=data||[];await loadClickStats();renderManage();await loadSales();refreshManageCategories();
 }
-
-// =====================================
-// CLICK STATISTICS
-// =====================================
 async function loadClickStats(){
-  clickCounts={};
-  const ids=myItems.map(product=>product.id);
-
+  clickCounts={};const ids=myItems.map(product=>product.id);
   if(ids.length){
     const {data,error}=await db.from("product_clicks").select("product_id").in("product_id",ids);
-    if(error){
-      say("statsMsg","Statistik gagal dimuatkan: "+error.message);
-      renderAnalytics();
-      return;
-    }
-    (data || []).forEach(row=>{
-      const id=String(row.product_id);
-      clickCounts[id]=(clickCounts[id] || 0)+1;
-    });
+    if(error){say("statsMsg","Statistik gagal dimuatkan: "+error.message);renderAnalytics();return}
+    (data||[]).forEach(row=>{const id=String(row.product_id);clickCounts[id]=(clickCounts[id]||0)+1});
   }
-
   const total=Object.values(clickCounts).reduce((sum,count)=>sum+count,0);
-  say("totalClicks",total);
-  say("totalProducts",myItems.length);
-  say("activeProducts",myItems.filter(product=>product.is_active===true).length);
-  say("statsMsg","Analitik berjaya dikemas kini.");
-  renderAnalytics();
+  say("totalClicks",total);say("totalProducts",myItems.length);say("activeProducts",myItems.filter(product=>product.is_active===true).length);
+  say("statsMsg","Analitik berjaya dikemas kini.");renderAnalytics();
 }
-
 function renderAnalytics(){
-  const sorted=[...myItems].sort((a,b)=>(clickCounts[b.id]||0)-(clickCounts[a.id]||0));
-  const top=sorted.slice(0,5);
-  const maxClicks=Math.max(1,...sorted.map(product=>clickCounts[product.id]||0));
-
-  const makeItem=product=>{
-    const clicks=clickCounts[product.id]||0;
-    const width=(clicks/maxClicks)*100;
-    return `<div class="analytics-item">
-      <div class="analytics-head"><strong>${esc(product.name)}</strong><span>${clicks} klik</span></div>
-      <div class="bar-bg"><div class="bar-fill" style="width:${width}%"></div></div>
-      <div class="small">${esc(product.platform)} · ${esc(product.category || "Lain-lain")}</div>
-    </div>`;
-  };
-
+  const sorted=[...myItems].sort((a,b)=>(clickCounts[b.id]||0)-(clickCounts[a.id]||0)),top=sorted.slice(0,5),maxClicks=Math.max(1,...sorted.map(product=>clickCounts[product.id]||0));
+  const makeItem=product=>{const clicks=clickCounts[product.id]||0,width=(clicks/maxClicks)*100;return `<div class="analytics-item"><div class="analytics-head"><strong>${esc(product.name)}</strong><span>${clicks} klik</span></div><div class="bar-bg"><div class="bar-fill" style="width:${width}%"></div></div><div class="small">${esc(product.platform)} · ${esc(product.category||"Lain-lain")}</div></div>`};
   $("topProducts").innerHTML=top.length?top.map(makeItem).join(""):'<div class="analytics-empty">Belum ada produk.</div>';
   $("productAnalytics").innerHTML=sorted.length?sorted.map(makeItem).join(""):'<div class="analytics-empty">Tiada data produk.</div>';
 }
-
-// =====================================
-// MANAGEMENT CATEGORY FILTER
-// =====================================
 function refreshManageCategories(){
-  const select=$("manageCategoryFilter");
-  const current=select.value;
-  const categories=[...new Set(myItems.map(p=>p.category || "Lain-lain"))].sort();
-  select.innerHTML='<option value="all">Semua kategori</option>'+
-    categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
-  if(categories.includes(current)) select.value=current;
+  const select=$("manageCategoryFilter"),current=select.value,categories=[...new Set(myItems.map(p=>p.category||"Lain-lain"))].sort();
+  select.innerHTML='<option value="all">Semua kategori</option>'+categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
+  if(categories.includes(current))select.value=current;
 }
-
 function renderManage(){
-  const query=$("manageSearch").value.toLowerCase();
-  const filter=$("manageFilter").value;
-  const category=$("manageCategoryFilter").value;
-
-  const products=myItems.filter(product=>
-    (filter==="all" || product.platform===filter) &&
-    (category==="all" || (product.category || "Lain-lain")===category) &&
-    String(product.name || "").toLowerCase().includes(query)
-  );
-
-  $("myProducts").innerHTML=products.map(product=>card(product,true)).join("") || '<div class="empty">Tiada produk sepadan.</div>';
+  const query=$("manageSearch").value.toLowerCase(),filter=$("manageFilter").value,category=$("manageCategoryFilter").value;
+  const products=myItems.filter(product=>(filter==="all"||product.platform===filter)&&(category==="all"||(product.category||"Lain-lain")===category)&&String(product.name||"").toLowerCase().includes(query));
+  $("myProducts").innerHTML=products.map(product=>card(product,true)).join("")||'<div class="empty">Tiada produk sepadan.</div>';
 }
 
-// =====================================
-// SALES & COMMISSION
-// =====================================
 async function loadSales(){
-  if(!store || !user) return;
-
-  const {data,error}=await db.from("affiliate_sales")
-    .select("*").eq("store_id",store.id).order("sale_date",{ascending:false});
-
-  if(error){say("saleMsg","Gagal memuatkan jualan: "+error.message);return;}
-  salesItems=data || [];
-
-  $("saleProduct").innerHTML='<option value="">Tiada produk dipilih</option>'+
-    myItems.map(product=>`<option value="${esc(product.id)}">${esc(product.name)}</option>`).join("");
-
-  const totalSales=salesItems.reduce((sum,sale)=>sum+Number(sale.sale_amount||0),0);
-  const approvedCommission=salesItems.filter(sale=>sale.status==="Approved")
-    .reduce((sum,sale)=>sum+Number(sale.commission_amount||0),0);
-
-  say("salesCount",salesItems.length);
-  say("salesTotal",money(totalSales));
-  say("commissionTotal",money(approvedCommission));
-  renderSales();
+  if(!store||!user)return;
+  const {data,error}=await db.from("affiliate_sales").select("*").eq("store_id",store.id).order("sale_date",{ascending:false});
+  if(error){say("saleMsg","Gagal memuatkan jualan: "+error.message);return}
+  salesItems=data||[];
+  $("saleProduct").innerHTML='<option value="">Tiada produk dipilih</option>'+myItems.map(product=>`<option value="${esc(product.id)}">${esc(product.name)}</option>`).join("");
+  const totalSales=salesItems.reduce((sum,sale)=>sum+Number(sale.sale_amount||0),0),approvedCommission=salesItems.filter(sale=>sale.status==="Approved").reduce((sum,sale)=>sum+Number(sale.commission_amount||0),0);
+  say("salesCount",salesItems.length);say("salesTotal",money(totalSales));say("commissionTotal",money(approvedCommission));renderSales();
 }
-
 async function saveSale(){
-  if(!store || !user) return say("saleMsg","Sila log masuk dahulu.");
-
-  const productId=$("saleProduct").value;
-  const amountInput=$("saleAmount").value;
-  const commissionInput=$("saleCommission").value;
-  const date=$("saleDate").value;
-  const amount=Number(amountInput);
-  const commission=Number(commissionInput);
-
-  if(!date || amountInput==="" || commissionInput==="") return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
-  if(!Number.isFinite(amount) || !Number.isFinite(commission) || amount<0 || commission<0) return say("saleMsg","Jumlah wang tidak sah.");
-
-  const selectedProduct=myItems.find(product=>String(product.id)===String(productId));
-  const platform=selectedProduct?selectedProduct.platform:$("salePlatform").value;
-
-  const record={
-    owner_id:user.id,store_id:store.id,product_id:productId||null,platform,
-    sale_amount:amount,commission_amount:commission,status:$("saleStatus").value,
-    sale_date:date,notes:$("saleNotes").value.trim()
-  };
-
+  if(!store||!user)return say("saleMsg","Sila log masuk dahulu.");
+  const productId=$("saleProduct").value,amountInput=$("saleAmount").value,commissionInput=$("saleCommission").value,date=$("saleDate").value,amount=Number(amountInput),commission=Number(commissionInput);
+  if(!date||amountInput===""||commissionInput==="")return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
+  if(!Number.isFinite(amount)||!Number.isFinite(commission)||amount<0||commission<0)return say("saleMsg","Jumlah wang tidak sah.");
+  const selectedProduct=myItems.find(product=>String(product.id)===String(productId)),platform=selectedProduct?selectedProduct.platform:$("salePlatform").value;
+  const record={owner_id:user.id,store_id:store.id,product_id:productId||null,platform,sale_amount:amount,commission_amount:commission,status:$("saleStatus").value,sale_date:date,notes:$("saleNotes").value.trim()};
   setButtonBusy("saveSaleBtn",true,"Sedang menyimpan...","Simpan rekod jualan");
-  try{
-    const {error}=await db.from("affiliate_sales").insert(record);
-    if(error) throw error;
-    say("saleMsg","Rekod jualan berjaya disimpan!");
-    $("saleAmount").value="";
-    $("saleCommission").value="";
-    $("saleNotes").value="";
-    $("saleProduct").value="";
-    await loadSales();
-  }catch(error){say("saleMsg","Gagal menyimpan rekod: "+error.message);}
-  finally{setButtonBusy("saveSaleBtn",false,"Sedang menyimpan...","Simpan rekod jualan");}
+  try{const {error}=await db.from("affiliate_sales").insert(record);if(error)throw error;say("saleMsg","Rekod jualan berjaya disimpan!");$("saleAmount").value="";$("saleCommission").value="";$("saleNotes").value="";$("saleProduct").value="";await loadSales();}
+  catch(error){say("saleMsg","Gagal menyimpan rekod: "+error.message)}
+  finally{setButtonBusy("saveSaleBtn",false,"Sedang menyimpan...","Simpan rekod jualan")}
 }
-
 function renderSales(){
-  if(!salesItems.length){
-    $("salesHistory").innerHTML='<div class="empty">Belum ada rekod jualan.</div>';
-    return;
-  }
-
+  if(!salesItems.length){$("salesHistory").innerHTML='<div class="empty">Belum ada rekod jualan.</div>';return}
   $("salesHistory").innerHTML=salesItems.map(sale=>{
-    const product=myItems.find(item=>String(item.id)===String(sale.product_id));
-    const name=product?product.name:"Produk tidak dipilih / tidak tersedia";
-    const statusColor=sale.status==="Approved"?"#A17C42":sale.status==="Rejected"?"#A84F50":"#96733D";
-
-    return `<div class="analytics-item">
-      <div class="analytics-head"><strong>${esc(name)}</strong><span style="color:${statusColor}">${esc(sale.status)}</span></div>
-      <div class="small">${esc(sale.platform)} · ${esc(sale.sale_date)}</div>
-      <p>Jualan: <strong>${money(sale.sale_amount)}</strong></p>
-      <p>Komisen: <strong>${money(sale.commission_amount)}</strong></p>
-      ${sale.notes?`<div class="small">${esc(sale.notes)}</div>`:""}
-    </div>`;
+    const product=myItems.find(item=>String(item.id)===String(sale.product_id)),name=product?product.name:"Produk tidak dipilih / tidak tersedia",statusColor=sale.status==="Approved"?"#A17C42":sale.status==="Rejected"?"#A84F50":"#96733D";
+    return `<div class="analytics-item"><div class="analytics-head"><strong>${esc(name)}</strong><span style="color:${statusColor}">${esc(sale.status)}</span></div><div class="small">${esc(sale.platform)} · ${esc(sale.sale_date)}</div><p>Jualan: <strong>${money(sale.sale_amount)}</strong></p><p>Komisen: <strong>${money(sale.commission_amount)}</strong></p>${sale.notes?`<div class="small">${esc(sale.notes)}</div>`:""}</div>`;
   }).join("");
 }
 
-// =====================================
-// PUBLIC STOREFRONT
-// =====================================
 async function openStore(slug){
-  $("welcome").classList.add("hidden");
-  $("dashboard").classList.add("hidden");
-  $("publicStore").classList.remove("hidden");
-  $("logoutBtn").classList.add("hidden");
-
-  const {data:storeData,error}=await db.from("stores")
-    .select("*").eq("slug",slug).maybeSingle();
-
-  if(error || !storeData){
-    say("publicName","Kedai tidak dijumpai");
-    $("publicProducts").innerHTML='<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';
-    return;
-  }
-
-  say("publicName",storeData.name);
-  say("publicBio",storeData.bio || "");
-
-  const result=await db.from("products")
-    .select("*")
-    .eq("store_id",storeData.id)
-    .eq("is_active",true)
-    .order("sort_order",{ascending:true})
-    .order("created_at",{ascending:false});
-
-  if(result.error){
-    $("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan: '+esc(result.error.message)+'</div>';
-    return;
-  }
-
-  publicItems=result.data || [];
-  say("productCount",publicItems.length);
-  selectedCategory="all";
-  renderPublicCategories();
-  renderPublic();
+  $("welcome").classList.add("hidden");$("dashboard").classList.add("hidden");$("publicStore").classList.remove("hidden");$("logoutBtn").classList.add("hidden");
+  const {data:storeData,error}=await db.from("stores").select("*").eq("slug",slug).maybeSingle();
+  if(error||!storeData){say("publicName","Kedai tidak dijumpai");$("publicProducts").innerHTML='<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';return}
+  say("publicName",storeData.name);say("publicBio",storeData.bio||"");
+  const result=await db.from("products").select("*").eq("store_id",storeData.id).eq("is_active",true).order("sort_order",{ascending:true}).order("created_at",{ascending:false});
+  if(result.error){$("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan: '+esc(result.error.message)+'</div>';return}
+  publicItems=result.data||[];say("productCount",publicItems.length);selectedCategory="all";renderPublicCategories();renderPublic();
 }
-
 function renderPublicCategories(){
-  const categories=[...new Set(publicItems.map(p=>p.category || "Lain-lain"))].sort();
-  const all=[{name:"Semua",value:"all"},...categories.map(c=>({name:c,value:c}))];
-
-  $("publicCategories").innerHTML=all.map(item=>
-    `<button class="category-chip ${selectedCategory===item.value?"active":""}" onclick="chooseCategory('${esc(item.value)}')">${esc(item.name)}</button>`
-  ).join("");
+  const categories=[...new Set(publicItems.map(p=>p.category||"Lain-lain"))].sort(),all=[{name:"Semua",value:"all"},...categories.map(c=>({name:c,value:c}))];
+  $("publicCategories").innerHTML=all.map(item=>`<button class="category-chip ${selectedCategory===item.value?"active":""}" onclick="chooseCategory('${esc(item.value)}')">${esc(item.name)}</button>`).join("");
 }
-
-function chooseCategory(category){
-  selectedCategory=category;
-  renderPublicCategories();
-  renderPublic();
-}
-
+function chooseCategory(category){selectedCategory=category;renderPublicCategories();renderPublic()}
 function renderPublic(){
-  const query=$("publicSearch").value.toLowerCase();
-  const filter=$("publicFilter").value;
-  const sort=$("publicSort").value;
-
-  let products=publicItems.filter(product=>
-    (filter==="all" || product.platform===filter) &&
-    (selectedCategory==="all" || (product.category || "Lain-lain")===selectedCategory) &&
-    String(product.name || "").toLowerCase().includes(query)
-  );
-
-  if(sort==="price-low"){
-  products.sort((a,b)=>Number(a.price ?? Infinity)-Number(b.price ?? Infinity));
-}
-else if(sort==="price-high"){
-  products.sort((a,b)=>Number(b.price ?? -1)-Number(a.price ?? -1));
-}
-else if(sort==="name"){
-  products.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
-}
-else if(sort==="newest"){
-  products.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
-}
-else{
-  products.sort((a,b)=>{
-    const featuredA=Boolean(a.is_featured);
-    const featuredB=Boolean(b.is_featured);
-
-    if(featuredA!==featuredB){
-      return featuredA ? -1 : 1;
-    }
-
-    const orderA=Number(a.sort_order ?? 0);
-    const orderB=Number(b.sort_order ?? 0);
-
-    if(orderA!==orderB){
-      return orderA-orderB;
-    }
-
+  const query=$("publicSearch").value.toLowerCase(),filter=$("publicFilter").value,sort=$("publicSort").value;
+  let products=publicItems.filter(product=>(filter==="all"||product.platform===filter)&&(selectedCategory==="all"||(product.category||"Lain-lain")===selectedCategory)&&String(product.name||"").toLowerCase().includes(query));
+  if(sort==="price-low")products.sort((a,b)=>Number(a.price??Infinity)-Number(b.price??Infinity));
+  else if(sort==="price-high")products.sort((a,b)=>Number(b.price??-1)-Number(a.price??-1));
+  else if(sort==="name")products.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+  else if(sort==="newest")products.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+  else products.sort((a,b)=>{
+    const featuredA=Boolean(a.is_featured),featuredB=Boolean(b.is_featured);
+    if(featuredA!==featuredB)return featuredA?-1:1;
+    const orderA=Number(a.sort_order??0),orderB=Number(b.sort_order??0);
+    if(orderA!==orderB)return orderA-orderB;
     return productDateSort(a,b);
   });
-}
-
   const featured=products.filter(product=>product.is_featured===true);
   $("featuredWrap").classList.toggle("hidden",featured.length===0);
   $("featuredProducts").innerHTML=featured.map(product=>card(product,false)).join("");
-
-  $("publicProducts").innerHTML=products.map(product=>card(product,false)).join("") ||
-    '<div class="empty">Tiada produk ditemui. Cuba ubah carian atau kategori.</div>';
+  $("publicProducts").innerHTML=products.map(product=>card(product,false)).join("")||'<div class="empty">Tiada produk ditemui. Cuba ubah carian atau kategori.</div>';
 }
-
-// =====================================
-// CLICK TRACKING
-// =====================================
-function trackClick(event,id){
-  db.from("product_clicks").insert({product_id:id}).then(({error})=>{
-    if(error) console.error("SELLORA click tracking:",error.message);
-  });
-}
-
-// =====================================
-// SHARE STOREFRONT
-// =====================================
+function trackClick(event,id){db.from("product_clicks").insert({product_id:id}).then(({error})=>{if(error)console.error("SELLORA click tracking:",error.message)})}
 async function shareStore(){
-  try{
-    if(navigator.share){
-      await navigator.share({
-        title:$("publicName").textContent,
-        text:"Lihat pilihan produk di SELLORA",
-        url:location.href
-      });
-    }else{
-      await navigator.clipboard.writeText(location.href);
-      alert("Pautan kedai disalin.");
-    }
-  }catch(error){
-    if(error.name!=="AbortError") alert("Salin URL dari pelayar untuk berkongsi.");
-  }
+  try{if(navigator.share)await navigator.share({title:$("publicName").textContent,text:"Lihat pilihan produk di SELLORA",url:location.href});else{await navigator.clipboard.writeText(location.href);alert("Pautan kedai disalin.")}}
+  catch(error){if(error.name!=="AbortError")alert("Salin URL dari pelayar untuk berkongsi.")}
 }
-
-// =====================================
-// START APP
-// =====================================
 async function init(){
-  setTodayDate();
-  const slug=new URLSearchParams(location.search).get("store");
-
-  if(slug){
-    await openStore(slug);
-    return;
-  }
-
-  try{
-    const {data,error}=await db.auth.getSession();
-    if(error){say("authMsg",error.message);return;}
-    if(data.session){
-      user=data.session.user;
-      await dashboard();
-    }
-  }catch(error){say("authMsg","Ralat memulakan SELLORA: "+error.message);}
+  setTodayDate();const slug=new URLSearchParams(location.search).get("store");
+  if(slug){await openStore(slug);return}
+  try{const {data,error}=await db.auth.getSession();if(error){say("authMsg",error.message);return}if(data.session){user=data.session.user;await dashboard()}}
+  catch(error){say("authMsg","Ralat memulakan SELLORA: "+error.message)}
 }
-
 init();
 </script>
 </body>
