@@ -142,7 +142,8 @@ button:disabled{opacity:.6;cursor:not-allowed;transform:none}
   
 /* SELLORA V9 - PUBLIC STOREFRONT GRID */
 
-#publicProducts{
+#publicProducts,
+#featuredProducts{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
@@ -213,6 +214,7 @@ button:disabled{opacity:.6;cursor:not-allowed;transform:none}
 /* DESKTOP */
 @media(min-width:768px){
   #publicProducts{
+    #featuredProducts{
     grid-template-columns:repeat(4,minmax(0,1fr));
     gap:18px;
   }
