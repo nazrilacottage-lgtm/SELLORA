@@ -770,24 +770,26 @@ function toggleLike(productId){
   localStorage.setItem("sellora_favourites",JSON.stringify(liked));
   renderPublic();
 }
+
 function card(product,manage=false){
   const imageUrl=safeUrl(product.image_url);
 
   const image=imageUrl
-    ?`<div class="photo">
+    ? `<div class="photo">
         ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
         <img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}">
       </div>`
-    :`<div class="photo">
+    : `<div class="photo">
         ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
         <span>SELLORA</span>
       </div>`;
 
   const likeButton=!manage?`
-    <button class="like-btn ${isLiked(product.id)?"liked":""}"
+    <button type="button"
+      class="like-btn ${isLiked(product.id)?"liked":""}"
       onclick="toggleLike('${esc(product.id)}')"
       aria-label="Favourite">
-      <svg viewBox="0 0 24 24">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
       </svg>
     </button>`:"";
@@ -799,16 +801,16 @@ function card(product,manage=false){
   const affiliateUrl=safeUrl(product.affiliate_url);
 
   const buyLink=affiliateUrl
-    ?`<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat Produk ↗</a>`
-    :'<span class="small">Pautan produk tidak tersedia.</span>';
+    ? `<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat Produk ↗</a>`
+    : '<span class="small">Pautan produk tidak tersedia.</span>';
 
   const actions=manage
-    ?`<div class="click-count">Jumlah klik: ${clickCounts[product.id]||0}</div>
-      <div class="small">Susunan: ${Number(product.sort_order||0)} · ${product.is_featured?"Produk pilihan":"Produk biasa"}</div>
-      <div class="manage-actions">
-        <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
-        <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
-      </div>`
+    ? `<div class="click-count">Jumlah klik: ${clickCounts[product.id]||0}</div>
+       <div class="small">Susunan: ${Number(product.sort_order||0)} · ${product.is_featured?"Produk pilihan":"Produk biasa"}</div>
+       <div class="manage-actions">
+         <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
+         <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
+       </div>`
     :"";
 
   return `
@@ -826,6 +828,7 @@ function card(product,manage=false){
       </div>
     </article>`;
 }
+
 
 async function signup(){
   const email=$("email").value.trim(),password=$("password").value;
