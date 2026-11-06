@@ -273,6 +273,69 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   .products{grid-template-columns:1fr}
   .logo{font-size:23px}
 }
+  
+/* SELLORA PREMIUM HERO */
+.sellora-hero{
+  position:relative;
+  overflow:hidden;
+  min-height:245px;
+  padding:32px 28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:
+    radial-gradient(circle at 90% 15%,rgba(198,164,106,.25),transparent 35%),
+    linear-gradient(125deg,#172A35,#263E4B 70%,#344B55);
+}
+
+.sellora-hero h1{
+  max-width:600px;
+  font-size:clamp(29px,6vw,43px);
+  margin:12px 0;
+}
+
+.sellora-hero p{
+  max-width:480px;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.hero-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  width:fit-content;
+  margin-top:16px;
+  padding:12px 20px;
+  border-radius:9px;
+  background:#C6A46A;
+  color:#172A35;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.hero-button:hover{
+  background:#E3C995;
+}
+
+.hero-note{
+  margin-top:20px;
+  color:#D5C19A;
+  font-size:10px;
+  letter-spacing:1.3px;
+}
+
+@media(max-width:600px){
+  .sellora-hero{
+    min-height:230px;
+    padding:25px 20px;
+    border-radius:16px;
+  }
+}
+
 </style>
 </head>
 
@@ -288,6 +351,24 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 </header>
 
 <main>
+  <section class="hero sellora-hero">
+    <div class="eyebrow">WELCOME TO SELLORA</div>
+
+    <h1>Temui Produk Pilihan Anda.</h1>
+
+    <p class="muted">
+      Pilihan produk menarik daripada pelbagai kategori,
+      semuanya dalam satu tempat.
+    </p>
+
+    <a href="#publicProducts" class="hero-button">
+      TEROKAI PRODUK <span>↗</span>
+    </a>
+
+    <div class="hero-note">
+      ✦ Curated Products &nbsp; · &nbsp; Smart Shopping
+    </div>
+  </section>
 <section id="welcome">
   <div class="hero">
     <div class="eyebrow">Your affiliate marketplace</div>
