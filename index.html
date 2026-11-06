@@ -335,7 +335,36 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
     border-radius:16px;
   }
 }
+/* SELLORA - FORCE PRODUCT GRID */
+#publicProducts,
+#featuredProducts {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  width: 100%;
+}
 
+#publicProducts > *,
+#featuredProducts > * {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+#publicProducts .public-product-card,
+#featuredProducts .public-product-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+@media (min-width: 768px) {
+  #publicProducts,
+  #featuredProducts {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
 </style>
 </head>
 
