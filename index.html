@@ -500,11 +500,29 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
         </label>
             </div>
       <div>
-        <label>URL gambar (pilihan)</label><input id="imageUrl" type="url">
-        <label>Atau upload gambar produk</label>
-        <input type="file" id="productImageFile" accept="image/png,image/jpeg,image/webp">
-        <img id="productImagePreview" alt="Pratonton gambar produk">
-        <p class="small">JPG, PNG atau WebP. Maksimum 5MB. Gambar dikecilkan secara automatik.</p>
+        <label>URL gambar (pilihan)</label>
+<input id="imageUrl" type="url">
+
+<label>Atau upload gambar produk</label>
+<input
+  type="file"
+  id="productImageFile"
+  accept="image/png,image/jpeg,image/webp"
+>
+
+<div class="image-preview-container">
+  <p class="small">Pratonton gambar produk</p>
+  <img
+    id="productImagePreview"
+    alt="Pratonton gambar produk"
+    style="display:none;"
+  >
+</div>
+
+<p class="small">
+  JPG, PNG atau WebP. Maksimum 5MB.
+  Gambar dikecilkan secara automatik.
+</p>
       </div>
       <div>
         <label>Susunan produk</label>
