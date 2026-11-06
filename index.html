@@ -589,47 +589,95 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   </div>
 </section>
 
+
 <section id="publicStore" class="hidden">
-  <div class="store-hero">
-    <div class="store-hero-top">
+
+  <div class="store-top" id="storeTop">
+    <div class="store-top-row">
       <div>
-        <div class="eyebrow">WELCOME TO</div>
-        <h1 id="publicName">SELLORA STORE</h1>
-        <p id="publicBio"></p>
+        <div class="store-brand">SELLORA.</div>
+        <div class="tag">ONE LINK. ENDLESS POSSIBILITIES.</div>
       </div>
-      <button class="store-share" onclick="shareStore()">Kongsi ↗</button>
+
+      <button class="store-share" onclick="shareStore()" aria-label="Kongsi kedai">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
+          <path d="M4 7h16l1 14H3L4 7z"/>
+        </svg>
+      </button>
     </div>
-    <div class="store-meta">
-      <span><strong id="productCount">0</strong> Produk</span><span>•</span><span>2 Platform</span><span>•</span><span>SELLORA</span>
+
+    <div class="store-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m16 16 4 4"/>
+      </svg>
+      <input id="publicSearch" placeholder="Cari produk yang anda inginkan..." oninput="renderPublic()">
     </div>
   </div>
 
-  <div class="market-tools">
-    <input id="publicSearch" placeholder="🔍 Cari produk yang anda inginkan..." oninput="renderPublic()">
-    <div class="market-filters">
-      <select id="publicFilter" onchange="renderPublic()">
-        <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
-      </select>
-      <select id="publicSort" onchange="renderPublic()">
-        <option value="recommended">Pilihan SELLORA</option><option value="newest">Terbaru</option>
-        <option value="price-low">Harga terendah</option><option value="price-high">Harga tertinggi</option><option value="name">Nama A-Z</option>
-      </select>
-    </div>
+  <div class="market-heading">
+    <h2>Kategori</h2>
+    <button onclick="chooseCategory('all')">Lihat semua →</button>
   </div>
 
-  <div class="market-category">
-    <div class="market-heading"><h2>Kategori</h2><span>Terokai pilihan anda</span></div>
-    <div id="publicCategories" class="category-strip"></div>
-  </div>
+  <div id="publicCategories" class="category-grid"></div>
+
+  <div class="store-divider"></div>
 
   <div id="featuredWrap" class="featured-section hidden">
-    <div class="market-heading"><h2>✦ Pilihan SELLORA</h2></div>
+    <div class="market-heading">
+      <h2>Produk Pilihan SELLORA</h2>
+    </div>
     <div id="featuredProducts" class="products"></div>
   </div>
 
-  <div class="market-heading all-products-heading"><h2>Semua Produk</h2></div>
+  <div class="market-heading">
+    <h2>Terokai Semua Produk</h2>
+  </div>
+
+  <div class="store-filter-row">
+    <select id="publicFilter" onchange="renderPublic()">
+      <option value="all">Semua platform</option>
+      <option>Shopee</option>
+      <option>TikTok Shop</option>
+    </select>
+
+    <select id="publicSort" onchange="renderPublic()">
+      <option value="recommended">Pilihan SELLORA</option>
+      <option value="newest">Terbaru</option>
+      <option value="price-low">Harga terendah</option>
+      <option value="price-high">Harga tertinggi</option>
+      <option value="name">Nama A-Z</option>
+    </select>
+  </div>
+
   <div id="publicProducts" class="products"></div>
+
+  <nav class="store-bottom-nav">
+    <button class="active" onclick="storeNav('home',this)">
+      <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>
+      Utama
+    </button>
+
+    <button onclick="storeNav('categories',this)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Kategori
+    </button>
+
+    <button onclick="storeNav('products',this)">
+      <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/></svg>
+      Produk
+    </button>
+
+    <button onclick="shareStore()">
+      <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg>
+      Kongsi
+    </button>
+  </nav>
+
 </section>
+
 </main>
 
 <footer>SELLORA · One Link. Endless Possibilities.</footer>
