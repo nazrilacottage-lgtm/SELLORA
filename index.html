@@ -421,7 +421,39 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
     margin:0 0 22px;
   }
 }
+.like-btn{
+  position:absolute;
+  top:10px;
+  right:10px;
+  z-index:5;
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  background:#fff;
+  border:1px solid #E8E1D7;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px;
+  cursor:pointer;
+}
 
+.like-btn svg{
+  width:20px;
+  height:20px;
+  fill:none;
+  stroke:#172A35;
+  stroke-width:1.8;
+}
+
+.like-btn.liked svg{
+  fill:#C65B65;
+  stroke:#C65B65;
+}
+
+.public-product-card .photo{
+  position:relative;
+}
 </style>
 </head>
 
