@@ -917,11 +917,71 @@ async function openStore(slug){
   if(result.error){$("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan: '+esc(result.error.message)+'</div>';return}
   publicItems=result.data||[];say("productCount",publicItems.length);selectedCategory="all";renderPublicCategories();renderPublic();
 }
-function renderPublicCategories(){
-  const categories=[...new Set(publicItems.map(p=>p.category||"Lain-lain"))].sort(),all=[{name:"Semua",value:"all"},...categories.map(c=>({name:c,value:c}))];
-  $("publicCategories").innerHTML=all.map(item=>`<button class="category-chip ${selectedCategory===item.value?"active":""}" onclick="chooseCategory('${esc(item.value)}')">${esc(item.name)}</button>`).join("");
+  
+function categoryIcon(category){
+  const icons={
+    "Skincare":'<rect x="7" y="7" width="10" height="14" rx="2"/><path d="M9 7V4h6v3M10 4V2h4v2"/>',
+    "Kecantikan":'<path d="M10 3h4v6l2 3v9H8v-9l2-3z"/><path d="M10 9h4M8 14h8"/>',
+    "Kesihatan":'<path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/><path d="M8 12h3l1-3 2 6 1-3h2"/>',
+    "Fesyen":'<path d="m3 8 9-5 9 5-4 4v9H7v-9z"/><path d="M7 12h10"/>',
+    "Elektronik":'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+    "Rumah & Dapur":'<path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M9 21v-7h6v7"/>',
+    "Ibu & Anak":'<circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
+    "Makanan & Minuman":'<path d="M5 3v8M8 3v8M5 7h3M6.5 11v10M16 3v18M16 3c4 3 4 7 0 9"/>',
+    "Gajet":'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/>',
+    "Lain-lain":'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>'
+  };
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[category]||icons["Lain-lain"]}</svg>`;
 }
-function chooseCategory(category){selectedCategory=category;renderPublicCategories();renderPublic()}
+
+function renderPublicCategories(){
+  const categories=[...new Set(publicItems.map(p=>p.category||"Lain-lain"))].sort();
+
+  const all=[
+    {name:"Skincare",value:"Skincare"},
+    {name:"Kecantikan",value:"Kecantikan"},
+    {name:"Rumah & Dapur",value:"Rumah & Dapur"},
+    {name:"Fesyen",value:"Fesyen"},
+    {name:"Gajet",value:"Gajet"},
+    {name:"Kesihatan",value:"Kesihatan"},
+    {name:"Makanan & Minuman",value:"Makanan & Minuman"},
+    {name:"Lain-lain",value:"Lain-lain"}
+  ].filter(item=>categories.includes(item.value));
+
+  $("publicCategories").innerHTML=all.map(item=>`
+    <button class="category-tile ${selectedCategory===item.value?"active":""}"
+      onclick="chooseCategory('${esc(item.value)}')">
+      ${categoryIcon(item.value)}
+      <span>${esc(item.name)}</span>
+    </button>
+  `).join("");
+
+  if(!all.length){
+    $("publicCategories").innerHTML='<div class="empty">Kategori akan dipaparkan apabila produk ditambah.</div>';
+  }
+}
+
+function chooseCategory(category){
+  selectedCategory=selectedCategory===category?"all":category;
+  renderPublicCategories();
+  renderPublic();
+  $("publicProducts").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function storeNav(section,button){
+  document.querySelectorAll(".store-bottom-nav button").forEach(item=>item.classList.remove("active"));
+  if(button)button.classList.add("active");
+
+  const targets={
+    home:"storeTop",
+    categories:"publicCategories",
+    products:"publicProducts"
+  };
+
+  const target=$(targets[section]);
+  if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
 function renderPublic(){
   const query=$("publicSearch").value.toLowerCase(),filter=$("publicFilter").value,sort=$("publicSort").value;
   let products=publicItems.filter(product=>(filter==="all"||product.platform===filter)&&(selectedCategory==="all"||(product.category||"Lain-lain")===selectedCategory)&&String(product.name||"").toLowerCase().includes(query));
