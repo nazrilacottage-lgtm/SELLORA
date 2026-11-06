@@ -511,27 +511,44 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   </div>
 </section>
 
+
 <section id="publicStore" class="hidden">
-  <div class="hero">
-    <div class="eyebrow">SELLORA marketplace</div>
-    <h1 id="publicName">Kedai SELLORA</h1>
-    <p id="publicBio" class="muted"></p>
-    <div class="stats">
-      <div class="stat"><strong id="productCount">0</strong><span>Produk</span></div>
-      <div class="stat"><strong>2</strong><span>Platform</span></div>
-      <div class="stat"><strong>SELLORA</strong><span>Affiliate Store</span></div>
+
+  <!-- STORE HEADER -->
+  <div class="store-hero">
+    <div class="store-hero-top">
+      <div>
+        <div class="eyebrow">WELCOME TO</div>
+        <h1 id="publicName">SELLORA STORE</h1>
+        <p id="publicBio"></p>
+      </div>
+      <button class="store-share" onclick="shareStore()">Kongsi ↗</button>
     </div>
-    <div class="actions"><button onclick="shareStore()">Kongsi kedai</button></div>
+
+    <div class="store-meta">
+      <span><strong id="productCount">0</strong> Produk</span>
+      <span>•</span>
+      <span>2 Platform</span>
+      <span>•</span>
+      <span>SELLORA</span>
+    </div>
   </div>
 
-  <div class="panel">
-    <h2>Terokai kategori</h2>
-    <div id="publicCategories" class="category-strip"></div>
-    <div class="toolbar">
-      <input id="publicSearch" placeholder="Cari produk..." oninput="renderPublic()">
+  <!-- SEARCH & FILTER -->
+  <div class="market-tools">
+    <input
+      id="publicSearch"
+      placeholder="🔍 Cari produk yang anda inginkan..."
+      oninput="renderPublic()"
+    >
+
+    <div class="market-filters">
       <select id="publicFilter" onchange="renderPublic()">
-        <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
+        <option value="all">Semua platform</option>
+        <option>Shopee</option>
+        <option>TikTok Shop</option>
       </select>
+
       <select id="publicSort" onchange="renderPublic()">
         <option value="recommended">Pilihan SELLORA</option>
         <option value="newest">Terbaru</option>
@@ -542,14 +559,32 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
     </div>
   </div>
 
+  <!-- CATEGORIES -->
+  <div class="market-category">
+    <div class="market-heading">
+      <h2>Kategori</h2>
+      <span>Terokai pilihan anda</span>
+    </div>
+    <div id="publicCategories" class="category-strip"></div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
   <div id="featuredWrap" class="featured-section hidden">
-    <div class="section-heading"><h2>✦ Pilihan SELLORA</h2></div>
+    <div class="market-heading">
+      <h2>✦ Pilihan SELLORA</h2>
+    </div>
     <div id="featuredProducts" class="products"></div>
   </div>
 
-  <div class="section-heading"><h2>Semua produk</h2></div>
+  <!-- ALL PRODUCTS -->
+  <div class="market-heading all-products-heading">
+    <h2>Semua Produk</h2>
+  </div>
+
   <div id="publicProducts" class="products"></div>
+
 </section>
+
 </main>
 
 <footer>SELLORA · One Link. Endless Possibilities.</footer>
