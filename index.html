@@ -180,6 +180,248 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   border-radius: 8px !important;
   background: #fff !important;
 }
+  
+/* =================================
+   SELLORA MINIMAL MARKETPLACE
+================================= */
+
+.store-top{
+  background:#172A35;
+  color:#fff;
+  padding:18px 16px 20px;
+  border-radius:0 0 20px 20px;
+  margin:-22px -16px 20px;
+}
+
+.store-top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.store-brand{
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:3px;
+  color:#D8BC8A;
+}
+
+.store-share{
+  width:42px;
+  height:42px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:transparent;
+  border:1px solid rgba(216,188,138,.55);
+  color:#D8BC8A;
+}
+
+.store-search{
+  position:relative;
+  margin-top:17px;
+}
+
+.store-search svg{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  width:19px;
+  height:19px;
+  stroke:#78838A;
+  pointer-events:none;
+}
+
+.store-search input{
+  padding:14px 14px 14px 43px;
+  border:0;
+  border-radius:12px;
+  background:#fff;
+  font-size:14px;
+}
+
+.market-heading{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:23px 0 13px;
+}
+
+.market-heading h2{
+  font-size:19px;
+  margin:0;
+}
+
+.market-heading button{
+  background:none;
+  border:0;
+  color:#A17C42;
+  padding:5px;
+  font-size:12px;
+}
+
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:9px;
+}
+
+.category-tile{
+  min-width:0;
+  min-height:92px;
+  padding:12px 5px;
+  border:1px solid #EAE4DA;
+  border-radius:15px;
+  background:#fff;
+  color:#172A35;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font-size:11px;
+  font-weight:600;
+  text-align:center;
+}
+
+.category-tile svg{
+  width:27px;
+  height:27px;
+  stroke:#172A35;
+  fill:none;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.category-tile.active{
+  background:#F3EBDD;
+  border-color:#C6A46A;
+  color:#8A6938;
+}
+
+.category-tile.active svg{
+  stroke:#A17C42;
+}
+
+.store-divider{
+  height:1px;
+  background:#E6E0D5;
+  margin:22px 0;
+}
+
+.store-filter-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin:12px 0;
+}
+
+.store-filter-row select{
+  min-width:0;
+  padding:10px;
+  font-size:12px;
+  background:#fff;
+}
+
+.store-bottom-nav{
+  display:none;
+}
+
+.public-product-card{
+  border-radius:13px;
+  border:1px solid #E8E1D7;
+  box-shadow:0 3px 12px rgba(23,42,53,.055);
+}
+
+.public-product-card .photo{
+  aspect-ratio:1/1;
+  height:auto;
+  background:#F3F0E9;
+}
+
+.public-product-card .body{
+  padding:11px;
+}
+
+.public-product-card h3{
+  font-size:13px;
+  min-height:36px;
+}
+
+.public-product-card .price{
+  color:#B58A43;
+  font-size:17px;
+}
+
+.public-product-card .buy{
+  background:#172A35;
+  color:#fff;
+  border-radius:9px;
+  padding:10px 6px;
+  font-size:12px;
+}
+
+@media(max-width:620px){
+  #publicStore{
+    padding-bottom:75px;
+  }
+
+  .store-bottom-nav{
+    display:flex;
+    position:fixed;
+    z-index:30;
+    left:0;
+    right:0;
+    bottom:0;
+    justify-content:space-around;
+    align-items:center;
+    background:#fff;
+    border-top:1px solid #E6E0D5;
+    padding:9px 5px calc(9px + env(safe-area-inset-bottom));
+    box-shadow:0 -3px 15px rgba(23,42,53,.06);
+  }
+
+  .store-bottom-nav button{
+    flex:1;
+    padding:5px 2px;
+    background:transparent;
+    border:0;
+    color:#78838A;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px;
+    font-size:10px;
+  }
+
+  .store-bottom-nav button svg{
+    width:21px;
+    height:21px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:1.7;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  .store-bottom-nav button.active{
+    color:#B58A43;
+  }
+}
+
+@media(min-width:768px){
+  .store-top{
+    border-radius:16px;
+    margin:0 0 22px;
+  }
+}
+
 </style>
 </head>
 
