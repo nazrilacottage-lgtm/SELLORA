@@ -514,11 +514,35 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   width:21px !important;
   height:21px !important;
 }
+  .header-store-tools{
+  max-width:1150px;
+  margin:auto;
+  padding:0 18px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.header-store-tools .store-search{
+  flex:1;
+  min-width:0;
+  margin-top:0;
+}
+
+.header-store-tools .store-search input{
+  width:100%;
+  box-sizing:border-box;
+}
+
+.header-store-tools .store-share{
+  flex:0 0 42px;
+}
 </style>
 </head>
 
 <body>
-<header>
+
+<header id="mainHeader">
   <div class="nav">
     <div>
       <div class="logo">SELLORA.</div>
@@ -526,7 +550,27 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
     </div>
     <button id="logoutBtn" class="hidden" onclick="logout()">Log keluar</button>
   </div>
+
+  <div class="header-store-tools hidden" id="headerStoreTools">
+    <div class="store-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m16 16 4 4"/>
+      </svg>
+      <input id="publicSearch" placeholder="Cari produk yang anda inginkan..." oninput="renderPublic()">
+    </div>
+
+    <button class="store-share" onclick="shareStore()" aria-label="Kongsi kedai">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="12" r="3"/>
+        <circle cx="18" cy="19" r="3"/>
+        <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/>
+      </svg>
+    </button>
+  </div>
 </header>
+
 
 <main>
 <section id="welcome">
@@ -684,29 +728,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 
 <section id="publicStore" class="hidden">
 
-  <div class="store-top" id="storeTop">
-    <div class="store-top-row">
-      <div>
-        <div class="store-brand">SELLORA.</div>
-        <div class="tag">ONE LINK. ENDLESS POSSIBILITIES.</div>
-      </div>
-
-      <button class="store-share" onclick="shareStore()" aria-label="Kongsi kedai">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/>
-          <path d="M4 7h16l1 14H3L4 7z"/>
-        </svg>
-      </button>
-    </div>
-
-    <div class="store-search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <circle cx="11" cy="11" r="7"/>
-        <path d="m16 16 4 4"/>
-      </svg>
-      <input id="publicSearch" placeholder="Cari produk yang anda inginkan..." oninput="renderPublic()">
-    </div>
-  </div>
+  
 
   <div class="market-heading">
     <h2>Kategori</h2>
