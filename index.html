@@ -1326,13 +1326,7 @@ function storeNav(section,button){
   if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
-  likedOnly=false;
-
-  if(section==="home"){
-    selectedCategory="all";
-    renderPublicCategories();
-    renderPublic();
-  }
+  
 
   const target=$(targets[section]);
   if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
