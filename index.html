@@ -1276,7 +1276,7 @@ function storeNav(section,button){
   if(button)button.classList.add("active");
 
   $("profilePanel").classList.add("hidden");
-  $("featuredWrap").classList.toggle("hidden",false);
+  $("featuredWrap").classList.remove("hidden");
 
   if(section==="me"){
     likedOnly=false;
@@ -1286,13 +1286,22 @@ function storeNav(section,button){
     const email=user?.email||"";
     const isAdmin=email.toLowerCase()==="nazri.lacottage@gmail.com";
 
-    say("profileName",user?.user_metadata?.full_name||user?.user_metadata?.name||"Pengguna SELLORA");
+    say("profileName",
+      user?.user_metadata?.full_name||
+      user?.user_metadata?.name||
+      "Pengguna SELLORA"
+    );
+
     say("profileEmail",email||"Belum log masuk");
     say("profileRole",isAdmin?"ADMIN":"PENGGUNA");
 
     $("publicProducts").classList.add("hidden");
     $("publicCategories").classList.add("hidden");
-    $("profilePanel").scrollIntoView({behavior:"smooth",block:"start"});
+
+    $("profilePanel").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
     return;
   }
 
@@ -1304,7 +1313,11 @@ function storeNav(section,button){
     selectedCategory="all";
     renderPublicCategories();
     renderPublic();
-    $("publicProducts").scrollIntoView({behavior:"smooth",block:"start"});
+
+    $("publicProducts").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
     return;
   }
 
@@ -1314,25 +1327,20 @@ function storeNav(section,button){
     selectedCategory="all";
     renderPublicCategories();
     renderPublic();
+
+    $("publicStore").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
   }
 
-  const targets={
-    home:"storeTop",
-    categories:"publicCategories",
-    products:"publicProducts"
-  };
-
-  const target=$(targets[section]);
-  if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+  if(section==="categories"){
+    $("publicCategories").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+  }
 }
-
-  
-
-  const target=$(targets[section]);
-  if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-
 
 function renderPublic(){
   const query=$("publicSearch").value.toLowerCase();
