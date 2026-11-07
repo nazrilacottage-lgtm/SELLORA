@@ -1219,10 +1219,54 @@ function renderPublic(){
 }
 
 function trackClick(event,id){db.from("product_clicks").insert({product_id:id}).then(({error})=>{if(error)console.error("SELLORA click tracking:",error.message)})}
+
 async function shareStore(){
-  try{if(navigator.share)await navigator.share({title:$("publicName").textContent,text:"Lihat pilihan produk di SELLORA",url:location.href});else{await navigator.clipboard.writeText(location.href);alert("Pautan kedai disalin.")}}
-  catch(error){if(error.name!=="AbortError")alert("Salin URL dari pelayar untuk berkongsi.")}
+  const url=window.location.href;
+  const storeName=$("publicName")?.textContent||"SELLORA";
+
+  try{
+    if(navigator.share){
+      await navigator.share({
+        title:storeName+" | SELLORA",
+        text:"Jom lihat pilihan produk di SELLORA!",
+        url:url
+      });
+      return;
+    }
+  }catch(error){
+    if(error.name==="AbortError")return;
+  }
+
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(url);
+      alert("Pautan kedai berjaya disalin!");
+      return;
+    }
+  }catch(error){
+    console.log("Clipboard API tidak tersedia.");
+  }
+
+  try{
+    const temp=document.createElement("textarea");
+    temp.value=url;
+    temp.style.position="fixed";
+    temp.style.opacity="0";
+    document.body.appendChild(temp);
+    temp.select();
+    const copied=document.execCommand("copy");
+    temp.remove();
+
+    if(copied){
+      alert("Pautan kedai berjaya disalin!");
+    }else{
+      prompt("Salin pautan kedai ini:",url);
+    }
+  }catch(error){
+    prompt("Salin pautan kedai ini:",url);
+  }
 }
+
 async function init(){
   setTodayDate();const slug=new URLSearchParams(location.search).get("store");
   if(slug){await openStore(slug);return}
