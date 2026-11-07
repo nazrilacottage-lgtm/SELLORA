@@ -757,9 +757,11 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
       Kategori
     </button>
 
-    <button onclick="storeNav('products',this)">
-      <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/></svg>
-      Produk
+    <button onclick="storeNav('liked',this)">
+  <svg viewBox="0 0 24 24">
+    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+  </svg>
+  Disukai
     </button>
 
     <button onclick="shareStore()">
@@ -1079,7 +1081,12 @@ async function openStore(slug){
   say("publicName",storeData.name);say("publicBio",storeData.bio||"");
   const result=await db.from("products").select("*").eq("store_id",storeData.id).eq("is_active",true).order("sort_order",{ascending:true}).order("created_at",{ascending:false});
   if(result.error){$("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan: '+esc(result.error.message)+'</div>';return}
-  publicItems=result.data||[];say("productCount",publicItems.length);selectedCategory="all";renderPublicCategories();renderPublic();
+  publicItems=result.data||[];
+say("productCount",publicItems.length);
+selectedCategory="all";
+likedOnly=false;
+renderPublicCategories();
+renderPublic();
 }
   
 function categoryIcon(category){
@@ -1132,8 +1139,11 @@ function chooseCategory(category){
   $("publicProducts").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
+
 function storeNav(section,button){
-  document.querySelectorAll(".store-bottom-nav button").forEach(item=>item.classList.remove("active"));
+  document.querySelectorAll(".store-bottom-nav button")
+    .forEach(item=>item.classList.remove("active"));
+
   if(button)button.classList.add("active");
 
   const targets={
@@ -1142,29 +1152,72 @@ function storeNav(section,button){
     products:"publicProducts"
   };
 
+  if(section==="liked"){
+    likedOnly=true;
+    selectedCategory="all";
+    renderPublicCategories();
+    renderPublic();
+    $("publicProducts").scrollIntoView({behavior:"smooth",block:"start"});
+    return;
+  }
+
+  likedOnly=false;
+
+  if(section==="home"){
+    selectedCategory="all";
+    renderPublicCategories();
+    renderPublic();
+  }
+
   const target=$(targets[section]);
   if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
+
+
 function renderPublic(){
-  const query=$("publicSearch").value.toLowerCase(),filter=$("publicFilter").value,sort=$("publicSort").value;
-  let products=publicItems.filter(product=>(filter==="all"||product.platform===filter)&&(selectedCategory==="all"||(product.category||"Lain-lain")===selectedCategory)&&String(product.name||"").toLowerCase().includes(query));
-  if(sort==="price-low")products.sort((a,b)=>Number(a.price??Infinity)-Number(b.price??Infinity));
-  else if(sort==="price-high")products.sort((a,b)=>Number(b.price??-1)-Number(a.price??-1));
-  else if(sort==="name")products.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
-  else if(sort==="newest")products.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+  const query=$("publicSearch").value.toLowerCase();
+  const filter=$("publicFilter").value;
+  const sort=$("publicSort").value;
+
+  let products=publicItems.filter(product=>
+    (filter==="all"||product.platform===filter)&&
+    (selectedCategory==="all"||
+      (product.category||"Lain-lain")===selectedCategory)&&
+    (!likedOnly||isLiked(product.id))&&
+    String(product.name||"").toLowerCase().includes(query)
+  );
+
+  if(sort==="price-low")
+    products.sort((a,b)=>Number(a.price??Infinity)-Number(b.price??Infinity));
+  else if(sort==="price-high")
+    products.sort((a,b)=>Number(b.price??-1)-Number(a.price??-1));
+  else if(sort==="name")
+    products.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+  else if(sort==="newest")
+    products.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
   else products.sort((a,b)=>{
-    const featuredA=Boolean(a.is_featured),featuredB=Boolean(b.is_featured);
+    const featuredA=Boolean(a.is_featured);
+    const featuredB=Boolean(b.is_featured);
     if(featuredA!==featuredB)return featuredA?-1:1;
-    const orderA=Number(a.sort_order??0),orderB=Number(b.sort_order??0);
+    const orderA=Number(a.sort_order??0);
+    const orderB=Number(b.sort_order??0);
     if(orderA!==orderB)return orderA-orderB;
     return productDateSort(a,b);
   });
-  const featured=products.filter(product=>product.is_featured===true);
+
+  const featured=likedOnly
+    ? []
+    : products.filter(product=>product.is_featured===true);
+
   $("featuredWrap").classList.toggle("hidden",featured.length===0);
   $("featuredProducts").innerHTML=featured.map(product=>card(product,false)).join("");
-  $("publicProducts").innerHTML=products.map(product=>card(product,false)).join("")||'<div class="empty">Tiada produk ditemui. Cuba ubah carian atau kategori.</div>';
+
+  $("publicProducts").innerHTML=
+    products.map(product=>card(product,false)).join("")||
+    '<div class="empty">Tiada produk disukai. Tekan ikon hati pada produk untuk simpan Favourite.</div>';
 }
+
 function trackClick(event,id){db.from("product_clicks").insert({product_id:id}).then(({error})=>{if(error)console.error("SELLORA click tracking:",error.message)})}
 async function shareStore(){
   try{if(navigator.share)await navigator.share({title:$("publicName").textContent,text:"Lihat pilihan produk di SELLORA",url:location.href});else{await navigator.clipboard.writeText(location.href);alert("Pautan kedai disalin.")}}
