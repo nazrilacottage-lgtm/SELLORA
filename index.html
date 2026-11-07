@@ -537,6 +537,78 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 .header-store-tools .store-share{
   flex:0 0 42px;
 }
+  .profile-card{
+  background:#fff;
+  border:1px solid rgba(198,164,106,.4);
+  border-radius:18px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:0 4px 16px rgba(23,42,53,.06);
+  margin:15px 0;
+}
+
+.profile-avatar{
+  width:76px;
+  height:76px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#172A35;
+  border:2px solid #C6A46A;
+}
+
+.profile-avatar svg{
+  width:36px;
+  height:36px;
+  fill:none;
+  stroke:#D8BC8A;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
+.profile-card h3{
+  margin:8px 0;
+  color:#172A35;
+  font-size:19px;
+}
+
+.profile-card p{
+  margin:5px 0 15px;
+  color:#78838A;
+  font-size:13px;
+  overflow-wrap:anywhere;
+}
+
+.profile-role{
+  display:inline-block;
+  padding:7px 18px;
+  border-radius:30px;
+  background:#172A35;
+  color:#D8BC8A;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+
+.profile-menu{
+  display:grid;
+  gap:10px;
+  margin-top:16px;
+}
+
+.profile-menu button{
+  width:100%;
+  padding:15px;
+  text-align:left;
+  background:#fff;
+  color:#172A35;
+  border:1px solid rgba(198,164,106,.4);
+  border-radius:12px;
+  font-size:14px;
+}
 </style>
 </head>
 
@@ -767,7 +839,33 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   </div>
 
   <div id="publicProducts" class="products"></div>
+<div id="profilePanel" class="hidden">
+  <div class="market-heading">
+    <h2>Profil Saya</h2>
+  </div>
 
+  <div class="profile-card">
+    <div class="profile-avatar">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 21a8 8 0 0 1 16 0"/>
+      </svg>
+    </div>
+
+    <h3 id="profileName">Pengguna SELLORA</h3>
+    <p id="profileEmail">-</p>
+    <span id="profileRole" class="profile-role">PENGGUNA</span>
+  </div>
+
+  <div class="profile-menu">
+    <button onclick="storeNav('liked',null)">
+      ♥ Produk Disukai
+    </button>
+    <button onclick="logout()">
+      ↪ Log Keluar
+    </button>
+  </div>
+</div>
   <nav class="store-bottom-nav">
     <button class="active" onclick="storeNav('home',this)">
       <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>
@@ -1177,11 +1275,29 @@ function storeNav(section,button){
 
   if(button)button.classList.add("active");
 
-  const targets={
-    home:"storeTop",
-    categories:"publicCategories",
-    products:"publicProducts"
-  };
+  $("profilePanel").classList.add("hidden");
+  $("featuredWrap").classList.toggle("hidden",false);
+
+  if(section==="me"){
+    likedOnly=false;
+    $("featuredWrap").classList.add("hidden");
+    $("profilePanel").classList.remove("hidden");
+
+    const email=user?.email||"";
+    const isAdmin=email.toLowerCase()==="nazri.lacottage@gmail.com";
+
+    say("profileName",user?.user_metadata?.full_name||user?.user_metadata?.name||"Pengguna SELLORA");
+    say("profileEmail",email||"Belum log masuk");
+    say("profileRole",isAdmin?"ADMIN":"PENGGUNA");
+
+    $("publicProducts").classList.add("hidden");
+    $("publicCategories").classList.add("hidden");
+    $("profilePanel").scrollIntoView({behavior:"smooth",block:"start"});
+    return;
+  }
+
+  $("publicProducts").classList.remove("hidden");
+  $("publicCategories").classList.remove("hidden");
 
   if(section==="liked"){
     likedOnly=true;
@@ -1191,6 +1307,24 @@ function storeNav(section,button){
     $("publicProducts").scrollIntoView({behavior:"smooth",block:"start"});
     return;
   }
+
+  likedOnly=false;
+
+  if(section==="home"){
+    selectedCategory="all";
+    renderPublicCategories();
+    renderPublic();
+  }
+
+  const targets={
+    home:"storeTop",
+    categories:"publicCategories",
+    products:"publicProducts"
+  };
+
+  const target=$(targets[section]);
+  if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+}
 
   likedOnly=false;
 
