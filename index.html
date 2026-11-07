@@ -662,9 +662,77 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   border-radius:12px;
   font-size:14px;
 }
-  #publicProducts .public-product-card{
-  outline:4px solid red!important;
-  }
+  #publicProducts .public-product-card,
+#featuredProducts .public-product-card{
+  min-width:0!important;
+  width:100%!important;
+  overflow:hidden!important;
+  border:1px solid #E8E1D7!important;
+  border-radius:16px!important;
+  background:#FFFFFF!important;
+  box-shadow:0 5px 18px rgba(23,42,53,.09)!important;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+
+#publicProducts .public-product-card .photo,
+#featuredProducts .public-product-card .photo{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1/1!important;
+  overflow:hidden!important;
+  background:#F3F0E9!important;
+}
+
+#publicProducts .public-product-card .photo img,
+#featuredProducts .public-product-card .photo img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  display:block!important;
+}
+
+#publicProducts .public-product-card .body,
+#featuredProducts .public-product-card .body{
+  padding:11px!important;
+  gap:5px!important;
+}
+
+#publicProducts .public-product-card h3,
+#featuredProducts .public-product-card h3{
+  font-size:13px!important;
+  line-height:1.4!important;
+  font-weight:700!important;
+  color:#172A35!important;
+  min-height:36px!important;
+  margin:5px 0 3px!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+}
+
+#publicProducts .public-product-card .price,
+#featuredProducts .public-product-card .price{
+  color:#A77C37!important;
+  font-size:17px!important;
+  font-weight:800!important;
+  margin:4px 0 9px!important;
+}
+
+#publicProducts .public-product-card .buy,
+#featuredProducts .public-product-card .buy{
+  width:100%!important;
+  background:#172A35!important;
+  color:#FFFFFF!important;
+  border:1px solid #172A35!important;
+  border-radius:10px!important;
+  padding:11px 6px!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  letter-spacing:.2px!important;
+  text-align:center!important;
+}
+  
 </style>
 </head>
 
