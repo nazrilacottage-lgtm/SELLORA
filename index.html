@@ -1220,6 +1220,7 @@ function renderPublic(){
 
 function trackClick(event,id){db.from("product_clicks").insert({product_id:id}).then(({error})=>{if(error)console.error("SELLORA click tracking:",error.message)})}
 
+
 async function shareStore(){
   const url=window.location.href;
   const storeName=$("publicName")?.textContent||"SELLORA";
@@ -1266,6 +1267,7 @@ async function shareStore(){
     prompt("Salin pautan kedai ini:",url);
   }
 }
+
 
 async function init(){
   setTodayDate();const slug=new URLSearchParams(location.search).get("store");
