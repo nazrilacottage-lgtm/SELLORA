@@ -1098,6 +1098,8 @@ function renderSales(){
 
 async function openStore(slug){
   $("welcome").classList.add("hidden");$("dashboard").classList.add("hidden");$("publicStore").classList.remove("hidden");$("logoutBtn").classList.add("hidden");
+  $("headerStoreTools").classList.remove("hidden");
+$("mainHeader").classList.add("store-header-active");
   const {data:storeData,error}=await db.from("stores").select("*").eq("slug",slug).maybeSingle();
   if(error||!storeData){say("publicName","Kedai tidak dijumpai");$("publicProducts").innerHTML='<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';return}
   say("publicName",storeData.name);say("publicBio",storeData.bio||"");
