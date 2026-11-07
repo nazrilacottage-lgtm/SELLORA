@@ -908,7 +908,7 @@ const SUPABASE_URL="https://pbjuicvtfoxvpmrayarj.supabase.co";
 const SUPABASE_KEY="sb_publishable_nuiso_HD64HOwzVfRVO_LA_PhEyU1Um";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-let user=null,store=null,myItems=[],publicItems=[],clickCounts={},editingId=null,salesItems=[],selectedCategory="all",previewObjectUrl=null;
+let user=null,store=null,myItems=[],publicItems=[],clickCounts={},editingId=null,salesItems=[],selectedCategory="all",previewObjectUrl=null,likedOnly=false;
 const $=id=>document.getElementById(id);
 
 function say(id,message){const el=$(id);if(el)el.textContent=message}
