@@ -784,6 +784,39 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   padding:8px 5px!important;
   font-size:11px!important;
 }
+  /* Kontena untuk mengekalkan bentuk segi empat sama */
+.image-container {
+  width: 100%;
+  aspect-ratio: 1 / 1;     /* Memaksa nisbah 1:1 (Square) spt Shopee */
+  overflow: hidden;        /* Memotong bahagian imej yang terlebih */
+  border-radius: 8px 8px 0 0; /* Melengkungkan bucu atas sahaja */
+  background-color: #f8f9fa;  /* Warna latar jika imej lambat dimuatkan */
+}
+
+/* Mengawal imej di dalam kontena */
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* Memastikan imej penuh tanpa herot/penyek */
+  object-position: center; /* Memastikan fokus imej sentiasa di tengah */
+  display: block;
+}
+
+/* Nota Tambahan: Untuk susunan grid kad produk yang kemas */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Pembahagian 2 lajur setara */
+  gap: 12px;
+  padding: 12px;
+}
+
+.product-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
 </style>
 </head>
 
