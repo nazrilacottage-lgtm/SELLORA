@@ -59,11 +59,35 @@ button:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .photo img{width:100%;height:100%;object-fit:cover}
 .featured-label{position:absolute;top:9px;left:9px;background:var(--gold);color:var(--navy);padding:4px 9px;border-radius:20px;font-size:10px;font-weight:bold;z-index:2}
 .body{
-  padding:9px;
+  padding:7px!important;
   display:flex;
   flex-direction:column;
   flex:0 0 auto;
-  gap:5px;
+  gap:2px!important;
+}
+
+.body h3{
+  margin:1px 0!important;
+  padding:0!important;
+  line-height:1.2!important;
+}
+
+.body .price{
+  margin:0!important;
+  padding:0!important;
+  line-height:1.2!important;
+}
+
+.body .pill,
+.body .category-pill{
+  margin:0!important;
+  padding:2px 5px!important;
+  line-height:1.2!important;
+}
+
+.body .desc{
+  margin:1px 0!important;
+  line-height:1.2!important;
 }
 .pill{font-size:11px;color:#856638;background:#F7F1E5;border:1px solid #E4D4B4;border-radius:20px;padding:3px 9px;align-self:start}
 .category-pill{font-size:11px;color:#53636A;background:#EFF2F2;padding:3px 9px;border-radius:20px;align-self:start;margin-top:5px}
