@@ -506,25 +506,39 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   }
 }
 .like-btn{
-  position:absolute;
-  top:10px;
-  right:10px;
-  z-index:5;
-  width:35px;
-  height:35px;
+/* SELLORA — LIKE BUTTON STATIC */
+
+.like-btn{
+  position:static!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  z-index:auto!important;
+  transform:none!important;
+
+  width:26px!important;
+  height:26px!important;
+  min-width:26px!important;
+  min-height:26px!important;
+
+  flex:0 0 26px!important;
+  display:flex!important;
+  align-items:center;
+  justify-content:center;
+
+  padding:4px!important;
+  margin:0!important;
   border-radius:50%;
   background:#fff;
   border:1px solid #E8E1D7;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:8px;
+  box-shadow:none!important;
   cursor:pointer;
 }
 
 .like-btn svg{
-  width:20px;
-  height:20px;
+  width:15px!important;
+  height:15px!important;
   fill:none;
   stroke:#172A35;
   stroke-width:1.8;
@@ -533,43 +547,24 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 .like-btn.liked svg{
   fill:#C65B65;
   stroke:#C65B65;
+}
+
+#publicProducts .product-meta,
+#featuredProducts .product-meta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  gap:6px;
+}
+
+#publicProducts .product-meta .like-btn,
+#featuredProducts .product-meta .like-btn{
+  position:static!important;
 }
 
 .public-product-card .photo{
   position:relative;
-}
-  .public-product-card .photo{
-  position:relative;
-}
-
-.like-btn{
-  position:absolute;
-  top:10px;
-  right:10px;
-  z-index:10;
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:#fff;
-  border:1px solid #E8E1D7;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:8px;
-  cursor:pointer;
-}
-
-.like-btn svg{
-  width:20px;
-  height:20px;
-  fill:none;
-  stroke:#172A35;
-  stroke-width:1.8;
-}
-
-.like-btn.liked svg{
-  fill:#C65B65;
-  stroke:#C65B65;
 }
   #publicProducts .public-product-card,
 #featuredProducts .public-product-card{
