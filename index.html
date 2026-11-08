@@ -506,47 +506,44 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   }
 }
 
-/* SELLORA — LIKE BUTTON STATIC */
+/* SELLORA — FIX LOVE ICON */
 
-.like-btn{
+#publicProducts .like-btn,
+#featuredProducts .like-btn{
   position:static!important;
-  top:auto!important;
-  right:auto!important;
-  bottom:auto!important;
-  left:auto!important;
-  z-index:auto!important;
-  transform:none!important;
-
   width:26px!important;
   height:26px!important;
   min-width:26px!important;
   min-height:26px!important;
-
-  flex:0 0 26px!important;
-  display:flex!important;
-  align-items:center;
-  justify-content:center;
-
   padding:4px!important;
-  margin:0!important;
-  border-radius:50%;
-  background:#fff;
-  border:1px solid #E8E1D7;
+
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+
+  background:#FFFFFF!important;
+  border:1px solid #C6A46A!important;
+  border-radius:50%!important;
   box-shadow:none!important;
-  cursor:pointer;
+  color:#172A35!important;
 }
 
-.like-btn svg{
-  width:15px!important;
-  height:15px!important;
-  fill:none;
-  stroke:#172A35;
-  stroke-width:1.8;
+#publicProducts .like-btn svg,
+#featuredProducts .like-btn svg{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:17px!important;
+  height:17px!important;
+  fill:none!important;
+  stroke:#172A35!important;
+  stroke-width:2!important;
 }
 
-.like-btn.liked svg{
-  fill:#C65B65;
-  stroke:#C65B65;
+#publicProducts .like-btn.liked svg,
+#featuredProducts .like-btn.liked svg{
+  fill:#C65B65!important;
+  stroke:#C65B65!important;
 }
 
 #publicProducts .product-meta,
