@@ -688,6 +688,42 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
   height:100%;
   object-fit:contain;
 }
+  /* SELLORA 2.0 — FIX PRODUCT CARD FRAME */
+
+#myProducts{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  align-items:start;
+}
+
+#myProducts .manage-card{
+  width:100%;
+  min-width:0;
+  height:auto;
+  align-self:start;
+  overflow:hidden;
+  border-radius:14px;
+}
+
+#myProducts .manage-card .body{
+  min-width:0;
+  height:auto;
+  padding:10px;
+}
+
+#myProducts .manage-card .photo{
+  width:100%;
+  aspect-ratio:1/1;
+  height:auto!important;
+  overflow:hidden;
+}
+
+@media(max-width:380px){
+  #myProducts{
+    gap:8px;
+  }
+}
 </style>
 </head>
 
