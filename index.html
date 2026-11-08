@@ -1274,12 +1274,7 @@ function card(product,manage=false){
        </div>`
     :"";
 
-  return `
-    <article class="card ${manage?"manage-card":"public-product-card"}">
-      ${image}
-      ${likeButton}
-      <div class="body">
-        <span class="pill">${esc(product.platform)}</span>
+  return `<article class="card ${manage?"manage-card":"public-product-card"}">${image}<div class="body"><div class="product-meta"><span class="pill">${esc(product.platform)}</span>${likeButton}</div>
         ${manage?`<span class="category-pill">${esc(product.category||"Lain-lain")}</span>`:""}
         <h3>${esc(product.name)}</h3>
         ${price}
