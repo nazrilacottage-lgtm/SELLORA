@@ -908,6 +908,35 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 #publicProducts .public-product-card .photo{
   position:relative;
 }
+  /* SELLORA — LIKE BUTTON COMPACT & STATIC */
+
+#publicProducts .product-meta .like-btn,
+#featuredProducts .product-meta .like-btn{
+  position:static!important;
+  inset:auto!important;
+  float:none!important;
+  transform:none!important;
+  animation:none!important;
+  transition:none!important;
+
+  width:27px!important;
+  height:27px!important;
+  min-width:27px!important;
+  min-height:27px!important;
+
+  padding:3px!important;
+  margin:0!important;
+  flex:0 0 27px!important;
+
+  box-shadow:none!important;
+  border-radius:50%!important;
+}
+
+#publicProducts .product-meta .like-btn svg,
+#featuredProducts .product-meta .like-btn svg{
+  width:16px!important;
+  height:16px!important;
+}
 </style>
 </head>
 
