@@ -1606,6 +1606,48 @@ $("productImageFile").addEventListener("change",function(){
   previewObjectUrl=URL.createObjectURL(file);$("productImagePreview").src=previewObjectUrl;$("productImagePreview").style.display="block";
   say("productMsg","Gambar dipilih. Ia akan dimampatkan semasa disimpan.");
 });
+  
+/* VIDEO PREVIEW */
+let videoPreviewObjectUrl=null;
+
+$("productVideoFile").addEventListener("change",function(){
+  const file=this.files?.[0];
+  const preview=$("productVideoPreview");
+  const wrap=$("productVideoPreviewWrap");
+
+  if(videoPreviewObjectUrl){
+    URL.revokeObjectURL(videoPreviewObjectUrl);
+    videoPreviewObjectUrl=null;
+  }
+
+  if(!file){
+    preview.pause();
+    preview.removeAttribute("src");
+    preview.load();
+    wrap.style.display="none";
+    return;
+  }
+
+  if(file.type!=="video/mp4"){
+    say("productMsg","Format video tidak disokong. Sila pilih MP4.");
+    this.value="";
+    wrap.style.display="none";
+    return;
+  }
+
+  if(file.size>50*1024*1024){
+    say("productMsg","Saiz video maksimum 50MB.");
+    this.value="";
+    wrap.style.display="none";
+    return;
+  }
+
+  videoPreviewObjectUrl=URL.createObjectURL(file);
+  preview.src=videoPreviewObjectUrl;
+  wrap.style.display="block";
+  say("productMsg","Video MP4 berjaya dipilih. Pratonton tersedia.");
+});
+
 
 async function saveProduct(){
   if(!user)return say("productMsg","Sila log masuk dahulu.");
