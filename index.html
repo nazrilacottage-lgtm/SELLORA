@@ -2204,6 +2204,7 @@ function chooseCategory(category){
 }
 
 
+
 function storeNav(section,button){
   document.querySelectorAll(".store-bottom-nav button")
     .forEach(item=>item.classList.remove("active"));
@@ -2213,9 +2214,15 @@ function storeNav(section,button){
   $("profilePanel").classList.add("hidden");
   $("featuredWrap").classList.remove("hidden");
 
+  $("publicProducts").classList.remove("hidden");
+  $("publicCategories").classList.remove("hidden");
+
+  $("shoppableVideoWrap").classList.remove("hidden");
+
   if(section==="me"){
     likedOnly=false;
     $("featuredWrap").classList.add("hidden");
+    $("shoppableVideoWrap").classList.add("hidden");
     $("profilePanel").classList.remove("hidden");
 
     const email=user?.email||"";
@@ -2246,6 +2253,8 @@ function storeNav(section,button){
   if(section==="liked"){
     likedOnly=true;
     selectedCategory="all";
+    $("shoppableVideoWrap").classList.add("hidden");
+
     renderPublicCategories();
     renderPublic();
 
@@ -2267,6 +2276,7 @@ function storeNav(section,button){
       behavior:"smooth",
       block:"start"
     });
+    return;
   }
 
   if(section==="categories"){
@@ -2274,8 +2284,25 @@ function storeNav(section,button){
       behavior:"smooth",
       block:"start"
     });
+    return;
+  }
+
+  if(section==="video"){
+    selectedCategory="all";
+    $("shoppableVideoWrap").classList.remove("hidden");
+
+    renderPublicCategories();
+    renderPublic();
+
+    $("shoppableVideoWrap").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+    return;
   }
 }
+
+
 
 
 function renderPublic(){
