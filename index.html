@@ -2333,6 +2333,94 @@ function renderPublic(){
     `;
   }).join("");
 }
+  
+/* SELLORA SHOPPABLE VIDEO PLAYER */
+
+let shoppablePopupTimer=null;
+let activeShoppableProduct=null;
+
+function openShoppableVideo(productId){
+  const product=publicItems.find(p=>String(p.id)===String(productId));
+
+  if(!product||!product.video_url){
+    alert("Video produk tidak dijumpai.");
+    return;
+  }
+
+  const videoUrl=safeUrl(product.video_url);
+  if(!videoUrl){
+    alert("Pautan video tidak sah.");
+    return;
+  }
+
+  activeShoppableProduct=product;
+
+  const modal=$("shoppableVideoModal");
+  const video=$("shoppableMainVideo");
+  const popup=$("shoppableProductPopup");
+  const buyBtn=$("shoppableBuyBtn");
+
+  if(shoppablePopupTimer){
+    clearTimeout(shoppablePopupTimer);
+    shoppablePopupTimer=null;
+  }
+
+  popup.classList.add("hidden");
+
+  $("shoppablePopupName").textContent=product.name||"Produk SELLORA";
+
+  $("shoppablePopupPrice").textContent=
+    product.price!=null
+      ?"RM "+Number(product.price).toFixed(2)
+      :"Lihat harga";
+
+  video.pause();
+  video.src=videoUrl;
+  video.load();
+
+  modal.classList.remove("hidden");
+
+  video.play().catch(()=>{
+    console.log("Tekan butang Play untuk memainkan video.");
+  });
+
+  /* PAPAR POPUP SELEPAS 3 SAAT */
+  shoppablePopupTimer=setTimeout(()=>{
+    if(activeShoppableProduct){
+      popup.classList.remove("hidden");
+    }
+  },3000);
+
+  /* BUTANG AFFILIATE */
+  buyBtn.onclick=function(event){
+    if(activeShoppableProduct){
+      trackClick(event,activeShoppableProduct.id);
+    }
+  };
+}
+
+function closeShoppablePopup(){
+  $("shoppableProductPopup").classList.add("hidden");
+}
+
+function closeShoppableVideo(){
+  if(shoppablePopupTimer){
+    clearTimeout(shoppablePopupTimer);
+    shoppablePopupTimer=null;
+  }
+
+  const video=$("shoppableMainVideo");
+
+  video.pause();
+  video.removeAttribute("src");
+  video.load();
+
+  $("shoppableProductPopup").classList.add("hidden");
+  $("shoppableVideoModal").classList.add("hidden");
+
+  activeShoppableProduct=null;
+}
+
 
 
 
