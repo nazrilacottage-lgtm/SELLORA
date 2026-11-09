@@ -1550,7 +1550,8 @@ textarea{
 
   <div id="publicProducts" class="products"></div>
   
-<!-- SELLORA SHOPPABLE VIDEO PLAYER -->
+
+<!-- SELLORA VIDEO FEED PLAYER -->
 <div id="shoppableVideoModal" class="shoppable-video-modal hidden">
 
   <button
@@ -1559,40 +1560,12 @@ textarea{
     onclick="closeShoppableVideo()"
   >✕</button>
 
-  <div class="shoppable-video-player-wrap">
+  <div id="shoppableVideoFeed" class="shoppable-video-feed">
+    <!-- Video akan dimasukkan secara automatik oleh JavaScript -->
+  </div>
 
-    <video
-      id="shoppableMainVideo"
-      playsinline
-      controls
-    ></video>
+</div>
 
-    <!-- POPUP PRODUK -->
-    <div id="shoppableProductPopup" class="shoppable-product-popup hidden">
-
-      <button
-        type="button"
-        class="shoppable-popup-close"
-        onclick="closeShoppablePopup()"
-      >✕</button>
-
-      <div class="shoppable-popup-content">
-
-        <div>
-          <div id="shoppablePopupName" class="shoppable-popup-name"></div>
-          <div id="shoppablePopupPrice" class="shoppable-popup-price"></div>
-        </div>
-
-        <button
-          type="button"
-          id="shoppableBuyBtn"
-          class="shoppable-buy-btn"
-        >
-          Beli Sekarang
-        </button>
-
-      </div>
-    </div>
 
   </div>
 </div>
