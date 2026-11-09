@@ -2392,11 +2392,24 @@ function openShoppableVideo(productId){
   },3000);
 
   /* BUTANG AFFILIATE */
-  buyBtn.onclick=function(event){
-    if(activeShoppableProduct){
-      trackClick(event,activeShoppableProduct.id);
-    }
-  };
+buyBtn.onclick=function(event){
+  const product=activeShoppableProduct;
+
+  if(!product)return;
+
+  const affiliateUrl=safeUrl(product.affiliate_url);
+
+  if(!affiliateUrl){
+    alert("Pautan affiliate produk tidak sah.");
+    return;
+  }
+
+  // Buka halaman affiliate
+  window.open(affiliateUrl,"_blank","noopener,noreferrer");
+
+  // Rekod klik ke Supabase
+  trackClick(event,product.id);
+};
 }
 
 function closeShoppablePopup(){
