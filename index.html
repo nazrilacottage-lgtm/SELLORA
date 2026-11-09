@@ -7,16 +7,16 @@
 <meta name="theme-color" content="#172A35">
 <title>SELLORA — Affiliate Marketplace</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --navy:#172A35;--navy2:#263E4B;--gold:#C6A46A;
-  --gold2:#D8BC8A;--ivory:#F7F5F0;--white:#FFF;
-  --line:#E6E0D5;--text:#172A35;--muted:#78838A;
-  --soft:#F0EDE6;--red:#A84F50;
+  --navy:#172A35;--navy2:#263E4B;--gold:#C6A46A;
+  --gold2:#D8BC8A;--ivory:#F7F5F0;--white:#FFF;
+  --line:#E6E0D5;--text:#172A35;--muted:#78838A;
+  --soft:#F0EDE6;--red:#A84F50;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -62,35 +62,35 @@ button:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .photo img{width:100%;height:100%;object-fit:cover}
 .featured-label{position:absolute;top:9px;left:9px;background:var(--gold);color:var(--navy);padding:4px 9px;border-radius:20px;font-size:10px;font-weight:bold;z-index:2}
 .body{
-  padding:7px!important;
-  display:flex;
-  flex-direction:column;
-  flex:0 0 auto;
-  gap:2px!important;
+  padding:7px!important;
+  display:flex;
+  flex-direction:column;
+  flex:0 0 auto;
+  gap:2px!important;
 }
 
 .body h3{
-  margin:1px 0!important;
-  padding:0!important;
-  line-height:1.2!important;
+  margin:1px 0!important;
+  padding:0!important;
+  line-height:1.2!important;
 }
 
 .body .price{
-  margin:0!important;
-  padding:0!important;
-  line-height:1.2!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:1.2!important;
 }
 
 .body .pill,
 .body .category-pill{
-  margin:0!important;
-  padding:2px 5px!important;
-  line-height:1.2!important;
+  margin:0!important;
+  padding:2px 5px!important;
+  line-height:1.2!important;
 }
 
 .body .desc{
-  margin:1px 0!important;
-  line-height:1.2!important;
+  margin:1px 0!important;
+  line-height:1.2!important;
 }
 .pill{font-size:11px;color:#856638;background:#F7F1E5;border:1px solid #E4D4B4;border-radius:20px;padding:3px 9px;align-self:start}
 .category-pill{font-size:11px;color:#53636A;background:#EFF2F2;padding:3px 9px;border-radius:20px;align-self:start;margin-top:5px}
@@ -104,11 +104,11 @@ button:disabled{opacity:.6;cursor:not-allowed;transform:none}
 
 /* STOREFRONT PRODUCT GRID */
 #publicProducts,#featuredProducts{
-  display:grid!important;
-  grid-template-columns:repeat(2,minmax(0,1fr))!important;
-  gap:8px!important;
-  align-items:stretch;
-  width:100%;
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+  align-items:stretch;
+  width:100%;
 }
 #publicProducts>* ,#featuredProducts>*{min-width:0;max-width:100%;box-sizing:border-box}
 .public-product-card{min-width:0;width:100%;border-radius:13px;overflow:hidden;box-shadow:0 3px 12px rgba(23,42,53,.07)}
@@ -149,37 +149,37 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 /* IMAGE PREVIEW - KECIL DAN KEMAS */
 .image-preview-container{width:100%;margin-top:10px;padding:10px;background:#F7F5F0;border:1px dashed #C6A46A;border-radius:12px;box-sizing:border-box}
 #productImagePreview{
-  display:none;
-  width:100px;
-  height:100px;
-  max-width:100%;
-  object-fit:contain;
-  margin:8px auto;
-  border-radius:10px;
-  border:1px solid var(--line);
-  background:#fff;
+  display:none;
+  width:100px;
+  height:100px;
+  max-width:100%;
+  object-fit:contain;
+  margin:8px auto;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#fff;
 }
 
 @media(min-width:768px){
-  #publicProducts,#featuredProducts{
-    grid-template-columns:repeat(4,minmax(0,1fr))!important;
-    gap:18px!important;
-  }
+  #publicProducts,#featuredProducts{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:18px!important;
+  }
 }
 @media(max-width:700px){.toolbar{grid-template-columns:1fr 1fr}.toolbar input{grid-column:1/-1}}
 @media(max-width:620px){
-  .grid{grid-template-columns:1fr}
-  .toolbar{grid-template-columns:1fr}
-  .hero{padding:22px}
-  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-  .photo{height:140px}
-  .body{padding:10px}
-  .price{font-size:17px}
-  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .stat{padding:9px}
-  .stat strong{font-size:19px}
-  .panel{padding:15px}
-  .section-heading{align-items:flex-start;flex-direction:column}
+  .grid{grid-template-columns:1fr}
+  .toolbar{grid-template-columns:1fr}
+  .hero{padding:22px}
+  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .photo{height:140px}
+  .body{padding:10px}
+  .price{font-size:17px}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .stat{padding:9px}
+  .stat strong{font-size:19px}
+  .panel{padding:15px}
+  .section-heading{align-items:flex-start;flex-direction:column}
 }
 @media(max-width:350px){.products{grid-template-columns:1fr}.logo{font-size:23px}}
 
@@ -193,1264 +193,1094 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-t
 @media(max-width:600px){.sellora-hero{min-height:230px;padding:25px 20px;border-radius:16px}}
 /* FIX SAIZ PREVIEW GAMBAR UPLOAD */
 .image-preview-container {
-  width: 100% !important;
-  max-width: 120px !important;
-  padding: 8px !important;
-  margin-top: 10px !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 120px !important;
+  padding: 8px !important;
+  margin-top: 10px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
 }
 
 #productImagePreview {
-  display: none;
-  width: 70px !important;
-  height: 70px !important;
-  min-width: 70px !important;
-  max-width: 70px !important;
-  min-height: 70px !important;
-  max-height: 70px !important;
-  object-fit: contain !important;
-  margin: 8px auto !important;
-  border-radius: 8px !important;
-  background: #fff !important;
+  display: none;
+  width: 70px !important;
+  height: 70px !important;
+  min-width: 70px !important;
+  max-width: 70px !important;
+  min-height: 70px !important;
+  max-height: 70px !important;
+  object-fit: contain !important;
+  margin: 8px auto !important;
+  border-radius: 8px !important;
+  background: #fff !important;
 }
-  
+  
 /* =================================
-   SELLORA MINIMAL MARKETPLACE
+   SELLORA MINIMAL MARKETPLACE
 ================================= */
 
 .store-top{
-  background:#172A35;
-  color:#fff;
-  padding:18px 16px 20px;
-  border-radius:0 0 20px 20px;
-  margin:-22px -16px 20px;
+  background:#172A35;
+  color:#fff;
+  padding:18px 16px 20px;
+  border-radius:0 0 20px 20px;
+  margin:-22px -16px 20px;
 }
 
 .store-top-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
 }
 
 .store-brand{
-  font-size:27px;
-  font-weight:800;
-  letter-spacing:3px;
-  color:#D8BC8A;
+  font-size:27px;
+  font-weight:800;
+  letter-spacing:3px;
+  color:#D8BC8A;
 }
 
 .store-share{
-  width:42px;
-  height:42px;
-  padding:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:transparent;
-  border:1px solid rgba(216,188,138,.55);
-  color:#D8BC8A;
+  width:42px;
+  height:42px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:transparent;
+  border:1px solid rgba(216,188,138,.55);
+  color:#D8BC8A;
 }
 
 .store-search{
-  position:relative;
-  margin-top:17px;
+  position:relative;
+  margin-top:17px;
 }
 
 .store-search svg{
-  position:absolute;
-  left:14px;
-  top:50%;
-  transform:translateY(-50%);
-  width:19px;
-  height:19px;
-  stroke:#78838A;
-  pointer-events:none;
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  width:19px;
+  height:19px;
+  stroke:#78838A;
+  pointer-events:none;
 }
 
 .store-search input{
-  padding:14px 14px 14px 43px;
-  border:0;
-  border-radius:12px;
-  background:#fff;
-  font-size:14px;
+  padding:14px 14px 14px 43px;
+  border:0;
+  border-radius:12px;
+  background:#fff;
+  font-size:14px;
 }
 
 .market-heading{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin:23px 0 13px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin:23px 0 13px;
 }
 
 .market-heading h2{
-  font-size:19px;
-  margin:0;
+  font-size:19px;
+  margin:0;
 }
 
 .market-heading button{
-  background:none;
-  border:0;
-  color:#A17C42;
-  padding:5px;
-  font-size:12px;
+  background:none;
+  border:0;
+  color:#A17C42;
+  padding:5px;
+  font-size:12px;
 }
 
 
 .category-grid{
-  display:flex;
-  flex-wrap:nowrap;
-  gap:10px;
-  overflow-x:auto;
-  overflow-y:hidden;
-  padding:5px 2px 12px;
-  scrollbar-width:none;
-  -webkit-overflow-scrolling:touch;
-  scroll-snap-type:x mandatory;
+  display:flex;
+  flex-wrap:nowrap;
+  gap:10px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:5px 2px 12px;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+  scroll-snap-type:x mandatory;
 }
 
 .category-grid::-webkit-scrollbar{
-  display:none;
+  display:none;
 }
 
 .category-tile{
-  flex:0 0 76px;
-  width:76px;
-  min-width:76px;
-  min-height:78px;
-  padding:9px 4px;
-  border:1px solid #EAE4DA;
-  border-radius:14px;
-  background:#fff;
-  color:#172A35;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  font-size:10px;
-  font-weight:600;
-  text-align:center;
-  scroll-snap-align:start;
+  flex:0 0 76px;
+  width:76px;
+  min-width:76px;
+  min-height:78px;
+  padding:9px 4px;
+  border:1px solid #EAE4DA;
+  border-radius:14px;
+  background:#fff;
+  color:#172A35;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  font-size:10px;
+  font-weight:600;
+  text-align:center;
+  scroll-snap-align:start;
 }
 
 .category-tile svg{
-  width:22px;
-  height:22px;
-  stroke:#172A35;
-  fill:none;
-  stroke-width:1.7;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+  width:22px;
+  height:22px;
+  stroke:#172A35;
+  fill:none;
+  stroke-width:1.7;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
 .category-tile.active{
-  background:#F3EBDD;
-  border-color:#C6A46A;
-  color:#8A6938;
+  background:#F3EBDD;
+  border-color:#C6A46A;
+  color:#8A6938;
 }
 
 .category-tile.active svg{
-  stroke:#A17C42;
+  stroke:#A17C42;
 }
 
 
 
 .store-divider{
-  height:1px;
-  background:#E6E0D5;
-  margin:22px 0;
+  height:1px;
+  background:#E6E0D5;
+  margin:22px 0;
 }
 
 .store-filter-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin:12px 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin:12px 0;
 }
 
 .store-filter-row select{
-  min-width:0;
-  padding:10px;
-  font-size:12px;
-  background:#fff;
+  min-width:0;
+  padding:10px;
+  font-size:12px;
+  background:#fff;
 }
 
 .store-bottom-nav{
-  display:none;
+  display:none;
 }
 
 
 .public-product-card{
-  min-width:0;
-  overflow:hidden;
-  border-radius:15px;
-  border:1px solid #E8E1D7;
-  background:#FFFFFF;
-  box-shadow:0 4px 14px rgba(23,42,53,.065);
-  transition:transform .2s ease,box-shadow .2s ease;
+  min-width:0;
+  overflow:hidden;
+  border-radius:15px;
+  border:1px solid #E8E1D7;
+  background:#FFFFFF;
+  box-shadow:0 4px 14px rgba(23,42,53,.065);
+  transition:transform .2s ease,box-shadow .2s ease;
 }
 
 .public-product-card .photo{
-  width:100%;
-  aspect-ratio:1/1;
-  height:auto;
-  background:#F3F0E9;
-  overflow:hidden;
+  width:100%;
+  aspect-ratio:1/1;
+  height:auto;
+  background:#F3F0E9;
+  overflow:hidden;
 }
 
 .public-product-card .photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 .public-product-card .body{
-  padding:11px;
+  padding:11px;
 }
 
 .public-product-card h3{
-  font-size:10px;
-  line-height:1.45;
-  font-weight:600;
-  color:#172A35;
-  min-height:35px;
-  margin:0 0 7px;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  overflow:hidden;
+  font-size:10px;
+  line-height:1.45;
+  font-weight:600;
+  color:#172A35;
+  min-height:35px;
+  margin:0 0 7px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
 
 .public-product-card .price{
-  color:#A77C37;
-  font-size:17px;
-  font-weight:700;
-  margin:5px 0 10px;
+  color:#A77C37;
+  font-size:17px;
+  font-weight:700;
+  margin:5px 0 10px;
 }
 
 .public-product-card .buy{
-  width:100%;
-  background:#172A35;
-  color:#FFFFFF;
-  border:1px solid #172A35;
-  border-radius:9px;
-  padding:10px 6px;
-  font-size:11px;
-  font-weight:600;
-  letter-spacing:.2px;
+  width:100%;
+  background:#172A35;
+  color:#FFFFFF;
+  border:1px solid #172A35;
+  border-radius:9px;
+  padding:10px 6px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.2px;
 }
 
 
 
 @media(max-width:620px){
-  #publicStore{
-    padding-bottom:75px;
-  }
+  #publicStore{
+    padding-bottom:75px;
+  }
 
-  .store-bottom-nav{
-    display:flex;
-    position:fixed;
-    z-index:30;
-    left:0;
-    right:0;
-    bottom:0;
-    justify-content:space-around;
-    align-items:center;
-    background:rgba(255,255,255,.97);
-    border-top:1px solid #E6E0D5;
-    padding:8px 5px calc(8px + env(safe-area-inset-bottom));
-    box-shadow:0 -4px 18px rgba(23,42,53,.07);
-  }
+  .store-bottom-nav{
+    display:flex;
+    position:fixed;
+    z-index:30;
+    left:0;
+    right:0;
+    bottom:0;
+    justify-content:space-around;
+    align-items:center;
+    background:rgba(255,255,255,.97);
+    border-top:1px solid #E6E0D5;
+    padding:8px 5px calc(8px + env(safe-area-inset-bottom));
+    box-shadow:0 -4px 18px rgba(23,42,53,.07);
+  }
 
-  .store-bottom-nav button{
-    flex:1;
-    min-width:0;
-    padding:5px 2px;
-    background:transparent;
-    border:0;
-    color:#879096;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:4px;
-    font-size:9px;
-    font-weight:500;
-    transition:color .2s ease;
-  }
+  .store-bottom-nav button{
+    flex:1;
+    min-width:0;
+    padding:5px 2px;
+    background:transparent;
+    border:0;
+    color:#879096;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    font-size:9px;
+    font-weight:500;
+    transition:color .2s ease;
+  }
 
-  .store-bottom-nav button svg{
-    width:20px;
-    height:20px;
-    stroke:currentColor;
-    fill:none;
-    stroke-width:1.6;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-  }
+  .store-bottom-nav button svg{
+    width:20px;
+    height:20px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
 
-  .store-bottom-nav button.active{
-    color:#B58A43;
-    font-weight:700;
-  }
+  .store-bottom-nav button.active{
+    color:#B58A43;
+    font-weight:700;
+  }
 
-  
+  
 }
 
 @media(min-width:768px){
-  .store-top{
-    border-radius:16px;
-    margin:0 0 22px;
-  }
+  .store-top{
+    border-radius:16px;
+    margin:0 0 22px;
+  }
 }
 
 /* SELLORA — FIX LOVE ICON */
 
 #publicProducts .like-btn,
 #featuredProducts .like-btn{
-  position:static!important;
-  width:26px!important;
-  height:26px!important;
-  min-width:26px!important;
-  min-height:26px!important;
-  padding:4px!important;
+  position:static!important;
+  width:26px!important;
+  height:26px!important;
+  min-width:26px!important;
+  min-height:26px!important;
+  padding:4px!important;
 
-  display:flex!important;
-  align-items:center!important;
-  justify-content:center!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
 
-  background:#FFFFFF!important;
-  border:1px solid #C6A46A!important;
-  border-radius:50%!important;
-  box-shadow:none!important;
-  color:#172A35!important;
+  background:#FFFFFF!important;
+  border:1px solid #C6A46A!important;
+  border-radius:50%!important;
+  box-shadow:none!important;
+  color:#172A35!important;
 }
 
 #publicProducts .like-btn svg,
 #featuredProducts .like-btn svg{
-  display:block!important;
-  visibility:visible!important;
-  opacity:1!important;
-  width:17px!important;
-  height:17px!important;
-  fill:none!important;
-  stroke:#172A35!important;
-  stroke-width:2!important;
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:17px!important;
+  height:17px!important;
+  fill:none!important;
+  stroke:#172A35!important;
+  stroke-width:2!important;
 }
 
 #publicProducts .like-btn.liked svg,
 #featuredProducts .like-btn.liked svg{
-  fill:#C65B65!important;
-  stroke:#C65B65!important;
+  fill:#C65B65!important;
+  stroke:#C65B65!important;
 }
 
 #publicProducts .product-meta,
 #featuredProducts .product-meta{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  width:100%;
-  gap:6px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  gap:6px;
 }
 
 #publicProducts .product-meta .like-btn,
 #featuredProducts .product-meta .like-btn{
-  position:static!important;
+  position:static!important;
 }
 
 .public-product-card .photo{
-  position:relative;
+  position:relative;
 }
-  #publicProducts .public-product-card,
+  #publicProducts .public-product-card,
 #featuredProducts .public-product-card{
-  position:relative !important;
+  position:relative !important;
 }
 
 #publicProducts .public-product-card .like-btn,
 #featuredProducts .public-product-card .like-btn{
-  display:flex !important;
-  visibility:visible !important;
-  opacity:1 !important;
-  position:absolute !important;
-  top:10px !important;
-  right:10px !important;
-  z-index:99 !important;
-  width:38px !important;
-  height:38px !important;
-  background:#fff !important;
-  border:1px solid #C6A46A !important;
-  border-radius:50% !important;
+  display:flex !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  position:absolute !important;
+  top:10px !important;
+  right:10px !important;
+  z-index:99 !important;
+  width:38px !important;
+  height:38px !important;
+  background:#fff !important;
+  border:1px solid #C6A46A !important;
+  border-radius:50% !important;
 }
 
 #publicProducts .public-product-card .like-btn svg,
 #featuredProducts .public-product-card .like-btn svg{
-  display:block !important;
-  width:21px !important;
-  height:21px !important;
+  display:block !important;
+  width:21px !important;
+  height:21px !important;
 }
-  .header-store-tools{
-  max-width:1150px;
-  margin:auto;
-  padding:0 18px 14px;
-  display:flex;
-  align-items:center;
-  gap:10px;
+  .header-store-tools{
+  max-width:1150px;
+  margin:auto;
+  padding:0 18px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .header-store-tools .store-search{
-  flex:1;
-  min-width:0;
-  margin-top:0;
+  flex:1;
+  min-width:0;
+  margin-top:0;
 }
 
 .header-store-tools .store-search input{
-  width:100%;
-  box-sizing:border-box;
+  width:100%;
+  box-sizing:border-box;
 }
 
 .header-store-tools .store-share{
-  flex:0 0 42px;
+  flex:0 0 42px;
 }
-  .profile-card{
-  background:#fff;
-  border:1px solid rgba(198,164,106,.4);
-  border-radius:18px;
-  padding:28px 18px;
-  text-align:center;
-  box-shadow:0 4px 16px rgba(23,42,53,.06);
-  margin:15px 0;
+  .profile-card{
+  background:#fff;
+  border:1px solid rgba(198,164,106,.4);
+  border-radius:18px;
+  padding:28px 18px;
+  text-align:center;
+  box-shadow:0 4px 16px rgba(23,42,53,.06);
+  margin:15px 0;
 }
 
 .profile-avatar{
-  width:76px;
-  height:76px;
-  margin:0 auto 14px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#172A35;
-  border:2px solid #C6A46A;
+  width:76px;
+  height:76px;
+  margin:0 auto 14px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#172A35;
+  border:2px solid #C6A46A;
 }
 
 .profile-avatar svg{
-  width:36px;
-  height:36px;
-  fill:none;
-  stroke:#D8BC8A;
-  stroke-width:1.5;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+  width:36px;
+  height:36px;
+  fill:none;
+  stroke:#D8BC8A;
+  stroke-width:1.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 
 .profile-card h3{
-  margin:8px 0;
-  color:#172A35;
-  font-size:19px;
+  margin:8px 0;
+  color:#172A35;
+  font-size:19px;
 }
 
 .profile-card p{
-  margin:5px 0 15px;
-  color:#78838A;
-  font-size:13px;
-  overflow-wrap:anywhere;
+  margin:5px 0 15px;
+  color:#78838A;
+  font-size:13px;
+  overflow-wrap:anywhere;
 }
 
 .profile-role{
-  display:inline-block;
-  padding:7px 18px;
-  border-radius:30px;
-  background:#172A35;
-  color:#D8BC8A;
-  font-size:11px;
-  font-weight:800;
-  letter-spacing:1.5px;
+  display:inline-block;
+  padding:7px 18px;
+  border-radius:30px;
+  background:#172A35;
+  color:#D8BC8A;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:1.5px;
 }
 
 .profile-menu{
-  display:grid;
-  gap:10px;
-  margin-top:16px;
+  display:grid;
+  gap:10px;
+  margin-top:16px;
 }
 
 .profile-menu button{
-  width:100%;
-  padding:15px;
-  text-align:left;
-  background:#fff;
-  color:#172A35;
-  border:1px solid rgba(198,164,106,.4);
-  border-radius:12px;
-  font-size:14px;
+  width:100%;
+  padding:15px;
+  text-align:left;
+  background:#fff;
+  color:#172A35;
+  border:1px solid rgba(198,164,106,.4);
+  border-radius:12px;
+  font-size:14px;
 }
-  /* SELLORA 2.0 — ADMIN PRODUCT IMAGE */
+  /* SELLORA 2.0 — ADMIN PRODUCT IMAGE */
 
 #myProducts .manage-card{
-  min-width:0;
-  overflow:hidden;
+  min-width:0;
+  overflow:hidden;
 }
 
 #myProducts .manage-card .photo{
-  width:100%;
-  height:auto!important;
-  aspect-ratio:1/1;
-  flex:0 0 auto;
-  overflow:hidden;
-  background:#F3F0E9;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:100%;
+  height:auto!important;
+  aspect-ratio:1/1;
+  flex:0 0 auto;
+  overflow:hidden;
+  background:#F3F0E9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 #myProducts .manage-card .photo img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
-  /* SELLORA 2.0 — FIX PRODUCT CARD FRAME */
+  /* SELLORA 2.0 — FIX PRODUCT CARD FRAME */
 
 #myProducts{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
-  align-items:start;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  align-items:start;
 }
 
 #myProducts .manage-card{
-  width:100%;
-  min-width:0;
-  height:auto;
-  align-self:start;
-  overflow:hidden;
-  border-radius:14px;
+  width:100%;
+  min-width:0;
+  height:auto;
+  align-self:start;
+  overflow:hidden;
+  border-radius:14px;
 }
 
 #myProducts .manage-card .body{
-  min-width:0;
-  height:auto;
-  padding:10px;
+  min-width:0;
+  height:auto;
+  padding:10px;
 }
 
 #myProducts .manage-card .photo{
-  width:100%;
-  aspect-ratio:1/1;
-  height:auto!important;
-  overflow:hidden;
+  width:100%;
+  aspect-ratio:1/1;
+  height:auto!important;
+  overflow:hidden;
 }
 
 @media(max-width:380px){
-  #myProducts{
-    gap:8px;
-  }
+  #myProducts{
+    gap:8px;
+  }
 }
-  /* SELLORA 2.0 — COMPACT ADMIN PRODUCT CARD */
+  /* SELLORA 2.0 — COMPACT ADMIN PRODUCT CARD */
 
 #myProducts .manage-card{
-  height:auto!important;
-  align-self:start;
-  border-radius:12px!important;
+  height:auto!important;
+  align-self:start;
+  border-radius:12px!important;
 }
 
 #myProducts .manage-card .body{
-  display:flex;
-  flex-direction:column;
-  gap:5px!important;
-  padding:9px!important;
+  display:flex;
+  flex-direction:column;
+  gap:5px!important;
+  padding:9px!important;
 }
 
 #myProducts .manage-card h3{
-  font-size:13px!important;
-  font-weight:400!important;
-  line-height:1.3!important;
-  margin:2px 0!important;
+  font-size:13px!important;
+  font-weight:400!important;
+  line-height:1.3!important;
+  margin:2px 0!important;
 }
 
 #myProducts .manage-card .price{
-  font-size:15px!important;
-  font-weight:400!important;
-  line-height:1.2!important;
-  margin:0!important;
+  font-size:15px!important;
+  font-weight:400!important;
+  line-height:1.2!important;
+  margin:0!important;
 }
 
 #myProducts .manage-card .pill,
 #myProducts .manage-card .category-pill{
-  font-size:10px!important;
-  padding:3px 6px!important;
-  margin:0!important;
+  font-size:10px!important;
+  padding:3px 6px!important;
+  margin:0!important;
 }
 
 #myProducts .manage-card .desc{
-  font-size:11px!important;
-  line-height:1.3!important;
-  margin:2px 0!important;
+  font-size:11px!important;
+  line-height:1.3!important;
+  margin:2px 0!important;
 }
 
 #myProducts .manage-card .click-count,
 #myProducts .manage-card .small{
-  font-size:10px!important;
-  line-height:1.3!important;
-  margin:0!important;
+  font-size:10px!important;
+  line-height:1.3!important;
+  margin:0!important;
 }
 
 #myProducts .manage-card .manage-actions{
-  display:flex;
-  gap:6px!important;
-  margin-top:4px!important;
+  display:flex;
+  gap:6px!important;
+  margin-top:4px!important;
 }
 
 #myProducts .manage-card .manage-actions button{
-  flex:1;
-  padding:8px 5px!important;
-  font-size:11px!important;
+  flex:1;
+  padding:8px 5px!important;
+  font-size:11px!important;
 }
-  /* Kontena untuk mengekalkan bentuk segi empat sama */
+  /* Kontena untuk mengekalkan bentuk segi empat sama */
 .image-container {
-  width: 100%;
-  aspect-ratio: 1 / 1;     /* Memaksa nisbah 1:1 (Square) spt Shopee */
-  overflow: hidden;        /* Memotong bahagian imej yang terlebih */
-  border-radius: 8px 8px 0 0; /* Melengkungkan bucu atas sahaja */
-  background-color: #f8f9fa;  /* Warna latar jika imej lambat dimuatkan */
+  width: 100%;
+  aspect-ratio: 1 / 1;     /* Memaksa nisbah 1:1 (Square) spt Shopee */
+  overflow: hidden;        /* Memotong bahagian imej yang terlebih */
+  border-radius: 8px 8px 0 0; /* Melengkungkan bucu atas sahaja */
+  background-color: #f8f9fa;  /* Warna latar jika imej lambat dimuatkan */
 }
 
 /* Mengawal imej di dalam kontena */
 .product-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;       /* Memastikan imej penuh tanpa herot/penyek */
-  object-position: center; /* Memastikan fokus imej sentiasa di tengah */
-  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* Memastikan imej penuh tanpa herot/penyek */
+  object-position: center; /* Memastikan fokus imej sentiasa di tengah */
+  display: block;
 }
 
 /* Nota Tambahan: Untuk susunan grid kad produk yang kemas */
 .product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Pembahagian 2 lajur setara */
-  gap: 12px;
-  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Pembahagian 2 lajur setara */
+  gap: 12px;
+  padding: 12px;
 }
 
 .product-card {
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
 }
-  /* SELLORA — RAPATKAN KANDUNGAN KAD PRODUK AWAM */
+  /* SELLORA — RAPATKAN KANDUNGAN KAD PRODUK AWAM */
 
 #publicProducts .public-product-card .body{
-  display:flex!important;
-  flex-direction:column!important;
-  justify-content:flex-start!important;
-  gap:3px!important;
-  padding:9px!important;
-  flex:0 0 auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  gap:3px!important;
+  padding:9px!important;
+  flex:0 0 auto!important;
 }
 
 #publicProducts .public-product-card .body h3{
-  margin:0!important;
-  padding:0!important;
-  min-height:0!important;
-  line-height:1.3!important;
-  font-size:14px!important;
-  font-weight:400!important;
+  margin:0!important;
+  padding:0!important;
+  min-height:0!important;
+  line-height:1.3!important;
+  font-size:14px!important;
+  font-weight:400!important;
 }
 
 #publicProducts .public-product-card .body .price{
-  margin:3px 0!important;
-  padding:0!important;
-  line-height:1.3!important;
-  font-size:16px!important;
-  font-weight:400!important;
+  margin:3px 0!important;
+  padding:0!important;
+  line-height:1.3!important;
+  font-size:16px!important;
+  font-weight:400!important;
 }
 
 #publicProducts .public-product-card .body .buy{
-  margin:4px 0 0!important;
-  padding:10px!important;
-  line-height:1.3!important;
-  font-size:13px!important;
+  margin:4px 0 0!important;
+  padding:10px!important;
+  line-height:1.3!important;
+  font-size:13px!important;
 }
-  /* SELLORA — LIKE BUTTON SELEPAS PLATFORM */
+  /* SELLORA — LIKE BUTTON SELEPAS PLATFORM */
 
 #publicProducts .product-meta{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
 }
 
 #publicProducts .product-meta .like-btn{
-  position:static!important;
-  display:flex!important;
-  align-items:center;
-  justify-content:center;
-  flex:0 0 34px;
-  width:34px;
-  height:34px;
-  margin:0!important;
-  padding:5px!important;
-  border-radius:50%;
-  z-index:1;
+  position:static!important;
+  display:flex!important;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  margin:0!important;
+  padding:5px!important;
+  border-radius:50%;
+  z-index:1;
 }
 
 #publicProducts .public-product-card .photo{
-  position:relative;
+  position:relative;
 }
-  /* SELLORA — LIKE BUTTON COMPACT & STATIC */
+  /* SELLORA — LIKE BUTTON COMPACT & STATIC */
 
 #publicProducts .product-meta .like-btn,
 #featuredProducts .product-meta .like-btn{
-  position:static!important;
-  inset:auto!important;
-  float:none!important;
-  transform:none!important;
-  animation:none!important;
-  transition:none!important;
+  position:static!important;
+  inset:auto!important;
+  float:none!important;
+  transform:none!important;
+  animation:none!important;
+  transition:none!important;
 
-  width:27px!important;
-  height:27px!important;
-  min-width:27px!important;
-  min-height:27px!important;
+  width:27px!important;
+  height:27px!important;
+  min-width:27px!important;
+  min-height:27px!important;
 
-  padding:3px!important;
-  margin:0!important;
-  flex:0 0 27px!important;
+  padding:3px!important;
+  margin:0!important;
+  flex:0 0 27px!important;
 
-  box-shadow:none!important;
-  border-radius:50%!important;
+  box-shadow:none!important;
+  border-radius:50%!important;
 }
 
 #publicProducts .product-meta .like-btn svg,
 #featuredProducts .product-meta .like-btn svg{
-  width:16px!important;
-  height:16px!important;
+  width:16px!important;
+  height:16px!important;
 }
-  /* SELLORA — FINAL FIX LIKE FLOATING */
+  /* SELLORA — FINAL FIX LIKE FLOATING */
 
 #publicProducts .public-product-card,
 #featuredProducts .public-product-card{
-  position:relative!important;
-  transform:none!important;
+  position:relative!important;
+  transform:none!important;
 }
 
 #publicProducts .public-product-card .like-btn,
 #featuredProducts .public-product-card .like-btn{
-  position:static!important;
-  inset:auto!important;
-  float:none!important;
-  transform:none!important;
-  z-index:1!important;
-  align-self:auto!important;
-  margin:0!important;
+  position:static!important;
+  inset:auto!important;
+  float:none!important;
+  transform:none!important;
+  z-index:1!important;
+  align-self:auto!important;
+  margin:0!important;
 }
 
 /* Pastikan butang ikut baris platform */
 #publicProducts .product-meta,
 #featuredProducts .product-meta{
-  position:static!important;
-  display:flex!important;
-  align-items:center!important;
-  justify-content:space-between!important;
+  position:static!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
 }
 
 /* Buang sebarang gaya melekat */
 #publicProducts .like-btn,
 #featuredProducts .like-btn{
-  position:static!important;
-  top:auto!important;
-  right:auto!important;
-  bottom:auto!important;
-  left:auto!important;
+  position:static!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
 }
-  /* SELLORA — COMPACT CATEGORY DESIGN */
+  /* SELLORA — COMPACT CATEGORY DESIGN */
 
 .category-grid{
-  gap:10px!important;
-  padding:8px 10px!important;
-  margin:0!important;
-  align-items:start!important;
+  gap:10px!important;
+  padding:8px 10px!important;
+  margin:0!important;
+  align-items:start!important;
 }
 
 .category-tile{
-  min-width:58px!important;
-  width:58px!important;
-  min-height:0!important;
-  height:auto!important;
-  padding:3px 2px!important;
-  margin:0!important;
+  min-width:58px!important;
+  width:58px!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:3px 2px!important;
+  margin:0!important;
 
-  background:transparent!important;
-  border:none!important;
-  box-shadow:none!important;
-  border-radius:0!important;
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  border-radius:0!important;
 
-  display:flex!important;
-  flex-direction:column!important;
-  align-items:center!important;
-  justify-content:flex-start!important;
-  gap:4px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:4px!important;
 }
 
 .category-tile .icon,
 .category-tile .category-icon{
-  width:30px!important;
-  height:30px!important;
-  font-size:24px!important;
-  background:transparent!important;
-  border:none!important;
-  box-shadow:none!important;
-  border-radius:0!important;
+  width:30px!important;
+  height:30px!important;
+  font-size:24px!important;
+  background:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  border-radius:0!important;
 }
 
 .category-tile span{
-  font-size:10px!important;
-  font-weight:400!important;
-  line-height:1.2!important;
-  text-align:center!important;
+  font-size:10px!important;
+  font-weight:400!important;
+  line-height:1.2!important;
+  text-align:center!important;
 }
-  /* SELLORA — EXTRA COMPACT CATEGORY SPACE */
+  /* SELLORA — EXTRA COMPACT CATEGORY SPACE */
 
 .category-grid{
-  gap:6px!important;
-  padding:2px 8px!important;
-  margin:0!important;
-  min-height:0!important;
-  height:auto!important;
-  row-gap:4px!important;
+  gap:6px!important;
+  padding:2px 8px!important;
+  margin:0!important;
+  min-height:0!important;
+  height:auto!important;
+  row-gap:4px!important;
 }
 
 .category-tile{
-  width:52px!important;
-  min-width:52px!important;
-  min-height:0!important;
-  height:auto!important;
-  padding:0!important;
-  gap:2px!important;
+  width:52px!important;
+  min-width:52px!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:0!important;
+  gap:2px!important;
 }
 
 .category-tile .icon,
 .category-tile .category-icon{
-  width:24px!important;
-  height:24px!important;
-  font-size:20px!important;
+  width:24px!important;
+  height:24px!important;
+  font-size:20px!important;
 }
 
 .category-tile span{
-  font-size:9px!important;
-  line-height:1.1!important;
-  margin:0!important;
+  font-size:9px!important;
+  line-height:1.1!important;
+  margin:0!important;
 }
 
 /* Kurangkan ruang bawah kawasan kategori */
 #publicCategories{
-  padding-top:0!important;
-  padding-bottom:2px!important;
-  margin-bottom:0!important;
+  padding-top:0!important;
+  padding-bottom:2px!important;
+  margin-bottom:0!important;
 }
-  /* SELLORA 2.0 — OFFICIAL FONT */
+  /* SELLORA 2.0 — OFFICIAL FONT */
 
 body,
 button,
 input,
 select,
 textarea{
-  font-family:'Inter',sans-serif!important;
+  font-family:'Inter',sans-serif!important;
 }
 
 /* Tajuk produk */
 .public-product-card h3,
 .manage-card h3{
-  font-family:'Inter',sans-serif!important;
-  font-weight:400!important;
+  font-family:'Inter',sans-serif!important;
+  font-weight:400!important;
 }
 
 /* Harga produk */
 .public-product-card .price,
 .manage-card .price{
-  font-family:'Inter',sans-serif!important;
-  font-weight:500!important;
+  font-family:'Inter',sans-serif!important;
+  font-weight:500!important;
 }
 
 /* Butang */
 .public-product-card .buy,
 .manage-card button{
-  font-family:'Inter',sans-serif!important;
-  font-weight:500!important;
+  font-family:'Inter',sans-serif!important;
+  font-weight:500!important;
 }
 
 /* Kategori dan label */
 .category-tile,
 .pill,
 .category-pill{
-  font-family:'Inter',sans-serif!important;
-  font-weight:400!important;
+  font-family:'Inter',sans-serif!important;
+  font-weight:400!important;
 }
-  /* SELLORA — KEMASKAN FRAME PRODUK SELLER DASHBOARD */
+  /* SELLORA — KEMASKAN FRAME PRODUK SELLER DASHBOARD */
 
 /* Frame produk */
 .manage-card{
-  height:auto!important;
-  align-self:start!important;
-  overflow:hidden!important;
+  height:auto!important;
+  align-self:start!important;
+  overflow:hidden!important;
 }
 
 /* Gambar produk kekal segi empat */
 .manage-card .photo{
-  width:100%!important;
-  aspect-ratio:1 / 1!important;
-  height:auto!important;
-  object-fit:cover!important;
+  width:100%!important;
+  aspect-ratio:1 / 1!important;
+  height:auto!important;
+  object-fit:cover!important;
 }
 
 /* Pendekkan ruang kandungan */
 .manage-card .body{
-  flex:0 0 auto!important;
-  padding:8px!important;
-  gap:4px!important;
+  flex:0 0 auto!important;
+  padding:8px!important;
+  gap:4px!important;
 }
 
 /* Sembunyikan keterangan produk */
 .manage-card .desc{
-  display:none!important;
+  display:none!important;
 }
-  
+  
 /* SELLORA SHOPPABLE VIDEO */
 
 .shoppable-video-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
 }
 
 .shoppable-video-card{
-  min-width:0;
-  overflow:hidden;
-  border:1px solid #E6E0D5;
-  border-radius:14px;
-  background:#fff;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #E6E0D5;
+  border-radius:14px;
+  background:#fff;
 }
 
 .shoppable-video-preview{
-  position:relative;
-  aspect-ratio:9/16;
-  overflow:hidden;
-  background:#172A35;
+  position:relative;
+  aspect-ratio:9/16;
+  overflow:hidden;
+  background:#172A35;
 }
 
 .shoppable-video-preview video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .shoppable-play-btn{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  width:48px;
-  height:48px;
-  border:0;
-  border-radius:50%;
-  background:rgba(23,42,53,.85);
-  color:#fff;
-  font-size:22px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:48px;
+  height:48px;
+  border:0;
+  border-radius:50%;
+  background:rgba(23,42,53,.85);
+  color:#fff;
+  font-size:22px;
 }
 
 .shoppable-video-info{
-  padding:9px;
+  padding:9px;
 }
 
 .shoppable-video-name{
-  font-size:13px;
-  color:#172A35;
-  overflow:hidden;
-  display:-webkit-box;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
+  font-size:13px;
+  color:#172A35;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
 }
 
 .shoppable-video-price{
-  margin-top:5px;
-  font-size:13px;
-  color:#A78345;
+  margin-top:5px;
+  font-size:13px;
+  color:#A78345;
 }
 
 .shoppable-video-modal{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  background:rgba(0,0,0,.94);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(0,0,0,.94);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:16px;
 }
 
 .shoppable-video-player-wrap{
-  position:relative;
-  width:100%;
-  max-width:430px;
-  height:min(82vh,760px);
-  background:#000;
-  border-radius:16px;
-  overflow:hidden;
+  position:relative;
+  width:100%;
+  max-width:430px;
+  height:min(82vh,760px);
+  background:#000;
+  border-radius:16px;
+  overflow:hidden;
 }
 
 #shoppableMainVideo{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#000;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
 }
 
 .shoppable-video-close{
-  position:absolute;
-  z-index:5;
-  top:15px;
-  right:15px;
-  width:38px;
-  height:38px;
-  border:0;
-  border-radius:50%;
-  background:rgba(255,255,255,.2);
-  color:#fff;
-  font-size:20px;
+  position:absolute;
+  z-index:5;
+  top:15px;
+  right:15px;
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  color:#fff;
+  font-size:20px;
 }
 
 .shoppable-product-popup{
-  position:absolute;
-  z-index:4;
-  left:12px;
-  right:12px;
-  bottom:55px;
-  padding:13px;
-  border-radius:13px;
-  background:rgba(255,255,255,.96);
-  box-shadow:0 5px 25px rgba(0,0,0,.3);
+  position:absolute;
+  z-index:4;
+  left:12px;
+  right:12px;
+  bottom:55px;
+  padding:13px;
+  border-radius:13px;
+  background:rgba(255,255,255,.96);
+  box-shadow:0 5px 25px rgba(0,0,0,.3);
 }
 
 .shoppable-popup-content{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
 .shoppable-popup-name{
-  color:#172A35;
-  font-size:14px;
-  font-weight:600;
+  color:#172A35;
+  font-size:14px;
+  font-weight:600;
 }
 
 .shoppable-popup-price{
-  margin-top:5px;
-  color:#A78345;
-  font-size:14px;
+  margin-top:5px;
+  color:#A78345;
+  font-size:14px;
 }
 
 .shoppable-buy-btn{
-  flex-shrink:0;
-  border:0;
-  border-radius:9px;
-  padding:11px 13px;
-  background:#172A35;
-  color:#fff;
-  font-size:12px;
-  font-weight:600;
+  flex-shrink:0;
+  border:0;
+  border-radius:9px;
+  padding:11px 13px;
+  background:#172A35;
+  color:#fff;
+  font-size:12px;
+  font-weight:600;
 }
 
 .shoppable-popup-close{
-  position:absolute;
-  top:5px;
-  right:7px;
-  border:0;
-  background:transparent;
-  color:#78838A;
-  font-size:16px;
+  position:absolute;
+  top:5px;
+  right:7px;
+  border:0;
+  background:transparent;
+  color:#78838A;
+  font-size:16px;
 }
 
 @media(min-width:768px){
-  .shoppable-video-grid{
-    grid-template-columns:repeat(4,minmax(0,1fr));
-  }
-}
-  /* SELLORA TIKTOK STYLE VIDEO FEED */
-
-.shoppable-video-modal{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  width:100%;
-  height:100%;
-  height:100dvh;
-  padding:0;
-  background:#000;
-  overflow:hidden;
-}
-
-.shoppable-video-feed{
-  width:100%;
-  height:100%;
-  height:100dvh;
-  overflow-y:auto;
-  overflow-x:hidden;
-  scroll-snap-type:y mandatory;
-  overscroll-behavior-y:contain;
-  scrollbar-width:none;
-  background:#000;
-}
-
-.shoppable-video-feed::-webkit-scrollbar{
-  display:none;
-}
-
-.shoppable-feed-item{
-  position:relative;
-  width:100%;
-  height:100%;
-  height:100dvh;
-  min-height:100%;
-  overflow:hidden;
-  scroll-snap-align:start;
-  scroll-snap-stop:always;
-  background:#000;
-}
-
-.shoppable-feed-item video{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  background:#000;
-}
-
-.shoppable-feed-overlay{
-  position:absolute;
-  inset:0;
-  z-index:2;
-  pointer-events:none;
-}
-
-.shoppable-feed-info{
-  position:absolute;
-  left:16px;
-  right:75px;
-  bottom:115px;
-  color:#fff;
-  text-shadow:0 1px 5px rgba(0,0,0,.7);
-}
-
-.shoppable-feed-info h3{
-  margin:0 0 7px;
-  font-size:15px;
-  font-weight:600;
-}
-
-.shoppable-feed-info p{
-  margin:0;
-  font-size:13px;
-}
-
-.shoppable-feed-actions{
-  position:absolute;
-  right:13px;
-  bottom:125px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:20px;
-  pointer-events:auto;
-}
-
-.shoppable-feed-action{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:5px;
-  border:0;
-  background:transparent;
-  color:#fff;
-  font-size:12px;
-}
-
-.shoppable-feed-action span{
-  font-size:25px;
-}
-
-.shoppable-feed-buy{
-  position:absolute;
-  left:14px;
-  right:14px;
-  bottom:35px;
-  z-index:4;
-  width:calc(100% - 28px);
-  padding:14px;
-  border:0;
-  border-radius:12px;
-  background:#C6A46A;
-  color:#172A35;
-  font-size:14px;
-  font-weight:700;
-  pointer-events:auto;
-}
-
-.shoppable-video-close{
-  position:absolute;
-  top:18px;
-  right:16px;
-  z-index:20;
-  width:40px;
-  height:40px;
-  border:0;
-  border-radius:50%;
-  background:rgba(0,0,0,.55);
-  color:#fff;
-  font-size:22px;
-}
-
-.shoppable-feed-play{
-  position:absolute;
-  left:50%;
-  top:50%;
-  z-index:5;
-  transform:translate(-50%,-50%);
-  width:58px;
-  height:58px;
-  border:0;
-  border-radius:50%;
-  background:rgba(23,42,53,.75);
-  color:#fff;
-  font-size:25px;
-}
-
-.shoppable-feed-empty{
-  display:flex;
-  width:100%;
-  height:100%;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-  color:#fff;
-  text-align:center;
-}
-
-@media(min-width:768px){
-  .shoppable-video-feed{
-    max-width:480px;
-    margin:auto;
-  }
-
-  .shoppable-video-close{
-    right:calc(50% - 230px);
-  }
+  .shoppable-video-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
 }
 
 </style>
@@ -1459,355 +1289,382 @@ textarea{
 <body>
 
 <header id="mainHeader">
-  <div class="nav">
-    <div>
-      <div class="logo">SELLORA.</div>
-      <div class="tag">ONE LINK. ENDLESS POSSIBILITIES.</div>
-    </div>
-    <button id="logoutBtn" class="hidden" onclick="logout()">Log keluar</button>
-  </div>
+  <div class="nav">
+    <div>
+      <div class="logo">SELLORA.</div>
+      <div class="tag">ONE LINK. ENDLESS POSSIBILITIES.</div>
+    </div>
+    <button id="logoutBtn" class="hidden" onclick="logout()">Log keluar</button>
+  </div>
 
-  <div class="header-store-tools hidden" id="headerStoreTools">
-    <div class="store-search">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-        <circle cx="11" cy="11" r="7"/>
-        <path d="m16 16 4 4"/>
-      </svg>
-      <input id="publicSearch" placeholder="Cari produk yang anda inginkan..." oninput="renderPublic()">
-    </div>
+  <div class="header-store-tools hidden" id="headerStoreTools">
+    <div class="store-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="11" cy="11" r="7"/>
+        <path d="m16 16 4 4"/>
+      </svg>
+      <input id="publicSearch" placeholder="Cari produk yang anda inginkan..." oninput="renderPublic()">
+    </div>
 
-    <button class="store-share" onclick="shareStore()" aria-label="Kongsi kedai">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="18" cy="5" r="3"/>
-        <circle cx="6" cy="12" r="3"/>
-        <circle cx="18" cy="19" r="3"/>
-        <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/>
-      </svg>
-    </button>
-  </div>
+    <button class="store-share" onclick="shareStore()" aria-label="Kongsi kedai">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="18" cy="5" r="3"/>
+        <circle cx="6" cy="12" r="3"/>
+        <circle cx="18" cy="19" r="3"/>
+        <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/>
+      </svg>
+    </button>
+  </div>
 </header>
 
 
 <main>
 <section id="welcome">
-  <div class="hero">
-    <div class="eyebrow">Your affiliate marketplace</div>
-    <h1>Satu kedai.<br><span style="color:var(--gold2)">Dua platform.</span></h1>
-    <p class="muted">Temui pilihan produk Shopee dan TikTok Shop dalam satu storefront SELLORA.</p>
-  </div>
-  <div class="panel">
-    <h2>Masuk ke SELLORA</h2>
-    <div class="grid">
-      <div><label>E-mel</label><input id="email" type="email" autocomplete="email"></div>
-      <div><label>Kata laluan</label><input id="password" type="password" autocomplete="current-password"></div>
-    </div>
-    <div class="actions">
-      <button onclick="signup()">Daftar akaun</button>
-      <button class="secondary" onclick="login()">Log masuk</button>
-    </div>
-    <p id="authMsg" class="message"></p>
-  </div>
+  <div class="hero">
+    <div class="eyebrow">Your affiliate marketplace</div>
+    <h1>Satu kedai.<br><span style="color:var(--gold2)">Dua platform.</span></h1>
+    <p class="muted">Temui pilihan produk Shopee dan TikTok Shop dalam satu storefront SELLORA.</p>
+  </div>
+  <div class="panel">
+    <h2>Masuk ke SELLORA</h2>
+    <div class="grid">
+      <div><label>E-mel</label><input id="email" type="email" autocomplete="email"></div>
+      <div><label>Kata laluan</label><input id="password" type="password" autocomplete="current-password"></div>
+    </div>
+    <div class="actions">
+      <button onclick="signup()">Daftar akaun</button>
+      <button class="secondary" onclick="login()">Log masuk</button>
+    </div>
+    <p id="authMsg" class="message"></p>
+  </div>
 </section>
 
 <section id="dashboard" class="hidden">
-  <div class="hero">
-    <div class="eyebrow">Seller dashboard · Version 9</div>
-    <h1>Urus marketplace anda.</h1>
-    <p id="userInfo" class="muted"></p>
-  </div>
+  <div class="hero">
+    <div class="eyebrow">Seller dashboard · Version 9</div>
+    <h1>Urus marketplace anda.</h1>
+    <p id="userInfo" class="muted"></p>
+  </div>
 
-  <div class="panel">
-    <h2>Statistik affiliate</h2>
-    <div class="stats">
-      <div class="stat"><strong id="totalClicks">0</strong><span>Jumlah klik</span></div>
-      <div class="stat"><strong id="totalProducts">0</strong><span>Jumlah produk</span></div>
-      <div class="stat"><strong id="activeProducts">0</strong><span>Produk aktif</span></div>
-    </div>
-    <p class="small">Statistik ini mengira klik melalui storefront SELLORA, bukan jumlah jualan atau komisen daripada platform affiliate.</p>
-    <p id="statsMsg" class="message"></p>
-    <div class="panel">
-      <h2>Prestasi Produk</h2>
-      <div id="topProducts" class="analytics-list"><div class="analytics-empty">Memuatkan statistik...</div></div>
-    </div>
-    <div class="panel">
-      <h2>Analisis Semua Produk</h2>
-      <div id="productAnalytics" class="analytics-list"><div class="analytics-empty">Memuatkan data...</div></div>
-    </div>
-  </div>
+  <div class="panel">
+    <h2>Statistik affiliate</h2>
+    <div class="stats">
+      <div class="stat"><strong id="totalClicks">0</strong><span>Jumlah klik</span></div>
+      <div class="stat"><strong id="totalProducts">0</strong><span>Jumlah produk</span></div>
+      <div class="stat"><strong id="activeProducts">0</strong><span>Produk aktif</span></div>
+    </div>
+    <p class="small">Statistik ini mengira klik melalui storefront SELLORA, bukan jumlah jualan atau komisen daripada platform affiliate.</p>
+    <p id="statsMsg" class="message"></p>
+    <div class="panel">
+      <h2>Prestasi Produk</h2>
+      <div id="topProducts" class="analytics-list"><div class="analytics-empty">Memuatkan statistik...</div></div>
+    </div>
+    <div class="panel">
+      <h2>Analisis Semua Produk</h2>
+      <div id="productAnalytics" class="analytics-list"><div class="analytics-empty">Memuatkan data...</div></div>
+    </div>
+  </div>
 
-  <div class="panel" id="salesPanel">
-    <h2>Rekod Jualan & Komisen</h2>
-    <p class="small">Masukkan rekod jualan affiliate secara manual.</p>
-    <div class="stats">
-      <div class="stat"><strong id="salesCount">0</strong><span>Jumlah rekod</span></div>
-      <div class="stat"><strong id="salesTotal">RM 0.00</strong><span>Jumlah jualan</span></div>
-      <div class="stat"><strong id="commissionTotal">RM 0.00</strong><span>Komisen diluluskan</span></div>
-    </div>
-    <h3>Tambah rekod jualan</h3>
-    <label>Produk</label>
-    <select id="saleProduct"><option value="">Pilih produk</option></select>
-    <div class="grid">
-      <div><label>Platform</label><select id="salePlatform"><option>Shopee</option><option>TikTok Shop</option></select></div>
-      <div><label>Tarikh jualan</label><input id="saleDate" type="date"></div>
-      <div><label>Jumlah jualan (RM)</label><input id="saleAmount" type="number" min="0" step="0.01"></div>
-      <div><label>Komisen (RM)</label><input id="saleCommission" type="number" min="0" step="0.01"></div>
-    </div>
-    <label>Status komisen</label>
-    <select id="saleStatus"><option>Pending</option><option>Approved</option><option>Rejected</option></select>
-    <label>Catatan</label><textarea id="saleNotes"></textarea>
-    <div class="actions"><button id="saveSaleBtn" onclick="saveSale()">Simpan rekod jualan</button></div>
-    <p id="saleMsg" class="message"></p>
-  </div>
+  <div class="panel" id="salesPanel">
+    <h2>Rekod Jualan & Komisen</h2>
+    <p class="small">Masukkan rekod jualan affiliate secara manual.</p>
+    <div class="stats">
+      <div class="stat"><strong id="salesCount">0</strong><span>Jumlah rekod</span></div>
+      <div class="stat"><strong id="salesTotal">RM 0.00</strong><span>Jumlah jualan</span></div>
+      <div class="stat"><strong id="commissionTotal">RM 0.00</strong><span>Komisen diluluskan</span></div>
+    </div>
+    <h3>Tambah rekod jualan</h3>
+    <label>Produk</label>
+    <select id="saleProduct"><option value="">Pilih produk</option></select>
+    <div class="grid">
+      <div><label>Platform</label><select id="salePlatform"><option>Shopee</option><option>TikTok Shop</option></select></div>
+      <div><label>Tarikh jualan</label><input id="saleDate" type="date"></div>
+      <div><label>Jumlah jualan (RM)</label><input id="saleAmount" type="number" min="0" step="0.01"></div>
+      <div><label>Komisen (RM)</label><input id="saleCommission" type="number" min="0" step="0.01"></div>
+    </div>
+    <label>Status komisen</label>
+    <select id="saleStatus"><option>Pending</option><option>Approved</option><option>Rejected</option></select>
+    <label>Catatan</label><textarea id="saleNotes"></textarea>
+    <div class="actions"><button id="saveSaleBtn" onclick="saveSale()">Simpan rekod jualan</button></div>
+    <p id="saleMsg" class="message"></p>
+  </div>
 
-  <div class="panel">
-    <h2>Sejarah Jualan</h2>
-    <div id="salesHistory"><div class="empty">Memuatkan rekod...</div></div>
-  </div>
+  <div class="panel">
+    <h2>Sejarah Jualan</h2>
+    <div id="salesHistory"><div class="empty">Memuatkan rekod...</div></div>
+  </div>
 
-  <div class="panel">
-    <h2>Maklumat kedai</h2>
-    <div class="grid">
-      <div><label>Nama kedai</label><input id="storeName"></div>
-      <div><label>Slug pautan</label><input id="storeSlug" placeholder="beauty-picks"></div>
-    </div>
-    <label>Penerangan</label><textarea id="storeBio"></textarea>
-    <div class="actions">
-      <button id="saveStoreBtn" onclick="saveStore()">Simpan kedai</button>
-      <button class="secondary" onclick="copyLink()">Salin pautan kedai</button>
-    </div>
-    <p id="storeMsg" class="message"></p>
-    <p id="storeLink" class="small"></p>
-  </div>
+  <div class="panel">
+    <h2>Maklumat kedai</h2>
+    <div class="grid">
+      <div><label>Nama kedai</label><input id="storeName"></div>
+      <div><label>Slug pautan</label><input id="storeSlug" placeholder="beauty-picks"></div>
+    </div>
+    <label>Penerangan</label><textarea id="storeBio"></textarea>
+    <div class="actions">
+      <button id="saveStoreBtn" onclick="saveStore()">Simpan kedai</button>
+      <button class="secondary" onclick="copyLink()">Salin pautan kedai</button>
+    </div>
+    <p id="storeMsg" class="message"></p>
+    <p id="storeLink" class="small"></p>
+  </div>
 
-  <div class="panel" id="productForm">
-    <h2 id="formTitle">Tambah produk affiliate</h2>
-    <div class="grid">
-      <div><label>Nama produk</label><input id="productName"></div>
-      <div><label>Platform</label><select id="platform"><option>Shopee</option><option>TikTok Shop</option></select></div>
-      <div><label>Harga (RM)</label><input id="price" type="number" min="0" step="0.01"></div>
-      <div>
-        <label>Kategori produk</label>
-        <select id="category">
-          <option>Skincare</option><option>Kecantikan</option><option>Kesihatan</option>
-          <option>Fesyen</option><option>Elektronik</option><option>Rumah & Dapur</option>
-          <option>Ibu & Anak</option><option>Makanan & Minuman</option><option>Gajet</option><option>Lain-lain</option>
-        </select>
-      </div>
-      <div>
-        <label>Produk Pilihan</label>
-        <label style="display:flex;align-items:center;gap:8px;">
-          <input id="isFeatured" type="checkbox">
-          Paparkan sebagai produk pilihan
-        </label>
-      </div>
-      <div>
-        <label>URL gambar (pilihan)</label>
-        <input id="imageUrl" type="url">
-        <label>Atau upload gambar produk</label>
-        <input type="file" id="productImageFile" accept="image/png,image/jpeg,image/webp">
-        <div class="image-preview-container">
-          <p class="small">Pratonton gambar produk</p>
-          <img id="productImagePreview" alt="Pratonton gambar produk">
-        </div>
-        <p class="small">JPG, PNG atau WebP. Maksimum 5MB. Gambar dikecilkan secara automatik.</p>
-      </div>
-      
+  <div class="panel" id="productForm">
+    <h2 id="formTitle">Tambah produk affiliate</h2>
+    <div class="grid">
+      <div><label>Nama produk</label><input id="productName"></div>
+      <div><label>Platform</label><select id="platform"><option>Shopee</option><option>TikTok Shop</option></select></div>
+      <div><label>Harga (RM)</label><input id="price" type="number" min="0" step="0.01"></div>
+      <div>
+        <label>Kategori produk</label>
+        <select id="category">
+          <option>Skincare</option><option>Kecantikan</option><option>Kesihatan</option>
+          <option>Fesyen</option><option>Elektronik</option><option>Rumah & Dapur</option>
+          <option>Ibu & Anak</option><option>Makanan & Minuman</option><option>Gajet</option><option>Lain-lain</option>
+        </select>
+      </div>
+      <div>
+        <label>Produk Pilihan</label>
+        <label style="display:flex;align-items:center;gap:8px;">
+          <input id="isFeatured" type="checkbox">
+          Paparkan sebagai produk pilihan
+        </label>
+      </div>
+      <div>
+        <label>URL gambar (pilihan)</label>
+        <input id="imageUrl" type="url">
+        <label>Atau upload gambar produk</label>
+        <input type="file" id="productImageFile" accept="image/png,image/jpeg,image/webp">
+        <div class="image-preview-container">
+          <p class="small">Pratonton gambar produk</p>
+          <img id="productImagePreview" alt="Pratonton gambar produk">
+        </div>
+        <p class="small">JPG, PNG atau WebP. Maksimum 5MB. Gambar dikecilkan secara automatik.</p>
+      </div>
+      
 <div class="video-upload-box">
-  <label>Upload video produk (pilihan)</label>
-  <input
-    type="file"
-    id="productVideoFile"
-    accept="video/mp4"
-  >
+  <label>Upload video produk (pilihan)</label>
+  <input
+    type="file"
+    id="productVideoFile"
+    accept="video/mp4"
+  >
 
-  <div id="productVideoPreviewWrap" style="display:none;margin-top:10px">
-    <p class="small">Pratonton video produk</p>
-    <video
-      id="productVideoPreview"
-      controls
-      playsinline
-      style="width:100%;max-width:220px;border-radius:12px;background:#000"
-    ></video>
-  </div>
+  <div id="productVideoPreviewWrap" style="display:none;margin-top:10px">
+    <p class="small">Pratonton video produk</p>
+    <video
+      id="productVideoPreview"
+      controls
+      playsinline
+      style="width:100%;max-width:220px;border-radius:12px;background:#000"
+    ></video>
+  </div>
 
-  <p class="small">
-    Format MP4 sahaja. Maksimum 50MB.
-    Disyorkan video menegak 9:16.
-  </p>
+  <p class="small">
+    Format MP4 sahaja. Maksimum 50MB.
+    Disyorkan video menegak 9:16.
+  </p>
 </div>
 
-      <div>
-        <label>Susunan produk</label>
-        <input id="sortOrder" type="number" min="0" step="1" value="0">
-        <p class="small">Nombor lebih kecil dipaparkan dahulu.</p>
-      </div>
-    </div>
-    <label>Pautan affiliate</label><input id="affiliateUrl" type="url">
-    <label>Penerangan produk</label><textarea id="description"></textarea>
-    <div class="actions">
-      <button id="saveProductBtn" onclick="saveProduct()">Tambah produk</button>
-      <button id="cancelEditBtn" class="secondary hidden" onclick="cancelEdit()">Batal edit</button>
-    </div>
-    <p id="productMsg" class="message"></p>
-  </div>
+      <div>
+        <label>Susunan produk</label>
+        <input id="sortOrder" type="number" min="0" step="1" value="0">
+        <p class="small">Nombor lebih kecil dipaparkan dahulu.</p>
+      </div>
+    </div>
+    <label>Pautan affiliate</label><input id="affiliateUrl" type="url">
+    <label>Penerangan produk</label><textarea id="description"></textarea>
+    <div class="actions">
+      <button id="saveProductBtn" onclick="saveProduct()">Tambah produk</button>
+      <button id="cancelEditBtn" class="secondary hidden" onclick="cancelEdit()">Batal edit</button>
+    </div>
+    <p id="productMsg" class="message"></p>
+  </div>
 
-  <div class="panel">
-    <h2>Pengurusan produk</h2>
-    <div class="toolbar">
-      <input id="manageSearch" placeholder="Cari nama produk..." oninput="renderManage()">
-      <select id="manageFilter" onchange="renderManage()">
-        <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
-      </select>
-      <select id="manageCategoryFilter" onchange="renderManage()">
-        <option value="all">Semua kategori</option>
-      </select>
-    </div>
-    <div id="myProducts" class="products"></div>
-  </div>
+  <div class="panel">
+    <h2>Pengurusan produk</h2>
+    <div class="toolbar">
+      <input id="manageSearch" placeholder="Cari nama produk..." oninput="renderManage()">
+      <select id="manageFilter" onchange="renderManage()">
+        <option value="all">Semua platform</option><option>Shopee</option><option>TikTok Shop</option>
+      </select>
+      <select id="manageCategoryFilter" onchange="renderManage()">
+        <option value="all">Semua kategori</option>
+      </select>
+    </div>
+    <div id="myProducts" class="products"></div>
+  </div>
 </section>
 
 
 <section id="publicStore" class="hidden">
 
-  
+  
 
-  <div class="market-heading">
-    <h2>Kategori</h2>
-    <button onclick="chooseCategory('all')">Lihat semua →</button>
-  </div>
+  <div class="market-heading">
+    <h2>Kategori</h2>
+    <button onclick="chooseCategory('all')">Lihat semua →</button>
+  </div>
 
-  <div id="publicCategories" class="category-grid"></div>
+  <div id="publicCategories" class="category-grid"></div>
 
-  <div class="store-divider"></div>
+  <div class="store-divider"></div>
 
-  <div id="featuredWrap" class="featured-section hidden">
-    <div class="market-heading">
-      <h2>Produk Pilihan SELLORA</h2>
-    </div>
-    <div id="featuredProducts" class="products"></div>
-  </div>
-  
-  <!-- SELLORA SHOPPABLE VIDEO -->
-  <section id="shoppableVideoWrap" class="shoppable-video-section hidden">
-    <div class="market-heading">
-      <h2>Video Pilihan SELLORA</h2>
-      <p class="small">Tonton video dan temui produk pilihan.</p>
-    </div>
+  <div id="featuredWrap" class="featured-section hidden">
+    <div class="market-heading">
+      <h2>Produk Pilihan SELLORA</h2>
+    </div>
+    <div id="featuredProducts" class="products"></div>
+  </div>
+  
+  <!-- SELLORA SHOPPABLE VIDEO -->
+  <section id="shoppableVideoWrap" class="shoppable-video-section hidden">
+    <div class="market-heading">
+      <h2>Video Pilihan SELLORA</h2>
+      <p class="small">Tonton video dan temui produk pilihan.</p>
+    </div>
 
-    <div id="shoppableVideoList" class="shoppable-video-grid"></div>
-  </section>
+    <div id="shoppableVideoList" class="shoppable-video-grid"></div>
+  </section>
 
 
-  <div class="market-heading">
-    <h2>Terokai Semua Produk</h2>
-  </div>
+  <div class="market-heading">
+    <h2>Terokai Semua Produk</h2>
+  </div>
 
-  <div class="store-filter-row">
-    <select id="publicFilter" onchange="renderPublic()">
-      <option value="all">Semua platform</option>
-      <option>Shopee</option>
-      <option>TikTok Shop</option>
-    </select>
+  <div class="store-filter-row">
+    <select id="publicFilter" onchange="renderPublic()">
+      <option value="all">Semua platform</option>
+      <option>Shopee</option>
+      <option>TikTok Shop</option>
+    </select>
 
-    <select id="publicSort" onchange="renderPublic()">
-      <option value="recommended">Pilihan SELLORA</option>
-      <option value="newest">Terbaru</option>
-      <option value="price-low">Harga terendah</option>
-      <option value="price-high">Harga tertinggi</option>
-      <option value="name">Nama A-Z</option>
-    </select>
-  </div>
+    <select id="publicSort" onchange="renderPublic()">
+      <option value="recommended">Pilihan SELLORA</option>
+      <option value="newest">Terbaru</option>
+      <option value="price-low">Harga terendah</option>
+      <option value="price-high">Harga tertinggi</option>
+      <option value="name">Nama A-Z</option>
+    </select>
+  </div>
 
-  <div id="publicProducts" class="products"></div>
-  
-
-<!-- SELLORA VIDEO FEED PLAYER -->
+  <div id="publicProducts" class="products"></div>
+  
+<!-- SELLORA SHOPPABLE VIDEO PLAYER -->
 <div id="shoppableVideoModal" class="shoppable-video-modal hidden">
 
-  <button
-    type="button"
-    class="shoppable-video-close"
-    onclick="closeShoppableVideo()"
-  >✕</button>
+  <button
+    type="button"
+    class="shoppable-video-close"
+    onclick="closeShoppableVideo()"
+  >✕</button>
 
-  <div id="shoppableVideoFeed" class="shoppable-video-feed">
-    <!-- Video akan dimasukkan secara automatik oleh JavaScript -->
-  </div>
+  <div class="shoppable-video-player-wrap">
 
-</div>
+    <video
+      id="shoppableMainVideo"
+      playsinline
+      controls
+    ></video>
 
+    <!-- POPUP PRODUK -->
+    <div id="shoppableProductPopup" class="shoppable-product-popup hidden">
 
-  </div>
+      <button
+        type="button"
+        class="shoppable-popup-close"
+        onclick="closeShoppablePopup()"
+      >✕</button>
+
+      <div class="shoppable-popup-content">
+
+        <div>
+          <div id="shoppablePopupName" class="shoppable-popup-name"></div>
+          <div id="shoppablePopupPrice" class="shoppable-popup-price"></div>
+        </div>
+
+        <button
+          type="button"
+          id="shoppableBuyBtn"
+          class="shoppable-buy-btn"
+        >
+          Beli Sekarang
+        </button>
+
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <div id="profilePanel" class="hidden">
-  <div class="market-heading">
-    <h2>Profil Saya</h2>
-  </div>
+  <div class="market-heading">
+    <h2>Profil Saya</h2>
+  </div>
 
-  <div class="profile-card">
-    <div class="profile-avatar">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 21a8 8 0 0 1 16 0"/>
-      </svg>
-    </div>
+  <div class="profile-card">
+    <div class="profile-avatar">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 21a8 8 0 0 1 16 0"/>
+      </svg>
+    </div>
 
-    <h3 id="profileName">Pengguna SELLORA</h3>
-    <p id="profileEmail">-</p>
-    <span id="profileRole" class="profile-role">PENGGUNA</span>
-  </div>
+    <h3 id="profileName">Pengguna SELLORA</h3>
+    <p id="profileEmail">-</p>
+    <span id="profileRole" class="profile-role">PENGGUNA</span>
+  </div>
 
-  <div class="profile-menu">
-    <button onclick="storeNav('liked',null)">
-      ♥ Produk Disukai
-    </button>
-    <button onclick="logout()">
-      ↪ Log Keluar
-    </button>
-  </div>
+  <div class="profile-menu">
+    <button onclick="storeNav('liked',null)">
+      ♥ Produk Disukai
+    </button>
+    <button onclick="logout()">
+      ↪ Log Keluar
+    </button>
+  </div>
 </div>
 
 <nav class="store-bottom-nav">
-  <button class="active" onclick="storeNav('home',this)">
-    <svg viewBox="0 0 24 24">
-      <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/>
-    </svg>
-    Utama
-  </button>
+  <button class="active" onclick="storeNav('home',this)">
+    <svg viewBox="0 0 24 24">
+      <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/>
+    </svg>
+    Utama
+  </button>
 
-  <button onclick="storeNav('video',this)">
-    <svg viewBox="0 0 24 24">
-      <rect x="3" y="3" width="18" height="18" rx="3"/>
-      <path d="m10 8 6 4-6 4z"/>
-    </svg>
-    Video
-  </button>
+  <button onclick="storeNav('video',this)">
+    <svg viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="3"/>
+      <path d="m10 8 6 4-6 4z"/>
+    </svg>
+    Video
+  </button>
 
-  <button onclick="storeNav('liked',this)">
-    <svg viewBox="0 0 24 24">
-      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
-    </svg>
-    Disukai
-  </button>
+  <button onclick="storeNav('liked',this)">
+    <svg viewBox="0 0 24 24">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+    </svg>
+    Disukai
+  </button>
 
-  <button onclick="shareStore()">
-    <svg viewBox="0 0 24 24">
-      <circle cx="18" cy="5" r="3"/>
-      <circle cx="6" cy="12" r="3"/>
-      <circle cx="18" cy="19" r="3"/>
-      <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/>
-    </svg>
-    Kongsi
-  </button>
+  <button onclick="shareStore()">
+    <svg viewBox="0 0 24 24">
+      <circle cx="18" cy="5" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="19" r="3"/>
+      <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/>
+    </svg>
+    Kongsi
+  </button>
 
-  <button onclick="storeNav('me',this)">
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="8" r="4"/>
-      <path d="M4 21a8 8 0 0 1 16 0"/>
-    </svg>
-    Me
-  </button>
+  <button onclick="storeNav('me',this)">
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 21a8 8 0 0 1 16 0"/>
+    </svg>
+    Me
+  </button>
 </nav>
 
 
@@ -1834,355 +1691,355 @@ function setButtonBusy(id,busy,busyText,normalText){const button=$(id);if(!butto
 function productDateSort(a,b){const order=Number(a.sort_order||0)-Number(b.sort_order||0);if(order!==0)return order;return new Date(b.created_at||0)-new Date(a.created_at||0)}
 
 async function compressProductImage(file){
-  if(!file)return null;
-  const allowed=["image/jpeg","image/png","image/webp"];
-  if(!allowed.includes(file.type))throw new Error("Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
-  if(file.size>5*1024*1024)throw new Error("Saiz gambar asal melebihi 5MB.");
-  const bitmap=await createImageBitmap(file);
-  const maxDimension=1200,scale=Math.min(1,maxDimension/Math.max(bitmap.width,bitmap.height));
-  const width=Math.max(1,Math.round(bitmap.width*scale)),height=Math.max(1,Math.round(bitmap.height*scale));
-  const canvas=document.createElement("canvas");canvas.width=width;canvas.height=height;
-  const context=canvas.getContext("2d");
-  if(!context){bitmap.close();throw new Error("Pelayar tidak dapat memproses gambar.")}
-  context.fillStyle="#ffffff";context.fillRect(0,0,width,height);context.drawImage(bitmap,0,0,width,height);bitmap.close();
-  const blob=await new Promise((resolve,reject)=>canvas.toBlob(result=>result?resolve(result):reject(new Error("Gagal memampatkan gambar.")),"image/jpeg",0.82));
-  return {file:new File([blob],`sellora-${Date.now()}.jpg`,{type:"image/jpeg"}),originalSize:file.size,compressedSize:blob.size};
+  if(!file)return null;
+  const allowed=["image/jpeg","image/png","image/webp"];
+  if(!allowed.includes(file.type))throw new Error("Format gambar tidak disokong. Gunakan JPG, PNG atau WebP.");
+  if(file.size>5*1024*1024)throw new Error("Saiz gambar asal melebihi 5MB.");
+  const bitmap=await createImageBitmap(file);
+  const maxDimension=1200,scale=Math.min(1,maxDimension/Math.max(bitmap.width,bitmap.height));
+  const width=Math.max(1,Math.round(bitmap.width*scale)),height=Math.max(1,Math.round(bitmap.height*scale));
+  const canvas=document.createElement("canvas");canvas.width=width;canvas.height=height;
+  const context=canvas.getContext("2d");
+  if(!context){bitmap.close();throw new Error("Pelayar tidak dapat memproses gambar.")}
+  context.fillStyle="#ffffff";context.fillRect(0,0,width,height);context.drawImage(bitmap,0,0,width,height);bitmap.close();
+  const blob=await new Promise((resolve,reject)=>canvas.toBlob(result=>result?resolve(result):reject(new Error("Gagal memampatkan gambar.")),"image/jpeg",0.82));
+  return {file:new File([blob],`sellora-${Date.now()}.jpg`,{type:"image/jpeg"}),originalSize:file.size,compressedSize:blob.size};
 }
 function getLikedProducts(){
-  try{
-    return JSON.parse(localStorage.getItem("sellora_favourites")||"[]");
-  }catch(e){
-    return [];
-  }
+  try{
+    return JSON.parse(localStorage.getItem("sellora_favourites")||"[]");
+  }catch(e){
+    return [];
+  }
 }
 
 function isLiked(productId){
-  return getLikedProducts().includes(String(productId));
+  return getLikedProducts().includes(String(productId));
 }
 
 function toggleLike(productId){
-  let liked=getLikedProducts();
-  const id=String(productId);
+  let liked=getLikedProducts();
+  const id=String(productId);
 
-  if(liked.includes(id)){
-    liked=liked.filter(item=>item!==id);
-  }else{
-    liked.push(id);
-  }
+  if(liked.includes(id)){
+    liked=liked.filter(item=>item!==id);
+  }else{
+    liked.push(id);
+  }
 
-  localStorage.setItem("sellora_favourites",JSON.stringify(liked));
-  renderPublic();
+  localStorage.setItem("sellora_favourites",JSON.stringify(liked));
+  renderPublic();
 }
 
 
 function card(product,manage=false){
-  const imageUrl=safeUrl(product.image_url);
-  const videoUrl=safeUrl(product.video_url);
+  const imageUrl=safeUrl(product.image_url);
+  const videoUrl=safeUrl(product.video_url);
 
-  const image=(!manage&&videoUrl)
-    ? `<div class="photo" style="position:relative;overflow:hidden">
-        ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
-        <video
-          src="${esc(videoUrl)}"
-          muted
-          autoplay
-          loop
-          playsinline
-          preload="metadata"
-          style="width:100%;height:100%;object-fit:cover"
-        ></video>
-        <button
-          type="button"
-          onclick="openShoppableVideo('${esc(product.id)}')"
-          aria-label="Mainkan video produk"
-          style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:0;border-radius:50%;background:rgba(23,42,53,.85);color:white;font-size:21px;z-index:3"
-        >▶</button>
-      </div>`
-    : imageUrl
-      ? `<div class="photo">
-          ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
-          <img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}">
-        </div>`
-      : `<div class="photo">
-          ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
-          <span>SELLORA</span>
-        </div>`;
+  const image=(!manage&&videoUrl)
+    ? `<div class="photo" style="position:relative;overflow:hidden">
+        ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
+        <video
+          src="${esc(videoUrl)}"
+          muted
+          autoplay
+          loop
+          playsinline
+          preload="metadata"
+          style="width:100%;height:100%;object-fit:cover"
+        ></video>
+        <button
+          type="button"
+          onclick="openShoppableVideo('${esc(product.id)}')"
+          aria-label="Mainkan video produk"
+          style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:44px;height:44px;border:0;border-radius:50%;background:rgba(23,42,53,.85);color:white;font-size:21px;z-index:3"
+        >▶</button>
+      </div>`
+    : imageUrl
+      ? `<div class="photo">
+          ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
+          <img loading="lazy" src="${esc(imageUrl)}" alt="${esc(product.name)}">
+        </div>`
+      : `<div class="photo">
+          ${product.is_featured?'<span class="featured-label">PILIHAN SELLORA</span>':""}
+          <span>SELLORA</span>
+        </div>`;
 
-  const likeButton=!manage?`
-    <button type="button"
-      class="like-btn ${isLiked(product.id)?"liked":""}"
-      onclick="toggleLike('${esc(product.id)}')"
-      aria-label="Favourite">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
-      </svg>
-    </button>`:"";
+  const likeButton=!manage?`
+    <button type="button"
+      class="like-btn ${isLiked(product.id)?"liked":""}"
+      onclick="toggleLike('${esc(product.id)}')"
+      aria-label="Favourite">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+      </svg>
+    </button>`:"";
 
-  const price=product.price==null
-    ?""
-    :`<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
+  const price=product.price==null
+    ?""
+    :`<div class="price">RM ${Number(product.price).toFixed(2)}</div>`;
 
-  const affiliateUrl=safeUrl(product.affiliate_url);
+  const affiliateUrl=safeUrl(product.affiliate_url);
 
-  const buyLink=affiliateUrl
-    ? `<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat Produk ↗</a>`
-    : '<span class="small">Pautan produk tidak tersedia.</span>';
+  const buyLink=affiliateUrl
+    ? `<a class="buy" href="${esc(affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="trackClick(event,'${esc(product.id)}')">Lihat Produk ↗</a>`
+    : '<span class="small">Pautan produk tidak tersedia.</span>';
 
-  const actions=manage
-    ? `<div class="click-count">Jumlah klik: ${clickCounts[product.id]||0}</div>
-       <div class="small">Susunan: ${Number(product.sort_order||0)} · ${product.is_featured?"Produk pilihan":"Produk biasa"}</div>
-       <div class="manage-actions">
-         <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
-         <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
-       </div>`
-    :"";
+  const actions=manage
+    ? `<div class="click-count">Jumlah klik: ${clickCounts[product.id]||0}</div>
+       <div class="small">Susunan: ${Number(product.sort_order||0)} · ${product.is_featured?"Produk pilihan":"Produk biasa"}</div>
+       <div class="manage-actions">
+         <button class="secondary" onclick="editProduct('${esc(product.id)}')">Edit</button>
+         <button class="danger" onclick="deleteProduct('${esc(product.id)}')">Padam</button>
+       </div>`
+    :"";
 
-  return `<article class="card ${manage?"manage-card":"public-product-card"}">${image}<div class="body"><div class="product-meta"><span class="pill">${esc(product.platform)}</span>${likeButton}</div>
-        ${manage?`<span class="category-pill">${esc(product.category||"Lain-lain")}</span>`:""}
-        <h3>${esc(product.name)}</h3>
-        ${price}
-        ${manage?`<p class="desc">${esc(product.description||"")}</p>`:""}
-        ${buyLink}
-        ${actions}
-      </div>
-    </article>`;
+  return `<article class="card ${manage?"manage-card":"public-product-card"}">${image}<div class="body"><div class="product-meta"><span class="pill">${esc(product.platform)}</span>${likeButton}</div>
+        ${manage?`<span class="category-pill">${esc(product.category||"Lain-lain")}</span>`:""}
+        <h3>${esc(product.name)}</h3>
+        ${price}
+        ${manage?`<p class="desc">${esc(product.description||"")}</p>`:""}
+        ${buyLink}
+        ${actions}
+      </div>
+    </article>`;
 }
 
 
 
 async function signup(){
-  const email=$("email").value.trim(),password=$("password").value;
-  if(!email||password.length<6)return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
-  say("authMsg","Sedang mendaftar...");
-  try{const {data,error}=await db.auth.signUp({email,password});if(error)return say("authMsg",error.message);say("authMsg",data.session?"Pendaftaran berjaya.":"Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");}
-  catch(error){say("authMsg","Ralat pendaftaran: "+error.message)}
+  const email=$("email").value.trim(),password=$("password").value;
+  if(!email||password.length<6)return say("authMsg","Masukkan e-mel dan kata laluan minimum 6 aksara.");
+  say("authMsg","Sedang mendaftar...");
+  try{const {data,error}=await db.auth.signUp({email,password});if(error)return say("authMsg",error.message);say("authMsg",data.session?"Pendaftaran berjaya.":"Pendaftaran berjaya. Semak e-mel jika pengesahan diperlukan.");}
+  catch(error){say("authMsg","Ralat pendaftaran: "+error.message)}
 }
 async function login(){
-  const email=$("email").value.trim(),password=$("password").value;
-  if(!email||!password)return say("authMsg","Masukkan e-mel dan kata laluan.");
-  say("authMsg","Sedang log masuk...");
-  try{const {data,error}=await db.auth.signInWithPassword({email,password});if(error)return say("authMsg",error.message);user=data.user;say("authMsg","Log masuk berjaya.");await dashboard();}
-  catch(error){say("authMsg","Ralat log masuk: "+error.message)}
+  const email=$("email").value.trim(),password=$("password").value;
+  if(!email||!password)return say("authMsg","Masukkan e-mel dan kata laluan.");
+  say("authMsg","Sedang log masuk...");
+  try{const {data,error}=await db.auth.signInWithPassword({email,password});if(error)return say("authMsg",error.message);user=data.user;say("authMsg","Log masuk berjaya.");await dashboard();}
+  catch(error){say("authMsg","Ralat log masuk: "+error.message)}
 }
 async function logout(){
-  const {error}=await db.auth.signOut();if(error){alert("Gagal log keluar: "+error.message);return}location.href=location.pathname;
+  const {error}=await db.auth.signOut();if(error){alert("Gagal log keluar: "+error.message);return}location.href=location.pathname;
 }
 async function dashboard(){
-  $("welcome").classList.add("hidden");$("publicStore").classList.add("hidden");$("dashboard").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");
-  say("userInfo",user?.email||"Akaun SELLORA");await loadStore();
+  $("welcome").classList.add("hidden");$("publicStore").classList.add("hidden");$("dashboard").classList.remove("hidden");$("logoutBtn").classList.remove("hidden");
+  say("userInfo",user?.email||"Akaun SELLORA");await loadStore();
 }
 
 async function loadStore(){
-  const {data,error}=await db.from("stores").select("*").eq("owner_id",user.id).maybeSingle();
-  if(error){say("storeMsg",error.message);return}
-  store=data;
-  if(store){$("storeName").value=store.name||"";$("storeSlug").value=store.slug||"";$("storeBio").value=store.bio||"";showLink();await loadProducts();}
-  else{say("storeMsg","Sila cipta maklumat kedai anda dahulu.");myItems=[];renderManage();await loadSales();}
+  const {data,error}=await db.from("stores").select("*").eq("owner_id",user.id).maybeSingle();
+  if(error){say("storeMsg",error.message);return}
+  store=data;
+  if(store){$("storeName").value=store.name||"";$("storeSlug").value=store.slug||"";$("storeBio").value=store.bio||"";showLink();await loadProducts();}
+  else{say("storeMsg","Sila cipta maklumat kedai anda dahulu.");myItems=[];renderManage();await loadSales();}
 }
 function storeURL(){return store?location.origin+location.pathname+"?store="+encodeURIComponent(store.slug):""}
 function showLink(){if(!store)return;const url=storeURL();$("storeLink").innerHTML=`Pautan kedai: <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(url)}</a>`}
 async function copyLink(){if(!store)return say("storeMsg","Simpan kedai dahulu.");try{await navigator.clipboard.writeText(storeURL());say("storeMsg","Pautan kedai disalin.")}catch{say("storeMsg",storeURL())}}
 async function saveStore(){
-  if(!user)return say("storeMsg","Sila log masuk dahulu.");
-  const name=$("storeName").value.trim(),slug=$("storeSlug").value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");
-  if(name.length<2||slug.length<3)return say("storeMsg","Nama kedai atau slug tidak sah. Slug minimum 3 aksara.");
-  const values={owner_id:user.id,name,slug,bio:$("storeBio").value.trim()};
-  setButtonBusy("saveStoreBtn",true,"Menyimpan...","Simpan kedai");
-  try{
-    const result=store?await db.from("stores").update(values).eq("id",store.id).select().single():await db.from("stores").insert(values).select().single();
-    if(result.error){say("storeMsg",result.error.message);return}
-    store=result.data;say("storeMsg","Kedai berjaya disimpan!");showLink();await loadProducts();
-  }catch(error){say("storeMsg","Ralat menyimpan kedai: "+error.message)}
-  finally{setButtonBusy("saveStoreBtn",false,"Menyimpan...","Simpan kedai")}
+  if(!user)return say("storeMsg","Sila log masuk dahulu.");
+  const name=$("storeName").value.trim(),slug=$("storeSlug").value.trim().toLowerCase().replace(/[^a-z0-9-]/g,"-").replace(/-+/g,"-").replace(/^-|-$/g,"");
+  if(name.length<2||slug.length<3)return say("storeMsg","Nama kedai atau slug tidak sah. Slug minimum 3 aksara.");
+  const values={owner_id:user.id,name,slug,bio:$("storeBio").value.trim()};
+  setButtonBusy("saveStoreBtn",true,"Menyimpan...","Simpan kedai");
+  try{
+    const result=store?await db.from("stores").update(values).eq("id",store.id).select().single():await db.from("stores").insert(values).select().single();
+    if(result.error){say("storeMsg",result.error.message);return}
+    store=result.data;say("storeMsg","Kedai berjaya disimpan!");showLink();await loadProducts();
+  }catch(error){say("storeMsg","Ralat menyimpan kedai: "+error.message)}
+  finally{setButtonBusy("saveStoreBtn",false,"Menyimpan...","Simpan kedai")}
 }
 
 /* IMAGE PREVIEW */
 $("productImageFile").addEventListener("change",function(){
-  const file=this.files?.[0];
-  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
-  if(!file){$("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src");return}
-  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){say("productMsg","Format gambar tidak disokong.");this.value="";$("productImagePreview").style.display="none";return}
-  if(file.size>5*1024*1024){say("productMsg","Saiz gambar maksimum 5MB.");this.value="";$("productImagePreview").style.display="none";return}
-  previewObjectUrl=URL.createObjectURL(file);$("productImagePreview").src=previewObjectUrl;$("productImagePreview").style.display="block";
-  say("productMsg","Gambar dipilih. Ia akan dimampatkan semasa disimpan.");
+  const file=this.files?.[0];
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+  if(!file){$("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src");return}
+  if(!["image/jpeg","image/png","image/webp"].includes(file.type)){say("productMsg","Format gambar tidak disokong.");this.value="";$("productImagePreview").style.display="none";return}
+  if(file.size>5*1024*1024){say("productMsg","Saiz gambar maksimum 5MB.");this.value="";$("productImagePreview").style.display="none";return}
+  previewObjectUrl=URL.createObjectURL(file);$("productImagePreview").src=previewObjectUrl;$("productImagePreview").style.display="block";
+  say("productMsg","Gambar dipilih. Ia akan dimampatkan semasa disimpan.");
 });
-  
+  
 /* VIDEO PREVIEW */
 let videoPreviewObjectUrl=null;
 
 $("productVideoFile").addEventListener("change",function(){
-  const file=this.files?.[0];
-  const preview=$("productVideoPreview");
-  const wrap=$("productVideoPreviewWrap");
+  const file=this.files?.[0];
+  const preview=$("productVideoPreview");
+  const wrap=$("productVideoPreviewWrap");
 
-  if(videoPreviewObjectUrl){
-    URL.revokeObjectURL(videoPreviewObjectUrl);
-    videoPreviewObjectUrl=null;
-  }
+  if(videoPreviewObjectUrl){
+    URL.revokeObjectURL(videoPreviewObjectUrl);
+    videoPreviewObjectUrl=null;
+  }
 
-  if(!file){
-    preview.pause();
-    preview.removeAttribute("src");
-    preview.load();
-    wrap.style.display="none";
-    return;
-  }
+  if(!file){
+    preview.pause();
+    preview.removeAttribute("src");
+    preview.load();
+    wrap.style.display="none";
+    return;
+  }
 
-  if(file.type!=="video/mp4"){
-    say("productMsg","Format video tidak disokong. Sila pilih MP4.");
-    this.value="";
-    wrap.style.display="none";
-    return;
-  }
+  if(file.type!=="video/mp4"){
+    say("productMsg","Format video tidak disokong. Sila pilih MP4.");
+    this.value="";
+    wrap.style.display="none";
+    return;
+  }
 
-  if(file.size>50*1024*1024){
-    say("productMsg","Saiz video maksimum 50MB.");
-    this.value="";
-    wrap.style.display="none";
-    return;
-  }
+  if(file.size>50*1024*1024){
+    say("productMsg","Saiz video maksimum 50MB.");
+    this.value="";
+    wrap.style.display="none";
+    return;
+  }
 
-  videoPreviewObjectUrl=URL.createObjectURL(file);
-  preview.src=videoPreviewObjectUrl;
-  wrap.style.display="block";
-  say("productMsg","Video MP4 berjaya dipilih. Pratonton tersedia.");
+  videoPreviewObjectUrl=URL.createObjectURL(file);
+  preview.src=videoPreviewObjectUrl;
+  wrap.style.display="block";
+  say("productMsg","Video MP4 berjaya dipilih. Pratonton tersedia.");
 });
 
 async function saveProduct(){
-  if(!user)return say("productMsg","Sila log masuk dahulu.");
-  if(!store)return say("productMsg","Simpan kedai dahulu.");
+  if(!user)return say("productMsg","Sila log masuk dahulu.");
+  if(!store)return say("productMsg","Simpan kedai dahulu.");
 
-  const wasEditing=Boolean(editingId);
-  const name=$("productName").value.trim();
-  const link=safeUrl($("affiliateUrl").value.trim());
-  let image=$("imageUrl").value.trim();
+  const wasEditing=Boolean(editingId);
+  const name=$("productName").value.trim();
+  const link=safeUrl($("affiliateUrl").value.trim());
+  let image=$("imageUrl").value.trim();
 
-  const file=$("productImageFile").files?.[0]||null;
-  const videoFile=$("productVideoFile").files?.[0]||null;
-  const rawPrice=$("price").value;
-  const sortOrder=Number($("sortOrder").value||0);
+  const file=$("productImageFile").files?.[0]||null;
+  const videoFile=$("productVideoFile").files?.[0]||null;
+  const rawPrice=$("price").value;
+  const sortOrder=Number($("sortOrder").value||0);
 
-  let videoUrl=null;
-  let videoPath=null;
+  let videoUrl=null;
+  let videoPath=null;
 
-  if(!name)return say("productMsg","Masukkan nama produk.");
-  if(!link)return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
-  if(image&&!safeUrl(image))return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
+  if(!name)return say("productMsg","Masukkan nama produk.");
+  if(!link)return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
+  if(image&&!safeUrl(image))return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
 
-  if(rawPrice!==""&&(!Number.isFinite(Number(rawPrice))||Number(rawPrice)<0))
-    return say("productMsg","Harga produk tidak sah.");
+  if(rawPrice!==""&&(!Number.isFinite(Number(rawPrice))||Number(rawPrice)<0))
+    return say("productMsg","Harga produk tidak sah.");
 
-  if(!Number.isInteger(sortOrder)||sortOrder<0)
-    return say("productMsg","Susunan produk mesti nombor bulat 0 atau lebih.");
+  if(!Number.isInteger(sortOrder)||sortOrder<0)
+    return say("productMsg","Susunan produk mesti nombor bulat 0 atau lebih.");
 
-  if(videoFile&&videoFile.type!=="video/mp4")
-    return say("productMsg","Format video mesti MP4.");
+  if(videoFile&&videoFile.type!=="video/mp4")
+    return say("productMsg","Format video mesti MP4.");
 
-  if(videoFile&&videoFile.size>50*1024*1024)
-    return say("productMsg","Saiz video maksimum 50MB.");
+  if(videoFile&&videoFile.size>50*1024*1024)
+    return say("productMsg","Saiz video maksimum 50MB.");
 
-  setButtonBusy("saveProductBtn",true,"Sedang menyimpan...",wasEditing?"Simpan perubahan":"Tambah produk");
+  setButtonBusy("saveProductBtn",true,"Sedang menyimpan...",wasEditing?"Simpan perubahan":"Tambah produk");
 
-  try{
-    if(file){
-      say("productMsg","Sedang memampatkan gambar...");
-      const compressed=await compressProductImage(file);
+  try{
+    if(file){
+      say("productMsg","Sedang memampatkan gambar...");
+      const compressed=await compressProductImage(file);
 
-      const {data:sessionData,error:sessionError}=await db.auth.getSession();
-      if(sessionError)throw new Error("Ralat sesi: "+sessionError.message);
+      const {data:sessionData,error:sessionError}=await db.auth.getSession();
+      if(sessionError)throw new Error("Ralat sesi: "+sessionError.message);
 
-      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)
-        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
+      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)
+        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
 
-      say("productMsg",`Gambar dimampatkan. ${(compressed.originalSize/1024).toFixed(0)}KB → ${(compressed.compressedSize/1024).toFixed(0)}KB. Sedang upload...`);
+      say("productMsg",`Gambar dimampatkan. ${(compressed.originalSize/1024).toFixed(0)}KB → ${(compressed.compressedSize/1024).toFixed(0)}KB. Sedang upload...`);
 
-      const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
+      const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
 
-      const upload=await db.storage.from("product-images").upload(path,compressed.file,{
-        contentType:"image/jpeg",
-        upsert:false
-      });
+      const upload=await db.storage.from("product-images").upload(path,compressed.file,{
+        contentType:"image/jpeg",
+        upsert:false
+      });
 
-      if(upload.error)throw new Error("Upload gambar gagal: "+upload.error.message);
+      if(upload.error)throw new Error("Upload gambar gagal: "+upload.error.message);
 
-      const {data:publicData}=db.storage.from("product-images").getPublicUrl(path);
-      image=publicData?.publicUrl||"";
+      const {data:publicData}=db.storage.from("product-images").getPublicUrl(path);
+      image=publicData?.publicUrl||"";
 
-      if(!image)throw new Error("URL gambar awam tidak dapat diperoleh.");
-    }
+      if(!image)throw new Error("URL gambar awam tidak dapat diperoleh.");
+    }
 
-    /* VIDEO UPLOAD */
-    if(videoFile){
-      say("productMsg","Sedang upload video produk...");
+    /* VIDEO UPLOAD */
+    if(videoFile){
+      say("productMsg","Sedang upload video produk...");
 
-      const {data:sessionData,error:sessionError}=await db.auth.getSession();
-      if(sessionError)throw new Error("Ralat sesi: "+sessionError.message);
+      const {data:sessionData,error:sessionError}=await db.auth.getSession();
+      if(sessionError)throw new Error("Ralat sesi: "+sessionError.message);
 
-      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)
-        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
+      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)
+        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
 
-      const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.mp4`;
+      const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.mp4`;
 
-      const upload=await db.storage.from("product-videos").upload(path,videoFile,{
-        contentType:"video/mp4",
-        upsert:false
-      });
+      const upload=await db.storage.from("product-videos").upload(path,videoFile,{
+        contentType:"video/mp4",
+        upsert:false
+      });
 
-      if(upload.error)throw new Error("Upload video gagal: "+upload.error.message);
+      if(upload.error)throw new Error("Upload video gagal: "+upload.error.message);
 
-      const {data:publicData}=db.storage.from("product-videos").getPublicUrl(path);
+      const {data:publicData}=db.storage.from("product-videos").getPublicUrl(path);
 
-      videoUrl=publicData?.publicUrl||"";
-      videoPath=path;
+      videoUrl=publicData?.publicUrl||"";
+      videoPath=path;
 
-      if(!videoUrl)throw new Error("URL video awam tidak dapat diperoleh.");
-    }else if(wasEditing){
-      /* KEKALKAN VIDEO LAMA SEMASA EDIT */
-      const existing=await db.from("products")
-        .select("video_url,video_path")
-        .eq("id",editingId)
-        .eq("owner_id",user.id)
-        .single();
+      if(!videoUrl)throw new Error("URL video awam tidak dapat diperoleh.");
+    }else if(wasEditing){
+      /* KEKALKAN VIDEO LAMA SEMASA EDIT */
+      const existing=await db.from("products")
+        .select("video_url,video_path")
+        .eq("id",editingId)
+        .eq("owner_id",user.id)
+        .single();
 
-      if(existing.error)throw new Error("Gagal membaca video produk lama: "+existing.error.message);
+      if(existing.error)throw new Error("Gagal membaca video produk lama: "+existing.error.message);
 
-      videoUrl=existing.data.video_url||null;
-      videoPath=existing.data.video_path||null;
-    }
+      videoUrl=existing.data.video_url||null;
+      videoPath=existing.data.video_path||null;
+    }
 
-    const values={
-      owner_id:user.id,
-      store_id:store.id,
-      name,
-      platform:$("platform").value,
-      affiliate_url:link,
-      image_url:image||null,
-      video_url:videoUrl,
-      video_path:videoPath,
-      price:rawPrice===""?null:Number(rawPrice),
-      description:$("description").value.trim(),
-      category:$("category").value,
-      is_featured:$("isFeatured").checked,
-      sort_order:sortOrder
-    };
+    const values={
+      owner_id:user.id,
+      store_id:store.id,
+      name,
+      platform:$("platform").value,
+      affiliate_url:link,
+      image_url:image||null,
+      video_url:videoUrl,
+      video_path:videoPath,
+      price:rawPrice===""?null:Number(rawPrice),
+      description:$("description").value.trim(),
+      category:$("category").value,
+      is_featured:$("isFeatured").checked,
+      sort_order:sortOrder
+    };
 
-    const result=wasEditing
-      ?await db.from("products").update(values).eq("id",editingId).eq("owner_id",user.id)
-      :await db.from("products").insert(values);
+    const result=wasEditing
+      ?await db.from("products").update(values).eq("id",editingId).eq("owner_id",user.id)
+      :await db.from("products").insert(values);
 
-    if(result.error)throw new Error(result.error.message);
+    if(result.error)throw new Error(result.error.message);
 
-    say("productMsg",wasEditing?"Produk berjaya dikemaskini!":"Produk berjaya ditambah!");
+    say("productMsg",wasEditing?"Produk berjaya dikemaskini!":"Produk berjaya ditambah!");
 
-    cancelEdit();
-    await loadProducts();
+    cancelEdit();
+    await loadProducts();
 
-  }catch(error){
-    say("productMsg","Ralat menyimpan produk: "+error.message);
-  }finally{
-    $("saveProductBtn").disabled=false;
-    $("saveProductBtn").textContent=wasEditing?"Simpan perubahan":"Tambah produk";
-  }
+  }catch(error){
+    say("productMsg","Ralat menyimpan produk: "+error.message);
+  }finally{
+    $("saveProductBtn").disabled=false;
+    $("saveProductBtn").textContent=wasEditing?"Simpan perubahan":"Tambah produk";
+  }
 }
 
 
@@ -2190,675 +2047,514 @@ async function saveProduct(){
 
 
 function editProduct(id){
-  const product=myItems.find(item=>String(item.id)===String(id));if(!product)return;
-  editingId=product.id;
-  $("productName").value=product.name||"";$("platform").value=product.platform||"Shopee";$("price").value=product.price??"";
-  $("imageUrl").value=product.image_url||"";$("affiliateUrl").value=product.affiliate_url||"";$("description").value=product.description||"";
-  $("category").value=product.category||"Lain-lain";$("isFeatured").checked=product.is_featured===true;$("sortOrder").value=Number(product.sort_order||0);
-  $("productImageFile").value="";
-  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
-  if(product.image_url&&safeUrl(product.image_url)){$("productImagePreview").src=product.image_url;$("productImagePreview").style.display="block"}
-  else{$("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src")}
-  say("formTitle","Edit produk affiliate");$("saveProductBtn").textContent="Simpan perubahan";$("cancelEditBtn").classList.remove("hidden");
-  say("productMsg","Mod edit aktif. Semak maklumat sebelum menyimpan.");$("productForm").scrollIntoView({behavior:"smooth",block:"start"});
+  const product=myItems.find(item=>String(item.id)===String(id));if(!product)return;
+  editingId=product.id;
+  $("productName").value=product.name||"";$("platform").value=product.platform||"Shopee";$("price").value=product.price??"";
+  $("imageUrl").value=product.image_url||"";$("affiliateUrl").value=product.affiliate_url||"";$("description").value=product.description||"";
+  $("category").value=product.category||"Lain-lain";$("isFeatured").checked=product.is_featured===true;$("sortOrder").value=Number(product.sort_order||0);
+  $("productImageFile").value="";
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+  if(product.image_url&&safeUrl(product.image_url)){$("productImagePreview").src=product.image_url;$("productImagePreview").style.display="block"}
+  else{$("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src")}
+  say("formTitle","Edit produk affiliate");$("saveProductBtn").textContent="Simpan perubahan";$("cancelEditBtn").classList.remove("hidden");
+  say("productMsg","Mod edit aktif. Semak maklumat sebelum menyimpan.");$("productForm").scrollIntoView({behavior:"smooth",block:"start"});
 }
 function cancelEdit(){
-  editingId=null;["productName","price","imageUrl","affiliateUrl","description"].forEach(id=>$(id).value="");
-  $("platform").value="Shopee";$("category").value="Skincare";$("isFeatured").checked=false;$("sortOrder").value="0";$("productImageFile").value="";
-  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
-  $("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src");
-  say("formTitle","Tambah produk affiliate");$("saveProductBtn").textContent="Tambah produk";$("cancelEditBtn").classList.add("hidden");
+  editingId=null;["productName","price","imageUrl","affiliateUrl","description"].forEach(id=>$(id).value="");
+  $("platform").value="Shopee";$("category").value="Skincare";$("isFeatured").checked=false;$("sortOrder").value="0";$("productImageFile").value="";
+  if(previewObjectUrl){URL.revokeObjectURL(previewObjectUrl);previewObjectUrl=null}
+  $("productImagePreview").style.display="none";$("productImagePreview").removeAttribute("src");
+  say("formTitle","Tambah produk affiliate");$("saveProductBtn").textContent="Tambah produk";$("cancelEditBtn").classList.add("hidden");
 }
 async function deleteProduct(id){
-  const product=myItems.find(item=>String(item.id)===String(id));if(!product)return;
-  if(!confirm("Padam produk '"+product.name+"'? Tindakan ini tidak boleh dibatalkan."))return;
-  try{const {error}=await db.from("products").delete().eq("id",id).eq("owner_id",user.id);if(error)throw error;if(String(editingId)===String(id))cancelEdit();await loadProducts();alert("Produk berjaya dipadam.");}
-  catch(error){alert("Produk tidak dapat dipadam: "+error.message)}
+  const product=myItems.find(item=>String(item.id)===String(id));if(!product)return;
+  if(!confirm("Padam produk '"+product.name+"'? Tindakan ini tidak boleh dibatalkan."))return;
+  try{const {error}=await db.from("products").delete().eq("id",id).eq("owner_id",user.id);if(error)throw error;if(String(editingId)===String(id))cancelEdit();await loadProducts();alert("Produk berjaya dipadam.");}
+  catch(error){alert("Produk tidak dapat dipadam: "+error.message)}
 }
 
 async function loadProducts(){
-  if(!store||!user)return;
-  const {data,error}=await db.from("products").select("*").eq("store_id",store.id).order("sort_order",{ascending:true}).order("created_at",{ascending:false});
-  if(error){say("productMsg",error.message);return}
-  myItems=data||[];await loadClickStats();renderManage();await loadSales();refreshManageCategories();
+  if(!store||!user)return;
+  const {data,error}=await db.from("products").select("*").eq("store_id",store.id).order("sort_order",{ascending:true}).order("created_at",{ascending:false});
+  if(error){say("productMsg",error.message);return}
+  myItems=data||[];await loadClickStats();renderManage();await loadSales();refreshManageCategories();
 }
 async function loadClickStats(){
-  clickCounts={};const ids=myItems.map(product=>product.id);
-  if(ids.length){
-    const {data,error}=await db.from("product_clicks").select("product_id").in("product_id",ids);
-    if(error){say("statsMsg","Statistik gagal dimuatkan: "+error.message);renderAnalytics();return}
-    (data||[]).forEach(row=>{const id=String(row.product_id);clickCounts[id]=(clickCounts[id]||0)+1});
-  }
-  const total=Object.values(clickCounts).reduce((sum,count)=>sum+count,0);
-  say("totalClicks",total);say("totalProducts",myItems.length);say("activeProducts",myItems.filter(product=>product.is_active===true).length);
-  say("statsMsg","Analitik berjaya dikemas kini.");renderAnalytics();
+  clickCounts={};const ids=myItems.map(product=>product.id);
+  if(ids.length){
+    const {data,error}=await db.from("product_clicks").select("product_id").in("product_id",ids);
+    if(error){say("statsMsg","Statistik gagal dimuatkan: "+error.message);renderAnalytics();return}
+    (data||[]).forEach(row=>{const id=String(row.product_id);clickCounts[id]=(clickCounts[id]||0)+1});
+  }
+  const total=Object.values(clickCounts).reduce((sum,count)=>sum+count,0);
+  say("totalClicks",total);say("totalProducts",myItems.length);say("activeProducts",myItems.filter(product=>product.is_active===true).length);
+  say("statsMsg","Analitik berjaya dikemas kini.");renderAnalytics();
 }
 function renderAnalytics(){
-  const sorted=[...myItems].sort((a,b)=>(clickCounts[b.id]||0)-(clickCounts[a.id]||0)),top=sorted.slice(0,5),maxClicks=Math.max(1,...sorted.map(product=>clickCounts[product.id]||0));
-  const makeItem=product=>{const clicks=clickCounts[product.id]||0,width=(clicks/maxClicks)*100;return `<div class="analytics-item"><div class="analytics-head"><strong>${esc(product.name)}</strong><span>${clicks} klik</span></div><div class="bar-bg"><div class="bar-fill" style="width:${width}%"></div></div><div class="small">${esc(product.platform)} · ${esc(product.category||"Lain-lain")}</div></div>`};
-  $("topProducts").innerHTML=top.length?top.map(makeItem).join(""):'<div class="analytics-empty">Belum ada produk.</div>';
-  $("productAnalytics").innerHTML=sorted.length?sorted.map(makeItem).join(""):'<div class="analytics-empty">Tiada data produk.</div>';
+  const sorted=[...myItems].sort((a,b)=>(clickCounts[b.id]||0)-(clickCounts[a.id]||0)),top=sorted.slice(0,5),maxClicks=Math.max(1,...sorted.map(product=>clickCounts[product.id]||0));
+  const makeItem=product=>{const clicks=clickCounts[product.id]||0,width=(clicks/maxClicks)*100;return `<div class="analytics-item"><div class="analytics-head"><strong>${esc(product.name)}</strong><span>${clicks} klik</span></div><div class="bar-bg"><div class="bar-fill" style="width:${width}%"></div></div><div class="small">${esc(product.platform)} · ${esc(product.category||"Lain-lain")}</div></div>`};
+  $("topProducts").innerHTML=top.length?top.map(makeItem).join(""):'<div class="analytics-empty">Belum ada produk.</div>';
+  $("productAnalytics").innerHTML=sorted.length?sorted.map(makeItem).join(""):'<div class="analytics-empty">Tiada data produk.</div>';
 }
 function refreshManageCategories(){
-  const select=$("manageCategoryFilter"),current=select.value,categories=[...new Set(myItems.map(p=>p.category||"Lain-lain"))].sort();
-  select.innerHTML='<option value="all">Semua kategori</option>'+categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
-  if(categories.includes(current))select.value=current;
+  const select=$("manageCategoryFilter"),current=select.value,categories=[...new Set(myItems.map(p=>p.category||"Lain-lain"))].sort();
+  select.innerHTML='<option value="all">Semua kategori</option>'+categories.map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join("");
+  if(categories.includes(current))select.value=current;
 }
 function renderManage(){
-  const query=$("manageSearch").value.toLowerCase(),filter=$("manageFilter").value,category=$("manageCategoryFilter").value;
-  const products=myItems.filter(product=>(filter==="all"||product.platform===filter)&&(category==="all"||(product.category||"Lain-lain")===category)&&String(product.name||"").toLowerCase().includes(query));
-  $("myProducts").innerHTML=products.map(product=>card(product,true)).join("")||'<div class="empty">Tiada produk sepadan.</div>';
+  const query=$("manageSearch").value.toLowerCase(),filter=$("manageFilter").value,category=$("manageCategoryFilter").value;
+  const products=myItems.filter(product=>(filter==="all"||product.platform===filter)&&(category==="all"||(product.category||"Lain-lain")===category)&&String(product.name||"").toLowerCase().includes(query));
+  $("myProducts").innerHTML=products.map(product=>card(product,true)).join("")||'<div class="empty">Tiada produk sepadan.</div>';
 }
 
 async function loadSales(){
-  if(!store||!user)return;
-  const {data,error}=await db.from("affiliate_sales").select("*").eq("store_id",store.id).order("sale_date",{ascending:false});
-  if(error){say("saleMsg","Gagal memuatkan jualan: "+error.message);return}
-  salesItems=data||[];
-  $("saleProduct").innerHTML='<option value="">Tiada produk dipilih</option>'+myItems.map(product=>`<option value="${esc(product.id)}">${esc(product.name)}</option>`).join("");
-  const totalSales=salesItems.reduce((sum,sale)=>sum+Number(sale.sale_amount||0),0),approvedCommission=salesItems.filter(sale=>sale.status==="Approved").reduce((sum,sale)=>sum+Number(sale.commission_amount||0),0);
-  say("salesCount",salesItems.length);say("salesTotal",money(totalSales));say("commissionTotal",money(approvedCommission));renderSales();
+  if(!store||!user)return;
+  const {data,error}=await db.from("affiliate_sales").select("*").eq("store_id",store.id).order("sale_date",{ascending:false});
+  if(error){say("saleMsg","Gagal memuatkan jualan: "+error.message);return}
+  salesItems=data||[];
+  $("saleProduct").innerHTML='<option value="">Tiada produk dipilih</option>'+myItems.map(product=>`<option value="${esc(product.id)}">${esc(product.name)}</option>`).join("");
+  const totalSales=salesItems.reduce((sum,sale)=>sum+Number(sale.sale_amount||0),0),approvedCommission=salesItems.filter(sale=>sale.status==="Approved").reduce((sum,sale)=>sum+Number(sale.commission_amount||0),0);
+  say("salesCount",salesItems.length);say("salesTotal",money(totalSales));say("commissionTotal",money(approvedCommission));renderSales();
 }
 async function saveSale(){
-  if(!store||!user)return say("saleMsg","Sila log masuk dahulu.");
-  const productId=$("saleProduct").value,amountInput=$("saleAmount").value,commissionInput=$("saleCommission").value,date=$("saleDate").value,amount=Number(amountInput),commission=Number(commissionInput);
-  if(!date||amountInput===""||commissionInput==="")return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
-  if(!Number.isFinite(amount)||!Number.isFinite(commission)||amount<0||commission<0)return say("saleMsg","Jumlah wang tidak sah.");
-  const selectedProduct=myItems.find(product=>String(product.id)===String(productId)),platform=selectedProduct?selectedProduct.platform:$("salePlatform").value;
-  const record={owner_id:user.id,store_id:store.id,product_id:productId||null,platform,sale_amount:amount,commission_amount:commission,status:$("saleStatus").value,sale_date:date,notes:$("saleNotes").value.trim()};
-  setButtonBusy("saveSaleBtn",true,"Sedang menyimpan...","Simpan rekod jualan");
-  try{const {error}=await db.from("affiliate_sales").insert(record);if(error)throw error;say("saleMsg","Rekod jualan berjaya disimpan!");$("saleAmount").value="";$("saleCommission").value="";$("saleNotes").value="";$("saleProduct").value="";await loadSales();}
-  catch(error){say("saleMsg","Gagal menyimpan rekod: "+error.message)}
-  finally{setButtonBusy("saveSaleBtn",false,"Sedang menyimpan...","Simpan rekod jualan")}
+  if(!store||!user)return say("saleMsg","Sila log masuk dahulu.");
+  const productId=$("saleProduct").value,amountInput=$("saleAmount").value,commissionInput=$("saleCommission").value,date=$("saleDate").value,amount=Number(amountInput),commission=Number(commissionInput);
+  if(!date||amountInput===""||commissionInput==="")return say("saleMsg","Lengkapkan tarikh, jualan dan komisen.");
+  if(!Number.isFinite(amount)||!Number.isFinite(commission)||amount<0||commission<0)return say("saleMsg","Jumlah wang tidak sah.");
+  const selectedProduct=myItems.find(product=>String(product.id)===String(productId)),platform=selectedProduct?selectedProduct.platform:$("salePlatform").value;
+  const record={owner_id:user.id,store_id:store.id,product_id:productId||null,platform,sale_amount:amount,commission_amount:commission,status:$("saleStatus").value,sale_date:date,notes:$("saleNotes").value.trim()};
+  setButtonBusy("saveSaleBtn",true,"Sedang menyimpan...","Simpan rekod jualan");
+  try{const {error}=await db.from("affiliate_sales").insert(record);if(error)throw error;say("saleMsg","Rekod jualan berjaya disimpan!");$("saleAmount").value="";$("saleCommission").value="";$("saleNotes").value="";$("saleProduct").value="";await loadSales();}
+  catch(error){say("saleMsg","Gagal menyimpan rekod: "+error.message)}
+  finally{setButtonBusy("saveSaleBtn",false,"Sedang menyimpan...","Simpan rekod jualan")}
 }
 function renderSales(){
-  if(!salesItems.length){$("salesHistory").innerHTML='<div class="empty">Belum ada rekod jualan.</div>';return}
-  $("salesHistory").innerHTML=salesItems.map(sale=>{
-    const product=myItems.find(item=>String(item.id)===String(sale.product_id)),name=product?product.name:"Produk tidak dipilih / tidak tersedia",statusColor=sale.status==="Approved"?"#A17C42":sale.status==="Rejected"?"#A84F50":"#96733D";
-    return `<div class="analytics-item"><div class="analytics-head"><strong>${esc(name)}</strong><span style="color:${statusColor}">${esc(sale.status)}</span></div><div class="small">${esc(sale.platform)} · ${esc(sale.sale_date)}</div><p>Jualan: <strong>${money(sale.sale_amount)}</strong></p><p>Komisen: <strong>${money(sale.commission_amount)}</strong></p>${sale.notes?`<div class="small">${esc(sale.notes)}</div>`:""}</div>`;
-  }).join("");
+  if(!salesItems.length){$("salesHistory").innerHTML='<div class="empty">Belum ada rekod jualan.</div>';return}
+  $("salesHistory").innerHTML=salesItems.map(sale=>{
+    const product=myItems.find(item=>String(item.id)===String(sale.product_id)),name=product?product.name:"Produk tidak dipilih / tidak tersedia",statusColor=sale.status==="Approved"?"#A17C42":sale.status==="Rejected"?"#A84F50":"#96733D";
+    return `<div class="analytics-item"><div class="analytics-head"><strong>${esc(name)}</strong><span style="color:${statusColor}">${esc(sale.status)}</span></div><div class="small">${esc(sale.platform)} · ${esc(sale.sale_date)}</div><p>Jualan: <strong>${money(sale.sale_amount)}</strong></p><p>Komisen: <strong>${money(sale.commission_amount)}</strong></p>${sale.notes?`<div class="small">${esc(sale.notes)}</div>`:""}</div>`;
+  }).join("");
 }
 
 async function openStore(slug){
-  $("welcome").classList.add("hidden");$("dashboard").classList.add("hidden");$("publicStore").classList.remove("hidden");$("logoutBtn").classList.add("hidden");
-  $("headerStoreTools").classList.remove("hidden");
+  $("welcome").classList.add("hidden");$("dashboard").classList.add("hidden");$("publicStore").classList.remove("hidden");$("logoutBtn").classList.add("hidden");
+  $("headerStoreTools").classList.remove("hidden");
 $("mainHeader").classList.add("store-header-active");
-  const {data:storeData,error}=await db.from("stores").select("*").eq("slug",slug).maybeSingle();
-  if(error||!storeData){say("publicName","Kedai tidak dijumpai");$("publicProducts").innerHTML='<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';return}
-  say("publicName",storeData.name);say("publicBio",storeData.bio||"");
-  const result=await db.from("products").select("*").eq("store_id",storeData.id).eq("is_active",true).order("sort_order",{ascending:true}).order("created_at",{ascending:false});
-  if(result.error){$("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan: '+esc(result.error.message)+'</div>';return}
-  publicItems=result.data||[];
+  const {data:storeData,error}=await db.from("stores").select("*").eq("slug",slug).maybeSingle();
+  if(error||!storeData){say("publicName","Kedai tidak dijumpai");$("publicProducts").innerHTML='<div class="empty">Kedai tidak dijumpai atau tidak dapat diakses.</div>';return}
+  say("publicName",storeData.name);say("publicBio",storeData.bio||"");
+  const result=await db.from("products").select("*").eq("store_id",storeData.id).eq("is_active",true).order("sort_order",{ascending:true}).order("created_at",{ascending:false});
+  if(result.error){$("publicProducts").innerHTML='<div class="empty">Produk tidak dapat dimuatkan: '+esc(result.error.message)+'</div>';return}
+  publicItems=result.data||[];
 say("productCount",publicItems.length);
 selectedCategory="all";
 likedOnly=false;
 renderPublicCategories();
 renderPublic();
 }
-  
+  
 function categoryIcon(category){
-  const icons={
-    "Skincare":'<rect x="7" y="7" width="10" height="14" rx="2"/><path d="M9 7V4h6v3M10 4V2h4v2"/>',
-    "Kecantikan":'<path d="M10 3h4v6l2 3v9H8v-9l2-3z"/><path d="M10 9h4M8 14h8"/>',
-    "Kesihatan":'<path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/><path d="M8 12h3l1-3 2 6 1-3h2"/>',
-    "Fesyen":'<path d="m3 8 9-5 9 5-4 4v9H7v-9z"/><path d="M7 12h10"/>',
-    "Elektronik":'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
-    "Rumah & Dapur":'<path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M9 21v-7h6v7"/>',
-    "Ibu & Anak":'<circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
-    "Makanan & Minuman":'<path d="M5 3v8M8 3v8M5 7h3M6.5 11v10M16 3v18M16 3c4 3 4 7 0 9"/>',
-    "Gajet":'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/>',
-    "Lain-lain":'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>'
-  };
-  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[category]||icons["Lain-lain"]}</svg>`;
+  const icons={
+    "Skincare":'<rect x="7" y="7" width="10" height="14" rx="2"/><path d="M9 7V4h6v3M10 4V2h4v2"/>',
+    "Kecantikan":'<path d="M10 3h4v6l2 3v9H8v-9l2-3z"/><path d="M10 9h4M8 14h8"/>',
+    "Kesihatan":'<path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/><path d="M8 12h3l1-3 2 6 1-3h2"/>',
+    "Fesyen":'<path d="m3 8 9-5 9 5-4 4v9H7v-9z"/><path d="M7 12h10"/>',
+    "Elektronik":'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+    "Rumah & Dapur":'<path d="m3 11 9-8 9 8"/><path d="M5 10v11h14V10M9 21v-7h6v7"/>',
+    "Ibu & Anak":'<circle cx="12" cy="7" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/>',
+    "Makanan & Minuman":'<path d="M5 3v8M8 3v8M5 7h3M6.5 11v10M16 3v18M16 3c4 3 4 7 0 9"/>',
+    "Gajet":'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M11 18h2"/>',
+    "Lain-lain":'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>'
+  };
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${icons[category]||icons["Lain-lain"]}</svg>`;
 }
 
 function renderPublicCategories(){
-  const categories=[...new Set(publicItems.map(p=>p.category||"Lain-lain"))].sort();
+  const categories=[...new Set(publicItems.map(p=>p.category||"Lain-lain"))].sort();
 
-  const all=[
-    {name:"Skincare",value:"Skincare"},
-    {name:"Kecantikan",value:"Kecantikan"},
-    {name:"Rumah & Dapur",value:"Rumah & Dapur"},
-    {name:"Fesyen",value:"Fesyen"},
-    {name:"Gajet",value:"Gajet"},
-    {name:"Kesihatan",value:"Kesihatan"},
-    {name:"Makanan & Minuman",value:"Makanan & Minuman"},
-    {name:"Lain-lain",value:"Lain-lain"}
-  ].filter(item=>categories.includes(item.value));
+  const all=[
+    {name:"Skincare",value:"Skincare"},
+    {name:"Kecantikan",value:"Kecantikan"},
+    {name:"Rumah & Dapur",value:"Rumah & Dapur"},
+    {name:"Fesyen",value:"Fesyen"},
+    {name:"Gajet",value:"Gajet"},
+    {name:"Kesihatan",value:"Kesihatan"},
+    {name:"Makanan & Minuman",value:"Makanan & Minuman"},
+    {name:"Lain-lain",value:"Lain-lain"}
+  ].filter(item=>categories.includes(item.value));
 
-  $("publicCategories").innerHTML=all.map(item=>`
-    <button class="category-tile ${selectedCategory===item.value?"active":""}"
-      onclick="chooseCategory('${esc(item.value)}')">
-      ${categoryIcon(item.value)}
-      <span>${esc(item.name)}</span>
-    </button>
-  `).join("");
+  $("publicCategories").innerHTML=all.map(item=>`
+    <button class="category-tile ${selectedCategory===item.value?"active":""}"
+      onclick="chooseCategory('${esc(item.value)}')">
+      ${categoryIcon(item.value)}
+      <span>${esc(item.name)}</span>
+    </button>
+  `).join("");
 
-  if(!all.length){
-    $("publicCategories").innerHTML='<div class="empty">Kategori akan dipaparkan apabila produk ditambah.</div>';
-  }
+  if(!all.length){
+    $("publicCategories").innerHTML='<div class="empty">Kategori akan dipaparkan apabila produk ditambah.</div>';
+  }
 }
 
 function chooseCategory(category){
-  selectedCategory=selectedCategory===category?"all":category;
-  renderPublicCategories();
-  renderPublic();
-  $("publicProducts").scrollIntoView({behavior:"smooth",block:"start"});
+  selectedCategory=selectedCategory===category?"all":category;
+  renderPublicCategories();
+  renderPublic();
+  $("publicProducts").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 
 
 function storeNav(section,button){
-  document.querySelectorAll(".store-bottom-nav button")
-    .forEach(item=>item.classList.remove("active"));
+  document.querySelectorAll(".store-bottom-nav button")
+    .forEach(item=>item.classList.remove("active"));
 
-  if(button)button.classList.add("active");
+  if(button)button.classList.add("active");
 
-  $("profilePanel").classList.add("hidden");
-  $("featuredWrap").classList.remove("hidden");
+  $("profilePanel").classList.add("hidden");
+  $("featuredWrap").classList.remove("hidden");
 
-  $("publicProducts").classList.remove("hidden");
-  $("publicCategories").classList.remove("hidden");
+  $("publicProducts").classList.remove("hidden");
+  $("publicCategories").classList.remove("hidden");
 
-  $("shoppableVideoWrap").classList.remove("hidden");
+  $("shoppableVideoWrap").classList.remove("hidden");
 
-  if(section==="me"){
-    likedOnly=false;
-    $("featuredWrap").classList.add("hidden");
-    $("shoppableVideoWrap").classList.add("hidden");
-    $("profilePanel").classList.remove("hidden");
+  if(section==="me"){
+    likedOnly=false;
+    $("featuredWrap").classList.add("hidden");
+    $("shoppableVideoWrap").classList.add("hidden");
+    $("profilePanel").classList.remove("hidden");
 
-    const email=user?.email||"";
-    const isAdmin=email.toLowerCase()==="nazri.lacottage@gmail.com";
+    const email=user?.email||"";
+    const isAdmin=email.toLowerCase()==="nazri.lacottage@gmail.com";
 
-    say("profileName",
-      user?.user_metadata?.full_name||
-      user?.user_metadata?.name||
-      "Pengguna SELLORA"
-    );
+    say("profileName",
+      user?.user_metadata?.full_name||
+      user?.user_metadata?.name||
+      "Pengguna SELLORA"
+    );
 
-    say("profileEmail",email||"Belum log masuk");
-    say("profileRole",isAdmin?"ADMIN":"PENGGUNA");
+    say("profileEmail",email||"Belum log masuk");
+    say("profileRole",isAdmin?"ADMIN":"PENGGUNA");
 
-    $("publicProducts").classList.add("hidden");
-    $("publicCategories").classList.add("hidden");
+    $("publicProducts").classList.add("hidden");
+    $("publicCategories").classList.add("hidden");
 
-    $("profilePanel").scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-    return;
-  }
+    $("profilePanel").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+    return;
+  }
 
-  $("publicProducts").classList.remove("hidden");
-  $("publicCategories").classList.remove("hidden");
+  $("publicProducts").classList.remove("hidden");
+  $("publicCategories").classList.remove("hidden");
 
-  if(section==="liked"){
-    likedOnly=true;
-    selectedCategory="all";
-    $("shoppableVideoWrap").classList.add("hidden");
+  if(section==="liked"){
+    likedOnly=true;
+    selectedCategory="all";
+    $("shoppableVideoWrap").classList.add("hidden");
 
-    renderPublicCategories();
-    renderPublic();
+    renderPublicCategories();
+    renderPublic();
 
-    $("publicProducts").scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-    return;
-  }
+    $("publicProducts").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+    return;
+  }
 
-  likedOnly=false;
+  likedOnly=false;
 
-  if(section==="home"){
-    selectedCategory="all";
-    renderPublicCategories();
-    renderPublic();
+  if(section==="home"){
+    selectedCategory="all";
+    renderPublicCategories();
+    renderPublic();
 
-    $("publicStore").scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-    return;
-  }
+    $("publicStore").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+    return;
+  }
 
-  if(section==="categories"){
-    $("publicCategories").scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-    return;
-  }
+  if(section==="categories"){
+    $("publicCategories").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+    return;
+  }
 
-  if(section==="video"){
-    selectedCategory="all";
-    $("shoppableVideoWrap").classList.remove("hidden");
+  if(section==="video"){
+    selectedCategory="all";
+    $("shoppableVideoWrap").classList.remove("hidden");
 
-    renderPublicCategories();
-    renderPublic();
+    renderPublicCategories();
+    renderPublic();
 
-    $("shoppableVideoWrap").scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-    return;
-  }
+    $("shoppableVideoWrap").scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+    return;
+  }
 }
 
 
 
 
 function renderPublic(){
-  const query=$("publicSearch").value.toLowerCase();
-  const filter=$("publicFilter").value;
-  const sort=$("publicSort").value;
+  const query=$("publicSearch").value.toLowerCase();
+  const filter=$("publicFilter").value;
+  const sort=$("publicSort").value;
 
-  let products=publicItems.filter(product=>
-    (filter==="all"||product.platform===filter)&&
-    (selectedCategory==="all"||
-      (product.category||"Lain-lain")===selectedCategory)&&
-    (!likedOnly||isLiked(product.id))&&
-    String(product.name||"").toLowerCase().includes(query)
-  );
+  let products=publicItems.filter(product=>
+    (filter==="all"||product.platform===filter)&&
+    (selectedCategory==="all"||
+      (product.category||"Lain-lain")===selectedCategory)&&
+    (!likedOnly||isLiked(product.id))&&
+    String(product.name||"").toLowerCase().includes(query)
+  );
 
-  if(sort==="price-low")
-    products.sort((a,b)=>Number(a.price??Infinity)-Number(b.price??Infinity));
-  else if(sort==="price-high")
-    products.sort((a,b)=>Number(b.price??-1)-Number(a.price??-1));
-  else if(sort==="name")
-    products.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
-  else if(sort==="newest")
-    products.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
-  else products.sort((a,b)=>{
-    const featuredA=Boolean(a.is_featured);
-    const featuredB=Boolean(b.is_featured);
-    if(featuredA!==featuredB)return featuredA?-1:1;
-    const orderA=Number(a.sort_order??0);
-    const orderB=Number(b.sort_order??0);
-    if(orderA!==orderB)return orderA-orderB;
-    return productDateSort(a,b);
-  });
+  if(sort==="price-low")
+    products.sort((a,b)=>Number(a.price??Infinity)-Number(b.price??Infinity));
+  else if(sort==="price-high")
+    products.sort((a,b)=>Number(b.price??-1)-Number(a.price??-1));
+  else if(sort==="name")
+    products.sort((a,b)=>String(a.name).localeCompare(String(b.name)));
+  else if(sort==="newest")
+    products.sort((a,b)=>new Date(b.created_at||0)-new Date(a.created_at||0));
+  else products.sort((a,b)=>{
+    const featuredA=Boolean(a.is_featured);
+    const featuredB=Boolean(b.is_featured);
+    if(featuredA!==featuredB)return featuredA?-1:1;
+    const orderA=Number(a.sort_order??0);
+    const orderB=Number(b.sort_order??0);
+    if(orderA!==orderB)return orderA-orderB;
+    return productDateSort(a,b);
+  });
 
-  const featured=likedOnly
-    ? []
-    : products.filter(product=>product.is_featured===true);
+  const featured=likedOnly
+    ? []
+    : products.filter(product=>product.is_featured===true);
 
-  $("featuredWrap").classList.toggle("hidden",featured.length===0);
-  $("featuredProducts").innerHTML=
-    featured.map(product=>card(product,false)).join("");
+  $("featuredWrap").classList.toggle("hidden",featured.length===0);
+  $("featuredProducts").innerHTML=
+    featured.map(product=>card(product,false)).join("");
 
-  $("publicProducts").innerHTML=
-    products.map(product=>card(product,false)).join("")||
-    '<div class="empty">Tiada produk disukai. Tekan ikon hati pada produk untuk simpan Favourite.</div>';
+  $("publicProducts").innerHTML=
+    products.map(product=>card(product,false)).join("")||
+    '<div class="empty">Tiada produk disukai. Tekan ikon hati pada produk untuk simpan Favourite.</div>';
 
-  /* SHOPPABLE VIDEO */
-  const videoProducts=products.filter(product=>
-    product.video_url&&safeUrl(product.video_url)
-  );
+  /* SHOPPABLE VIDEO */
+  const videoProducts=products.filter(product=>
+    product.video_url&&safeUrl(product.video_url)
+  );
 
-  $("shoppableVideoWrap").classList.toggle(
-    "hidden",
-    videoProducts.length===0
-  );
+  $("shoppableVideoWrap").classList.toggle(
+    "hidden",
+    videoProducts.length===0
+  );
 
-  $("shoppableVideoList").innerHTML=videoProducts.map(product=>{
-    const videoUrl=safeUrl(product.video_url);
+  $("shoppableVideoList").innerHTML=videoProducts.map(product=>{
+    const videoUrl=safeUrl(product.video_url);
 
-    return `
-      <div class="shoppable-video-card">
-        <div class="shoppable-video-preview">
-          <video
-            src="${esc(videoUrl)}"
-            muted
-            playsinline
-            preload="metadata"
-          ></video>
+    return `
+      <div class="shoppable-video-card">
+        <div class="shoppable-video-preview">
+          <video
+            src="${esc(videoUrl)}"
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
 
-          <button
-            type="button"
-            class="shoppable-play-btn"
-            onclick="openShoppableVideo('${esc(product.id)}')"
-          >
-            ▶
-          </button>
-        </div>
+          <button
+            type="button"
+            class="shoppable-play-btn"
+            onclick="openShoppableVideo('${esc(product.id)}')"
+          >
+            ▶
+          </button>
+        </div>
 
-        <div class="shoppable-video-info">
-          <div class="shoppable-video-name">
-            ${esc(product.name)}
-          </div>
+        <div class="shoppable-video-info">
+          <div class="shoppable-video-name">
+            ${esc(product.name)}
+          </div>
 
-          <div class="shoppable-video-price">
-            ${product.price!=null
-              ?"RM "+Number(product.price).toFixed(2)
-              :"Lihat harga"}
-          </div>
-        </div>
-      </div>
-    `;
-  }).join("");
-  /* SELLORA VIDEO FEED PLAYER */
+          <div class="shoppable-video-price">
+            ${product.price!=null
+              ?"RM "+Number(product.price).toFixed(2)
+              :"Lihat harga"}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+  
+/* SELLORA SHOPPABLE VIDEO PLAYER */
 
-let shoppableVideoObserver=null;
 let shoppablePopupTimer=null;
 let activeShoppableProduct=null;
 
 function openShoppableVideo(productId){
+  const product=publicItems.find(p=>String(p.id)===String(productId));
 
-  const videoProducts=publicItems.filter(product=>
-    product.video_url&&safeUrl(product.video_url)
-  );
+  if(!product||!product.video_url){
+    alert("Video produk tidak dijumpai.");
+    return;
+  }
 
-  if(!videoProducts.length){
-    alert("Tiada video produk tersedia.");
-    return;
-  }
+  const videoUrl=safeUrl(product.video_url);
+  if(!videoUrl){
+    alert("Pautan video tidak sah.");
+    return;
+  }
 
-  const startIndex=videoProducts.findIndex(product=>
-    String(product.id)===String(productId)
-  );
+  activeShoppableProduct=product;
 
-  const feed=$("shoppableVideoFeed");
-  const modal=$("shoppableVideoModal");
+  const modal=$("shoppableVideoModal");
+  const video=$("shoppableMainVideo");
+  const popup=$("shoppableProductPopup");
+  const buyBtn=$("shoppableBuyBtn");
 
-  if(shoppableVideoObserver){
-    shoppableVideoObserver.disconnect();
-    shoppableVideoObserver=null;
-  }
+  if(shoppablePopupTimer){
+    clearTimeout(shoppablePopupTimer);
+    shoppablePopupTimer=null;
+  }
 
-  if(shoppablePopupTimer){
-    clearTimeout(shoppablePopupTimer);
-    shoppablePopupTimer=null;
-  }
+  popup.classList.add("hidden");
 
-  feed.innerHTML=videoProducts.map((product,index)=>{
+  $("shoppablePopupName").textContent=product.name||"Produk SELLORA";
 
-    const videoUrl=safeUrl(product.video_url);
+  $("shoppablePopupPrice").textContent=
+    product.price!=null
+      ?"RM "+Number(product.price).toFixed(2)
+      :"Lihat harga";
 
-    const price=product.price!=null
-      ?"RM "+Number(product.price).toFixed(2)
-      :"Lihat harga";
+  video.pause();
+  video.src=videoUrl;
+  video.load();
 
-    return `
-      <div class="shoppable-feed-item"
-           data-index="${index}"
-           data-product-id="${esc(product.id)}">
+  modal.classList.remove("hidden");
 
-        <video
-          src="${esc(videoUrl)}"
-          playsinline
-          muted
-          loop
-          preload="metadata"
-        ></video>
+  video.play().catch(()=>{
+    console.log("Tekan butang Play untuk memainkan video.");
+  });
 
-        <div class="shoppable-feed-overlay">
+  /* PAPAR POPUP SELEPAS 3 SAAT */
+  shoppablePopupTimer=setTimeout(()=>{
+    if(activeShoppableProduct){
+      popup.classList.remove("hidden");
+    }
+  },3000);
 
-          <div class="shoppable-feed-info">
-            <h3>${esc(product.name||"Produk SELLORA")}</h3>
-            <p>${esc(price)}</p>
-          </div>
-                    <div class="shoppable-feed-actions">
+  /* BUTANG AFFILIATE */
+buyBtn.onclick=function(event){
+  const product=activeShoppableProduct;
 
-            <button
-              type="button"
-              class="shoppable-feed-action"
-              onclick="toggleFeedVideo(this)"
-            >
-              <span>▶</span>
-              <small>Play</small>
-            </button>
+  if(!product)return;
 
-            <button
-              type="button"
-              class="shoppable-feed-action"
-              onclick="shareFeedProduct('${esc(product.id)}')"
-            >
-              <span>↗</span>
-              <small>Kongsi</small>
-            </button>
+  const affiliateUrl=safeUrl(product.affiliate_url);
 
-          </div>
+  if(!affiliateUrl){
+    alert("Pautan affiliate produk tidak sah.");
+    return;
+  }
 
-        </div>
+  // Buka halaman affiliate
+  window.open(affiliateUrl,"_blank","noopener,noreferrer");
 
-        <button
-          type="button"
-          class="shoppable-feed-play"
-          onclick="toggleFeedVideo(this)"
-        >Ⅱ</button>
-
-        <button
-          type="button"
-          class="shoppable-feed-buy"
-          onclick="buyFeedProduct('${esc(product.id)}')"
-        >
-          🛍 BELI PRODUK — ${esc(price)}
-        </button>
-
-      </div>
-    `;
-  }).join("");
-
-  modal.classList.remove("hidden");
-
-  const items=feed.querySelectorAll(".shoppable-feed-item");
-
-  const targetIndex=startIndex>=0?startIndex:0;
-
-  items[targetIndex]?.scrollIntoView({
-    behavior:"instant",
-    block:"start"
-  });
-
-  setupShoppableVideoObserver();
-}
-/* SELLORA VIDEO FEED OBSERVER */
-
-function setupShoppableVideoObserver(){
-
-  const feed=$("shoppableVideoFeed");
-  const videos=feed.querySelectorAll(".shoppable-feed-item video");
-
-  if(shoppableVideoObserver){
-    shoppableVideoObserver.disconnect();
-  }
-
-  shoppableVideoObserver=new IntersectionObserver(entries=>{
-
-    entries.forEach(entry=>{
-
-      const video=entry.target;
-
-      if(entry.isIntersecting&&entry.intersectionRatio>=0.7){
-
-        video.play().catch(()=>{});
-
-        const item=video.closest(".shoppable-feed-item");
-
-        if(item){
-          activeShoppableProduct=publicItems.find(product=>
-            String(product.id)===String(item.dataset.productId)
-          );
-        }
-
-      }else{
-        video.pause();
-      }
-
-    });
-
-  },{
-    root:feed,
-    threshold:[0,0.7,1]
-  });
-
-  videos.forEach(video=>{
-    shoppableVideoObserver.observe(video);
-  });
+  // Rekod klik ke Supabase
+  trackClick(event,product.id);
+};
 }
 
-
-/* PLAY / PAUSE VIDEO */
-
-function toggleFeedVideo(button){
-
-  const item=button.closest(".shoppable-feed-item");
-  const video=item?.querySelector("video");
-
-  if(!video)return;
-
-  if(video.paused){
-    video.play().catch(()=>{});
-    button.textContent="Ⅱ";
-  }else{
-    video.pause();
-    button.textContent="▶";
-  }
+function closeShoppablePopup(){
+  $("shoppableProductPopup").classList.add("hidden");
 }
-
-
-/* SHARE PRODUCT */
-
-function shareFeedProduct(productId){
-
-  const product=publicItems.find(p=>
-    String(p.id)===String(productId)
-  );
-
-  if(!product)return;
-
-  const url=safeUrl(product.affiliate_url);
-
-  if(navigator.share){
-
-    navigator.share({
-      title:product.name||"Produk SELLORA",
-      url:url||window.location.href
-    }).catch(()=>{});
-
-  }else if(url){
-
-    window.open(url,"_blank","noopener,noreferrer");
-
-  }
-}
-  /* SELLORA VIDEO FEED BUY BUTTON */
-
-function buyFeedProduct(productId){
-
-  const product=publicItems.find(p=>
-    String(p.id)===String(productId)
-  );
-
-  if(!product){
-    alert("Produk tidak dijumpai.");
-    return;
-  }
-
-  const affiliateUrl=safeUrl(product.affiliate_url);
-
-  if(!affiliateUrl){
-    alert("Pautan affiliate produk tidak sah.");
-    return;
-  }
-
-  window.open(
-    affiliateUrl,
-    "_blank",
-    "noopener,noreferrer"
-  );
-
-  trackClick(null,product.id);
-}
-
-
-/* CLOSE SELLORA VIDEO FEED */
 
 function closeShoppableVideo(){
+  if(shoppablePopupTimer){
+    clearTimeout(shoppablePopupTimer);
+    shoppablePopupTimer=null;
+  }
 
-  if(shoppableVideoObserver){
-    shoppableVideoObserver.disconnect();
-    shoppableVideoObserver=null;
-  }
+  const video=$("shoppableMainVideo");
 
-  if(shoppablePopupTimer){
-    clearTimeout(shoppablePopupTimer);
-    shoppablePopupTimer=null;
-  }
+  video.pause();
+  video.removeAttribute("src");
+  video.load();
 
-  const feed=$("shoppableVideoFeed");
+  $("shoppableProductPopup").classList.add("hidden");
+  $("shoppableVideoModal").classList.add("hidden");
 
-  if(feed){
-    feed.querySelectorAll("video").forEach(video=>{
-      video.pause();
-      video.removeAttribute("src");
-      video.load();
-    });
-
-    feed.innerHTML="";
-  }
-
-  $("shoppableVideoModal").classList.add("hidden");
-
-  activeShoppableProduct=null;
+  activeShoppableProduct=null;
 }
+
+
+
+
 function trackClick(event,id){db.from("product_clicks").insert({product_id:id}).then(({error})=>{if(error)console.error("SELLORA click tracking:",error.message)})}
 
 
 async function shareStore(){
-  const url=window.location.href;
-  const storeName=$("publicName")?.textContent||"SELLORA";
+  const url=window.location.href;
+  const storeName=$("publicName")?.textContent||"SELLORA";
 
-  try{
-    if(navigator.share){
-      await navigator.share({
-        title:storeName+" | SELLORA",
-        text:"Jom lihat pilihan produk di SELLORA!",
-        url:url
-      });
-      return;
-    }
-  }catch(error){
-    if(error.name==="AbortError")return;
-  }
+  try{
+    if(navigator.share){
+      await navigator.share({
+        title:storeName+" | SELLORA",
+        text:"Jom lihat pilihan produk di SELLORA!",
+        url:url
+      });
+      return;
+    }
+  }catch(error){
+    if(error.name==="AbortError")return;
+  }
 
-  try{
-    if(navigator.clipboard && window.isSecureContext){
-      await navigator.clipboard.writeText(url);
-      alert("Pautan kedai berjaya disalin!");
-      return;
-    }
-  }catch(error){
-    console.log("Clipboard API tidak tersedia.");
-  }
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(url);
+      alert("Pautan kedai berjaya disalin!");
+      return;
+    }
+  }catch(error){
+    console.log("Clipboard API tidak tersedia.");
+  }
 
-  try{
-    const temp=document.createElement("textarea");
-    temp.value=url;
-    temp.style.position="fixed";
-    temp.style.opacity="0";
-    document.body.appendChild(temp);
-    temp.select();
-    const copied=document.execCommand("copy");
-    temp.remove();
+  try{
+    const temp=document.createElement("textarea");
+    temp.value=url;
+    temp.style.position="fixed";
+    temp.style.opacity="0";
+    document.body.appendChild(temp);
+    temp.select();
+    const copied=document.execCommand("copy");
+    temp.remove();
 
-    if(copied){
-      alert("Pautan kedai berjaya disalin!");
-    }else{
-      prompt("Salin pautan kedai ini:",url);
-    }
-  }catch(error){
-    prompt("Salin pautan kedai ini:",url);
-  }
+    if(copied){
+      alert("Pautan kedai berjaya disalin!");
+    }else{
+      prompt("Salin pautan kedai ini:",url);
+    }
+  }catch(error){
+    prompt("Salin pautan kedai ini:",url);
+  }
 }
 
 
 async function init(){
-  setTodayDate();const slug=new URLSearchParams(location.search).get("store");
-  if(slug){await openStore(slug);return}
-  try{const {data,error}=await db.auth.getSession();if(error){say("authMsg",error.message);return}if(data.session){user=data.session.user;await dashboard()}}
-  catch(error){say("authMsg","Ralat memulakan SELLORA: "+error.message)}
+  setTodayDate();const slug=new URLSearchParams(location.search).get("store");
+  if(slug){await openStore(slug);return}
+  try{const {data,error}=await db.auth.getSession();if(error){say("authMsg",error.message);return}if(data.session){user=data.session.user;await dashboard()}}
+  catch(error){say("authMsg","Ralat memulakan SELLORA: "+error.message)}
 }
 init();
 </script>
