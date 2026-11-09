@@ -1278,6 +1278,31 @@ textarea{
         </div>
         <p class="small">JPG, PNG atau WebP. Maksimum 5MB. Gambar dikecilkan secara automatik.</p>
       </div>
+      
+<div class="video-upload-box">
+  <label>Upload video produk (pilihan)</label>
+  <input
+    type="file"
+    id="productVideoFile"
+    accept="video/mp4"
+  >
+
+  <div id="productVideoPreviewWrap" style="display:none;margin-top:10px">
+    <p class="small">Pratonton video produk</p>
+    <video
+      id="productVideoPreview"
+      controls
+      playsinline
+      style="width:100%;max-width:220px;border-radius:12px;background:#000"
+    ></video>
+  </div>
+
+  <p class="small">
+    Format MP4 sahaja. Maksimum 50MB.
+    Disyorkan video menegak 9:16.
+  </p>
+</div>
+
       <div>
         <label>Susunan produk</label>
         <input id="sortOrder" type="number" min="0" step="1" value="0">
