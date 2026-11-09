@@ -2031,6 +2031,7 @@ function storeNav(section,button){
   }
 }
 
+
 function renderPublic(){
   const query=$("publicSearch").value.toLowerCase();
   const filter=$("publicFilter").value;
@@ -2067,12 +2068,62 @@ function renderPublic(){
     : products.filter(product=>product.is_featured===true);
 
   $("featuredWrap").classList.toggle("hidden",featured.length===0);
-  $("featuredProducts").innerHTML=featured.map(product=>card(product,false)).join("");
+  $("featuredProducts").innerHTML=
+    featured.map(product=>card(product,false)).join("");
 
   $("publicProducts").innerHTML=
     products.map(product=>card(product,false)).join("")||
     '<div class="empty">Tiada produk disukai. Tekan ikon hati pada produk untuk simpan Favourite.</div>';
+
+  /* SHOPPABLE VIDEO */
+  const videoProducts=products.filter(product=>
+    product.video_url&&safeUrl(product.video_url)
+  );
+
+  $("shoppableVideoWrap").classList.toggle(
+    "hidden",
+    videoProducts.length===0
+  );
+
+  $("shoppableVideoList").innerHTML=videoProducts.map(product=>{
+    const videoUrl=safeUrl(product.video_url);
+
+    return `
+      <div class="shoppable-video-card">
+        <div class="shoppable-video-preview">
+          <video
+            src="${esc(videoUrl)}"
+            muted
+            playsinline
+            preload="metadata"
+          ></video>
+
+          <button
+            type="button"
+            class="shoppable-play-btn"
+            onclick="openShoppableVideo('${esc(product.id)}')"
+          >
+            ▶
+          </button>
+        </div>
+
+        <div class="shoppable-video-info">
+          <div class="shoppable-video-name">
+            ${esc(product.name)}
+          </div>
+
+          <div class="shoppable-video-price">
+            ${product.price!=null
+              ?"RM "+Number(product.price).toFixed(2)
+              :"Lihat harga"}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join("");
 }
+
+
 
 function trackClick(event,id){db.from("product_clicks").insert({product_id:id}).then(({error})=>{if(error)console.error("SELLORA click tracking:",error.message)})}
 
