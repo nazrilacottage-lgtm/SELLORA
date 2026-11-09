@@ -1648,41 +1648,146 @@ $("productVideoFile").addEventListener("change",function(){
   say("productMsg","Video MP4 berjaya dipilih. Pratonton tersedia.");
 });
 
-
 async function saveProduct(){
   if(!user)return say("productMsg","Sila log masuk dahulu.");
   if(!store)return say("productMsg","Simpan kedai dahulu.");
-  const wasEditing=Boolean(editingId),name=$("productName").value.trim(),link=safeUrl($("affiliateUrl").value.trim());
+
+  const wasEditing=Boolean(editingId);
+  const name=$("productName").value.trim();
+  const link=safeUrl($("affiliateUrl").value.trim());
   let image=$("imageUrl").value.trim();
-  const file=$("productImageFile").files?.[0]||null,rawPrice=$("price").value,sortOrder=Number($("sortOrder").value||0);
+
+  const file=$("productImageFile").files?.[0]||null;
+  const videoFile=$("productVideoFile").files?.[0]||null;
+  const rawPrice=$("price").value;
+  const sortOrder=Number($("sortOrder").value||0);
+
+  let videoUrl=null;
+  let videoPath=null;
+
   if(!name)return say("productMsg","Masukkan nama produk.");
   if(!link)return say("productMsg","Masukkan pautan affiliate http/https yang sah.");
   if(image&&!safeUrl(image))return say("productMsg","URL gambar mesti bermula dengan http:// atau https://.");
-  if(rawPrice!==""&&(!Number.isFinite(Number(rawPrice))||Number(rawPrice)<0))return say("productMsg","Harga produk tidak sah.");
-  if(!Number.isInteger(sortOrder)||sortOrder<0)return say("productMsg","Susunan produk mesti nombor bulat 0 atau lebih.");
+
+  if(rawPrice!==""&&(!Number.isFinite(Number(rawPrice))||Number(rawPrice)<0))
+    return say("productMsg","Harga produk tidak sah.");
+
+  if(!Number.isInteger(sortOrder)||sortOrder<0)
+    return say("productMsg","Susunan produk mesti nombor bulat 0 atau lebih.");
+
+  if(videoFile&&videoFile.type!=="video/mp4")
+    return say("productMsg","Format video mesti MP4.");
+
+  if(videoFile&&videoFile.size>50*1024*1024)
+    return say("productMsg","Saiz video maksimum 50MB.");
+
   setButtonBusy("saveProductBtn",true,"Sedang menyimpan...",wasEditing?"Simpan perubahan":"Tambah produk");
+
   try{
     if(file){
       say("productMsg","Sedang memampatkan gambar...");
       const compressed=await compressProductImage(file);
+
       const {data:sessionData,error:sessionError}=await db.auth.getSession();
       if(sessionError)throw new Error("Ralat sesi: "+sessionError.message);
-      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
+
+      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)
+        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
+
       say("productMsg",`Gambar dimampatkan. ${(compressed.originalSize/1024).toFixed(0)}KB → ${(compressed.compressedSize/1024).toFixed(0)}KB. Sedang upload...`);
+
       const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.jpg`;
-      const upload=await db.storage.from("product-images").upload(path,compressed.file,{contentType:"image/jpeg",upsert:false});
-      if(upload.error)throw new Error("Upload gagal: "+upload.error.message);
+
+      const upload=await db.storage.from("product-images").upload(path,compressed.file,{
+        contentType:"image/jpeg",
+        upsert:false
+      });
+
+      if(upload.error)throw new Error("Upload gambar gagal: "+upload.error.message);
+
       const {data:publicData}=db.storage.from("product-images").getPublicUrl(path);
-      image=publicData?.publicUrl||"";if(!image)throw new Error("URL gambar awam tidak dapat diperoleh.");
+      image=publicData?.publicUrl||"";
+
+      if(!image)throw new Error("URL gambar awam tidak dapat diperoleh.");
     }
-    const values={owner_id:user.id,store_id:store.id,name,platform:$("platform").value,affiliate_url:link,image_url:image||null,price:rawPrice===""?null:Number(rawPrice),description:$("description").value.trim(),category:$("category").value,is_featured:$("isFeatured").checked,sort_order:sortOrder};
-    const result=wasEditing?await db.from("products").update(values).eq("id",editingId).eq("owner_id",user.id):await db.from("products").insert(values);
+
+    /* VIDEO UPLOAD */
+    if(videoFile){
+      say("productMsg","Sedang upload video produk...");
+
+      const {data:sessionData,error:sessionError}=await db.auth.getSession();
+      if(sessionError)throw new Error("Ralat sesi: "+sessionError.message);
+
+      if(!sessionData.session?.user||sessionData.session.user.id!==user.id)
+        throw new Error("Sesi pengguna tidak sah. Sila log masuk semula.");
+
+      const path=`${user.id}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.mp4`;
+
+      const upload=await db.storage.from("product-videos").upload(path,videoFile,{
+        contentType:"video/mp4",
+        upsert:false
+      });
+
+      if(upload.error)throw new Error("Upload video gagal: "+upload.error.message);
+
+      const {data:publicData}=db.storage.from("product-videos").getPublicUrl(path);
+
+      videoUrl=publicData?.publicUrl||"";
+      videoPath=path;
+
+      if(!videoUrl)throw new Error("URL video awam tidak dapat diperoleh.");
+    }else if(wasEditing){
+      /* KEKALKAN VIDEO LAMA SEMASA EDIT */
+      const existing=await db.from("products")
+        .select("video_url,video_path")
+        .eq("id",editingId)
+        .eq("owner_id",user.id)
+        .single();
+
+      if(existing.error)throw new Error("Gagal membaca video produk lama: "+existing.error.message);
+
+      videoUrl=existing.data.video_url||null;
+      videoPath=existing.data.video_path||null;
+    }
+
+    const values={
+      owner_id:user.id,
+      store_id:store.id,
+      name,
+      platform:$("platform").value,
+      affiliate_url:link,
+      image_url:image||null,
+      video_url:videoUrl,
+      video_path:videoPath,
+      price:rawPrice===""?null:Number(rawPrice),
+      description:$("description").value.trim(),
+      category:$("category").value,
+      is_featured:$("isFeatured").checked,
+      sort_order:sortOrder
+    };
+
+    const result=wasEditing
+      ?await db.from("products").update(values).eq("id",editingId).eq("owner_id",user.id)
+      :await db.from("products").insert(values);
+
     if(result.error)throw new Error(result.error.message);
+
     say("productMsg",wasEditing?"Produk berjaya dikemaskini!":"Produk berjaya ditambah!");
-    cancelEdit();await loadProducts();
-  }catch(error){say("productMsg","Ralat menyimpan produk: "+error.message)}
-  finally{$("saveProductBtn").disabled=false;$("saveProductBtn").textContent=editingId?"Simpan perubahan":"Tambah produk"}
+
+    cancelEdit();
+    await loadProducts();
+
+  }catch(error){
+    say("productMsg","Ralat menyimpan produk: "+error.message);
+  }finally{
+    $("saveProductBtn").disabled=false;
+    $("saveProductBtn").textContent=wasEditing?"Simpan perubahan":"Tambah produk";
+  }
 }
+
+
+
+
 
 function editProduct(id){
   const product=myItems.find(item=>String(item.id)===String(id));if(!product)return;
