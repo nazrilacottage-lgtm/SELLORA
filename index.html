@@ -2586,58 +2586,267 @@ function openShoppableVideo(productId){
   modal.classList.remove("hidden");
 
   video.play().catch(()=>{
-    console.log("Tekan butang Play untuk memainkan video.");
-  });
 
-  /* PAPAR POPUP SELEPAS 3 SAAT */
-  shoppablePopupTimer=setTimeout(()=>{
-    if(activeShoppableProduct){
-      popup.classList.remove("hidden");
-    }
-  },3000);
+/* SELLORA VIDEO FEED PLAYER */
 
-  /* BUTANG AFFILIATE */
-buyBtn.onclick=function(event){
-  const product=activeShoppableProduct;
+let shoppableVideoObserver=null;
+let shoppablePopupTimer=null;
+let activeShoppableProduct=null;
 
-  if(!product)return;
+function openShoppableVideo(productId){
 
-  const affiliateUrl=safeUrl(product.affiliate_url);
+  const videoProducts=publicItems.filter(product=>
+    product.video_url&&safeUrl(product.video_url)
+  );
 
-  if(!affiliateUrl){
-    alert("Pautan affiliate produk tidak sah.");
+  if(!videoProducts.length){
+    alert("Tiada video produk tersedia.");
     return;
   }
 
-  // Buka halaman affiliate
-  window.open(affiliateUrl,"_blank","noopener,noreferrer");
+  const startIndex=videoProducts.findIndex(product=>
+    String(product.id)===String(productId)
+  );
 
-  // Rekod klik ke Supabase
-  trackClick(event,product.id);
-};
-}
+  const feed=$("shoppableVideoFeed");
+  const modal=$("shoppableVideoModal");
 
-function closeShoppablePopup(){
-  $("shoppableProductPopup").classList.add("hidden");
-}
+  if(shoppableVideoObserver){
+    shoppableVideoObserver.disconnect();
+    shoppableVideoObserver=null;
+  }
 
-function closeShoppableVideo(){
   if(shoppablePopupTimer){
     clearTimeout(shoppablePopupTimer);
     shoppablePopupTimer=null;
   }
 
-  const video=$("shoppableMainVideo");
+  feed.innerHTML=videoProducts.map((product,index)=>{
 
-  video.pause();
-  video.removeAttribute("src");
-  video.load();
+    const videoUrl=safeUrl(product.video_url);
 
-  $("shoppableProductPopup").classList.add("hidden");
+    const price=product.price!=null
+      ?"RM "+Number(product.price).toFixed(2)
+      :"Lihat harga";
+
+    return `
+      <div class="shoppable-feed-item"
+           data-index="${index}"
+           data-product-id="${esc(product.id)}">
+
+        <video
+          src="${esc(videoUrl)}"
+          playsinline
+          muted
+          loop
+          preload="metadata"
+        ></video>
+
+        <div class="shoppable-feed-overlay">
+
+          <div class="shoppable-feed-info">
+            <h3>${esc(product.name||"Produk SELLORA")}</h3>
+            <p>${esc(price)}</p>
+          </div>
+
+          <div class="shoppable-feed-actions">
+
+            <button
+              type="button"
+              class="shoppable-feed-action"
+              data-action="sound">
+              <span>🔇</span>
+              Bunyi
+            </button>
+
+            <button
+              type="button"
+              class="shoppable-feed-action"
+              data-action="play">
+              <span>Ⅱ</span>
+              Pause
+            </button>
+
+          </div>
+
+          <button
+            type="button"
+            class="shoppable-feed-buy hidden"
+            data-action="buy">
+            🛍️ Beli Sekarang
+          </button>
+
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  activeShoppableProduct=null;
+  modal.classList.remove("hidden");
+
+  // Butang bunyi
+  feed.querySelectorAll('[data-action="sound"]').forEach(button=>{
+    button.addEventListener("click",()=>{
+      const item=button.closest(".shoppable-feed-item");
+      const video=item.querySelector("video");
+
+      video.muted=!video.muted;
+
+      button.querySelector("span").textContent=
+        video.muted?"🔇":"🔊";
+    });
+  });
+
+  // Butang play dan pause
+  feed.querySelectorAll('[data-action="play"]').forEach(button=>{
+    button.addEventListener("click",()=>{
+      const item=button.closest(".shoppable-feed-item");
+      const video=item.querySelector("video");
+
+      if(video.paused){
+        video.play().catch(()=>{});
+        button.querySelector("span").textContent="Ⅱ";
+        button.lastChild.textContent=" Pause";
+      }else{
+        video.pause();
+        button.querySelector("span").textContent="▶";
+        button.lastChild.textContent=" Play";
+      }
+    });
+  });
+
+  // Butang affiliate
+  feed.querySelectorAll('[data-action="buy"]').forEach(button=>{
+    button.addEventListener("click",event=>{
+
+      const item=button.closest(".shoppable-feed-item");
+      const product=publicItems.find(p=>
+        String(p.id)===String(item.dataset.productId)
+      );
+
+      if(!product)return;
+
+      const affiliateUrl=safeUrl(product.affiliate_url);
+
+      if(!affiliateUrl){
+        alert("Pautan affiliate produk tidak sah.");
+        return;
+      }
+
+      window.open(
+        affiliateUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+      trackClick(event,product.id);
+    });
+  });
+
+  // Pantau video yang sedang dilihat
+  shoppableVideoObserver=new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+      const item=entry.target;
+      const video=item.querySelector("video");
+      const buyButton=item.querySelector('[data-action="buy"]');
+
+      if(entry.isIntersecting&&entry.intersectionRatio>=0.65){
+
+        // Hentikan timer video sebelumnya
+        if(shoppablePopupTimer){
+          clearTimeout(shoppablePopupTimer);
+          shoppablePopupTimer=null;
+        }
+
+        // Pause video lain
+        feed.querySelectorAll("video").forEach(otherVideo=>{
+          if(otherVideo!==video){
+            otherVideo.pause();
+          }
+        });
+
+        const product=publicItems.find(p=>
+          String(p.id)===String(item.dataset.productId)
+        );
+
+        activeShoppableProduct=product||null;
+
+        video.play().catch(()=>{
+          console.log("Tekan Play untuk memainkan video.");
+        });
+
+        buyButton.classList.add("hidden");
+
+        // Paparkan butang selepas 3 saat
+        shoppablePopupTimer=setTimeout(()=>{
+          if(activeShoppableProduct===product){
+            buyButton.classList.remove("hidden");
+          }
+        },3000);
+
+      }else{
+        video.pause();
+      }
+    });
+
+  },{
+    root:feed,
+    threshold:[0.65]
+  });
+
+  feed.querySelectorAll(".shoppable-feed-item").forEach(item=>{
+    shoppableVideoObserver.observe(item);
+  });
+
+  // Buka video yang dipilih
+  requestAnimationFrame(()=>{
+    const targetIndex=startIndex>=0?startIndex:0;
+    const target=feed.querySelector(
+      `[data-index="${targetIndex}"]`
+    );
+
+    if(target){
+      feed.scrollTo({
+        top:target.offsetTop,
+        behavior:"instant"
+      });
+    }
+  });
+}
+
+
+// Tutup Video Feed
+function closeShoppableVideo(){
+
+  if(shoppablePopupTimer){
+    clearTimeout(shoppablePopupTimer);
+    shoppablePopupTimer=null;
+  }
+
+  if(shoppableVideoObserver){
+    shoppableVideoObserver.disconnect();
+    shoppableVideoObserver=null;
+  }
+
+  const feed=$("shoppableVideoFeed");
+
+  if(feed){
+    feed.querySelectorAll("video").forEach(video=>{
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    });
+
+    feed.innerHTML="";
+  }
+
   $("shoppableVideoModal").classList.add("hidden");
 
   activeShoppableProduct=null;
 }
+
 
 
 
