@@ -1624,36 +1624,49 @@ textarea{
     </button>
   </div>
 </div>
-  <nav class="store-bottom-nav">
-    <button class="active" onclick="storeNav('home',this)">
-      <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg>
-      Utama
-    </button>
 
-    <button onclick="storeNav('categories',this)">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-      Kategori
-    </button>
+<nav class="store-bottom-nav">
+  <button class="active" onclick="storeNav('home',this)">
+    <svg viewBox="0 0 24 24">
+      <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/>
+    </svg>
+    Utama
+  </button>
 
-    <button onclick="storeNav('liked',this)">
-  <svg viewBox="0 0 24 24">
-    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
-  </svg>
-  Disukai
-    </button>
+  <button onclick="storeNav('video',this)">
+    <svg viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="3"/>
+      <path d="m10 8 6 4-6 4z"/>
+    </svg>
+    Video
+  </button>
 
-    <button onclick="shareStore()">
-      <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/></svg>
-      Kongsi
-    </button>
-        <button onclick="storeNav('me',this)">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 21a8 8 0 0 1 16 0"/>
-      </svg>
-      Me
-        </button>
-  </nav>
+  <button onclick="storeNav('liked',this)">
+    <svg viewBox="0 0 24 24">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+    </svg>
+    Disukai
+  </button>
+
+  <button onclick="shareStore()">
+    <svg viewBox="0 0 24 24">
+      <circle cx="18" cy="5" r="3"/>
+      <circle cx="6" cy="12" r="3"/>
+      <circle cx="18" cy="19" r="3"/>
+      <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"/>
+    </svg>
+    Kongsi
+  </button>
+
+  <button onclick="storeNav('me',this)">
+    <svg viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 21a8 8 0 0 1 16 0"/>
+    </svg>
+    Me
+  </button>
+</nav>
+
 
 </section>
 
