@@ -2541,10 +2541,7 @@ function renderPublic(){
   
 /* SELLORA SHOPPABLE VIDEO PLAYER */
 
-let shoppablePopupTimer=null;
-let activeShoppableProduct=null;
-
-function openShoppableVideo(productId){
+productId){
   const product=publicItems.find(p=>String(p.id)===String(productId));
 
   if(!product||!product.video_url){
@@ -2586,6 +2583,7 @@ function openShoppableVideo(productId){
   modal.classList.remove("hidden");
 
   video.play().catch(()=>{
+
 
 /* SELLORA VIDEO FEED PLAYER */
 
@@ -2738,6 +2736,118 @@ function openShoppableVideo(productId){
         "_blank",
         "noopener,noreferrer"
       );
+
+      trackClick(event,product.id);
+    });
+  });
+
+  // Pantau video yang sedang dilihat
+  shoppableVideoObserver=new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+      const item=entry.target;
+      const video=item.querySelector("video");
+      const buyButton=item.querySelector('[data-action="buy"]');
+
+      if(entry.isIntersecting&&entry.intersectionRatio>=0.65){
+
+        // Hentikan timer video sebelumnya
+        if(shoppablePopupTimer){
+          clearTimeout(shoppablePopupTimer);
+          shoppablePopupTimer=null;
+        }
+
+        // Pause video lain
+        feed.querySelectorAll("video").forEach(otherVideo=>{
+          if(otherVideo!==video){
+            otherVideo.pause();
+          }
+        });
+
+        const product=publicItems.find(p=>
+          String(p.id)===String(item.dataset.productId)
+        );
+
+        activeShoppableProduct=product||null;
+
+        video.play().catch(()=>{
+          console.log("Tekan Play untuk memainkan video.");
+        });
+
+        buyButton.classList.add("hidden");
+
+        // Paparkan butang selepas 3 saat
+        shoppablePopupTimer=setTimeout(()=>{
+          if(activeShoppableProduct===product){
+            buyButton.classList.remove("hidden");
+          }
+        },3000);
+
+      }else{
+        video.pause();
+      }
+    });
+
+  },{
+    root:feed,
+    threshold:[0.65]
+  });
+
+  feed.querySelectorAll(".shoppable-feed-item").forEach(item=>{
+    shoppableVideoObserver.observe(item);
+  });
+
+  // Buka video yang dipilih
+  requestAnimationFrame(()=>{
+    const targetIndex=startIndex>=0?startIndex:0;
+    const target=feed.querySelector(
+      `[data-index="${targetIndex}"]`
+    );
+
+    if(target){
+      feed.scrollTo({
+        top:target.offsetTop,
+        behavior:"instant"
+      });
+    }
+  });
+}
+
+
+// Tutup Video Feed
+function closeShoppableVideo(){
+
+  if(shoppablePopupTimer){
+    clearTimeout(shoppablePopupTimer);
+    shoppablePopupTimer=null;
+  }
+
+  if(shoppableVideoObserver){
+    shoppableVideoObserver.disconnect();
+    shoppableVideoObserver=null;
+  }
+
+  const feed=$("shoppableVideoFeed");
+
+  if(feed){
+    feed.querySelectorAll("video").forEach(video=>{
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+    });
+
+    feed.innerHTML="";
+  }
+
+  $("shoppableVideoModal").classList.add("hidden");
+
+  activeShoppableProduct=null;
+}
+
+
+
+
 
       trackClick(event,product.id);
     });
